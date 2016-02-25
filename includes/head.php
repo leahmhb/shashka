@@ -14,10 +14,10 @@
 	<!-- Bootstrap core CSS -->
 
 	<!--Journal theme-->
-	<link href="/horse/src/css/lumen.css" rel="stylesheet">
+	<link href="/shashka/src/css/lumen.css" rel="stylesheet">
 
 	<!--Chosen styling-->
-	<link href="/horse/src/css/chosen.css" rel="stylesheet">
+	<link href="/shashka/src/css/chosen.css" rel="stylesheet">
 
 <!-- Latest compiled and minified CSS 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
@@ -26,7 +26,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
 
  <!--CUSTOM STYLES-->
- <link href="/horse/src/css/style.css" rel="stylesheet">
+ <link href="/shashka/src/css/style.css" rel="stylesheet">
 
  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -85,10 +85,10 @@
     							<li><a href="#">Horse</a></li>
     						</ul>
     					</li>
-    					<li><a href="/horse/add-horse/">Add Horse</a></li>   
-    					<li><a href="/horse/add-race/">Add Race</a></li>  
+    					<li><a href="/shashka/add-horse/">Add Horse</a></li>   
+    					<li><a href="/shashka/add-race/">Add Race</a></li>  
     					
-    					<li><a href="/horse/stall/">Stall Page</a></li>  
+    					<li><a href="/shashka/stall/">Stall Page</a></li>  
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
     					<li><a href="#">1</a></li>
