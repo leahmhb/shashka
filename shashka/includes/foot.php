@@ -11,16 +11,16 @@
     <script src="http://code.jquery.com/jquery-migrate-1.2.1.js"></script>
 
     <!-- Plugins -->
-    <script src="/shashka/src/js/chosen.jquery.min.js"></script>
+    <script src="/horse-racing/shashka/src/js/chosen.jquery.min.js"></script>
 
-    <script src="/shashka/src/js/bootstrap-datepicker.min.js"></script>
+    <script src="/horse-racing/shashka/src/js/bootstrap-datepicker.min.js"></script>
 
     
     <script>
        $(document).ready(function () {
          $(".chosen-select").chosen({
           width: "95%",
-          placeholder_text_single: "Select..."
+          placeholder_text_single: "Select.."
       });//end chosen 
 
          $.fn.datepicker.defaults.format = "dd/mm/yyyy";

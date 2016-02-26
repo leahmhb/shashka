@@ -12,12 +12,12 @@
 	<title>Shashka Stables</title>
 
 	<!--Journal theme-->
-	<link href="/shashka/src/css/lumen.css" rel="stylesheet">
+	<link href="/horse-racing/shashka/src/css/lumen.css" rel="stylesheet">
 
 	<!--Plugin styling-->
-	<link href="/shashka/src/css/chosen.css" rel="stylesheet">
+	<link href="/horse-racing/shashka/src/css/chosen.css" rel="stylesheet">
 
-    <link href="/shashka/src/css/bootstrap-datepicker3.css" rel="stylesheet">
+    <link href="/horse-racing/shashka/src/css/bootstrap-datepicker3.css" rel="stylesheet">
    
 
 <!-- Latest compiled and minified CSS 
@@ -27,7 +27,7 @@
  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css" integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">-->
 
  <!--CUSTOM STYLES-->
- <link href="/shashka/src/css/style.css" rel="stylesheet">
+ <link href="/horse-racing/shashka/src/css/style.css" rel="stylesheet">
 
  <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -48,7 +48,7 @@
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a class="navbar-brand" href="/shashka/index.php">Shashka Stables</a>
+    				<a class="navbar-brand" href="/horse-racing/shashka/index.php">Shashka Stables</a>
     			</div>
     			<div id="navbar" class="navbar-collapse collapse">
     				<ul class="nav navbar-nav">  
@@ -86,9 +86,9 @@
     							<li><a href="#">Horse</a></li>
     						</ul>
     					</li>
-    					<li><a href="/shashka/add-horse/">Add Horse</a></li>   
-    					<li><a href="/shashka/add-race/">Add Race</a></li> 
-    					<li><a href="/shashka/stall/">Stall Page</a></li>  
+    					<li><a href="/horse-racing/shashka/add-horse/">Add Horse</a></li>   
+    					<li><a href="/horse-racing/shashka/add-race/">Add Race</a></li> 
+    					<li><a href="/horse-racing/shashka/stall/">Stall Page</a></li>  
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
     					<li><a href="#">1</a></li>
