@@ -6,7 +6,16 @@ $vendorDir = dirname(dirname(__FILE__));
 $baseDir = dirname($vendorDir);
 
 return array(
-    'CreateHorsesTable' => $baseDir . '/database/migrations/2016_02_26_045314_create_horses_table.php',
+    'CreateAbilityPositiveTable' => $baseDir . '/database/migrations/2016_02_26_165033_create_ability_positive_table.php',
+    'CreateAbilityTable' => $baseDir . '/database/migrations/2016_02_26_165031_create_ability_table.php',
+    'CreateHorseAbilityTable' => $baseDir . '/database/migrations/2016_02_26_165032_create_horse_ability_table.php',
+    'CreateHorseProgenyTable' => $baseDir . '/database/migrations/2016_02_26_165332_create_horse_progeny_table.php',
+    'CreateHorseTable' => $baseDir . '/database/migrations/2016_02_26_165331_create_horse_table.php',
+    'CreateLegTypeTable' => $baseDir . '/database/migrations/2016_02_26_165332_create_leg_type_table.php',
+    'CreatePersonTable' => $baseDir . '/database/migrations/2016_02_26_165331_create_person_table.php',
+    'CreateRaceEntrantsTable' => $baseDir . '/database/migrations/2016_02_26_165332_create_race_entrants_table.php',
+    'CreateRaceTable' => $baseDir . '/database/migrations/2016_02_26_165333_create_race_table.php',
+    'CreateSexTable' => $baseDir . '/database/migrations/2016_02_26_165033_create_sex_table.php',
     'DatabaseSeeder' => $baseDir . '/database/seeds/DatabaseSeeder.php',
     'ExampleTest' => $baseDir . '/tests/ExampleTest.php',
     'File_Iterator' => $vendorDir . '/phpunit/php-file-iterator/src/Iterator.php',

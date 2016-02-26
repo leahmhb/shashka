@@ -1,12 +1,5 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-   <?php include_once("../includes/head.php"); ?>   
-  </head>
 
-  <body>
-
-      <?php include_once("../includes/navigation.php"); ?>       
+   <?php include_once("includes/head.php"); ?>   
 
     <div id="page-content" class="container">		
     <div class="page-header"><h1>Title <small>Sub-title</small></h1></div>
@@ -22,5 +15,3 @@
     June 3rd, 2015: Up and running! River Street and Winnie, our newest addtions from BlueJay Racing, are training for races as we speak.
     </div> <!-- /container -->
  <?php include_once("../includes/javascript.php"); ?>      
-  </body>
-</html>
