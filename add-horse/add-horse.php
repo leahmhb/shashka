@@ -72,70 +72,70 @@
     <div class="form-group">
       <label for="speed" class="col-sm-6 control-label">Speed</label>
       <div class="col-sm-6">       
-        <input type="text" name="speed" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="speed" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end speed-->
 
     <div class="form-group">
       <label for="staying" class="col-sm-6 control-label">Staying</label>
       <div class="col-sm-6">       
-        <input type="text" name="staying" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="staying" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end staying-->
 
     <div class="form-group">
       <label for="stamina" class="col-sm-6 control-label">Stamina</label>
       <div class="col-sm-6">       
-        <input type="text" name="stamina" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="stamina" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end stamina-->
 
     <div class="form-group">
       <label for="breaking" class="col-sm-6 control-label">Breaking</label>
       <div class="col-sm-6">       
-        <input type="text" name="breaking" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="breaking" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end breaking-->
 
     <div class="form-group">
       <label for="power" class="col-sm-6 control-label">Power</label>
       <div class="col-sm-6">       
-        <input type="text" name="power" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="power" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end power-->
 
     <div class="form-group">
       <label for="feel" class="col-sm-6 control-label">Feel</label>
       <div class="col-sm-6">       
-        <input type="text" name="feel" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="feel" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end feel-->
 
     <div class="form-group">
       <label for="fierce" class="col-sm-6 control-label">Fierce</label>
       <div class="col-sm-6">       
-        <input type="text" name="fierce" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="fierce" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end fierce-->
 
     <div class="form-group">
       <label for="tenacity" class="col-sm-6 control-label">Tenacity</label>
       <div class="col-sm-6">       
-        <input type="text" name="tenacity" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="tenacity" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end tenacity-->
 
     <div class="form-group">
       <label for="courage" class="col-sm-6 control-label">Courage</label>
       <div class="col-sm-6">       
-        <input type="text" name="courage" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="courage" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end courage-->
 
     <div class="form-group">
       <label for="response" class="col-sm-6 control-label">Response</label>
       <div class="col-sm-6">       
-        <input type="text" name="response" class="form-control chosen-select" placeholder="00">
+        <input type="text" name="response" class="form-control chosen-select" placeholder="50">
       </div>                
     </div><!--end response-->
   </div><!--end col-->
@@ -258,6 +258,7 @@
      <option value="front">Front</option>
      <option value="back">Back</option>
      <option value="both">Both</option>
+     <option value="none">None</option>
    </select>              
  </div>
 </div><!--end bandages-->  

@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 25, 2016 at 09:58 PM
+-- Generation Time: Feb 25, 2016 at 11:17 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -212,6 +212,27 @@ INSERT INTO `Leg_Types` (`type_name`, `type_description`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `Person`
+--
+
+CREATE TABLE IF NOT EXISTS `Person` (
+  `username` varchar(50) NOT NULL,
+  `stable_name` varchar(50) DEFAULT NULL,
+  `stable_prefix` varchar(50) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `Person`
+--
+
+INSERT INTO `Person` (`username`, `stable_name`, `stable_prefix`) VALUES
+('Haubing', 'Shashka Stables', 'Haubing'),
+('katann', 'RKO Haven', 'RKO'),
+('Neco', 'Hard Tack', 'Hard Tack');
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `Race`
 --
 
@@ -291,7 +312,10 @@ ALTER TABLE `Horses`
   ADD PRIMARY KEY (`horse_id`),
   ADD UNIQUE KEY `registered_name` (`registered_name`),
   ADD KEY `sex` (`sex`),
-  ADD KEY `leg_type_fk` (`leg_type`);
+  ADD KEY `leg_type_fk` (`leg_type`),
+  ADD KEY `owner` (`owner`),
+  ADD KEY `breeder` (`breeder`),
+  ADD KEY `hexer` (`hexer`);
 
 --
 -- Indexes for table `Horse_Abilities`
@@ -315,6 +339,12 @@ ALTER TABLE `Horse_Progeny`
 --
 ALTER TABLE `Leg_Types`
   ADD PRIMARY KEY (`type_name`);
+
+--
+-- Indexes for table `Person`
+--
+ALTER TABLE `Person`
+  ADD PRIMARY KEY (`username`);
 
 --
 -- Indexes for table `Race`
@@ -357,7 +387,10 @@ ALTER TABLE `Race`
 -- Constraints for table `Horses`
 --
 ALTER TABLE `Horses`
+  ADD CONSTRAINT `breeder_fk` FOREIGN KEY (`breeder`) REFERENCES `Person` (`username`),
+  ADD CONSTRAINT `hexer_fk` FOREIGN KEY (`hexer`) REFERENCES `Person` (`username`),
   ADD CONSTRAINT `leg_type_fk` FOREIGN KEY (`leg_type`) REFERENCES `Leg_Types` (`type_name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `owner_fk` FOREIGN KEY (`owner`) REFERENCES `Person` (`username`),
   ADD CONSTRAINT `sex_fk` FOREIGN KEY (`sex`) REFERENCES `Sex` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 
 --

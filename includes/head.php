@@ -14,8 +14,11 @@
 	<!--Journal theme-->
 	<link href="/shashka/src/css/lumen.css" rel="stylesheet">
 
-	<!--Chosen styling-->
+	<!--Plugin styling-->
 	<link href="/shashka/src/css/chosen.css" rel="stylesheet">
+
+    <link href="/shashka/src/css/bootstrap-datepicker3.css" rel="stylesheet">
+   
 
 <!-- Latest compiled and minified CSS 
 	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous"> -->
