@@ -11,8 +11,6 @@
 
 	<title>Shashka Stables</title>
 
-	<!-- Bootstrap core CSS -->
-
 	<!--Journal theme-->
 	<link href="/shashka/src/css/lumen.css" rel="stylesheet">
 
@@ -47,7 +45,7 @@
     					<span class="icon-bar"></span>
     					<span class="icon-bar"></span>
     				</button>
-    				<a class="navbar-brand" href="/horse/index.php">Shashka Stables</a>
+    				<a class="navbar-brand" href="/shashka/index.php">Shashka Stables</a>
     			</div>
     			<div id="navbar" class="navbar-collapse collapse">
     				<ul class="nav navbar-nav">  
@@ -86,8 +84,7 @@
     						</ul>
     					</li>
     					<li><a href="/shashka/add-horse/">Add Horse</a></li>   
-    					<li><a href="/shashka/add-race/">Add Race</a></li>  
-    					
+    					<li><a href="/shashka/add-race/">Add Race</a></li> 
     					<li><a href="/shashka/stall/">Stall Page</a></li>  
     				</ul>
     				<ul class="nav navbar-nav navbar-right">
