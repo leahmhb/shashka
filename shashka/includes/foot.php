@@ -16,21 +16,19 @@
     <script src="/horse-racing/shashka/src/js/bootstrap-datepicker.min.js"></script>
 
     
-    <script>
-       $(document).ready(function () {
-         $(".chosen-select").chosen({
-          width: "95%",
-          placeholder_text_single: "Select.."
+<!--     <script>
+     $(document).ready(function () {
+       $(".chosen-select").chosen({
+        width: "95%",
+        placeholder_text_single: "Select.."
       });//end chosen 
 
-         $.fn.datepicker.defaults.format = "dd/mm/yyyy";
-         $.fn.datepicker.defaults.todayHightlight = true;
-         $.fn.datepicker.defaults.todayBtn = true;
-         
-         $('.datepicker').datepicker();
-
+       $('.datepicker').datepicker({
+        format = "dd/mm/yyyy",
+        todayHightlight = true,
+        todayBtn = true
+      });
    });//end ready
-
-</script>
+ </script> -->
 </body>
 </html>

@@ -133,3 +133,13 @@
 
 <?php include_once("../includes/foot.php"); ?>      
 
+    <script>
+     $(document).ready(function () {
+
+       $('.datepicker').datepicker({
+        format = "dd/mm/yyyy",
+        todayHightlight = true,
+        todayBtn = true
+      });
+   });//end ready
+ </script>

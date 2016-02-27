@@ -293,3 +293,11 @@
 
 </div> <!-- /container -->
 <?php include_once("../includes/foot.php"); ?>      
+    <script>
+     $(document).ready(function () {
+       $(".chosen-select").chosen({
+        width: "95%",
+        placeholder_text_single: "Select.."
+      });//end chosen 
+   });//end ready
+ </script>
