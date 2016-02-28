@@ -19,3 +19,8 @@ ul.stall-info{
 .stall-info li ul {
 	 margin-left: 2rem;
 }
+
+#stall-spacer {
+	padding: 0;
+	margin: 0;
+}

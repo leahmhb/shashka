@@ -25,13 +25,8 @@ class Horse extends BaseController{
         echo "<pre>" . print_r($_POST, true) . "</pre>";
         exit;
 
-        $horse = new Model\Horse;
-        $horse->call_name = $_POST['call_name'];
-        $horse->save();
 
-        return view('add_horse', [
-            'domain' => $this->getDomain()
-            ]);
+        //return view('add_horse', ['domain' => $this->getDomain()]);
     }//end add_horse_validate
 
 
@@ -42,76 +37,143 @@ class Horse extends BaseController{
         $domain['sexes'] = Models\Sex::get()->toArray();
         $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
         $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-        $domain['sires'] = Models\Horse::select('horse_id', 'call_name')->where('sex', 'Stallion')->get()->toArray();
-        $domain['dams'] = Models\Horse::select('horse_id', 'call_name')->where('sex', 'Mare')->get()->toArray();
+        $domain['sires'] = Models\Horse::select('id', 'call_name')->where('sex', 'Stallion')->get()->toArray();
+        $domain['dams'] = Models\Horse::select('id', 'call_name')->where('sex', 'Mare')->get()->toArray();
         return $domain;
     }//end getDomain
 
     public function stall_page($horse_id){
 
-    	$horse = Models\Horse::where('horse_id', $horse_id)->first()->toArray();
-		//echo "<pre>" . print_r($horse, true) . "</pre>";
+    	$horse = Models\Horse::where('id', $horse_id)->first()->toArray();
+
+
     	$ability = Models\Horse_Ability::where('horse_id', $horse_id)->first()->toArray();
-		//echo "<pre>" . print_r($ability, true) . "</pre>";
 
-    	$prefix = Models\Person::select('stable_prefix')
-    	->where('username', $horse['hexer'])
-    	->first()->toArray();
+        $abilities = Models\Ability::where('ability', $ability['pos_ability_1'])
+        ->orWhere('ability', $ability['pos_ability_2'])
+        ->orWhere('ability', $ability['neg_ability_1'])->get()->toArray();
 
-    	$progeny = $this->getParents($horse_id);
-    	if($horse['owner'] == "Haubing") {
-    		$img_src = "stall/" . $horse['call_name'] . ".png";
-    	} else {
-    		$img_src = "stall/default.png";
-    	}
-    	
-		//echo "<pre>" . print_r($progeny, true) . "</pre>";
+        $prefix = Models\Person::select('stable_prefix')
+        ->where('username', $horse['hexer'])
+        ->first()->toArray();
 
-    	return view('stall', [
-    		'horse' => $horse, 
-    		'ability' => $ability, 
-    		'progeny' => $progeny, 
-    		'prefix' => $prefix,
-    		'img_src' => $img_src
-    		]);
+        $parents = $this->getParents($horse_id);
+        $offspring = $this->getOffspring($horse_id, $horse['sex']);
+        if($horse['owner'] == "Haubing") {
+          $img_src = "stall/" . $horse['call_name'] . ".png";
+      } else {
+          $img_src = "stall/default.png";
+      }
+
+		//echo "<pre>" . print_r($parents, true) . "</pre>";
+
+      return view('stall', [
+          'horse' => $horse, 
+          'ability' => $ability, 
+          'abilities' => $abilities,
+          'offspring' => $offspring, 
+          'parents' => $parents, 
+          'prefix' => $prefix,
+          'img_src' => $img_src
+          ]);
     }//end stall
 
+    public function getOffspring($horse_id, $sex){       
+
+        $offspring = [];
+
+        if($sex == 'Stallion'){
+            $offspring = Models\Horse_Progeny::where('sire_id', $horse_id)
+            ->get();
+        } else if($sex == 'Mare'){
+            $offspring = Models\Horse_Progeny::where('dam_id', $horse_id)
+            ->get();
+        }//end if-else        
+
+        if($offspring != null){
+            $offspring = $offspring->toArray();
+
+            //echo "<pre>" . print_r($offspring, true) . "</pre>";
+            //exit;
+
+            foreach($offspring as $i=>$o){
+                if($o['horse_id'] != 0){
+                   $foal = Models\Horse::select('call_name')
+                   ->where('id', $o['horse_id'])
+                   ->first()->toArray();
+                   //echo "<pre>" . print_r($foal, true) . "</pre>";
+                   $offspring[$i]['horse_name'] = $foal['call_name'];
+                   $offspring[$i]['horse_link']= "/stall/" . $o['horse_id'];
+               }//end if
+
+               if($sex == 'Stallion'){
+                if($o['dam_id'] != 0){
+                    $dam = Models\Horse::select('call_name')
+                    ->where('id', $o['dam_id'])
+                    ->first()->toArray();
+                    //echo "<pre>" . print_r($dam, true) . "</pre>";
+                    $offspring[$i]['dam_name'] = $dam['call_name'];
+                    $offspring[$i]['dam_link'] = "/stall/" . $o['dam_id'];
+                }//end if
+               }//end if
+
+               if($sex == 'Mare'){
+                if($o['sire_id'] != 0){
+                    $sire = Models\Horse::select('call_name')
+                    ->where('id', $o['sire_id'])
+                    ->first()->toArray();
+                    //echo "<pre>" . print_r($sire, true) . "</pre>";
+                    $offspring[$i]['sire_name'] = $sire['call_name'];
+                    $offspring[$i]['sire_link'] = "/stall/" . $o['sire_id'];
+                }//end if
+               }//end if
+
+           }//end foreach
+       }//end if
+
+
+       //echo "<pre>" . print_r($offspring, true) . "</pre>";
+       //exit;
+
+       return $offspring;
+    }//end getOffspring
+
     public function getParents($horse_id){
-        $progeny = Models\Horse_Progeny::where('horse_id', $horse_id)->first();
+        $parents = Models\Horse_Progeny::where('horse_id', $horse_id)->first();
         
-        if($progeny != null){
-            $progeny = $progeny->toArray();
+        if($parents != null){
+            $parents = $parents->toArray();
 
             $sire = Models\Horse::select('call_name')
-            ->where('horse_id', $progeny['sire_id'])
+            ->where('id', $parents['sire_id'])
             ->first();
 
             if($sire != null){
                 $sire = $sire->toArray();
-                $progeny['sire'] = $sire['call_name'];
-                $progeny['sire_link'] = "stall/" . $progeny['sire_id'];
-            } else if ($progeny['sire_name'] != null){
-                $progeny['sire'] = $progeny['sire_name'];
+                $parents['sire'] = $sire['call_name'];
+                $parents['sire_link'] = "/stall/" . $parents['sire_id'];
+            } else if ($parents['sire_name'] != null){
+                $parents['sire'] = $parents['sire_name'];
             }//end if 
 
             $dam = Models\Horse::select('call_name')
-            ->where('horse_id', $progeny['dam_id'])
+            ->where('id', $parents['dam_id'])
             ->first();
 
             if($dam != null){
                 $dam = $dam->toArray();
-                $progeny['dam'] = $dam['call_name'];
-                $progeny['dam_link'] = "stall/" . $progeny['dam_id'];
-            } else if ($progeny['dam_name'] != null){
-                $progeny['dam'] = $progeny['dam_name'];             
+                $parents['dam'] = $dam['call_name'];
+                $parents['dam_link'] = "/stall/" . $parents['dam_id'];
+            } else if ($parents['dam_name'] != null){
+                $parents['dam'] = $parents['dam_name'];             
             }//end if 
 
         }  else {
-            $progeny['dam'] = $progeny['sire'] = "Foundation";
-            $progeny['dam_link'] = $progeny['sire_link'] = "#";
-            }//end if
+            $parents['dam'] = $parents['sire'] = "Foundation";
+            $parents['dam_link'] = $parents['sire_link'] = "#";
+        }//end if
 
-            return $progeny;
+        return $parents;
 
     }//end getParents
 }//end class

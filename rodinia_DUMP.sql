@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2016 at 11:11 PM
+-- Generation Time: Feb 28, 2016 at 04:02 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `horses` (
   `run_style` varchar(10) DEFAULT NULL,
   `hood` varchar(10) DEFAULT NULL,
   `shadow_roll` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `horses`
@@ -221,15 +221,15 @@ INSERT INTO `horses_progeny` (`horse_id`, `horse_name`, `horse_link`, `sire_id`,
 --
 
 CREATE TABLE IF NOT EXISTS `leg_types` (
-  `type_name` varchar(30) NOT NULL,
-  `type_description` longtext NOT NULL
+  `type` varchar(30) NOT NULL,
+  `description` longtext NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `leg_types`
 --
 
-INSERT INTO `leg_types` (`type_name`, `type_description`) VALUES
+INSERT INTO `leg_types` (`type`, `description`) VALUES
 ('Closer', 'This type of horse often drops to the back of the field and trails the field throughout the race, until it lets loose an explosive turn of foot. These horses will often look to be hopelessly beaten, then suddenly turn it on in the middle or deep stretch and charge down the track hellbent for the finish line. They can often overwhelm horses that ran near the pace and repel challenges from other closers.\r\n'),
 ('Follower', 'This type of horse is often found in the middle of the pack, happily running along and bumping into its fellows without a care in the world. They’re content to run five or more lengths off the leaders and make their moves near the middle of the stretch and can sometimes simply overwhelm a tiring leader or kick back a challenging closer. They are similar to closers, but run closer to the stalkers and leaders. '),
 ('Front Runner', 'This type of horse loves the lead and loves to run uncontested at the front of the pack. Often these horses hate the idea of other horses bumping or pushing them in the middle of the pack and will run away at the start to lead the rest of the field on a merry chase. These horses may or may not be able to hold off closers – more often they can fold under pressure. '),
@@ -346,7 +346,8 @@ ALTER TABLE `horses`
   ADD KEY `grade` (`grade`),
   ADD KEY `sexes` (`sex`),
   ADD KEY `leg_type` (`leg_type`),
-  ADD KEY `owner` (`owner`);
+  ADD KEY `owner` (`owner`),
+  ADD KEY `breeder_fk` (`breeder`);
 
 --
 -- Indexes for table `horses_abilities`
@@ -367,7 +368,7 @@ ALTER TABLE `horses_progeny`
 -- Indexes for table `leg_types`
 --
 ALTER TABLE `leg_types`
-  ADD PRIMARY KEY (`type_name`);
+  ADD PRIMARY KEY (`type`);
 
 --
 -- Indexes for table `person`
@@ -402,7 +403,7 @@ ALTER TABLE `sexes`
 -- AUTO_INCREMENT for table `horses`
 --
 ALTER TABLE `horses`
-  MODIFY `horse_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
+  MODIFY `horse_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=4;
 --
 -- AUTO_INCREMENT for table `races`
 --
@@ -416,9 +417,8 @@ ALTER TABLE `races`
 -- Constraints for table `horses`
 --
 ALTER TABLE `horses`
-  ADD CONSTRAINT `breeder_fk` FOREIGN KEY (`breeder`) REFERENCES `person` (`username`),
   ADD CONSTRAINT `grade_fk` FOREIGN KEY (`grade`) REFERENCES `grades` (`level`) ON DELETE CASCADE ON UPDATE CASCADE,
-  ADD CONSTRAINT `leg_type_fk` FOREIGN KEY (`leg_type`) REFERENCES `leg_types` (`type_name`) ON DELETE CASCADE ON UPDATE CASCADE,
+  ADD CONSTRAINT `leg_type_fk` FOREIGN KEY (`leg_type`) REFERENCES `leg_types` (`type`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `owner_fk` FOREIGN KEY (`owner`) REFERENCES `person` (`username`),
   ADD CONSTRAINT `sex_fk` FOREIGN KEY (`sex`) REFERENCES `sexes` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
 

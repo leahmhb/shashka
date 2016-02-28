@@ -58,28 +58,28 @@
                         <li class="dropdown-header">GI</li>
                         @foreach ($stallions as $stallion)
                         @if ($stallion['grade'] == 'GI')
-                        <li><a href="/stall/{{$stallion['horse_id']}}">{{$stallion['call_name']}}</a></li>
+                        <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GII</li>
                         @foreach ($stallions as $stallion)
                         @if ($stallion['grade'] == 'GII')
-                        <li><a href="/stall/{{$stallion['horse_id']}}">{{$stallion['call_name']}}</a></li>
+                        <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GIII</li>
                         @foreach ($stallions as $stallion)
                         @if ($stallion['grade'] == 'GIII')
-                        <li><a href="/stall/{{$stallion['horse_id']}}">{{$stallion['call_name']}}</a></li>
+                        <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Open Class</li>
+                        <li class="dropdown-header">Open Level</li>
                         @foreach ($stallions as $stallion)
-                        @if ($stallion['grade'] == 'Open Class')
-                        <li><a href="/stall/{{$stallion['horse_id']}}">{{$stallion['call_name']}}</a></li>
+                        @if ($stallion['grade'] == 'Open Level')
+                        <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                     </ul>
@@ -91,28 +91,28 @@
                         <li class="dropdown-header">GI</li>
                         @foreach ($mares as $mare)
                         @if ($mare['grade'] == 'GI')
-                        <li><a href="/stall/{{$mare['horse_id']}}">{{$mare['call_name']}}</a></li>
+                        <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GII</li>
                         @foreach ($mares as $mare)
                         @if ($mare['grade'] == 'GII')
-                        <li><a href="/stall/{{$mare['horse_id']}}">{{$mare['call_name']}}</a></li>
+                        <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GIII</li>
                         @foreach ($mares as $mare)
                         @if ($mare['grade'] == 'GIII')
-                        <li><a href="/stall/{{$mare['horse_id']}}">{{$mare['call_name']}}</a></li>
+                        <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                         <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Open Class</li>
+                        <li class="dropdown-header">Open Level</li>
                         @foreach ($mares as $mare)
-                        @if ($mare['grade'] == 'Open Class')
-                        <li><a href="/stall/{{$mare['horse_id']}}">{{$mare['call_name']}}</a></li>
+                        @if ($mare['grade'] == 'Open Level')
+                        <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @endif                            
                         @endforeach
                     </ul>

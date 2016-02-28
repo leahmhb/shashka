@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Database\Seeder;
+use Illuminate\Database\Eloquent\Model;
 
 class DatabaseSeeder extends Seeder {
     /**
@@ -9,8 +10,9 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run(){
-        this->call(PersonTableSeeder::class);
-    	this->call(DomainTableSeeder::class);
-    	this->call(HorsesTableSeeder::class);
-    }
+        Model::unguard();
+        $this->call('PersonTableSeeder');
+    	$this->call('DomainTableSeeder');
+    	$this->call('HorsesTableSeeder');
+    }//end run
   }

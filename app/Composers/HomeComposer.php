@@ -10,13 +10,13 @@ class HomeComposer{
 	}
 
 	public function getStallions(){
-		return Models\Horse::select('call_name', 'grade', 'horse_id')
+		return Models\Horse::select('call_name', 'grade', 'id')
 		->where('sex', 'Stallion')->where('owner', 'Haubing')
 		->get()->toArray();
     }//end getStallions
 
     public function getMares(){
-    	return Models\Horse::select('call_name', 'grade', 'horse_id')
+    	return Models\Horse::select('call_name', 'grade', 'id')
     	->where('sex', 'Mare')->where('owner', 'Haubing')
     	->get()->toArray();
     }//end getStallions

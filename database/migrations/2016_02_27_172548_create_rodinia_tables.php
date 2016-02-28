@@ -12,6 +12,7 @@ class CreateRodiniaTables extends Migration {
     public function up() {
 
         Schema::create('person', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('username')->unique();  
             $table->index('username');          
@@ -21,6 +22,7 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('grades', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');            
             $table->string('grade')->unique(); 
             $table->index('grade');
@@ -29,6 +31,7 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('leg_types', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('type')->unique(); 
             $table->index('type');
@@ -37,6 +40,7 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('sexes', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('sex');
             $table->index('sex');
@@ -45,13 +49,14 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('horses', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('call_name');
             $table->string('registered_name')->unique();
             $table->string('sex');
             $table->foreign('sex')->references('sex')->on('sexes')->onDelete('cascade');;
             $table->string('color');
-            $table->string('phentotype');
+            $table->string('phenotype');
             $table->string('grade')->default('Open Level');
             $table->foreign('grade')->references('grade')->on('grades')->onDelete('cascade'); 
             $table->string('leg_type');
@@ -85,8 +90,9 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('abilities', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->string('ability')->unique();
+            $table->string('ability')->unique()->index();
             $table->index('ability'); 
             $table->string('type'); 
             $table->longText('description'); 
@@ -94,6 +100,7 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('races', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
             $table->string('name');
             $table->string('surface');
@@ -105,8 +112,10 @@ class CreateRodiniaTables extends Migration {
 
 
         Schema::create('horses_abilities', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->integer('horse_id')->unique();
+            $table->integer('horse_id')->unique()->unsigned()->index();
+            $table->index('horse_id');
             $table->foreign('horse_id')->references('id')->on('horses')->onDelete('cascade');
             $table->string('pos_ability_1');
             $table->foreign('pos_ability_1')->references('ability')->on('abilities')->onDelete('cascade');
@@ -118,21 +127,26 @@ class CreateRodiniaTables extends Migration {
         });
 
         Schema::create('horses_progeny', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->integer('horse_id')->unique();
-            $table->foreign('horse_id')->references('id')->on('horses')->onDelete('cascade');
-            $table->integer('sire_id')->default('Foundation');
-            $table->foreign('sire_id')->references('id')->on('horses')->onDelete('cascade');
-            $table->integer('dam_id')->default('Foundation');
-            $table->foreign('dam_id')->references('id')->on('horses')->onDelete('cascade');
+            $table->integer('horse_id')->unsigned()->index();    
+            $table->string('horse_name')->default('Offspring');
+            $table->string('horse_link')->default('#');        
+            $table->integer('sire_id')->unsigned();
+            $table->string('sire_name')->default('Foundation');
+            $table->string('sire_link')->default('#');
+            $table->integer('dam_id')->unsigned();
+            $table->string('dam_name')->default('Foundation');
+            $table->string('dam_link')->default('#');
             $table->timestamps();
         });
 
         Schema::create('race_entrants', function (Blueprint $table) {
+            $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->integer('horse_id');
+            $table->integer('horse_id')->unsigned()->index();
             $table->foreign('horse_id')->references('id')->on('horses')->onDelete('cascade');
-            $table->integer('race_id');
+            $table->integer('race_id')->unsigned()->index();
             $table->foreign('race_id')->references('id')->on('races')->onDelete('cascade');
             $table->integer('placing');
             $table->timestamps();
@@ -146,15 +160,26 @@ class CreateRodiniaTables extends Migration {
      * @return void
      */
     public function down() {
-        Schema::drop('races');
-        Schema::drop('race_entrants');
-        Schema::drop('sexes');
-        Schema::drop('leg_types');
-        Schema::drop('grades');
-        Schema::drop('abilities');
-        Schema::drop('horses_abilites');
-        Schema::drop('horses_progeny');
-        Schema::drop('horses');
-        Schema::drop('person');
+
+     Schema::dropIfExists('race_entrants');
+
+     Schema::dropIfExists('horses_progeny'); 
+
+     Schema::dropIfExists('horses_abilites');
+
+     Schema::dropIfExists('races'); 
+
+     Schema::dropIfExists('abilities');
+
+     Schema::dropIfExists('horses');
+
+     Schema::dropIfExists('sexes');
+
+     Schema::dropIfExists('leg_types');
+
+     Schema::dropIfExists('grades');
+
+     Schema::dropIfExists('person');
+
     }//end down
 }
