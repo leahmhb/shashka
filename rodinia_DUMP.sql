@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Feb 27, 2016 at 12:49 PM
+-- Generation Time: Feb 27, 2016 at 11:11 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -17,7 +17,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `horse_racing`
+-- Database: `rodinia`
 --
 
 -- --------------------------------------------------------
@@ -27,16 +27,16 @@ SET time_zone = "+00:00";
 --
 
 CREATE TABLE IF NOT EXISTS `abilities` (
-  `ability_name` varchar(30) NOT NULL,
+  `ability` varchar(30) NOT NULL,
   `type` varchar(8) NOT NULL,
-  `ability_description` varchar(100) NOT NULL
+  `description` varchar(100) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `abilities`
 --
 
-INSERT INTO `abilities` (`ability_name`, `type`, `ability_description`) VALUES
+INSERT INTO `abilities` (`ability`, `type`, `description`) VALUES
 ('Bears', 'negative', 'Bears right and left when stamina runs out.'),
 ('Best Course', 'positive', 'Does better if it runs a course it likes.'),
 ('Close race Not ', 'negative', 'Performs poorly in close races.'),
@@ -81,9 +81,9 @@ INSERT INTO `abilities` (`ability_name`, `type`, `ability_description`) VALUES
 -- Stand-in structure for view `abilities_negative`
 --
 CREATE TABLE IF NOT EXISTS `abilities_negative` (
-`ability_name` varchar(30)
+`ability` varchar(30)
 ,`type` varchar(8)
-,`ability_description` varchar(100)
+,`description` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -92,9 +92,9 @@ CREATE TABLE IF NOT EXISTS `abilities_negative` (
 -- Stand-in structure for view `ability_positive`
 --
 CREATE TABLE IF NOT EXISTS `ability_positive` (
-`ability_name` varchar(30)
+`ability` varchar(30)
 ,`type` varchar(8)
-,`ability_description` varchar(100)
+,`description` varchar(100)
 );
 
 -- --------------------------------------------------------
@@ -126,8 +126,8 @@ INSERT INTO `grades` (`level`, `description`) VALUES
 
 CREATE TABLE IF NOT EXISTS `horses` (
   `horse_id` int(3) NOT NULL,
-  `call_name` varchar(25) NOT NULL,
-  `registered_name` varchar(30) NOT NULL,
+  `call_name` varchar(50) NOT NULL,
+  `registered_name` varchar(255) NOT NULL,
   `sex` varchar(15) NOT NULL,
   `color` varchar(15) DEFAULT NULL,
   `phenotype` varchar(10) DEFAULT NULL,
@@ -155,7 +155,7 @@ CREATE TABLE IF NOT EXISTS `horses` (
   `run_style` varchar(10) DEFAULT NULL,
   `hood` varchar(10) DEFAULT NULL,
   `shadow_roll` varchar(10) DEFAULT NULL
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `horses`
@@ -163,9 +163,8 @@ CREATE TABLE IF NOT EXISTS `horses` (
 
 INSERT INTO `horses` (`horse_id`, `call_name`, `registered_name`, `sex`, `color`, `phenotype`, `grade`, `leg_type`, `owner`, `breeder`, `hexer`, `speed`, `staying`, `stamina`, `breaking`, `power`, `feel`, `fierce`, `tenacity`, `courage`, `response`, `distance_min`, `distance_max`, `surface_dirt`, `surface_turf`, `bandages`, `neck_height`, `run_style`, `hood`, `shadow_roll`) VALUES
 (1, 'Riparian', 'Lessons Learned', 'Stallion', 'Black', 'EE', 'GII', 'Front Runner', 'Haubing', 'Neco', 'Neco', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 12, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'Yes', 'Yes'),
-(3, 'American Pharoah', 'Divine Right', 'Stallion', 'Bay', '', 'GIII', 'Front Runner', 'Haubing', NULL, 'Katann', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 12, 'Great', 'Okay', 'Back', 'Normal', 'Normal', 'No', 'Yes'),
-(4, 'Seattle Slew', 'Rainy Day Blues', 'Stallion', 'Black', 'EE', 'GI', 'Front Runner', 'Neco', NULL, 'Neco', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 12, 'Good', 'Good', 'No', 'Normal', 'Normal', 'No', 'No'),
-(5, 'Ruffian', 'Let Me Run', 'Mare', 'Black', 'EE', 'GI', 'Front Runner', 'Neco', NULL, 'Neco', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 7, 10, 'Great', 'Okay', 'No', 'Normal', 'Normal', 'No', 'No');
+(2, 'American Pharoah', 'Divine Right', 'Stallion', 'Bay', 'EeAa', 'GIII', 'Front Runner', 'Haubing', NULL, 'Katann', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 12, 'Great', 'Okay', 'Back', 'Normal', 'Normal', 'No', 'Yes'),
+(3, 'Sovenance', 'A Kinder Reminiscence', 'Mare', 'Bay', 'EeAA', 'GII', 'Closer', 'Haubing', 'Neco', 'Neco', NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, 8, 12, 'Great', 'Okay', 'Both', 'Normal', 'Normal', 'Yes', 'Yes');
 
 -- --------------------------------------------------------
 
@@ -186,9 +185,8 @@ CREATE TABLE IF NOT EXISTS `horses_abilities` (
 
 INSERT INTO `horses_abilities` (`horse_id`, `pos_ability_1`, `pos_ability_2`, `neg_ability_1`) VALUES
 (1, 'Front Runner', 'Second Wind', 'Stubborn'),
-(5, 'Front Runner', 'Grit', 'Inflexible'),
-(3, 'Last Corner Leader', 'Second Wind', 'Dust Not OK'),
-(4, 'Stretch Burst', 'Second Wind', 'Bears');
+(2, 'Last Corner Leader', 'Second Wind', 'Dust Not OK'),
+(3, 'Closer', 'Stretch Burst', 'Slow Start');
 
 -- --------------------------------------------------------
 
@@ -198,16 +196,23 @@ INSERT INTO `horses_abilities` (`horse_id`, `pos_ability_1`, `pos_ability_2`, `n
 
 CREATE TABLE IF NOT EXISTS `horses_progeny` (
   `horse_id` int(3) NOT NULL,
+  `horse_name` varchar(50) NOT NULL,
+  `horse_link` varchar(255) NOT NULL,
   `sire_id` int(3) DEFAULT NULL,
-  `dam_id` int(3) DEFAULT NULL
+  `dam_id` int(3) DEFAULT NULL,
+  `sire_name` varchar(50) DEFAULT 'Foundation',
+  `sire_link` varchar(255) DEFAULT '#',
+  `dam_name` varchar(50) DEFAULT 'Foundation',
+  `dam_link` varchar(255) DEFAULT '#'
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
 -- Dumping data for table `horses_progeny`
 --
 
-INSERT INTO `horses_progeny` (`horse_id`, `sire_id`, `dam_id`) VALUES
-(1, 4, 5);
+INSERT INTO `horses_progeny` (`horse_id`, `horse_name`, `horse_link`, `sire_id`, `dam_id`, `sire_name`, `sire_link`, `dam_name`, `dam_link`) VALUES
+(0, 'Reverence', 'http://seeingstars.boards.net/thread/2395/reverence-ol-3rd-gen-mare', 1, 3, '', '', '', ''),
+(1, '', '', NULL, NULL, 'Seattle Slew', 'http://seeingstars.boards.net/thread/444', 'Ruffian', 'http://seeingstars.boards.net/thread/448/ruffian-gii-1st-gen-mare');
 
 -- --------------------------------------------------------
 
@@ -305,7 +310,7 @@ INSERT INTO `sexes` (`name`, `description`) VALUES
 --
 DROP TABLE IF EXISTS `abilities_negative`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `abilities_negative` AS select `abilities`.`ability_name` AS `ability_name`,`abilities`.`type` AS `type`,`abilities`.`ability_description` AS `ability_description` from `abilities` where (`abilities`.`type` = 'negative');
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `abilities_negative` AS select `abilities`.`ability` AS `ability`,`abilities`.`type` AS `type`,`abilities`.`description` AS `description` from `abilities` where (`abilities`.`type` = 'negative');
 
 -- --------------------------------------------------------
 
@@ -314,7 +319,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 --
 DROP TABLE IF EXISTS `ability_positive`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ability_positive` AS select `abilities`.`ability_name` AS `ability_name`,`abilities`.`type` AS `type`,`abilities`.`ability_description` AS `ability_description` from `abilities` where (`abilities`.`type` = 'positive');
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `ability_positive` AS select `abilities`.`ability` AS `ability`,`abilities`.`type` AS `type`,`abilities`.`description` AS `description` from `abilities` where (`abilities`.`type` = 'positive');
 
 --
 -- Indexes for dumped tables
@@ -324,7 +329,7 @@ CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW 
 -- Indexes for table `abilities`
 --
 ALTER TABLE `abilities`
-  ADD PRIMARY KEY (`ability_name`);
+  ADD PRIMARY KEY (`ability`);
 
 --
 -- Indexes for table `grades`
@@ -338,17 +343,16 @@ ALTER TABLE `grades`
 ALTER TABLE `horses`
   ADD PRIMARY KEY (`horse_id`),
   ADD UNIQUE KEY `registered_name` (`registered_name`),
+  ADD KEY `grade` (`grade`),
   ADD KEY `sexes` (`sex`),
-  ADD KEY `leg_type_fk` (`leg_type`),
-  ADD KEY `owner` (`owner`),
-  ADD KEY `breeder` (`breeder`),
-  ADD KEY `hexer` (`hexer`);
+  ADD KEY `leg_type` (`leg_type`),
+  ADD KEY `owner` (`owner`);
 
 --
 -- Indexes for table `horses_abilities`
 --
 ALTER TABLE `horses_abilities`
-  ADD PRIMARY KEY (`horse_id`,`pos_ability_1`,`pos_ability_2`,`neg_ability_1`),
+  ADD PRIMARY KEY (`horse_id`),
   ADD KEY `pos_ability_1` (`pos_ability_1`),
   ADD KEY `pos_ability_2` (`pos_ability_2`),
   ADD KEY `neg_ability_1` (`neg_ability_1`);
@@ -357,9 +361,7 @@ ALTER TABLE `horses_abilities`
 -- Indexes for table `horses_progeny`
 --
 ALTER TABLE `horses_progeny`
-  ADD PRIMARY KEY (`horse_id`),
-  ADD KEY `sire_id` (`sire_id`),
-  ADD KEY `dam_id` (`dam_id`);
+  ADD PRIMARY KEY (`horse_id`);
 
 --
 -- Indexes for table `leg_types`
@@ -400,7 +402,7 @@ ALTER TABLE `sexes`
 -- AUTO_INCREMENT for table `horses`
 --
 ALTER TABLE `horses`
-  MODIFY `horse_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `horse_id` int(3) NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=7;
 --
 -- AUTO_INCREMENT for table `races`
 --
@@ -415,7 +417,7 @@ ALTER TABLE `races`
 --
 ALTER TABLE `horses`
   ADD CONSTRAINT `breeder_fk` FOREIGN KEY (`breeder`) REFERENCES `person` (`username`),
-  ADD CONSTRAINT `hexer_fk` FOREIGN KEY (`hexer`) REFERENCES `person` (`username`),
+  ADD CONSTRAINT `grade_fk` FOREIGN KEY (`grade`) REFERENCES `grades` (`level`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `leg_type_fk` FOREIGN KEY (`leg_type`) REFERENCES `leg_types` (`type_name`) ON DELETE CASCADE ON UPDATE CASCADE,
   ADD CONSTRAINT `owner_fk` FOREIGN KEY (`owner`) REFERENCES `person` (`username`),
   ADD CONSTRAINT `sex_fk` FOREIGN KEY (`sex`) REFERENCES `sexes` (`name`) ON DELETE CASCADE ON UPDATE CASCADE;
@@ -425,17 +427,9 @@ ALTER TABLE `horses`
 --
 ALTER TABLE `horses_abilities`
   ADD CONSTRAINT `horse_ability_ibfk_1` FOREIGN KEY (`horse_id`) REFERENCES `horses` (`horse_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `horse_ability_ibfk_2` FOREIGN KEY (`pos_ability_1`) REFERENCES `abilities` (`ability_name`) ON DELETE CASCADE,
-  ADD CONSTRAINT `horse_ability_ibfk_3` FOREIGN KEY (`pos_ability_2`) REFERENCES `abilities` (`ability_name`) ON DELETE CASCADE,
-  ADD CONSTRAINT `horse_ability_ibfk_4` FOREIGN KEY (`neg_ability_1`) REFERENCES `abilities` (`ability_name`) ON DELETE CASCADE;
-
---
--- Constraints for table `horses_progeny`
---
-ALTER TABLE `horses_progeny`
-  ADD CONSTRAINT `horse_progeny_ibfk_1` FOREIGN KEY (`horse_id`) REFERENCES `horses` (`horse_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `horse_progeny_ibfk_2` FOREIGN KEY (`sire_id`) REFERENCES `horses` (`horse_id`) ON DELETE CASCADE,
-  ADD CONSTRAINT `horse_progeny_ibfk_3` FOREIGN KEY (`dam_id`) REFERENCES `horses` (`horse_id`) ON DELETE CASCADE;
+  ADD CONSTRAINT `horse_ability_ibfk_2` FOREIGN KEY (`pos_ability_1`) REFERENCES `abilities` (`ability`) ON DELETE CASCADE,
+  ADD CONSTRAINT `horse_ability_ibfk_3` FOREIGN KEY (`pos_ability_2`) REFERENCES `abilities` (`ability`) ON DELETE CASCADE,
+  ADD CONSTRAINT `horse_ability_ibfk_4` FOREIGN KEY (`neg_ability_1`) REFERENCES `abilities` (`ability`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `race_entrants`

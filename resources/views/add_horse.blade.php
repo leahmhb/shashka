@@ -4,66 +4,90 @@
 
 @section('content')
 <div class="page-header"><h1>Add Horse <small>New Additions</small></h1></div>
-  <form id="add-horse" class="form-horizontal" method="post">
+<form id="add-horse" class="form-horizontal" method="post">
 
-    <div class="col-sm-3">
+  <div class="col-sm-3">
 
-      <div class="form-group">
-        <label for="call-name" class="col-sm-3 control-label">Call Name</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control chosen-select" name="call-name" id="call-name" placeholder="Riparian">
-        </div>
-      </div><!--end call-name-->
+    <div class="form-group">
+      <label for="call-name" class="col-sm-3 control-label">Call Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control chosen-select" name="call-name" id="call-name" placeholder="Riparian">
+      </div>
+    </div><!--end call-name-->
 
-      <div class="form-group">
-        <label for="registered-name" class="col-sm-3 control-label">Registered Name</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control chosen-select" name="registered-name" id="registered-name" placeholder="Lesson's Learned">
-        </div>
-      </div><!--end registered-name-->
+    <div class="form-group">
+      <label for="registered-name" class="col-sm-3 control-label">Registered Name</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control chosen-select" name="registered-name" id="registered-name" placeholder="Lesson's Learned">
+      </div>
+    </div><!--end registered-name-->
 
-      <div class="form-group">
-        <label for="owner-name" class="col-sm-3 control-label">Owner</label>
-        <div class="col-sm-9">       
-          <input type="text" name="owner" class="form-control chosen-select" placeholder="Haubing">
-        </div>                
-      </div><!--end owner-name-->
+    <div class="form-group">
+      <label for="sire" class="col-sm-3 control-label">Sire</label>
+      <div class="col-sm-9">
+        <select name="sire_id" class="form-control chosen-select">
+          <option></option>
+          @foreach ($domain['sires'] as $sire)          
+          <option value="{{$sire['horse_id']}}">{{$sire['call_name']}}</option>
+          @endforeach
+        </select>           
+      </div>        
+    </div><!--end sire--> 
 
-      <div class="form-group">
-        <label for="breeder-name" class="col-sm-3 control-label">Breeder</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control chosen-select" name="breeder" id="breeder" placeholder="Neco">
-        </div>
-      </div><!--end breeder-name-->
 
-      <div class="form-group">
-        <label for="hexer-name" class="col-sm-3 control-label">Hexer</label>
-        <div class="col-sm-9">
-          <input type="text" class="form-control chosen-select" name="hexer" id="hexer" placeholder="Neco">
-        </div>
-      </div><!--end hexer-name-->
+    <div class="form-group">
+      <label for="sire_name" class="col-sm-3 control-label">...or</label>
+      <div class="col-sm-4">
+        <input name="sire_name" class="form-control" id="sire_name" placeholder="name">   
+      </div>
+      <div class="col-sm-5">
+        <input name="sire_link" class="form-control" id="sire_link" placeholder="url">   
+      </div>             
+    </div><!--end other sire--> 
 
-      <div class="form-group">
-        <label for="sex" class="col-sm-3 control-label">Sex</label>
-        <div class="col-sm-9">
-          <select name="sex" class="form-control chosen-select">
-           <option></option>
-           <option value="stallion">Stallion</option>
-           <option value="mare">Mare</option>
-           <option value="gelding">Gelding</option>
-         </select>           
-       </div>        
-     </div><!--end sex-->   
 
-     <div class="form-group">
+    <div class="form-group">
+      <label for="dam" class="col-sm-3 control-label">Dam</label>
+      <div class="col-sm-9">
+        <select name="dam_id" class="form-control chosen-select">
+          <option></option>
+          @foreach ($domain['dams'] as $dam)          
+          <option value="{{$dam['horse_id']}}">{{$dam['call_name']}}</option>
+          @endforeach
+        </select>           
+      </div>        
+    </div><!--end dam--> 
+
+    <div class="form-group">
+      <label for="dam_name" class="col-sm-3 control-label">...or</label>
+      <div class="col-sm-4">
+        <input name="dam_name" class="form-control" id="dam_name" placeholder="name">   
+      </div>
+      <div class="col-sm-5">
+        <input name="dam_link" class="form-control" id="dam_link" placeholder="url">   
+      </div>             
+    </div><!--end other dam--> 
+
+    <div class="form-group">
+      <label for="sex" class="col-sm-3 control-label">Sex</label>
+      <div class="col-sm-9">
+        <select name="sex" class="form-control chosen-select">
+          <option></option>
+          @foreach ($domain['sexes'] as $sex)          
+          <option value="{{$sex['name']}}">{{$sex['name']}}</option>
+          @endforeach
+        </select>           
+      </div>        
+    </div><!--end sex-->   
+
+    <div class="form-group">
       <label for="grade" class="col-sm-3 control-label">Grade</label>
       <div class="col-sm-9">
         <select name="grade" class="form-control chosen-select">
           <option></option>
-          <option value="open-level">Open Level</option>
-          <option value="giii">GIII</option>
-          <option value="gii">GII</option>
-          <option value="gi">GI</option>
+          @foreach ($domain['grades'] as $grade)          
+          <option value="{{$grade['level']}}">{{$grade['level']}}</option>
+          @endforeach
         </select>
       </div>
     </div><!--end grade-->
@@ -163,10 +187,9 @@
       <div class="col-sm-9">
         <select name="leg-type" class="form-control chosen-select">
          <option></option>
-         <option value="front-runner">Front Runner</option>
-         <option value="stalker">Stalker</option>
-         <option value="follower">Follower</option>
-         <option value="closer">Closer</option>
+         @foreach ($domain['leg_types'] as $leg)          
+         <option value="{{$leg['type']}}">{{$leg['type']}}</option>
+         @endforeach
        </select>
      </div>
    </div><!--end leg-type-->
@@ -177,7 +200,9 @@
     <div class="col-sm-9">
       <select name="pos_ability_1" class="form-control chosen-select">
        <option></option>
-       <option value="ok">Ability Name - Description</option>         
+       @foreach ($domain['pos_abilities'] as $pos)          
+       <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
+       @endforeach     
      </select>           
    </div>  
  </div><!--end pos_ability_1-->  
@@ -187,7 +212,9 @@
   <div class="col-sm-9">
     <select name="pos_ability_2" class="form-control chosen-select">
      <option></option>
-     <option value="ok">Ability Name - Description</option>         
+     @foreach ($domain['pos_abilities'] as $pos)          
+     <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
+     @endforeach   
    </select>           
  </div>  
 </div><!--end pos_ability_2-->  
@@ -198,13 +225,13 @@
   <div class="col-sm-9">
     <select name="neg_ability_1" class="form-control chosen-select">
      <option></option>
-     <option value="ok">Ability Name - Description</option>         
+     @foreach ($domain['neg_abilities'] as $neg)          
+     <option value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+     @endforeach   
    </select>           
  </div>  
 </div><!--end neg_ability_1-->  
-</div><!--end col-->
 
-<div class="col-sm-3">
   <div class="form-group">
     <label for="surface-dirt" class="col-sm-3 control-label">Dirt Surface</label>
     <div class="col-sm-9">
@@ -228,6 +255,12 @@
    </select>              
  </div>
 </div><!--end surface-turf-->  
+
+
+</div><!--end col-->
+
+<div class="col-sm-3">
+
 
 <div class="form-group">
   <label for="neck-height" class="col-sm-3 control-label">Neck Height</label>
@@ -285,10 +318,33 @@
    </select>              
  </div>
 </div><!--end shadow-roll-->
+
+<div class="form-group">
+  <label for="owner-name" class="col-sm-3 control-label">Owner</label>
+  <div class="col-sm-9">       
+    <input type="text" name="owner" class="form-control chosen-select" placeholder="Haubing">
+  </div>                
+</div><!--end owner-name-->
+
+<div class="form-group">
+  <label for="breeder-name" class="col-sm-3 control-label">Breeder</label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control chosen-select" name="breeder" id="breeder" placeholder="Neco">
+  </div>
+</div><!--end breeder-name-->
+
+<div class="form-group">
+  <label for="hexer-name" class="col-sm-3 control-label">Hexer</label>
+  <div class="col-sm-9">
+    <input type="text" class="form-control chosen-select" name="hexer" id="hexer" placeholder="Neco">
+  </div>
+</div><!--end hexer-name-->
+
+
 </div><!--end col-->
 
 <div class="form-group">    
-  <button name="add" type="submit" class="pull-right btn-lg btn btn-primary">+ Add Horse</button>      
+  <button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Horse</button>      
 </div>
 </form>
 @endsection

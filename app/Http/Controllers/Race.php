@@ -22,4 +22,12 @@ class Race extends BaseController{
     	return view('add_race');
     }//end add_race
 
+    public function add_race_validate(){
+    	echo "<pre>" . print_r($_POST, true) . "</pre>";
+    	exit;
+    	return view('add_race');
+    }//end add_race_validate
+
+
+
   }

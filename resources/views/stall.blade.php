@@ -3,15 +3,15 @@
 @section('title', 'Add Horse')
 
 @section('content')
- <div class="page-header"><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }}'s' - {{ $horse['registered_name'] }}</small></h1></div>
+ <div class="page-header"><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }}'s - {{ $horse['registered_name'] }}</small></h1></div>
   <div class="row">
     <div class="col-sm-6">
       <div class="panel panel-default">
         <div class="panel-heading"><h3 class="panel-title">
           <ul class="stall-info list-inline text-center">
            <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
-           <li><b>Sire:</b> <a href="stall/{{$progeny['sire_id']}}">{{ $progeny['sire'] }}</a></li>
-           <li><b>Dam:</b> <a href="stall/{{$progeny['sire_id']}}">{{ $progeny['dam'] }}</a></li>
+           <li><b>Sire:</b> <a href="{{$progeny['sire_link']}}">{{ $progeny['sire'] }}</a></li>
+           <li><b>Dam:</b> <a href="{{$progeny['dam_link']}}">{{ $progeny['dam'] }}</a></li>
            <li><b>Grade:</b> {{ $horse['grade'] }}</li>
          </ul>
        </h3>
@@ -24,7 +24,9 @@
       <div class="panel-footer">  
        <ul class="stall-info list-inline text-center">
          <li><b>Owner:</b> {{ $horse['owner'] }}</li>
+         @if ($horse['breeder'] != '')
          <li><b>Breeder:</b> {{ $horse['breeder'] }}</li>
+         @endif
          <li><b>Hexer:</b> {{ $horse['hexer'] }}</li>
        </ul>
      </div><!--end panel footer-->

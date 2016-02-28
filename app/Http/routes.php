@@ -13,7 +13,9 @@
 
 Route::get('/', 'Base@index');
 Route::get('/add-horse', 'Horse@add_horse');
+Route::post('/add-horse', 'Horse@add_horse_validate');
 Route::get('/add-race', 'Race@add_race');
+Route::post('/add-race', 'Race@add_race_validate');
 Route::get('/stall/{horse_id}', 'Horse@stall_page');
 
 /*
