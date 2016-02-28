@@ -12,7 +12,19 @@
 */
 
 Route::get('/', function () {
-    return view('index', ['header' => 'Index']);
+    return view('index');
+});
+
+Route::get('/add-horse', function () {
+    return view('add_horse');
+});
+
+Route::get('/add-race', function () {
+    return view('add_race');
+});
+
+Route::get('/stall', function () {
+    return view('stall');
 });
 
 /*
