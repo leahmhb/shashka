@@ -1,3 +1,0 @@
-# shashka
----
-'View' prototypes

@@ -1,2 +1,0 @@
-mysql --host=dirann.db --user=idirae -p horse_racing
-mysql --host=dirann.db --user=shashka -p horse_racing
