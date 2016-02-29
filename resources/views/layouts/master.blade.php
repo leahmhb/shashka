@@ -117,7 +117,8 @@
                         @endforeach
                     </ul>
                 </li>
-                <li><a href="/add-horse">Add Horse</a></li>   
+                <li><a href="/add-horse">Add Horse</a></li>  
+                 <li><a href="/create-lineage">Create Lineage</a></li>   
                 <li><a href="/add-race">Add Race</a></li>       
             </ul>
             <ul class="nav navbar-nav navbar-right">

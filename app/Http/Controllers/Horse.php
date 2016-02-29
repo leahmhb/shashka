@@ -17,6 +17,16 @@ class Horse extends BaseController{
         View::composers(['App\Composers\HomeComposer'  => ['add_horse']]);
     }//end construct
 
+        public function getDomain(){
+        $domain = [];
+        $domain['grades'] = Models\Grade::get()->toArray();
+        $domain['leg_types'] = Models\Leg_Type::get()->toArray();
+        $domain['sexes'] = Models\Sex::get()->toArray();
+        $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
+        $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
+        return $domain;
+    }//end getDomain
+
     public function add_horse(){      
         return view('add_horse', ['domain' => $this->getDomain()]);
     }//end add_horse
@@ -25,22 +35,11 @@ class Horse extends BaseController{
         echo "<pre>" . print_r($_POST, true) . "</pre>";
         exit;
 
-
-        //return view('add_horse', ['domain' => $this->getDomain()]);
+        return view('add_horse', ['domain' => $this->getDomain()]);
     }//end add_horse_validate
 
 
-    public function getDomain(){
-        $domain = [];
-        $domain['grades'] = Models\Grade::get()->toArray();
-        $domain['leg_types'] = Models\Leg_Type::get()->toArray();
-        $domain['sexes'] = Models\Sex::get()->toArray();
-        $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
-        $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-        $domain['sires'] = Models\Horse::select('id', 'call_name')->where('sex', 'Stallion')->get()->toArray();
-        $domain['dams'] = Models\Horse::select('id', 'call_name')->where('sex', 'Mare')->get()->toArray();
-        return $domain;
-    }//end getDomain
+
 
     public function stall_page($horse_id){
 
@@ -98,12 +97,12 @@ class Horse extends BaseController{
 
             foreach($offspring as $i=>$o){
                 if($o['horse_id'] != 0){
-                   $foal = Models\Horse::select('call_name')
-                   ->where('id', $o['horse_id'])
-                   ->first()->toArray();
+                 $foal = Models\Horse::select('call_name')
+                 ->where('id', $o['horse_id'])
+                 ->first()->toArray();
                    //echo "<pre>" . print_r($foal, true) . "</pre>";
-                   $offspring[$i]['horse_name'] = $foal['call_name'];
-                   $offspring[$i]['horse_link']= "/stall/" . $o['horse_id'];
+                 $offspring[$i]['horse_name'] = $foal['call_name'];
+                 $offspring[$i]['horse_link']= "/stall/" . $o['horse_id'];
                }//end if
 
                if($sex == 'Stallion'){

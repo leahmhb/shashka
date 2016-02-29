@@ -20,53 +20,7 @@
       <div class="col-sm-9">
         <input type="text" class="form-control chosen-select" name="registered-name" id="registered-name" placeholder="Lesson's Learned">
       </div>
-    </div><!--end registered-name-->
-
-    <div class="form-group">
-      <label for="sire" class="col-sm-3 control-label">Sire</label>
-      <div class="col-sm-9">
-        <select name="sire_id" class="form-control chosen-select">
-          <option></option>
-          @foreach ($domain['sires'] as $sire)          
-          <option value="{{$sire['id']}}">{{$sire['call_name']}}</option>
-          @endforeach
-        </select>           
-      </div>        
-    </div><!--end sire--> 
-
-
-    <div class="form-group">
-      <label for="sire_name" class="col-sm-3 control-label">...or</label>
-      <div class="col-sm-4">
-        <input name="sire_name" class="form-control" id="sire_name" placeholder="name">   
-      </div>
-      <div class="col-sm-5">
-        <input name="sire_link" class="form-control" id="sire_link" placeholder="url">   
-      </div>             
-    </div><!--end other sire--> 
-
-
-    <div class="form-group">
-      <label for="dam" class="col-sm-3 control-label">Dam</label>
-      <div class="col-sm-9">
-        <select name="dam_id" class="form-control chosen-select">
-          <option></option>
-          @foreach ($domain['dams'] as $dam)          
-          <option value="{{$dam['id']}}">{{$dam['call_name']}}</option>
-          @endforeach
-        </select>           
-      </div>        
-    </div><!--end dam--> 
-
-    <div class="form-group">
-      <label for="dam_name" class="col-sm-3 control-label">...or</label>
-      <div class="col-sm-4">
-        <input name="dam_name" class="form-control" id="dam_name" placeholder="name">   
-      </div>
-      <div class="col-sm-5">
-        <input name="dam_link" class="form-control" id="dam_link" placeholder="url">   
-      </div>             
-    </div><!--end other dam--> 
+    </div><!--end registered-name-->   
 
     <div class="form-group">
       <label for="sex" class="col-sm-3 control-label">Sex</label>
@@ -91,6 +45,29 @@
         </select>
       </div>
     </div><!--end grade-->
+
+    <div class="form-group">
+      <label for="owner-name" class="col-sm-3 control-label">Owner</label>
+      <div class="col-sm-9">       
+        <input type="text" name="owner" class="form-control chosen-select" placeholder="Haubing">
+      </div>                
+    </div><!--end owner-name-->
+
+    <div class="form-group">
+      <label for="breeder-name" class="col-sm-3 control-label">Breeder</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control chosen-select" name="breeder" id="breeder" placeholder="Neco">
+      </div>
+    </div><!--end breeder-name-->
+
+    <div class="form-group">
+      <label for="hexer-name" class="col-sm-3 control-label">Hexer</label>
+      <div class="col-sm-9">
+        <input type="text" class="form-control chosen-select" name="hexer" id="hexer" placeholder="Neco">
+      </div>
+    </div><!--end hexer-name-->
+
+    
   </div><!--end col-->
 
   <div class="col-sm-2">
@@ -232,19 +209,19 @@
  </div>  
 </div><!--end neg_ability_1-->  
 
-  <div class="form-group">
-    <label for="surface-dirt" class="col-sm-3 control-label">Dirt Surface</label>
-    <div class="col-sm-9">
-      <select name="surface-dirt" class="form-control chosen-select">
-       <option></option>
-       <option value="ok">Okay</option>
-       <option value="good">Good</option>
-       <option value="great">Great</option>
-     </select>           
-   </div>  
- </div><!--end surface-dirt-->   
+<div class="form-group">
+  <label for="surface-dirt" class="col-sm-3 control-label">Dirt Surface</label>
+  <div class="col-sm-9">
+    <select name="surface-dirt" class="form-control chosen-select">
+     <option></option>
+     <option value="ok">Okay</option>
+     <option value="good">Good</option>
+     <option value="great">Great</option>
+   </select>           
+ </div>  
+</div><!--end surface-dirt-->   
 
- <div class="form-group">
+<div class="form-group">
   <label for="surface-turf" class="col-sm-3 control-label">Turf Surface</label>
   <div class="col-sm-9">             
     <select name="surface-turf" class="form-control chosen-select">
@@ -262,18 +239,18 @@
 <div class="col-sm-3">
 
 
-<div class="form-group">
-  <label for="neck-height" class="col-sm-3 control-label">Neck Height</label>
-  <div class="col-sm-9">             
-    <select name="neck-height" class="form-control chosen-select">
-     <option></option>
-     <option value="normal">Normal</option>
-     <option value="high">High</option>
-   </select>              
- </div>
-</div><!--end neck-height-->
+  <div class="form-group">
+    <label for="neck-height" class="col-sm-3 control-label">Neck Height</label>
+    <div class="col-sm-9">             
+      <select name="neck-height" class="form-control chosen-select">
+       <option></option>
+       <option value="normal">Normal</option>
+       <option value="high">High</option>
+     </select>              
+   </div>
+ </div><!--end neck-height-->
 
-<div class="form-group">
+ <div class="form-group">
   <label for="run-style" class="col-sm-3 control-label">Run Style</label>
   <div class="col-sm-9">             
     <select name="run-style" class="form-control chosen-select">
@@ -319,26 +296,7 @@
  </div>
 </div><!--end shadow-roll-->
 
-<div class="form-group">
-  <label for="owner-name" class="col-sm-3 control-label">Owner</label>
-  <div class="col-sm-9">       
-    <input type="text" name="owner" class="form-control chosen-select" placeholder="Haubing">
-  </div>                
-</div><!--end owner-name-->
 
-<div class="form-group">
-  <label for="breeder-name" class="col-sm-3 control-label">Breeder</label>
-  <div class="col-sm-9">
-    <input type="text" class="form-control chosen-select" name="breeder" id="breeder" placeholder="Neco">
-  </div>
-</div><!--end breeder-name-->
-
-<div class="form-group">
-  <label for="hexer-name" class="col-sm-3 control-label">Hexer</label>
-  <div class="col-sm-9">
-    <input type="text" class="form-control chosen-select" name="hexer" id="hexer" placeholder="Neco">
-  </div>
-</div><!--end hexer-name-->
 
 
 </div><!--end col-->
