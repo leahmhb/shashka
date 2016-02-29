@@ -1,6 +1,7 @@
 # shashka
----
+
 ## Goals
+* Correct the pivot table structures
 * Each horse has a list of races in which they placed in the top 3
 
 ## Sources
