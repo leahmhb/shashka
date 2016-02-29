@@ -296,13 +296,26 @@
  </div>
 </div><!--end shadow-roll-->
 
-
-
-
 </div><!--end col-->
 
 <div class="form-group">    
-  <button name="submit" type="submit" class="pull-right btn-lg btn btn-primary">+ Add Horse</button>      
+  <button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Horse</button>      
 </div>
+
 </form>
+
+  <script>
+   $(document).ready(function () {
+     $(".chosen-select").chosen({
+      width: "95%",
+      placeholder_text_single: "Select.."
+      });//end chosen 
+
+     $('.datepicker').datepicker({
+      format = "dd/mm/yyyy",
+      todayHightlight = true,
+      todayBtn = true
+    });
+   });//end ready
+ </script> 
 @endsection

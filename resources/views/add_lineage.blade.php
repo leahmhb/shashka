@@ -107,7 +107,7 @@
 
 
 <div class="form-group">    
-<button name="submit" type="submit" class="pull-right btn-lg btn btn-primary">+ Add Lineage</button>
+<button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Lineage</button>
 </div>
 </form>
 @endsection

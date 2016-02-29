@@ -12,36 +12,33 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Lineage extends BaseController{
 	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
 
-
 	public function __construct(){
-		View::composers([
-			'App\Composers\HomeComposer'  => ['create_lineage'] 
-			]);
-    }//end construct
+		View::composers(['App\Composers\HomeComposer'  => ['add_lineage']]);
+	}//end construct
 
-    public function create_lineage(){
-    	return view('create_lineage', ['domain' => $this->getDomain()]);
-}//end create_lineage
+	public function add_lineage(){
+		return view('add_lineage', ['domain' => $this->getDomain()]);
+	}//end add_lineage
 
-public function create_lineage_validate(){
-	echo "<pre>" . print_r($_POST, true) . "</pre>";
-	exit;
-	return view('create_lineage', ['domain' => $this->getDomain()]);
-}//end create_lineage_validate
+	public function add_lineage_validate(){
+		echo "<pre>" . print_r($_POST, true) . "</pre>";
+		exit;
+		return view('add_lineage', ['domain' => $this->getDomain()]);
+	}//end create_lineage_validate
 
-public function getDomain(){
-	$domain['sires'] = Models\Horse::select('id', 'call_name')
-	->where('sex', 'Stallion')
-	->get()->toArray();
+	public function getDomain(){
+		$domain['sires'] = Models\Horse::select('id', 'call_name')
+		->where('sex', 'Stallion')
+		->get()->toArray();
 
-	$domain['dams'] = Models\Horse::select('id', 'call_name')
-	->where('sex', 'Mare')
-	->get()->toArray();
+		$domain['dams'] = Models\Horse::select('id', 'call_name')
+		->where('sex', 'Mare')
+		->get()->toArray();
 
-	$domain['horses'] = Models\Horse::select('id', 'call_name')
-	->get()->toArray();
+		$domain['horses'] = Models\Horse::select('id', 'call_name')
+		->get()->toArray();
 
-	return $domain;
-}//end getDomain
+		return $domain;
+	}//end getDomain
 
 }//end class

@@ -48,7 +48,7 @@
       <span class="input-group-addon">Furlongs</span>
     </div> 
   </div> 
-</div> <!--end distance-->
+</div><!--end distance-->
 
 <div class="form-group">
   <label for="horse" class="col-sm-3 control-label">Horse's Call Name</label>
@@ -68,11 +68,28 @@
     <input type="text" name="distance" class="form-control" placeholder="1st">     
   </div> 
 </div> 
-</div> <!--end placing-->
+</div><!--end placing-->
 
 <div class="form-group">    
-  <button type="submit" name="add" class="pull-right btn-lg btn btn-primary">+ Add Race</button>
-
+  <button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Race</button>
 </div>
+
 </form>   
+
+
+  <script>
+   $(document).ready(function () {
+     $(".chosen-select").chosen();
+    /* {
+      width: "95%",
+      placeholder_text_single: "Select.."
+      });//end chosen */
+
+     $('.datepicker').datepicker({
+      format = "dd/mm/yyyy",
+      todayHightlight = true,
+      todayBtn = true
+    });
+   });//end ready
+ </script> 
 @endsection

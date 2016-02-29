@@ -4,8 +4,8 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#composer-lock-the-lock-file",
         "This file is @generated automatically"
     ],
-    "hash": "79e95edbb69ff07fe7338127dac81f18",
-    "content-hash": "c6c24ca67aa99977f7ad3322ca66a985",
+    "hash": "9a5093e22d0e5dc0dd2f8075a5629e00",
+    "content-hash": "6f26f9e30443f2dcd293a37d103b3a70",
     "packages": [
         {
             "name": "classpreloader/classpreloader",
@@ -160,6 +160,52 @@
                 "string"
             ],
             "time": "2015-11-06 14:35:42"
+        },
+        {
+            "name": "illuminate/html",
+            "version": "v5.0.0",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/illuminate/html.git",
+                "reference": "3d1009bb8e0f25720c914af5c1f4015dd373c9ef"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/illuminate/html/zipball/3d1009bb8e0f25720c914af5c1f4015dd373c9ef",
+                "reference": "3d1009bb8e0f25720c914af5c1f4015dd373c9ef",
+                "shasum": ""
+            },
+            "require": {
+                "illuminate/http": "~5.0",
+                "illuminate/session": "~5.0",
+                "illuminate/support": "~5.0",
+                "php": ">=5.4.0"
+            },
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "5.0-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Illuminate\\Html\\": ""
+                },
+                "files": [
+                    "helpers.php"
+                ]
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Taylor Otwell",
+                    "email": "taylorotwell@gmail.com"
+                }
+            ],
+            "time": "2015-01-01 16:31:18"
         },
         {
             "name": "jakub-onderka/php-console-color",
@@ -3057,46 +3103,11 @@
                 "templating"
             ],
             "time": "2015-06-06 23:31:24"
-        },
-        {
-            "name": "whyounes/laravel5-twig",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/Whyounes/laravel5-twig.git",
-                "reference": "2931f26aa6463d3fd2ba616ab99531b1ae6cb9bc"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/Whyounes/laravel5-twig/zipball/2931f26aa6463d3fd2ba616ab99531b1ae6cb9bc",
-                "reference": "2931f26aa6463d3fd2ba616ab99531b1ae6cb9bc",
-                "shasum": ""
-            },
-            "require": {
-                "twig/twig": "1.18.*"
-            },
-            "type": "library",
-            "autoload": {
-                "psr-0": {
-                    "RAFIE\\": "src/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "authors": [
-                {
-                    "name": "RAFIE Younes",
-                    "email": "younes.rafie@gmail.com"
-                }
-            ],
-            "description": "Twig for Laravel 5",
-            "time": "2015-02-10 09:51:20"
         }
     ],
     "aliases": [],
     "minimum-stability": "stable",
-    "stability-flags": {
-        "whyounes/laravel5-twig": 20
-    },
+    "stability-flags": [],
     "prefer-stable": false,
     "prefer-lowest": false,
     "platform": {

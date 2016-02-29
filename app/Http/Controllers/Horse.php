@@ -17,7 +17,7 @@ class Horse extends BaseController{
         View::composers(['App\Composers\HomeComposer'  => ['add_horse']]);
     }//end construct
 
-        public function getDomain(){
+    public function getDomain(){
         $domain = [];
         $domain['grades'] = Models\Grade::get()->toArray();
         $domain['leg_types'] = Models\Leg_Type::get()->toArray();
@@ -38,13 +38,8 @@ class Horse extends BaseController{
         return view('add_horse', ['domain' => $this->getDomain()]);
     }//end add_horse_validate
 
-
-
-
     public function stall_page($horse_id){
-
     	$horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-
 
     	$ability = Models\Horse_Ability::where('horse_id', $horse_id)->first()->toArray();
 
@@ -58,11 +53,12 @@ class Horse extends BaseController{
 
         $parents = $this->getParents($horse_id);
         $offspring = $this->getOffspring($horse_id, $horse['sex']);
+
         if($horse['owner'] == "Haubing") {
           $img_src = "stall/" . $horse['call_name'] . ".png";
-      } else {
+        } else {
           $img_src = "stall/default.png";
-      }
+        }//end if
 
 		//echo "<pre>" . print_r($parents, true) . "</pre>";
 
@@ -97,12 +93,12 @@ class Horse extends BaseController{
 
             foreach($offspring as $i=>$o){
                 if($o['horse_id'] != 0){
-                 $foal = Models\Horse::select('call_name')
-                 ->where('id', $o['horse_id'])
-                 ->first()->toArray();
+                   $foal = Models\Horse::select('call_name')
+                   ->where('id', $o['horse_id'])
+                   ->first()->toArray();
                    //echo "<pre>" . print_r($foal, true) . "</pre>";
-                 $offspring[$i]['horse_name'] = $foal['call_name'];
-                 $offspring[$i]['horse_link']= "/stall/" . $o['horse_id'];
+                   $offspring[$i]['horse_name'] = $foal['call_name'];
+                   $offspring[$i]['horse_link']= "/stall/" . $o['horse_id'];
                }//end if
 
                if($sex == 'Stallion'){
