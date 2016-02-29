@@ -19,19 +19,19 @@
 
     <div class="col-sm-4">
       <div class="form-group">
-        <label for="operson_name" class="col-sm-3 control-label">Stable Name</label>
+        <label for="person_name" class="col-sm-3 control-label">Stable Name</label>
         <div class="col-sm-9">       
-          <input name="operson_stable_name" class="form-control" id="operson_stable_name" placeholder="stable name">  
-          <input name="operson_stable_prefix" class="form-control" id="operson_stable_prefix" placeholder="stable prefix">   
+          <input name="person_stable_name" class="form-control" id="person_stable_name" placeholder="stable name">  
+          <input name="person_stable_prefix" class="form-control" id="person_stable_prefix" placeholder="stable prefix">   
         </div>             
       </div><!--end stable name--> 
     </div><!--end col-->
 
     <div class="col-sm-4">    
       <div class="form-group">
-        <label for="operson_name" class="col-sm-3 control-label">Stable Prefix</label>
+        <label for="person_name" class="col-sm-3 control-label">Stable Prefix</label>
         <div class="col-sm-9"> 
-          <input name="operson_stable_prefix" class="form-control" id="operson_stable_prefix" placeholder="stable prefix">   
+          <input name="person_stable_prefix" class="form-control" id="person_stable_prefix" placeholder="stable prefix">   
         </div>             
       </div><!--end stable prefix--> 
     </div><!--end col-->
