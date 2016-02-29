@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Create Lineage')
+@section('title', 'Add Lineage')
 
 @section('content')
-<div class="page-header"><h1>Create Lineage <small>Extending the bloodlines</small></h1></div>
+<div class="page-header"><h1>Add Lineage <small>Extending the bloodlines</small></h1></div>
 <form id="add-horse" class="form-horizontal" method="post">
 
  <div class="row">
