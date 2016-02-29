@@ -61,12 +61,6 @@ class CreateRodiniaTables extends Migration {
             $table->foreign('grade')->references('grade')->on('grades')->onDelete('cascade'); 
             $table->string('leg_type');
             $table->foreign('leg_type')->references('type')->on('leg_types')->onDelete('cascade');
-            $table->string('owner');
-            $table->foreign('owner')->references('username')->on('person')->onDelete('cascade'); 
-            $table->string('breeder');
-            $table->foreign('breeder')->references('username')->on('person')->onDelete('cascade');
-            $table->string('hexer');
-            $table->foreign('hexer')->references('username')->on('person')->onDelete('cascade');  
             $table->integer('speed')->default(50); 
             $table->integer('staying')->default(50); 
             $table->integer('stamina')->default(50); 
@@ -109,7 +103,20 @@ class CreateRodiniaTables extends Migration {
             $table->date('ran_dt');
             $table->timestamps();
         });
-
+        
+        Schema::create('horses_person', function (Blueprint $table) {
+          $table->engine = 'MyISAM';
+          $table->increments('id');
+          $table->integer('horse_id')->unique()->unsigned()->index();
+          $table->foreign('horse_id')->references('id')->on('horses')->onDelete('cascade');
+          $table->string('owner');
+          $table->foreign('owner')->references('username')->on('person')->onDelete('cascade'); 
+          $table->string('breeder');
+          $table->foreign('breeder')->references('username')->on('person')->onDelete('cascade');
+          $table->string('hexer');
+          $table->foreign('hexer')->references('username')->on('person')->onDelete('cascade');  
+          $table->timestamps();
+        });
 
         Schema::create('horses_abilities', function (Blueprint $table) {
             $table->engine = 'MyISAM';
@@ -166,6 +173,8 @@ class CreateRodiniaTables extends Migration {
      Schema::dropIfExists('horses_progeny'); 
 
      Schema::dropIfExists('horses_abilites');
+     
+      Schema::dropIfExists('horses_person');
 
      Schema::dropIfExists('races'); 
 
