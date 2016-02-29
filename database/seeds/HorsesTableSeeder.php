@@ -7,6 +7,7 @@ class HorsesTableSeeder extends Seeder {
     public function run() {
         // Uncomment the below to wipe the table clean before populating
         DB::table('horses')->delete();
+        DB::table('horses_person')->delete();
         DB::table('horses_abilities')->delete();
         DB::table('horses_progeny')->delete();
 
@@ -18,9 +19,6 @@ class HorsesTableSeeder extends Seeder {
             'sex' => 'Stallion', 
             'grade' => 'GI', 
             'leg_type' => 'Front Runner', 
-            'owner' => 'Haubing', 
-            'breeder' => 'Neco',
-            'hexer' => 'Neco', 
             'color' => 'Black',
             'phenotype' => 'EE',
             'distance_min' => 8, 
@@ -51,9 +49,6 @@ class HorsesTableSeeder extends Seeder {
             'sex' => 'Stallion', 
             'grade' => 'GIII', 
             'leg_type' => 'Front Runner', 
-            'owner' => 'Haubing', 
-            'hexer' => 'Katann', 
-            'breeder' => '',
             'color' => 'Bay',
             'phenotype' => 'EeAa',
             'distance_min' => 8, 
@@ -84,9 +79,6 @@ class HorsesTableSeeder extends Seeder {
             'sex' => 'Mare', 
             'grade' => 'GII', 
             'leg_type' => 'Closer', 
-            'owner' => 'Haubing', 
-            'hexer' => 'Neco', 
-            'breeder' => 'Neco', 
             'color' => 'Bay',
             'phenotype' => 'EeAA',
             'distance_min' => 8, 
@@ -117,9 +109,6 @@ class HorsesTableSeeder extends Seeder {
             'sex' => 'Stallion', 
             'grade' => 'Open Level', 
             'leg_type' => 'Closer', 
-            'owner' => 'Haubing', 
-            'hexer' => 'Artemis', 
-            'breeder' => 'Artemis', 
             'color' => 'Bay',
             'phenotype' => 'EeAA',
             'distance_min' => 7, 
@@ -144,6 +133,29 @@ class HorsesTableSeeder extends Seeder {
             'created_at' => new DateTime, 
             'updated_at' => new DateTime]
             );
+            
+            $horses_person = array (
+                ['id' => 1,
+                'horse_id' = 1,
+                 'owner' => 'Haubing', 
+                 'breeder' => 'Neco',
+                 'hexer' => 'Neco' ],
+                 ['id' => 2,
+                 'horse_id' = 2,
+                 'owner' => 'Haubing', 
+                 'hexer' => 'Katann', 
+                 'breeder' => ''],
+                 ['id' => 3,
+                 'horse_id' = 3,
+                 'owner' => 'Haubing', 
+                 'hexer' => 'Neco', 
+                 'breeder' => 'Neco'], 
+                 ['id' => 4,
+                 'horse_id' = 4,
+                 'owner' => 'Haubing', 
+                 'hexer' => 'Artemis', 
+                 'breeder' => 'Artemis']
+                );
 
         $horses_abilities = array(
             ['id' => 1, 
@@ -236,6 +248,7 @@ class HorsesTableSeeder extends Seeder {
 
         // Uncomment the below to run the seeder
         DB::table('horses')->insert($horses);
+        DB::table('horses_person')->insert($horses_person);
         DB::table('horses_abilities')->insert($horses_abilities);
         DB::table('horses_progeny')->insert($horses_progeny);
     }//end run
