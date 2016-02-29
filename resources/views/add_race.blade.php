@@ -77,19 +77,5 @@
 </form>   
 
 
-  <script>
-   $(document).ready(function () {
-     $(".chosen-select").chosen();
-    /* {
-      width: "95%",
-      placeholder_text_single: "Select.."
-      });//end chosen */
 
-     $('.datepicker').datepicker({
-      format = "dd/mm/yyyy",
-      todayHightlight = true,
-      todayBtn = true
-    });
-   });//end ready
- </script> 
 @endsection

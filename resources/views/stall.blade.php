@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Add Horse')
+@section('title', 'Stall')
 
 @section('content')
 <div class="page-header"><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h1></div>
@@ -8,10 +8,10 @@
   <div class="col-sm-6">
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">
-        <ul class="stall-info list-inline text-center">
-         <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
+      <ul class="stall-info list-inline text-center">          
          <li><b>Sire:</b> <a href="{{$parents['sire_link']}}">{{ $parents['sire'] }}</a></li>
          <li><b>Dam:</b> <a href="{{$parents['dam_link']}}">{{ $parents['dam'] }}</a></li>
+         <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
          <li><b>Grade:</b> {{ $horse['grade'] }}</li>
        </ul>
      </h3>
@@ -45,23 +45,23 @@
      <div role="tabpanel" class="tab-pane active" id="racing">
        <h2>Racing Statistics</h2>
        <div class="row">
-    
-           <div class="col-sm-3">
-      <div class="panel">
-<ul class="stall-info list-unstyled"> 
-        <li><b>Speed:</b> {{ $horse['speed'] }} </li>
-        <li><b>Staying:</b> {{ $horse['staying'] }} </li> 
-        <li><b>Stamina:</b> {{ $horse['stamina'] }} </li> 
-        <li><b>Breaking:</b> {{ $horse['breaking'] }} </li> 
-        <li><b>Power:</b> {{ $horse['power'] }} </li> 
-        <li><b>Feel:</b> {{ $horse['feel'] }} </li> 
-        <li><b>Fierce:</b> {{ $horse['fierce'] }} </li> 
-        <li><b>Tenacity:</b> {{ $horse['tenacity'] }} </li> 
-        <li><b>Courage:</b> {{ $horse['courage'] }} </li> 
-        <li><b>Response:</b> {{ $horse['response'] }} </li> 
-      </ul> 
-      </div><!--end panel-->       
-    </div><!--end col-->
+
+         <div class="col-sm-3">
+          <div class="panel">
+            <ul class="stall-info list-unstyled"> 
+              <li><b>Speed:</b> {{ $horse['speed'] }} </li>
+              <li><b>Staying:</b> {{ $horse['staying'] }} </li> 
+              <li><b>Stamina:</b> {{ $horse['stamina'] }} </li> 
+              <li><b>Breaking:</b> {{ $horse['breaking'] }} </li> 
+              <li><b>Power:</b> {{ $horse['power'] }} </li> 
+              <li><b>Feel:</b> {{ $horse['feel'] }} </li> 
+              <li><b>Fierce:</b> {{ $horse['fierce'] }} </li> 
+              <li><b>Tenacity:</b> {{ $horse['tenacity'] }} </li> 
+              <li><b>Courage:</b> {{ $horse['courage'] }} </li> 
+              <li><b>Response:</b> {{ $horse['response'] }} </li> 
+            </ul> 
+          </div><!--end panel-->       
+        </div><!--end col-->
         <div class="col-sm-8">
           <ul class="stall-info list-unstyled"> 
             <li><b>Distance:</b> {{ $horse['distance_min'] }} F to {{ $horse['distance_max'] }} F</li>

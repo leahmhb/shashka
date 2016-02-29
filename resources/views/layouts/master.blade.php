@@ -13,7 +13,7 @@
                 </div><!--end col-->
         </div><!--end row-->
     </div><!--end container-->
-    @include('includes.footer')
+    @include('includes.foot')
 </body>
 </html>
 

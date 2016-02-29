@@ -11,14 +11,14 @@
     <div class="form-group">
       <label for="call-name" class="col-sm-3 control-label">Call Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control chosen-select" name="call-name" id="call-name" placeholder="Riparian">
+        <input type="text" class="form-control" name="call-name" id="call-name" placeholder="Riparian">
       </div>
     </div><!--end call-name-->
 
     <div class="form-group">
-      <label for="registered-name" class="col-sm-3 control-label">Registered Name</label>
+      <label for="registered-name" class="col-sm-3 control-label">Reg'd Name</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control chosen-select" name="registered-name" id="registered-name" placeholder="Lesson's Learned">
+        <input type="text" class="form-control" name="registered-name" id="registered-name" placeholder="Lesson's Learned">
       </div>
     </div><!--end registered-name-->   
 
@@ -49,21 +49,21 @@
     <div class="form-group">
       <label for="owner-name" class="col-sm-3 control-label">Owner</label>
       <div class="col-sm-9">       
-        <input type="text" name="owner" class="form-control chosen-select" placeholder="Haubing">
+        <input type="text" name="owner" class="form-control" placeholder="Haubing">
       </div>                
     </div><!--end owner-name-->
 
     <div class="form-group">
       <label for="breeder-name" class="col-sm-3 control-label">Breeder</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control chosen-select" name="breeder" id="breeder" placeholder="Neco">
+        <input type="text" class="form-control" name="breeder" id="breeder" placeholder="Neco">
       </div>
     </div><!--end breeder-name-->
 
     <div class="form-group">
       <label for="hexer-name" class="col-sm-3 control-label">Hexer</label>
       <div class="col-sm-9">
-        <input type="text" class="form-control chosen-select" name="hexer" id="hexer" placeholder="Neco">
+        <input type="text" class="form-control" name="hexer" id="hexer" placeholder="Neco">
       </div>
     </div><!--end hexer-name-->
 
@@ -74,70 +74,70 @@
     <div class="form-group">
       <label for="speed" class="col-sm-6 control-label">Speed</label>
       <div class="col-sm-6">       
-        <input type="text" name="speed" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="speed" class="form-control" placeholder="50">
       </div>                
     </div><!--end speed-->
 
     <div class="form-group">
       <label for="staying" class="col-sm-6 control-label">Staying</label>
       <div class="col-sm-6">       
-        <input type="text" name="staying" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="staying" class="form-control" placeholder="50">
       </div>                
     </div><!--end staying-->
 
     <div class="form-group">
       <label for="stamina" class="col-sm-6 control-label">Stamina</label>
       <div class="col-sm-6">       
-        <input type="text" name="stamina" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="stamina" class="form-control" placeholder="50">
       </div>                
     </div><!--end stamina-->
 
     <div class="form-group">
       <label for="breaking" class="col-sm-6 control-label">Breaking</label>
       <div class="col-sm-6">       
-        <input type="text" name="breaking" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="breaking" class="form-control" placeholder="50">
       </div>                
     </div><!--end breaking-->
 
     <div class="form-group">
       <label for="power" class="col-sm-6 control-label">Power</label>
       <div class="col-sm-6">       
-        <input type="text" name="power" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="power" class="form-control" placeholder="50">
       </div>                
     </div><!--end power-->
 
     <div class="form-group">
       <label for="feel" class="col-sm-6 control-label">Feel</label>
       <div class="col-sm-6">       
-        <input type="text" name="feel" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="feel" class="form-control" placeholder="50">
       </div>                
     </div><!--end feel-->
 
     <div class="form-group">
       <label for="fierce" class="col-sm-6 control-label">Fierce</label>
       <div class="col-sm-6">       
-        <input type="text" name="fierce" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="fierce" class="form-control" placeholder="50">
       </div>                
     </div><!--end fierce-->
 
     <div class="form-group">
       <label for="tenacity" class="col-sm-6 control-label">Tenacity</label>
       <div class="col-sm-6">       
-        <input type="text" name="tenacity" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="tenacity" class="form-control" placeholder="50">
       </div>                
     </div><!--end tenacity-->
 
     <div class="form-group">
       <label for="courage" class="col-sm-6 control-label">Courage</label>
       <div class="col-sm-6">       
-        <input type="text" name="courage" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="courage" class="form-control" placeholder="50">
       </div>                
     </div><!--end courage-->
 
     <div class="form-group">
       <label for="response" class="col-sm-6 control-label">Response</label>
       <div class="col-sm-6">       
-        <input type="text" name="response" class="form-control chosen-select" placeholder="50">
+        <input type="text" name="response" class="form-control" placeholder="50">
       </div>                
     </div><!--end response-->
   </div><!--end col-->
@@ -146,7 +146,7 @@
     <div class="form-group">
       <label for="distance-min" class="col-sm-3 control-label">Min Distance</label>    
       <div class="input-group">
-        <input type="text" name="distance-min" class="form-control chosen-select" placeholder="8">
+        <input type="text" name="distance-min" class="form-control" placeholder="8">
         <span class="input-group-addon">F</span>
       </div>
     </div><!--end distance--> 
@@ -154,7 +154,7 @@
     <div class="form-group">
       <label for="distance-min" class="col-sm-3 control-label">Max Distance</label>    
       <div class="input-group">
-        <input type="text" name="distance-max" class="form-control chosen-select" placeholder="12">
+        <input type="text" name="distance-max" class="form-control" placeholder="12">
         <span class="input-group-addon">F</span>
       </div>
     </div> <!--end distance--> 
@@ -304,18 +304,5 @@
 
 </form>
 
-  <script>
-   $(document).ready(function () {
-     $(".chosen-select").chosen({
-      width: "95%",
-      placeholder_text_single: "Select.."
-      });//end chosen 
 
-     $('.datepicker').datepicker({
-      format = "dd/mm/yyyy",
-      todayHightlight = true,
-      todayBtn = true
-    });
-   });//end ready
- </script> 
 @endsection

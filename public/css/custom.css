@@ -1,4 +1,7 @@
+label {
 
+  font-weight:bold;
+}
 
 img.stall-pic {
 	display: block;  
@@ -19,3 +22,19 @@ ul.stall-info{
 .stall-info li ul {
 	 margin-left: 2rem;
 }
+
+.chosen-select,
+.chosen-container-single .chosen-single {
+ padding:2px 5px;
+}
+
+textarea.form-control,
+.chosen-select,
+.chosen-container-single .chosen-single,
+select.form-control, 
+input.form-control{
+ border-radius: 3;
+ border: 1px solid #ccc; 
+ box-shadow: 0;
+}
+
