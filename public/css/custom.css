@@ -11,30 +11,30 @@ img.stall-pic {
 
 ul.stall-info{
 	margin: 0;
-    padding: none;
+  padding: none;
 }
 
 .stall-info li{
 	margin:0.5rem;
-    padding:0;
+  padding:0;
 }
 
 .stall-info li ul {
-	 margin-left: 2rem;
+  margin-left: 2rem;
 }
 
-.chosen-select,
-.chosen-container-single .chosen-single {
- padding:2px 5px;
+#main {
+  padding-bottom: 5em;
 }
 
-textarea.form-control,
-.chosen-select,
-.chosen-container-single .chosen-single,
-select.form-control, 
-input.form-control{
- border-radius: 3;
- border: 1px solid #ccc; 
- box-shadow: 0;
+.dropdown-header {
+  color: #783e56;
+  font-size: .95em;
 }
 
+@media only screen and (min-width : 768px) {
+    /* Make Navigation Toggle on Desktop Hover */
+    .dropdown:hover .dropdown-menu {
+        display: block;
+    }
+}

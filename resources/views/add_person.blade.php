@@ -39,8 +39,8 @@
   </div><!--end row-->
 
 
-  <div class="form-group">    
-    <button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Person</button>
-  </div>
+<div class="pull-right">
+ <button type="submit" class="btn-lg btn btn-primary">Add</button>      
+</div>
 </form>
 @endsection

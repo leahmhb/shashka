@@ -6,7 +6,7 @@
 
 <body>
     @include('includes.nav')
-    <div class="container">
+    <div id="main" class="container">
         <div class="row">
             <div class="col-sm-12">
                 @yield('content')

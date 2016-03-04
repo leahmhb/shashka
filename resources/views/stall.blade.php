@@ -8,7 +8,7 @@
   <div class="col-sm-6">
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">
-      <ul class="stall-info list-inline text-center">          
+        <ul class="stall-info list-inline text-center">          
          <li><b>Sire:</b> <a href="{{$parents['sire_link']}}">{{ $parents['sire'] }}</a></li>
          <li><b>Dam:</b> <a href="{{$parents['dam_link']}}">{{ $parents['dam'] }}</a></li>
          <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
@@ -47,7 +47,7 @@
        <div class="row">
 
          <div class="col-sm-3">
-          <div class="panel">
+          <div class="panel panel-default">
             <ul class="stall-info list-unstyled"> 
               <li><b>Speed:</b> {{ $horse['speed'] }} </li>
               <li><b>Staying:</b> {{ $horse['staying'] }} </li> 
@@ -68,82 +68,67 @@
             <li><b>Leg Type:</b> <span class="text-capitalize">{{ $horse['leg_type'] }}</span></li>
             <li><b>Abilities:</b>
               <ul class="stall-info list-unstyled">
+                @foreach($abilities as $ability)
                 <li>
-                  <b>+ {{ $ability['pos_ability_1'] }} / </b>
-                  <span class="text-lowercase">
-                    @foreach ($abilities as $a)
-                    @if ($a['ability'] == $ability['pos_ability_1'])
-                    {{ $a['description'] }} 
-                    @endif                            
-                    @endforeach                  
-                  </span>
-                </li>
-                <li>
-                  <b>+ {{ $ability['pos_ability_2'] }} / </b>
-                  <span class="text-lowercase">
-                   @foreach ($abilities as $a)
-                   @if ($a['ability'] == $ability['pos_ability_2'])
-                   {{ $a['description'] }} 
-                   @endif                            
-                   @endforeach       
-                 </span>
-               </li>          
-               <li>
-                <b>- {{ $ability['neg_ability_1'] }} / </b>
-                <span class="text-lowercase">
-                 @foreach ($abilities as $a)
-                 @if ($a['ability'] == $ability['neg_ability_1'])
-                 {{ $a['description'] }} 
-                 @endif                            
-                 @endforeach       
-               </span>
+                  <b>
+                    @if($ability['type'] == 'positive')
+                    + 
+                    @else
+                    -
+                    @endif
+                    {{ $ability['ability'] }}  
+                    <p class="text-lowercase">/ </b>
+                   
+                     {{ $ability['description'] }} 
+                   </p>
+                 </li>
+                 @endforeach              
+               </ul>
              </li>
-           </ul>
-         </li>
-         <li><b>Surface:</b>
-          <ul class="stall-info list-unstyled">
-            <li><b>Dirt-</b> <span class="text-capitalize">{{ $horse['surface_dirt'] }}</span></li>
-            <li><b>Turf-</b> <span class="text-capitalize">{{ $horse['surface_turf'] }}</span></li>
+             <li><b>Surface:</b>
+              <ul class="stall-info list-unstyled">
+                <li><b>Dirt-</b> <span class="text-capitalize">{{ $horse['surface_dirt'] }}</span></li>
+                <li><b>Turf-</b> <span class="text-capitalize">{{ $horse['surface_turf'] }}</span></li>
+              </ul>
+            </li>      
+            <li><b>Neck Height:</b> <span class="text-capitalize">{{ $horse['neck_height'] }}</span></li>
+            <li><b>Run Style:</b> <span class="text-capitalize">{{ $horse['run_style'] }}</span></li>
+            <li><b>Equipment:</b>
+              <ul class="stall-info list-unstyled">
+                <li><b>Bandages-</b> <span class="text-capitalize">{{ $horse['bandages'] }}</span></li>
+                <li><b>Hood-</b> <span class="text-capitalize">{{ $horse['hood'] }}</span></li>
+                <li><b>Shadow Roll-</b> <span class="text-capitalize">{{ $horse['shadow_roll'] }}</span></li>
+              </ul>
+            </li>
           </ul>
-        </li>      
-        <li><b>Neck Height:</b> <span class="text-capitalize">{{ $horse['neck_height'] }}</span></li>
-        <li><b>Run Style:</b> <span class="text-capitalize">{{ $horse['run_style'] }}</span></li>
-        <li><b>Equipment:</b>
-          <ul class="stall-info list-unstyled">
-            <li><b>Bandages-</b> <span class="text-capitalize">{{ $horse['bandages'] }}</span></li>
-            <li><b>Hood-</b> <span class="text-capitalize">{{ $horse['hood'] }}</span></li>
-            <li><b>Shadow Roll-</b> <span class="text-capitalize">{{ $horse['shadow_roll'] }}</span></li>
-          </ul>
-        </li>
-      </ul>
-    </div><!--end col-->
+        </div><!--end col-->
 
-  </div><!--end row-->
-</div><!--end racing-->
+      </div><!--end row-->
+    </div><!--end racing-->
 
-<div role="tabpanel" class="tab-pane" id="records">
- <h2>Top Five Race Records</h2>
- <ol>       
-  <li>First Place</li>
+    <div role="tabpanel" class="tab-pane" id="records">
+     <h2>Top Five Race Records</h2>
+     <ol>       
+      <li>First Place</li>
+      <ol>
+       <li>
+        <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
+        </span>
+      </li>
+    </ol>
+    <li>Second Place</li>
+    <ol>
+     <li>
+      <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
+      </span>
+    </li>
+  </ol>
+  <li>Third Place</li>
   <ol>
    <li>
     <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
     </span>
   </li>
-</ol>
-<li>Second Place</li>
-<ol>
- <li>
-  <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-  </span>
-</li>
-</ol>
-<li>Third Place</li>
-<ol>
- <li>
-  <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-  </span>
-</li>
 </ol>
 <li>Fourth Place</li>
 <ol>
@@ -165,7 +150,7 @@
 
   <h2>Progeny</h2>                          
   <ol>
-   @foreach ($offspring as $a)
+   @forelse ($offspring as $a)
    <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>  
     @if($horse['sex'] == 'Stallion')
     out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
@@ -175,7 +160,9 @@
     by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
     @endif
   </li>
-  @endforeach
+  @empty
+  No foals yet!
+  @endforelse
 </ol>
 </div><!--end progeny-->
 

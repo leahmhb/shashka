@@ -12,17 +12,25 @@
 */
 
 Route::get('/', 'Base@index');
-Route::get('/add-horse', 'Horse@add_horse');
-Route::post('/add-horse', 'Horse@add_horse_validate');
-Route::get('/add-race', 'Race@add_race');
-Route::post('/add-race', 'Race@add_race_validate');
 
-Route::get('/add-lineage', 'Lineage@add_lineage');
-Route::post('/add-lineage', 'Lineage@add_lineage_validate');
+Route::get('/add-horse', 'Horses@add_horse');
+Route::post('/add-horse', 'Horses@add_horse_validate');
 
+Route::get('/update-horse', 'Horses@update_horse');
+Route::post('/update-horse', 'Horses@update_horse_validate');
 
+Route::get('/add-race', 'Races@add_race');
+Route::post('/add-race', 'Races@add_race_validate');
 
-Route::get('/stall/{horse_id}', 'Horse@stall_page');
+Route::get('/add-lineage', 'Horses_Progeny@add_lineage');
+Route::post('/add-lineage', 'Horses_Progeny@add_lineage_validate');
+
+Route::get('/stall/{horse_id}', 'Horses@stall_page');
+
+Route::get('/theme', function () {
+  View::composers(['App\Composers\HomeComposer'  => ['theme']]);
+  return view('theme');
+});
 
 /*
 |--------------------------------------------------------------------------

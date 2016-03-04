@@ -3,10 +3,30 @@
 @section('title', 'Add Horse')
 
 @section('content')
-<div class="page-header"><h1>Add Horse <small>New Additions</small></h1></div>
+<div class="page-header"><h1>Update Horse <small>Keep Records Current</small></h1></div>
+<div class="row">
+  <div class="col-sm-12">
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Horse</h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="horse" class="col-sm-3 control-label">Call Name</label>
+        <div class="col-sm-9">
+          <select id="horse_picker" name="horse_picker" class="form-control select">
+            <option></option>
+            @foreach ($domain['horses'] as $horse)          
+            <option value="{{$horse['id']}}">{{$horse['call_name']}}</option>
+            @endforeach
+          </select>           
+        </div>        
+      </div><!--end $horse--> 
+    </div><!--end col-->
+  </div><!--end row-->
 
   <form id="add-horse" class="form-horizontal" method="post">
-
+    @if($horse != "")
     <div class="row">
       <div class="col-sm-9">
 
@@ -18,14 +38,14 @@
            <div class="form-group">
             <label for="call-name" class="col-sm-2 control-label">Call Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="call_name" id="call-name" placeholder="Riparian">
+              <input type="text" class="form-control" name="call_name" id="call-name" placeholder="Riparian" value="{{ $horse['call_name'] }}">
             </div>
           </div><!--end call-name-->
 
           <div class="form-group">
             <label for="registered-name" class="col-sm-2 control-label">Reg'd Name</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="Lesson's Learned">
+              <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="Lesson's Learned" value="{{ $horse['registered_name'] }}">
             </div>
           </div><!--end registered-name-->   
 
@@ -35,7 +55,7 @@
               <select name="sex" class="form-control select">
                 <option></option>
                 @foreach ($domain['sexes'] as $sex)          
-                <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+                <option @if( $horse['sex'] === $sex['sex']) selected @endif value="{{$sex['sex']}}">{{$sex['sex']}}</option>
                 @endforeach
               </select>           
             </div>        
@@ -44,14 +64,14 @@
           <div class="form-group">
             <label for="color-name" class="col-sm-2 control-label">Color</label>
             <div class="col-sm-10">       
-              <input type="text" name="color" class="form-control" placeholder="Black">
+              <input type="text" name="color" class="form-control" placeholder="Black" value="{{ $horse['color'] }}">
             </div>                
           </div><!--end color-name-->
 
           <div class="form-group">
             <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
             <div class="col-sm-10">
-              <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="EE">
+              <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="EE" value="{{ $horse['phenotype'] }}">
             </div>
           </div><!--end phenotype-name-->
 
@@ -61,7 +81,7 @@
               <select name="grade" class="form-control select">
                 <option></option>
                 @foreach ($domain['grades'] as $grade)          
-                <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
+                <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
                 @endforeach
               </select>
             </div>
@@ -82,7 +102,7 @@
               <select name="owner" class="form-control select">
                 <option></option>
                 @foreach ($domain['person'] as $person)          
-                <option value="{{$person['username']}}">{{$person['username']}}</option>
+                <option @if( $horse['owner'] === $person['owner']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
                 @endforeach
               </select>
             </div>                
@@ -94,7 +114,7 @@
              <select name="breeder" class="form-control select">
               <option></option>
               @foreach ($domain['person'] as $person)          
-              <option value="{{$person['username']}}">{{$person['username']}}</option>
+              <option @if( $horse['breeder'] === $person['breeder']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
               @endforeach
             </select>
           </div>
@@ -106,7 +126,7 @@
             <select name="hexer" class="form-control select">
               <option></option>
               @foreach ($domain['person'] as $person)          
-              <option value="{{$person['username']}}">{{$person['username']}}</option>
+              <option @if( $horse['hexer'] === $person['hexer']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
               @endforeach
             </select>
           </div>
@@ -125,7 +145,7 @@
             <select name="pos_ability_1" class="form-control select">
              <option></option>
              @foreach ($domain['pos_abilities'] as $pos)          
-             <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
+             <option @if( $horse['pos_ability_1'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
              @endforeach     
            </select>           
          </div>  
@@ -137,7 +157,7 @@
           <select name="pos_ability_2" class="form-control select">
            <option></option>
            @foreach ($domain['pos_abilities'] as $pos)          
-           <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
+           <option @if( $horse['pos_ability_2'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
            @endforeach   
          </select>           
        </div>  
@@ -149,7 +169,7 @@
         <select name="neg_ability_1" class="form-control select">
          <option></option>
          @foreach ($domain['neg_abilities'] as $neg)          
-         <option value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+         <option @if( $horse['neg_ability_1'] === $neg['ability']) selected @endif value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
          @endforeach   
        </select>           
      </div>  
@@ -168,14 +188,14 @@
     <div class="form-group">
       <label for="distance-min" class="col-sm-2 control-label">Min</label>    
       <div class="col-sm-10">
-        <input type="text" name="distance_min" class="form-control" placeholder="8">            
+        <input type="text" name="distance_min" class="form-control" placeholder="8" value="{{ $horse['min_distance'] }}">            
       </div>
     </div><!--end distance--> 
 
     <div class="form-group">
       <label for="distance-min" class="col-sm-2 control-label">Max</label>    
       <div class="col-sm-10">
-        <input type="text" name="distance_max" class="form-control" placeholder="12">
+        <input type="text" name="distance_max" class="form-control" placeholder="12" value="{{ $horse['max_distance'] }}">
       </div>
     </div> <!--end distance--> 
 
@@ -192,9 +212,9 @@
       <div class="col-sm-10">
         <select name="surface_dirt" class="form-control select">
          <option></option>
-         <option value="Okay">Okay</option>
-         <option value="Good">Good</option>
-         <option value="Great">Great</option>
+         <option @if( $horse['surface_dirt'] === "Okay") selected @endif value="Okay">Okay</option>
+         <option @if( $horse['surface_dirt'] === "Good") selected @endif value="Good">Good</option>
+         <option @if( $horse['surface_dirt'] === "Great") selected @endif value="Great">Great</option>
        </select>           
      </div>  
    </div><!--end surface-dirt--> 
@@ -204,9 +224,9 @@
     <div class="col-sm-10">             
       <select name="surface_turf" class="form-control select">
        <option></option>
-       <option value="Okay">Okay</option>
-       <option value="Good">Good</option>
-       <option value="Great">Great</option>
+       <option @if( $horse['surface_turf'] === "Okay") selected @endif value="Okay">Okay</option>
+       <option @if( $horse['surface_turf'] === "Good") selected @endif value="Good">Good</option>
+       <option @if( $horse['surface_turf'] === "Great") selected @endif value="Great">Great</option>
      </select>              
    </div>
  </div><!--end surface-turf-->  
@@ -226,70 +246,70 @@
       <div class="form-group">
         <label for="speed" class="col-sm-6 control-label">Speed</label>
         <div class="col-sm-6">       
-          <input type="text" name="speed" class="form-control" placeholder="50">
+          <input type="text" name="speed" class="form-control" placeholder="50" value="{{ $hors['speed'] }}">
         </div>                
       </div><!--end speed-->
 
       <div class="form-group">
         <label for="staying" class="col-sm-6 control-label">Staying</label>
         <div class="col-sm-6">       
-          <input type="text" name="staying" class="form-control" placeholder="50">
+          <input type="text" name="staying" class="form-control" placeholder="50" value="{{ $horse['staying'] }}">
         </div>                
       </div><!--end staying-->
 
       <div class="form-group">
         <label for="stamina" class="col-sm-6 control-label">Stamina</label>
         <div class="col-sm-6">       
-          <input type="text" name="stamina" class="form-control" placeholder="50">
+          <input type="text" name="stamina" class="form-control" placeholder="50" value="{{ $horse['stamina'] }}">
         </div>                
       </div><!--end stamina-->
 
       <div class="form-group">
         <label for="breaking" class="col-sm-6 control-label">Breaking</label>
         <div class="col-sm-6">       
-          <input type="text" name="breaking" class="form-control" placeholder="50">
+          <input type="text" name="breaking" class="form-control" placeholder="50" value="{{ $horse['breaking'] }}">
         </div>                
       </div><!--end breaking-->
 
       <div class="form-group">
         <label for="power" class="col-sm-6 control-label">Power</label>
         <div class="col-sm-6">       
-          <input type="text" name="power" class="form-control" placeholder="50">
+          <input type="text" name="power" class="form-control" placeholder="50" value="{{ $horse['power'] }}">
         </div>                
       </div><!--end power-->
 
       <div class="form-group">
         <label for="feel" class="col-sm-6 control-label">Feel</label>
         <div class="col-sm-6">       
-          <input type="text" name="feel" class="form-control" placeholder="50">
+          <input type="text" name="feel" class="form-control" placeholder="50" value="{{ $horse['feel'] }}">
         </div>                
       </div><!--end feel-->
 
       <div class="form-group">
         <label for="fierce" class="col-sm-6 control-label">Fierce</label>
         <div class="col-sm-6">       
-          <input type="text" name="fierce" class="form-control" placeholder="50">
+          <input type="text" name="fierce" class="form-control" placeholder="50" value="{{ $horse['fierce'] }}">
         </div>                
       </div><!--end fierce-->
 
       <div class="form-group">
         <label for="tenacity" class="col-sm-6 control-label">Tenacity</label>
         <div class="col-sm-6">       
-          <input type="text" name="tenacity" class="form-control" placeholder="50">
+          <input type="text" name="tenacity" class="form-control" placeholder="50" value="{{ $horse['tenacity'] }}">
         </div>                
       </div><!--end tenacity-->
 
       <div class="form-group">
         <label for="courage" class="col-sm-6 control-label">Courage</label>
         <div class="col-sm-6">       
-          <input type="text" name="courage" class="form-control" placeholder="50">
+          <input type="text" name="courage" class="form-control" placeholder="50" value="{{ $horse['courage'] }}">
         </div>                
       </div><!--end courage-->
 
       <div class="form-group">
         <label for="response" class="col-sm-6 control-label">Response</label>
         <div class="col-sm-6">       
-          <input type="text" name="response" class="form-control" placeholder="50">
+          <input type="text" name="response" class="form-control" placeholder="50" value="{{ $horse['response'] }}">
         </div>                
       </div><!--end response-->
 
@@ -308,7 +328,7 @@
           <select name="leg_type" class="form-control select">
            <option></option>
            @foreach ($domain['leg_types'] as $leg)          
-           <option value="{{$leg['type']}}">{{$leg['type']}}</option>
+           <option @if( $horse['leg_type'] === $leg['type']) selected @endif value="{{$leg['type']}}">{{$leg['type']}}</option>
            @endforeach
          </select>
        </div>
@@ -319,8 +339,8 @@
       <div class="col-sm-6">             
         <select name="neck_height" class="form-control select">
          <option></option>
-         <option value="Normal">Normal</option>
-         <option value="High">High</option>
+         <option @if( $horse['neck_height'] === "Normal") selected @endif value="Normal">Normal</option>
+         <option @if( $horse['neck_height'] === "High") selected @endif value="High">High</option>
        </select>              
      </div>
    </div><!--end neck-height-->
@@ -330,8 +350,8 @@
     <div class="col-sm-6">             
       <select name="run_style" class="form-control select">
        <option></option>
-       <option value="Normal">Normal</option>
-       <option value="Leg Lift">Leg Lift</option>
+       <option @if( $horse['run_style'] === "Normal") selected @endif value="Normal">Normal</option>
+       <option @if( $horse['run_style'] === "Leg Lift") selected @endif value="Leg Lift">Leg Lift</option>
      </select>              
    </div>
  </div><!--end run-style-->
@@ -341,10 +361,10 @@
   <div class="col-sm-6">             
     <select name="bandages" class="form-control select">
      <option></option>
-     <option value="Both">Both</option>
-     <option value="Front">Front</option>
-     <option value="Back">Back</option>
-     <option value="None">None</option>
+     <option @if( $horse['bandages'] === "Both") selected @endif value="Both">Both</option>
+     <option @if( $horse['bandages'] === "Front") selected @endif value="Front">Front</option>
+     <option @if( $horse['bandages'] === "Back") selected @endif value="Back">Back</option>
+     <option @if( $horse['bandages'] === "None") selected @endif value="None">None</option>
    </select>              
  </div>
 </div><!--end bandages-->  
@@ -354,8 +374,8 @@
   <div class="col-sm-6">             
     <select name="hood" class="form-control select">
       <option></option>
-      <option value="Yes">Yes</option>
-      <option value="No">No</option>
+      <option @if( $horse['hood'] === "Yes") selected @endif value="Yes">Yes</option>
+      <option @if( $horse['hood'] === "No") selected @endif value="No">No</option>
     </select>              
   </div>
 </div><!--end hood-->
@@ -365,8 +385,8 @@
   <div class="col-sm-6">             
     <select name="shadow_roll" class="form-control select">
      <option></option>
-     <option value="Yes">Yes</option>
-     <option value="No">No</option>
+     <option @if( $horse['shadow_roll'] === "Yes") selected @endif value="Yes">Yes</option>
+     <option @if( $horse['shadow_roll'] === "No") selected @endif value="No">No</option>
    </select>              
  </div>
 </div><!--end shadow-roll-->
@@ -375,13 +395,22 @@
 
 
 <div class="pull-right">    
- <button type="submit" name="add" class="btn-lg btn btn-primary">Add</button>      
+ <button type="submit" name="add" class="btn-lg btn btn-primary">Update</button>      
 </div>
 </div><!--end col-->
 
 </div><!--end row-->
-
+@endif
 </form>
+<script>
 
+  $('#horse_picker').on('change', function () {
+          var url = $(this).val(); // get selected value
+          if (url) { // require a URL
+              window.location = "/add-horse/" . url; // redirect
+            }
+            return false;
+          });
+        </script>
 
-@endsection
+        @endsection

@@ -16,7 +16,7 @@
       <div class="form-group">
         <label for="horse" class="col-sm-3 control-label">Call Name</label>
         <div class="col-sm-9">
-          <select name="horse_id" class="form-control chosen-select">
+          <select name="horse_id" class="form-control select">
             <option></option>
             @foreach ($domain['horses'] as $horse)          
             <option value="{{$horse['id']}}">{{$horse['call_name']}}</option>
@@ -50,7 +50,7 @@
         <div class="form-group">
           <label for="sire" class="col-sm-3 control-label">Call Name</label>
           <div class="col-sm-9">
-            <select name="sire_id" class="form-control chosen-select">
+            <select name="sire_id" class="form-control select">
               <option></option>
               @foreach ($domain['sires'] as $sire)          
               <option value="{{$sire['id']}}">{{$sire['call_name']}}</option>
@@ -82,7 +82,7 @@
         <div class="form-group">
           <label for="dam" class="col-sm-3 control-label">Call Name</label>
           <div class="col-sm-9">
-            <select name="dam_id" class="form-control chosen-select">
+            <select name="dam_id" class="form-control select">
               <option></option>
               @foreach ($domain['dams'] as $dam)          
               <option value="{{$dam['id']}}">{{$dam['call_name']}}</option>
@@ -106,8 +106,10 @@
 </div><!--end row-->
 
 
-<div class="form-group">    
-<button type="submit" class="pull-right btn-lg btn btn-primary">+ Add Lineage</button>
+<div class="pull-right">    
+
+    <button type="submit" class="btn-lg btn btn-primary">Add</button>    
+ 
 </div>
 </form>
 @endsection

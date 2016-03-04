@@ -7,13 +7,16 @@ class HorsesTableSeeder extends Seeder {
     public function run() {
         // Uncomment the below to wipe the table clean before populating
         DB::table('horses')->delete();
-        DB::table('horses_person')->delete();
-        DB::table('horses_abilities')->delete();
+        
+
         DB::table('horses_progeny')->delete();
 
         $horses = array(
 
             ['id' => 1, 
+            'owner' => 'Haubing', 
+            'breeder' => 'Neco',
+            'hexer' => 'Neco', 
             'call_name' => 'Riparian', 
             'registered_name' => 'Lessons Learned', 
             'sex' => 'Stallion', 
@@ -34,7 +37,10 @@ class HorsesTableSeeder extends Seeder {
             'fierce' => 71, 
             'tenacity' => 71, 
             'courage' => 75, 
-            'response' => 77,    
+            'response' => 77,   
+            'pos_ability_1' => 'Front Runner', 
+            'pos_ability_2' => 'Second Wind', 
+            'neg_ability_1' => 'Stubborn',  
             'neck_height' => 'Normal', 
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
@@ -44,6 +50,9 @@ class HorsesTableSeeder extends Seeder {
             'updated_at' => new DateTime],
 
             ['id' => 2, 
+            'owner' => 'Haubing', 
+            'hexer' => 'Katann', 
+            'breeder' => '',
             'call_name' => 'American Pharoah', 
             'registered_name' => 'Divine Right', 
             'sex' => 'Stallion', 
@@ -65,6 +74,9 @@ class HorsesTableSeeder extends Seeder {
             'tenacity' => 68, 
             'courage' => 67, 
             'response' => 68,    
+            'pos_ability_1' => 'Last Corner Leader', 
+            'pos_ability_2' => 'Second Wind', 
+            'neg_ability_1' => 'Dust Not OK', 
             'neck_height' => 'Normal', 
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
@@ -74,6 +86,9 @@ class HorsesTableSeeder extends Seeder {
             'updated_at' => new DateTime],
 
             ['id' => 3, 
+            'owner' => 'Haubing', 
+            'hexer' => 'Neco', 
+            'breeder' => 'Neco',
             'call_name' => 'Sovenance', 
             'registered_name' => 'A Kinder Reminiscence', 
             'sex' => 'Mare', 
@@ -95,6 +110,9 @@ class HorsesTableSeeder extends Seeder {
             'tenacity' => 63, 
             'courage' => 65, 
             'response' => 73,    
+            'pos_ability_1' => 'Stretch Burst', 
+            'pos_ability_2' => 'Closer', 
+            'neg_ability_1' => 'Slow Start', 
             'neck_height' => 'Normal', 
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
@@ -103,7 +121,10 @@ class HorsesTableSeeder extends Seeder {
             'created_at' => new DateTime, 
             'updated_at' => new DateTime],
 
-             ['id' => 4, 
+            ['id' => 4, 
+            'owner' => 'Haubing', 
+            'hexer' => 'Artemis', 
+            'breeder' => 'Artemis',
             'call_name' => 'Trickery', 
             'registered_name' => 'Beneath Still Waters', 
             'sex' => 'Stallion', 
@@ -125,6 +146,9 @@ class HorsesTableSeeder extends Seeder {
             'tenacity' => 60, 
             'courage' => 58, 
             'response' => 58,    
+            'pos_ability_1' => 'Stretch Burst', 
+            'pos_ability_2' => 'Instant Response', 
+            'neg_ability_1' => 'Stubborn', 
             'neck_height' => 'Normal', 
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
@@ -133,124 +157,69 @@ class HorsesTableSeeder extends Seeder {
             'created_at' => new DateTime, 
             'updated_at' => new DateTime]
             );
-            
-            $horses_person = array (
-                ['id' => 1,
-                'horse_id' = 1,
-                 'owner' => 'Haubing', 
-                 'breeder' => 'Neco',
-                 'hexer' => 'Neco' ],
-                 ['id' => 2,
-                 'horse_id' = 2,
-                 'owner' => 'Haubing', 
-                 'hexer' => 'Katann', 
-                 'breeder' => ''],
-                 ['id' => 3,
-                 'horse_id' = 3,
-                 'owner' => 'Haubing', 
-                 'hexer' => 'Neco', 
-                 'breeder' => 'Neco'], 
-                 ['id' => 4,
-                 'horse_id' = 4,
-                 'owner' => 'Haubing', 
-                 'hexer' => 'Artemis', 
-                 'breeder' => 'Artemis']
-                );
-
-        $horses_abilities = array(
-            ['id' => 1, 
-            'horse_id' =>  1, 
-            'pos_ability_1' => 'Front Runner', 
-            'pos_ability_2' => 'Second Wind', 
-            'neg_ability_1' => 'Stubborn', 
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime], 
-            ['id' => 2, 
-            'horse_id' => 2, 
-            'pos_ability_1' => 'Last Corner Leader', 
-            'pos_ability_2' => 'Second Wind', 
-            'neg_ability_1' => 'Dust Not OK', 
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
-            ['id' => 3, 
-            'horse_id' => 3, 
-            'pos_ability_1' => 'Stretch Burst', 
-            'pos_ability_2' => 'Closer', 
-            'neg_ability_1' => 'Slow Start', 
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
-             ['id' => 4, 
-            'horse_id' => 4, 
-            'pos_ability_1' => 'Stretch Burst', 
-            'pos_ability_2' => 'Instant Response', 
-            'neg_ability_1' => 'Stubborn', 
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
-            );
 
 
-        $horses_progeny = array(
-            ['id' => 1, 
-            'horse_id' => 1, 
-            'horse_name' => '',
-            'horse_link' => '',
-            'sire_id' => 0, 
-            'sire_name' => 'Seattle Slew',
-            'sire_link' => 'http://seeingstars.boards.net/thread/444/',
-            'dam_id' => 0, 
-            'dam_name' => 'Ruffian',
-            'dam_link' => 'http://seeingstars.boards.net/thread/448/',
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
+$horses_progeny = array(
+    ['id' => 1, 
+    'horse_id' => 1, 
+    'horse_name' => '',
+    'horse_link' => '',
+    'sire_id' => 0, 
+    'sire_name' => 'Seattle Slew',
+    'sire_link' => 'http://seeingstars.boards.net/thread/444/',
+    'dam_id' => 0, 
+    'dam_name' => 'Ruffian',
+    'dam_link' => 'http://seeingstars.boards.net/thread/448/',
+    'created_at' => new DateTime, 
+    'updated_at' => new DateTime],
 
-            ['id' => 2, 
-            'horse_id' => 0, 
-            'horse_name' => 'Reverence',
-            'horse_link' => 'http://seeingstars.boards.net/thread/2395/',
-            'sire_id' => 1, 
-            'sire_name' => '',
-            'sire_link' => '',
-            'dam_id' => 3, 
-            'dam_name' => '',
-            'dam_link' => '',
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
+    ['id' => 2, 
+    'horse_id' => 0, 
+    'horse_name' => 'Reverence',
+    'horse_link' => 'http://seeingstars.boards.net/thread/2395/',
+    'sire_id' => 1, 
+    'sire_name' => '',
+    'sire_link' => '',
+    'dam_id' => 3, 
+    'dam_name' => '',
+    'dam_link' => '',
+    'created_at' => new DateTime, 
+    'updated_at' => new DateTime],
 
-            ['id' => 3, 
-            'horse_id' => 3, 
-            'horse_name' => '',
-            'horse_link' => '',
-            'sire_id' => 0, 
-            'sire_name' => 'Seabiscuit',
-            'sire_link' => 'http://seeingstars.boards.net/thread/445/',
-            'dam_id' => 0, 
-            'dam_name' => 'Zenyatta',
-            'dam_link' => 'http://seeingstars.boards.net/thread/425/',
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime],
+    ['id' => 3, 
+    'horse_id' => 3, 
+    'horse_name' => '',
+    'horse_link' => '',
+    'sire_id' => 0, 
+    'sire_name' => 'Seabiscuit',
+    'sire_link' => 'http://seeingstars.boards.net/thread/445/',
+    'dam_id' => 0, 
+    'dam_name' => 'Zenyatta',
+    'dam_link' => 'http://seeingstars.boards.net/thread/425/',
+    'created_at' => new DateTime, 
+    'updated_at' => new DateTime],
 
 
-            ['id' => 4, 
-            'horse_id' => 4, 
-            'horse_name' => '',
-            'horse_link' => '',
-            'sire_id' => 1, 
-            'sire_name' => '',
-            'sire_link' => '',
-            'dam_id' => 0, 
-            'dam_name' => 'Zio',
-            'dam_link' => 'http://seeingstars.boards.net/thread/2009/',
-            'created_at' => new DateTime, 
-            'updated_at' => new DateTime]
+    ['id' => 4, 
+    'horse_id' => 4, 
+    'horse_name' => '',
+    'horse_link' => '',
+    'sire_id' => 1, 
+    'sire_name' => '',
+    'sire_link' => '',
+    'dam_id' => 0, 
+    'dam_name' => 'Zio',
+    'dam_link' => 'http://seeingstars.boards.net/thread/2009/',
+    'created_at' => new DateTime, 
+    'updated_at' => new DateTime]
 
-            );
+    );
 
 
         // Uncomment the below to run the seeder
-        DB::table('horses')->insert($horses);
-        DB::table('horses_person')->insert($horses_person);
-        DB::table('horses_abilities')->insert($horses_abilities);
-        DB::table('horses_progeny')->insert($horses_progeny);
+DB::table('horses')->insert($horses);
+
+DB::table('horses_progeny')->insert($horses_progeny);
     }//end run
 
 }
