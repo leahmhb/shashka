@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header"
-><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small> <a class="btn-md btn btn-primary" href="/update-horse/{{ $horse['id'] }}">Update</a>  </h1>  
+><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small> <a class="btn-sm btn btn-primary" href="/update-horse/{{ $horse['id'] }}">Update</a>  </h1>  
 
 </div><!--end page header-->
 <div class="row">
@@ -12,18 +12,21 @@
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">
         <ul class="stall-info list-inline text-center"> 
-
-         <li><b>Sire:</b> <a href="{{$parents['sire_link']}}">{{ $parents['sire'] }}</a></li>
-         <li><b>Dam:</b> <a href="{{$parents['dam_link']}}">{{ $parents['dam'] }}</a></li>
-         <li><a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/lineage">Update</a></li> 
-</br>
-         <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
-         <li><b>Grade:</b> {{ $horse['grade'] }}</li>
-       </ul>
-     </h3>
-   </div>
-   <div class="panel-body">
-    <img class="stall-pic img-responsive" src="{{ asset($img_src) }}">   
+          @if(count($parents) > 0)
+          <li><b>Sire:</b> <a href="{{$parents['sire_link']}}">{{ $parents['sire_name'] }}</a></li>
+          <li><b>Dam:</b> <a href="{{$parents['dam_link']}}">{{ $parents['dam_name'] }}</a></li>
+          @else
+          <li><b>Foundation {{ $horse['sex'] }}</b></li>
+          @endif
+          <li><a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/lineage">Update</a></li> 
+        </br>
+        <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
+        <li><b>Grade:</b> {{ $horse['grade'] }}</li>
+      </ul>
+    </h3>
+  </div>
+  <div class="panel-body">
+    <img class="stall-pic img-responsive" src="{{ $horse['img_path'] }}">   
 
   </div><!--end panel content-->
   <div class="panel-footer">  
@@ -83,7 +86,7 @@
                     @endif
                     {{ $ability['ability'] }}  
                     <p class="text-lowercase">/ </b>
-                   
+
                      {{ $ability['description'] }} 
                    </p>
                  </li>

@@ -79,11 +79,8 @@
           <div class="form-group">
             <label for="owner-name" class="col-sm-2 control-label">Owner</label>
             <div class="col-sm-10">       
-              <select name="owner" class="form-control select">
-                <option></option>
-                @foreach ($domain['person'] as $person)          
-                <option value="{{$person['username']}}">{{$person['username']}}</option>
-                @endforeach
+              <select disabled name="owner" class="form-control select">                 
+                <option value="Haubing">Haubing</option>        
               </select>
             </div>                
           </div><!--end owner-name-->
@@ -375,7 +372,7 @@
 
 
 <div class="pull-right">    
- <button type="submit" name="add" class="btn-lg btn btn-primary">Add</button>      
+ <button type="submit" class="btn-lg btn btn-primary">Add</button>      
 </div>
 </div><!--end col-->
 

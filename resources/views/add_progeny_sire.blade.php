@@ -7,20 +7,28 @@
 <form id="add-horse" class="form-horizontal" method="post">
   <div class="row">
     <div class="col-sm-6">
-      <div class="panel panel-default">
-        <div class="panel-heading">
-          <h4 class="panel-title">Sire</h4>
-        </div>
-        <div class="panel-body">
-          <div class="form-group">
-            <label for="sire" class="col-sm-3 control-label">Call Name</label>
-            <div class="col-sm-9">
-             {{ $horse['call_name'] }}          
-           </div>        
-         </div><!--end sire-->       
+       <div class="panel panel-default">
+      <div class="panel-heading">
+        <h4 class="panel-title">Sire</h4>
+      </div>
+      <div class="panel-body">
 
-       </div>
-     </div><!--end panel-->
+        <div class="form-group hidden">
+          <label for="horse" class="col-sm-3 control-label">ID</label>
+          <div class="col-sm-9">
+            <input readonly name="sire_id" class="form-control" id="horse_id" placeholder="" value="{{ $horse['id'] }}">         
+          </div>        
+        </div><!--end horse--> 
+
+        <div class="form-group">
+          <label for="horse" class="col-sm-3 control-label">Call Name</label>
+          <div class="col-sm-9">
+            <input disabled name="" class="form-control" id="call_name" placeholder="" value="{{ $horse['call_name'] }}">         
+          </div>        
+        </div><!--end horse--> 
+
+      </div>
+    </div><!--end panel-->
    </div><!--end col-->
 
    <div class="col-sm-6">
@@ -41,15 +49,6 @@
           </div>        
         </div><!--end dam--> 
 
-        <div class="form-group">
-          <label for="dam_name" class="col-sm-3 control-label">...or</label>
-          <div class="col-sm-4">
-            <input name="dam_name" class="form-control" id="dam_name" placeholder="call name">   
-          </div>
-          <div class="col-sm-5">
-            <input name="dam_link" class="form-control" id="dam_link" placeholder="stall page url">   
-          </div>             
-        </div><!--end other dam--> 
       </div>
     </div><!--end panel-->
   </div><!--end col-->
@@ -74,15 +73,7 @@
         </div>        
       </div><!--end horse--> 
 
-      <div class="form-group">
-        <label for="horse_name" class="col-sm-3 control-label">...or</label>
-        <div class="col-sm-4">
-          <input name="horse_name" class="form-control" id="horse_name" placeholder="call name">   
-        </div>
-        <div class="col-sm-5">
-          <input name="horse_link" class="form-control" id="horse_link" placeholder="stall page url">   
-        </div>             
-      </div><!--end other horse--> 
+  
     </div>
   </div><!--end panel-->
 </div><!--end col-->

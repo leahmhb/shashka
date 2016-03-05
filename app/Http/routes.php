@@ -13,23 +13,35 @@
 
 Route::get('/', 'Base@index');
 
+//add person
+Route::get('/add-person', 'Person@add_person');
+Route::post('/add-person', 'Person@add_person_validate');
+
+//add horse
 Route::get('/add-horse', 'Horses@add_horse');
 Route::post('/add-horse', 'Horses@add_horse_validate');
 
+//update horse
 Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
 Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 
-Route::get('/add-race', 'Races@add_race');
-Route::post('/add-race', 'Races@add_race_validate');
+//races
+Route::match(array('GET', 'POST'), '/add-race', 'Races@add_race');
 
-Route::get('/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny');
-Route::post('/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny_validate');
+//foals of horse
+Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny');
 
-Route::get('/add-lineage/{horse_id}/lineage', 'Horses_Progeny@add_lineage');
-Route::post('/add-lineage/{horse_id}/lineage', 'Horses_Progeny@add_lineage_validate');
+//parents of horse
+Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/lineage', 'Horses_Progeny@add_lineage');
 
+//other people's horses
+Route::get('/add-other-horse', 'Horses_Progeny@add_other_horse');
+Route::post('/add-other-horse', 'Horses_Progeny@add_other_horse_validate');
+
+//stall pages
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
 
+//theme demo
 Route::get('/theme', function () {
   View::composers(['App\Composers\HomeComposer'  => ['theme']]);
   return view('theme');

@@ -38,7 +38,9 @@ class Horse extends Model{
     'run_style',
     'bandages',
     'hood',
-    'shadow_roll'
+    'shadow_roll',
+    'stall_path',
+    'img_path'
     );
 
 }//end Horse

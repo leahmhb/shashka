@@ -45,7 +45,9 @@ class HorsesTableSeeder extends Seeder {
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
             'hood' => 'Yes', 
-            'shadow_roll' => 'Yes',           
+            'shadow_roll' => 'Yes',       
+            'stall_path' => '/stall/1',
+            'img_path' => 'http://leahmhb.info/stall_img/Riparian.png',
             'created_at' => new DateTime, 
             'updated_at' => new DateTime],
 
@@ -81,7 +83,9 @@ class HorsesTableSeeder extends Seeder {
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
             'hood' => 'No', 
-            'shadow_roll' => 'Yes',              
+            'shadow_roll' => 'Yes',      
+            'stall_path' => '/stall/2',
+            'img_path' => 'http://leahmhb.info/stall_img/American%20Pharoah.png',        
             'created_at' => new DateTime, 
             'updated_at' => new DateTime],
 
@@ -117,7 +121,9 @@ class HorsesTableSeeder extends Seeder {
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
             'hood' => 'No', 
-            'shadow_roll' => 'Yes',            
+            'shadow_roll' => 'Yes',   
+            'stall_path' => '/stall/3',
+            'img_path' => 'http://leahmhb.info/stall_img/Sovenance.png',         
             'created_at' => new DateTime, 
             'updated_at' => new DateTime],
 
@@ -153,73 +159,16 @@ class HorsesTableSeeder extends Seeder {
             'run_style' => 'Normal', 
             'bandages' => 'Both', 
             'hood' => 'No', 
-            'shadow_roll' => 'Yes',            
+            'shadow_roll' => 'Yes',    
+            'stall_path' => '/stall/4',
+            'img_path' => 'http://leahmhb.info/stall_img/Trickery.png',        
             'created_at' => new DateTime, 
             'updated_at' => new DateTime]
             );
 
 
-$horses_progeny = array(
-    ['id' => 1, 
-    'horse_id' => 1, 
-    'horse_name' => '',
-    'horse_link' => '',
-    'sire_id' => 0, 
-    'sire_name' => 'Seattle Slew',
-    'sire_link' => 'http://seeingstars.boards.net/thread/444/',
-    'dam_id' => 0, 
-    'dam_name' => 'Ruffian',
-    'dam_link' => 'http://seeingstars.boards.net/thread/448/',
-    'created_at' => new DateTime, 
-    'updated_at' => new DateTime],
-
-    ['id' => 2, 
-    'horse_id' => 0, 
-    'horse_name' => 'Reverence',
-    'horse_link' => 'http://seeingstars.boards.net/thread/2395/',
-    'sire_id' => 1, 
-    'sire_name' => '',
-    'sire_link' => '',
-    'dam_id' => 3, 
-    'dam_name' => '',
-    'dam_link' => '',
-    'created_at' => new DateTime, 
-    'updated_at' => new DateTime],
-
-    ['id' => 3, 
-    'horse_id' => 3, 
-    'horse_name' => '',
-    'horse_link' => '',
-    'sire_id' => 0, 
-    'sire_name' => 'Seabiscuit',
-    'sire_link' => 'http://seeingstars.boards.net/thread/445/',
-    'dam_id' => 0, 
-    'dam_name' => 'Zenyatta',
-    'dam_link' => 'http://seeingstars.boards.net/thread/425/',
-    'created_at' => new DateTime, 
-    'updated_at' => new DateTime],
-
-
-    ['id' => 4, 
-    'horse_id' => 4, 
-    'horse_name' => '',
-    'horse_link' => '',
-    'sire_id' => 1, 
-    'sire_name' => '',
-    'sire_link' => '',
-    'dam_id' => 0, 
-    'dam_name' => 'Zio',
-    'dam_link' => 'http://seeingstars.boards.net/thread/2009/',
-    'created_at' => new DateTime, 
-    'updated_at' => new DateTime]
-
-    );
-
-
         // Uncomment the below to run the seeder
-DB::table('horses')->insert($horses);
-
-DB::table('horses_progeny')->insert($horses_progeny);
+    DB::table('horses')->insert($horses);
     }//end run
 
 }

@@ -1,5 +1,4 @@
-<?php
-
+<?php  
 namespace App\Http\Controllers;
 use App\Models as Models;
 use View;
@@ -9,19 +8,18 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Base extends Controller{
-
-     public function __construct(){
-        View::composers([
-            'App\Composers\HomeComposer'  => ['layouts.master'] 
-        ]);
-    }//end construct
+class Person extends Base{
 
 
-	public function index(){
-     
-        return view('index');
-    }//end stall
+  public function __construct(){
+    View::composers(['App\Composers\HomeComposer'  => ['add_person']]);
+  }//end construct
 
-   
-}
+
+
+  public function add_person(){     
+    return view('add_person');
+    }//end add_horse 
+
+
+  }//end class

@@ -9,9 +9,7 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Races extends BaseController{
-	use AuthorizesRequests, DispatchesJobs, ValidatesRequests;
-
+class Races extends Base{
 
 	public function __construct(){
 		View::composers([
@@ -20,21 +18,22 @@ class Races extends BaseController{
     }//end construct
 
     public function getDomain(){
-    $domain['horses'] = Models\Horse::select('id', 'call_name')
-    ->get()->toArray();
-    return $domain;
+        $domain['horses'] = Models\Horse::select('id', 'call_name')
+        ->get()->toArray();
+        return $domain;
 }//end getDomain
 
-    public function add_race(){
-    	return view('add_race', ['domain' => $this->getDomain()]);
+public function add_race(){
+    if(isset($_POST)){
+
+    }//end if
+
+    
+   return view('add_race', ['domain' => $this->getDomain()]);
     }//end add_race
 
-    public function add_race_validate(){
-    	echo "<pre>" . print_r($_POST, true) . "</pre>";
-    	exit;
-    	return view('add_race', ['domain' => $this->getDomain()]);
-    }//end add_race_validate
 
 
 
-  }
+
+}

@@ -79,13 +79,10 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forms<span class="caret"></span></a>
-                    <ul class="dropdown-menu">
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Horse Records</li>
+                    <ul class="dropdown-menu">                  
                         <li><a href="/add-horse">Add Horse</a></li>
-                        <li><a href="/add-lineage">Add Lineage</a></li>  
-                        <li role="separator" class="divider"></li>
-                        <li class="dropdown-header">Race Records</li> 
+                        <li><a href="/add-other-horse">Add Other Horse</a></li>
+                        <li><a href="/add-person">Add Person</a></li>
                         <li><a href="/add-race">Add Race</a></li>                       
                     </ul>
                 </li>

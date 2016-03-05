@@ -58,7 +58,7 @@ class CreateRodiniaTables extends Migration {
             $table->string('hexer')->nullable();
             $table->foreign('hexer')->references('username')->on('person')->onDelete('cascade');  
             $table->string('call_name');
-            $table->string('registered_name')->unique();
+            $table->string('registered_name')->unique()->nullable();
             $table->string('sex');
             $table->foreign('sex')->references('sex')->on('sexes')->onDelete('cascade');;
             $table->string('color')->nullable();
@@ -92,6 +92,8 @@ class CreateRodiniaTables extends Migration {
             $table->string('run_style')->default('Normal'); 
             $table->string('hood')->default('No'); 
             $table->string('shadow_roll')->default('No'); 
+            $table->string('stall_path')->nullable();
+            $table->string('img_path')->nullable();
             $table->timestamps();
         });
 
@@ -121,15 +123,9 @@ class CreateRodiniaTables extends Migration {
         Schema::create('horses_progeny', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->integer('horse_id')->unsigned()->index();    
-            $table->string('horse_name')->default('Offspring');
-            $table->string('horse_link')->default('#');        
+            $table->integer('horse_id')->unsigned()->index();
             $table->integer('sire_id')->unsigned()->index(); 
-            $table->string('sire_name')->default('Foundation');
-            $table->string('sire_link')->default('#');
             $table->integer('dam_id')->unsigned()->index(); 
-            $table->string('dam_name')->default('Foundation');
-            $table->string('dam_link')->default('#');
             $table->timestamps();
         });
 
