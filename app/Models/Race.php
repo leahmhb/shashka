@@ -11,6 +11,7 @@ class Race extends Model{
       'surface',
       'distance',
       'ran_dt',
-      'grade'
+      'grade',
+      'url'
     );
 }

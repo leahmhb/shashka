@@ -17,8 +17,17 @@ class Person extends Base{
 
 
 
-  public function add_person(){     
-    return view('add_person');
+  public function add_person(){   
+    $validate = "";
+    if(isset($_POST['submit'])){
+      $data['username'] = $_POST['username'];
+      $data['stable_name'] = $_POST['stable_name'];
+      $data['stable_prefix'] = $_POST['stable_prefix'];
+      $person = Models\Person::firstOrCreate($data);
+      $validate = true;
+  }//end if
+
+  return view('add_person', ['validate' => $validate]);
     }//end add_horse 
 
 

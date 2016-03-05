@@ -115,6 +115,7 @@ class CreateRodiniaTables extends Migration {
             $table->string('grade');
             $table->integer('distance');
             $table->date('ran_dt');
+            $table->string('url');
             $table->timestamps();
         });
         

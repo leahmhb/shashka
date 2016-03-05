@@ -83,20 +83,20 @@ class Horses extends Base{
     }//end update_horse_validate
 
     public function add_horse(){     
-      return view('add_horse', ['domain' => $this->getDomain()]);
+      return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
     }//end add_horse 
 
     public function add_horse_validate(){
-     $data = $_POST;
+
+      $data = $_POST;
+
+      $horse = Models\Horse::firstOrCreate($data);
+      $horse->stall_path = "/stall/" . $horse->id;
+      $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
+      $horse->save();
 
 
-     $horse = Models\Horse::firstOrCreate($data);
-     $horse->stall_path = "/stall/" . $horse->id;
-     $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
-     $horse->save();
-
-
-     return view('add_horse', ['domain' => $this->getDomain()]);
+      return view('add_horse', ['domain' => $this->getDomain(), 'validate' => true]);
     }//end add_horse_validate
 
     public function stall_page($horse_id){
@@ -108,6 +108,7 @@ class Horses extends Base{
 
       $parents = $this->getParents($horse_id);
       $offspring = $this->getOffspring($horse_id, $horse['sex']);
+      $race_records = $this->getRaceRecords($horse_id);
 
       $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first()->toArray();
 
@@ -116,6 +117,7 @@ class Horses extends Base{
         'abilities' => $abilities,
         'offspring' => $offspring, 
         'parents' => $parents, 
+        'race_records' => $race_records,
         'prefix' => $prefix,
         ]);
     }//end stall
@@ -127,22 +129,22 @@ class Horses extends Base{
         $offspring = Models\Horse_Progeny::where('sire_id', $horse_id)->get();        
 
 
-         foreach($offspring as $i=>$o){
-           $foal = Models\Horse::where('id', $o['horse_id'])->first()->toArray();
-           $offspring[$i]['horse_name'] = $foal['call_name'];
-           $offspring[$i]['horse_link']= $foal['stall_path'];
+        foreach($offspring as $i=>$o){
+         $foal = Models\Horse::where('id', $o['horse_id'])->first()->toArray();
+         $offspring[$i]['horse_name'] = $foal['call_name'];
+         $offspring[$i]['horse_link']= $foal['stall_path'];
 
-           $dam = Models\Horse::where('id', $o['dam_id'])->first();
-           $offspring[$i]['dam_name'] = $dam['call_name'];
-           $offspring[$i]['dam_link'] = $dam['stall_path'];
+         $dam = Models\Horse::where('id', $o['dam_id'])->first();
+         $offspring[$i]['dam_name'] = $dam['call_name'];
+         $offspring[$i]['dam_link'] = $dam['stall_path'];
         }//end foreach
 
 
-    } else if($sex == 'Mare'){
-      $offspring = Models\Horse_Progeny::where('dam_id', $horse_id)->get();
+      } else if($sex == 'Mare'){
+        $offspring = Models\Horse_Progeny::where('dam_id', $horse_id)->get();
 
- 
-       foreach($offspring as $i=>$o){
+
+        foreach($offspring as $i=>$o){
          $foal = Models\Horse::where('id', $o['horse_id'])->first()->toArray();
          $offspring[$i]['horse_name'] = $foal['call_name'];
          $offspring[$i]['horse_link']= $foal['stall_path'];
@@ -151,7 +153,7 @@ class Horses extends Base{
          $offspring[$i]['sire_name'] = $sire['call_name'];
          $offspring[$i]['sire_link'] = $sire['stall_path'];
           }//end foreach
-    
+
 
       }//end if-else  
 
@@ -177,4 +179,22 @@ class Horses extends Base{
       return $parents;
 
     }//end getParents
+
+    public function getRaceRecords($horse_id){
+      $records = [];
+      $placings = Models\Race_Entrant::select('race_id', 'horse_id', 'placing')
+      ->where('horse_id', $horse_id)
+      ->get()->toArray();
+      //echo "<pre>" . print_r($placings, true) . "</pre>";
+      foreach($placings as $p){
+         //echo "<pre>" . print_r($p, true) . "</pre>";
+       $race = Models\Race::select('id', 'name', 'surface', 'grade', 'distance', 'ran_dt', 'url')
+       ->where('id', $p['race_id'])->first()->toArray();
+       //echo "<pre>" . print_r($race, true) . "</pre>";
+       array_push($records, ['race' => $race, 'placing' => $p['placing']]);     
+     }//end foreach
+    //echo "<pre>" . print_r($records, true) . "</pre>";     
+     return $records;
+    }//end getRaceRecords
+
 }//end class

@@ -9,7 +9,11 @@
 
   <div class="row">
     <div class="col-sm-12">
-
+      @if($validate == true)
+      <div class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">Basic Info</h4>

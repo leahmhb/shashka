@@ -45,7 +45,7 @@
       <div class="form-group">
         <label for="distance" class="col-sm-3 control-label">Placing</label>            
         <div class="col-sm-9">     
-          <input type="text" name="distance" class="form-control" placeholder="1st">     
+          <input type="text" name="placing" class="form-control" placeholder="1st">     
         </div> 
       </div><!--end placing-->
 

@@ -8,6 +8,11 @@
 <form id="add-race" class="form-horizontal" method="post">
   <div class="row">
     <div class="col-sm-12">
+      @if($validate == true)
+      <div class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif
       <div class="panel panel-default">
        <div class="panel-heading">
         <h4 class="panel-title">Race</h4>
@@ -16,7 +21,7 @@
        <div class="form-group">
         <label for="race-name" class="col-sm-3 control-label">Race Name</label>
         <div class="col-sm-9">
-          <input type="text" class="form-control" name="name" id="name" placeholder="Belmont Stakes">
+          <input type="text" class="form-control" name="name" id="name" placeholder="...">
         </div>
       </div><!--end race-name-->
 
@@ -36,11 +41,11 @@
         <label for="surface" class="col-sm-3 control-label">Surface</label>
         <div class="col-sm-9">             
           <label class="radio-inline">
-            <input type="radio" name="surface" id="open-level" value="dirt">
+            <input type="radio" name="surface" id="dirt" value="Dirt">
             Dirt
           </label>
           <label class="radio-inline">
-            <input type="radio" name="surface" id="turf" value="turf" checked>
+            <input type="radio" name="surface" id="turf" value="Turf" checked>
             Turf
           </label>  
         </label>              
@@ -51,7 +56,7 @@
       <label for="distance" class="col-sm-3 control-label">Distance</label>            
       <div class="col-sm-9"> 
         <div class="input-group">
-          <input type="text" name="distance" class="form-control" placeholder="12">
+          <input type="text" name="distance" class="form-control" placeholder="0">
           <span class="input-group-addon">Furlongs</span>
         </div> 
       </div> 
@@ -59,8 +64,8 @@
 
 
     <div class="form-group">
-      <label for="grade" class="col-sm-2 control-label">Grade</label>
-      <div class="col-sm-10">
+      <label for="grade" class="col-sm-3 control-label">Grade</label>
+      <div class="col-sm-9">
         <select name="grade" class="form-control select">
           <option></option>
           @foreach ($domain['grades'] as $grade)          
@@ -69,6 +74,14 @@
         </select>
       </div>
     </div><!--end grade-->    
+
+
+    <div class="form-group">
+      <label for="url" class="col-sm-3 control-label">URL</label>            
+      <div class="col-sm-9">         
+        <input type="text" name="url" class="form-control" placeholder="www">
+      </div> 
+    </div><!--end url-->
 
   </div><!--end panel-body-->
 </div><!--end panel-->

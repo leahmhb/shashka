@@ -17,6 +17,7 @@
    <link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
 
    <!--CUSTOM STYLES-->
+
    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 
    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->

@@ -14,8 +14,7 @@
 Route::get('/', 'Base@index');
 
 //add person
-Route::get('/add-person', 'Person@add_person');
-Route::post('/add-person', 'Person@add_person_validate');
+Route::match(array('GET', 'POST'), '/add-person', 'Person@add_person');
 
 //add horse
 Route::get('/add-horse', 'Horses@add_horse');
@@ -26,8 +25,11 @@ Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
 Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 
 //races
-Route::match(array('GET', 'POST'), '/add-race', 'Races@add_race');
-Route::match(array('GET', 'POST'), '/add-race-entrant/{horse_id}', 'Races@add_race_entrant');
+Route::get('/add-race', 'Races@add_race');
+Route::post('/add-race', 'Races@add_race_validate');
+
+Route::get('/add-race-entrant/{horse_id}', 'Races@add_race_entrant');
+Route::post('/add-race-entrant/{horse_id}', 'Races@add_race_entrant_validate');
 
 //foals of horse
 Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny');

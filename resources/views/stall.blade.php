@@ -121,10 +121,17 @@
      <ol>       
       <li>First Place</li>
       <ol>
+      @foreach($race_records as $r)
+      @if($r['placing'] == '1')
        <li>
-        <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
+        <span class="text-capitalize"><a href="{{ $r['race']['url'] }}">{{ $r['race']['name'] }}</a> 
+        {{ $r['race']['surface'] }} 
+        {{ $r['race']['distance'] }}F 
+        {{ $r['race']['grade'] }} 
         </span>
       </li>
+      @endif    
+      @endforeach
     </ol>
     <li>Second Place</li>
     <ol>

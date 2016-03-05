@@ -5,6 +5,11 @@
 @section('content')
 <div class="page-header"><h1>Add Progeny <small>Extending the bloodlines</small></h1></div>
 <form id="add-horse" class="form-horizontal" method="post">
+      @if($validate == true)
+      <div class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif
   <div class="row">
     <div class="col-sm-6">
        <div class="panel panel-default">

@@ -5,7 +5,11 @@
 @section('content')
 <div class="page-header"><h1>Add Lineage <small>Extending the bloodlines</small></h1></div>
 <form id="add-horse" class="form-horizontal" method="post">
-
+      @if($validate == true)
+      <div class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif
  <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
     <div class="panel panel-default">
@@ -54,7 +58,7 @@
             <select name="sire_id" class="form-control select">
               <option></option>
               @foreach ($domain['sires'] as $sire)          
-              <option @if($data['sire_id'] === $sire['id']) selected @endif value="{{$sire['id']}}">{{$sire['call_name']}}</option>
+              <option value="{{$sire['id']}}" @if($data['sire_id'] == $sire['id']) selected @endif>{{$sire['call_name']}}</option>
               @endforeach
             </select>           
           </div>        
@@ -75,7 +79,7 @@
             <select name="dam_id" class="form-control select">
               <option></option>
               @foreach ($domain['dams'] as $dam)          
-              <option @if($data['dam_id'] === $dam['id']) selected @endif value="{{$dam['id']}}">{{$dam['call_name']}}</option>
+              <option value="{{$dam['id']}}" @if($data['dam_id'] == $dam['id']) selected @endif>{{$dam['call_name']}}</option>
               @endforeach
             </select>           
           </div>        

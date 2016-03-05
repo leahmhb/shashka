@@ -6,7 +6,11 @@
 <div class="page-header"><h1>Add Horse <small>New Additions</small></h1></div>
 
   <form id="add-horse" class="form-horizontal" method="post">
-
+      @if($validate == true)
+      <div class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif
     <div class="row">
       <div class="col-sm-9">
 
