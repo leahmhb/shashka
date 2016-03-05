@@ -3,180 +3,160 @@
 @section('title', 'Add Horse')
 
 @section('content')
-<div class="page-header"><h1>Update Horse <small>Keep Records Current</small></h1></div>
-<div class="row">
-  <div class="col-sm-12">
-   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Horse</h4>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label for="horse" class="col-sm-3 control-label">Call Name</label>
-        <div class="col-sm-9">
-          <select id="horse_picker" name="horse_picker" class="form-control select">
-            <option></option>
-            @foreach ($domain['horses'] as $horse)          
-            <option value="{{$horse['id']}}">{{$horse['call_name']}}</option>
-            @endforeach
-          </select>           
-        </div>        
-      </div><!--end $horse--> 
-    </div><!--end col-->
-  </div><!--end row-->
+<div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information <small>Keep Records Current</small></h1></div>
 
-  <form id="add-horse" class="form-horizontal" method="post">
-    @if($horse != "")
-    <div class="row">
-      <div class="col-sm-9">
+<form id="update-horse" class="form-horizontal" method="post">
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Basic Info</h4>
-          </div>
-          <div class="panel-body">
-           <div class="form-group">
-            <label for="call-name" class="col-sm-2 control-label">Call Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="call_name" id="call-name" placeholder="Riparian" value="{{ $horse['call_name'] }}">
-            </div>
-          </div><!--end call-name-->
-
-          <div class="form-group">
-            <label for="registered-name" class="col-sm-2 control-label">Reg'd Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="Lesson's Learned" value="{{ $horse['registered_name'] }}">
-            </div>
-          </div><!--end registered-name-->   
-
-          <div class="form-group">
-            <label for="sex" class="col-sm-2 control-label">Sex</label>
-            <div class="col-sm-10">
-              <select name="sex" class="form-control select">
-                <option></option>
-                @foreach ($domain['sexes'] as $sex)          
-                <option @if( $horse['sex'] === $sex['sex']) selected @endif value="{{$sex['sex']}}">{{$sex['sex']}}</option>
-                @endforeach
-              </select>           
-            </div>        
-          </div><!--end sex-->   
-
-          <div class="form-group">
-            <label for="color-name" class="col-sm-2 control-label">Color</label>
-            <div class="col-sm-10">       
-              <input type="text" name="color" class="form-control" placeholder="Black" value="{{ $horse['color'] }}">
-            </div>                
-          </div><!--end color-name-->
-
-          <div class="form-group">
-            <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="EE" value="{{ $horse['phenotype'] }}">
-            </div>
-          </div><!--end phenotype-name-->
-
-          <div class="form-group">
-            <label for="grade" class="col-sm-2 control-label">Grade</label>
-            <div class="col-sm-10">
-              <select name="grade" class="form-control select">
-                <option></option>
-                @foreach ($domain['grades'] as $grade)          
-                <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div><!--end grade-->
-
-        </div><!--end panel-body-->
-      </div><!--end panel-->
+  <div class="row">
+    <div class="col-sm-8">
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title">People</h4>
+          <h4 class="panel-title">Basic Info</h4>
         </div>
         <div class="panel-body">
-
-          <div class="form-group">
-            <label for="owner-name" class="col-sm-2 control-label">Owner</label>
-            <div class="col-sm-10">       
-              <select name="owner" class="form-control select">
-                <option></option>
-                @foreach ($domain['person'] as $person)          
-                <option @if( $horse['owner'] === $person['owner']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
-                @endforeach
-              </select>
-            </div>                
-          </div><!--end owner-name-->
-
-          <div class="form-group">
-            <label for="breeder-name" class="col-sm-2 control-label">Breeder</label>
-            <div class="col-sm-10">
-             <select name="breeder" class="form-control select">
-              <option></option>
-              @foreach ($domain['person'] as $person)          
-              <option @if( $horse['breeder'] === $person['breeder']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
-              @endforeach
-            </select>
+         <div class="form-group">
+          <label for="call-name" class="col-sm-2 control-label">Call Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="call_name" id="call-name" placeholder="" value="{{ $horse['call_name'] }}">
           </div>
-        </div><!--end breeder-name-->
+        </div><!--end call-name-->
 
         <div class="form-group">
-          <label for="hexer-name" class="col-sm-2 control-label">Hexer</label>
+          <label for="registered-name" class="col-sm-2 control-label">Reg'd Name</label>
           <div class="col-sm-10">
-            <select name="hexer" class="form-control select">
+            <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="" value="{{ $horse['registered_name'] }}">
+          </div>
+        </div><!--end registered-name-->   
+
+        <div class="form-group">
+          <label for="sex" class="col-sm-2 control-label">Sex</label>
+          <div class="col-sm-10">
+            <select name="sex" class="form-control select">
               <option></option>
-              @foreach ($domain['person'] as $person)          
-              <option @if( $horse['hexer'] === $person['hexer']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
+              @foreach ($domain['sexes'] as $sex)          
+              <option @if( $horse['sex'] === $sex['sex']) selected @endif value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+              @endforeach
+            </select>           
+          </div>        
+        </div><!--end sex-->   
+
+        <div class="form-group">
+          <label for="color-name" class="col-sm-2 control-label">Color</label>
+          <div class="col-sm-10">       
+            <input type="text" name="color" class="form-control" placeholder="" value="{{ $horse['color'] }}">
+          </div>                
+        </div><!--end color-name-->
+
+        <div class="form-group">
+          <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="" value="{{ $horse['phenotype'] }}">
+          </div>
+        </div><!--end phenotype-name-->
+
+        <div class="form-group">
+          <label for="grade" class="col-sm-2 control-label">Grade</label>
+          <div class="col-sm-10">
+            <select name="grade" class="form-control select">
+              <option></option>
+              @foreach ($domain['grades'] as $grade)          
+              <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
               @endforeach
             </select>
           </div>
-        </div><!--end hexer-name-->
+        </div><!--end grade-->
+
       </div><!--end panel-body-->
     </div><!--end panel-->
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">Abilities</h4>
+        <h4 class="panel-title">People</h4>
       </div>
       <div class="panel-body">
-        <div class="form-group">
-          <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
-          <div class="col-sm-10">
-            <select name="pos_ability_1" class="form-control select">
-             <option></option>
-             @foreach ($domain['pos_abilities'] as $pos)          
-             <option @if( $horse['pos_ability_1'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
-             @endforeach     
-           </select>           
-         </div>  
-       </div><!--end pos_ability_1-->  
 
-       <div class="form-group">
-        <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
+        <div class="form-group">
+          <label for="owner-name" class="col-sm-2 control-label">Owner</label>
+          <div class="col-sm-10">       
+            <select name="owner" class="form-control select">
+              <option></option>
+              @foreach ($domain['person'] as $person)          
+              <option @if( $horse['owner'] === $person['username']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
+              @endforeach
+            </select>
+          </div>                
+        </div><!--end owner-name-->
+
+        <div class="form-group">
+          <label for="breeder-name" class="col-sm-2 control-label">Breeder</label>
+          <div class="col-sm-10">
+           <select name="breeder" class="form-control select">
+            <option></option>
+            @foreach ($domain['person'] as $person)          
+            <option @if( $horse['breeder'] === $person['username']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div><!--end breeder-name-->
+
+      <div class="form-group">
+        <label for="hexer-name" class="col-sm-2 control-label">Hexer</label>
         <div class="col-sm-10">
-          <select name="pos_ability_2" class="form-control select">
+          <select name="hexer" class="form-control select">
+            <option></option>
+            @foreach ($domain['person'] as $person)          
+            <option @if( $horse['hexer'] === $person['username']) selected @endif value="{{$person['username']}}">{{$person['username']}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div><!--end hexer-name-->
+    </div><!--end panel-body-->
+  </div><!--end panel-->
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Abilities</h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
+        <div class="col-sm-10">
+          <select name="pos_ability_1" class="form-control select">
            <option></option>
            @foreach ($domain['pos_abilities'] as $pos)          
-           <option @if( $horse['pos_ability_2'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
-           @endforeach   
+           <option @if( $horse['pos_ability_1'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
+           @endforeach     
          </select>           
        </div>  
-     </div><!--end pos_ability_2-->  
+     </div><!--end pos_ability_1-->  
 
      <div class="form-group">
-      <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+      <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
       <div class="col-sm-10">
-        <select name="neg_ability_1" class="form-control select">
+        <select name="pos_ability_2" class="form-control select">
          <option></option>
-         @foreach ($domain['neg_abilities'] as $neg)          
-         <option @if( $horse['neg_ability_1'] === $neg['ability']) selected @endif value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+         @foreach ($domain['pos_abilities'] as $pos)          
+         <option @if( $horse['pos_ability_2'] === $pos['ability']) selected @endif value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
          @endforeach   
        </select>           
      </div>  
-   </div><!--end neg_ability_1-->  
+   </div><!--end pos_ability_2-->  
+
+   <div class="form-group">
+    <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+    <div class="col-sm-10">
+      <select name="neg_ability_1" class="form-control select">
+       <option></option>
+       @foreach ($domain['neg_abilities'] as $neg)          
+       <option @if( $horse['neg_ability_1'] === $neg['ability']) selected @endif value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+       @endforeach   
+     </select>           
+   </div>  
+ </div><!--end neg_ability_1-->  
 
 
- </div><!--end panel-body-->
+</div><!--end panel-body-->
 </div><!--end panel-->
 
 <div class="panel panel-default">
@@ -188,14 +168,14 @@
     <div class="form-group">
       <label for="distance-min" class="col-sm-2 control-label">Min</label>    
       <div class="col-sm-10">
-        <input type="text" name="distance_min" class="form-control" placeholder="8" value="{{ $horse['min_distance'] }}">            
+        <input type="text" name="distance_min" class="form-control" placeholder="8" value="{{ $horse['distance_min'] }}">            
       </div>
     </div><!--end distance--> 
 
     <div class="form-group">
       <label for="distance-min" class="col-sm-2 control-label">Max</label>    
       <div class="col-sm-10">
-        <input type="text" name="distance_max" class="form-control" placeholder="12" value="{{ $horse['max_distance'] }}">
+        <input type="text" name="distance_max" class="form-control" placeholder="12" value="{{ $horse['distance_max'] }}">
       </div>
     </div> <!--end distance--> 
 
@@ -235,7 +215,7 @@
 
 </div><!--end col-->
 
-<div class="col-sm-3">
+<div class="col-sm-4">
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -246,7 +226,7 @@
       <div class="form-group">
         <label for="speed" class="col-sm-6 control-label">Speed</label>
         <div class="col-sm-6">       
-          <input type="text" name="speed" class="form-control" placeholder="50" value="{{ $hors['speed'] }}">
+          <input type="text" name="speed" class="form-control" placeholder="50" value="{{ $horse['speed'] }}">
         </div>                
       </div><!--end speed-->
 
@@ -395,22 +375,13 @@
 
 
 <div class="pull-right">    
- <button type="submit" name="add" class="btn-lg btn btn-primary">Update</button>      
+ <button type="submit" name="add" class="btn-lg btn btn-primary">Save</button>      
 </div>
 </div><!--end col-->
 
 </div><!--end row-->
-@endif
+
 </form>
-<script>
 
-  $('#horse_picker').on('change', function () {
-          var url = $(this).val(); // get selected value
-          if (url) { // require a URL
-              window.location = "/add-horse/" . url; // redirect
-            }
-            return false;
-          });
-        </script>
 
-        @endsection
+@endsection

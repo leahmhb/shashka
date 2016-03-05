@@ -3,22 +3,27 @@
 @section('title', 'Stall')
 
 @section('content')
-<div class="page-header"><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h1></div>
+<div class="page-header"
+><h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small> <a class="btn-md btn btn-primary" href="/update-horse/{{ $horse['id'] }}">Update</a>  </h1>  
+
+</div><!--end page header-->
 <div class="row">
-  <div class="col-sm-6">
+  <div class="col-md-6">
     <div class="panel panel-default">
       <div class="panel-heading"><h3 class="panel-title">
-        <ul class="stall-info list-inline text-center">          
+        <ul class="stall-info list-inline text-center"> 
+
          <li><b>Sire:</b> <a href="{{$parents['sire_link']}}">{{ $parents['sire'] }}</a></li>
          <li><b>Dam:</b> <a href="{{$parents['dam_link']}}">{{ $parents['dam'] }}</a></li>
+         <li><a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/lineage">Update</a></li> 
+</br>
          <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
          <li><b>Grade:</b> {{ $horse['grade'] }}</li>
        </ul>
      </h3>
    </div>
    <div class="panel-body">
-    <img class="stall-pic" src="{{ asset($img_src) }}">   
-
+    <img class="stall-pic img-responsive" src="{{ asset($img_src) }}">   
 
   </div><!--end panel content-->
   <div class="panel-footer">  
@@ -33,7 +38,7 @@
 </div><!--end panel-->       
 </div><!--end col-->
 
-<div class="col-sm-6">
+<div class="col-md-6">
   <div class="stall-pills">
     <ul class="nav nav-pills" role="tablist">
       <li role="presentation" class="active"><a href="#racing" aria-controls="racing" role="tab" data-toggle="tab">Racing Stats</a></li>
@@ -148,10 +153,11 @@
 </div><!--end records-->
 <div role="tabpanel" class="tab-pane" id="progeny">
 
-  <h2>Progeny</h2>                          
+  <h2>Progeny <a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/progeny">Add</a></h2>                          
   <ol>
    @forelse ($offspring as $a)
-   <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>  
+   <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>
+
     @if($horse['sex'] == 'Stallion')
     out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
     @endif
@@ -159,6 +165,7 @@
     @if($horse['sex'] == 'Mare')
     by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
     @endif
+
   </li>
   @empty
   No foals yet!

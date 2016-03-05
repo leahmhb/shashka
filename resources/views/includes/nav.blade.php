@@ -82,8 +82,7 @@
                     <ul class="dropdown-menu">
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Horse Records</li>
-                        <li><a href="/add-horse">Add Horse</a></li>  
-                        <li><a href="/update-horse">Update Horse</a></li> 
+                        <li><a href="/add-horse">Add Horse</a></li>
                         <li><a href="/add-lineage">Add Lineage</a></li>  
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Race Records</li> 

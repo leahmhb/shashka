@@ -1,5 +1,4 @@
 <?php
-
 namespace App\Http\Controllers;
 use App\Models as Models;
 
@@ -16,6 +15,7 @@ class Horses extends BaseController{
 	public function __construct(){
 		View::composers(['App\Composers\HomeComposer'  => ['stall']]);
     View::composers(['App\Composers\HomeComposer'  => ['add_horse']]);
+    View::composers(['App\Composers\HomeComposer'  => ['update_horse']]);
     }//end construct
 
     public function getDomain(){
@@ -30,48 +30,79 @@ class Horses extends BaseController{
       return $domain;
     }//end getDomain
 
-    public function add_horse(){     
-
-      return view('add_horse', ['domain' => $this->getDomain()]);
-    }//end add_horse
-
-
-    public function update_horse($horse = false){
-      $horse = [];
-return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse]);
+    public function update_horse($horse_id){
+      $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
+      return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse]);
     }//end update_horse
 
-        public function update_horse_validate($horse = false){
-          $horse = [];
-return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse]);
+    public function update_horse_validate($horse_id){
+     $data = $_POST;
+     $horse = Models\Horse::where('id', $horse_id)->first();
+     $horse->call_name = $data['call_name'];
+     $horse->registered_name = $data['registered_name'];
+     $horse->sex = $data['sex'];
+     $horse->color = $data['color'];
+     $horse->phenotype = $data['phenotype'];
+
+     $horse->grade = $data['grade'];
+
+     $horse->owner = $data['owner'];
+     $horse->breeder = $data['breeder'];
+     $horse->hexer = $data['hexer'];
+
+     $horse->pos_ability_1 = $data['pos_ability_1'];
+     $horse->pos_ability_2 = $data['pos_ability_2'];
+     $horse->neg_ability_1 = $data['neg_ability_1'];
+
+     $horse->distance_min = $data['distance_min'];
+     $horse->distance_max = $data['distance_max'];
+
+     $horse->surface_dirt = $data['surface_dirt'];
+     $horse->surface_dirt = $data['surface_dirt'];
+
+     $horse->speed = $data['speed'];
+     $horse->staying = $data['staying'];
+     $horse->stamina = $data['stamina'];
+     $horse->breaking = $data['breaking'];
+     $horse->power = $data['power'];
+     $horse->feel = $data['feel'];
+     $horse->fierce = $data['fierce'];
+     $horse->tenacity = $data['tenacity'];
+     $horse->courage = $data['courage'];
+     $horse->response = $data['response'];
+
+     $horse->leg_type = $data['leg_type'];
+     $horse->neck_height = $data['neck_height'];
+     $horse->run_style = $data['run_style'];
+     $horse->bandages = $data['bandages'];
+     $horse->hood = $data['hood'];
+     $horse->shadow_roll = $data['shadow_roll'];
+
+     $horse->save();
+
+     return $this->stall_page($horse_id);
     }//end update_horse_validate
 
+    public function add_horse(){     
+      return view('add_horse', ['domain' => $this->getDomain()]);
+    }//end add_horse 
+
     public function add_horse_validate(){
-
-
-
-
      $data = $_POST;
-
-     //do validation here
 
      //ensure proper capitalization
      foreach($data as $d=>$dt){
       $data[$d] = ucwords($dt); 
       }//end foreach
 
-      //echo "<pre>" . print_r($data, true) . "</pre>";
-      //exit;
-
       $horse = Models\Horse::firstOrCreate($data);
-
-      //echo "<pre>" . print_r($horse, true) . "</pre>";
-      //exit;
+      $horse->stall_path = "/stall/" . $horse->id;
+      $horse->img_path = "" . $horse->id;
 
       return view('add_horse', ['domain' => $this->getDomain()]);
     }//end add_horse_validate
 
-    public function stall_page(){
+    public function stall_page($horse_id){
     	$horse = Models\Horse::where('id', $horse_id)->first()->toArray();
 
       $abilities = Models\Ability::where('ability', $horse['pos_ability_1'])

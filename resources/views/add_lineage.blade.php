@@ -8,35 +8,29 @@
 
  <div class="row">
   <div class="col-sm-6 col-sm-offset-3">
-   <div class="panel panel-default">
+    <div class="panel panel-default">
     <div class="panel-heading">
-      <h4 class="panel-title">Horse</h4>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label for="horse" class="col-sm-3 control-label">Call Name</label>
-        <div class="col-sm-9">
-          <select name="horse_id" class="form-control select">
-            <option></option>
-            @foreach ($domain['horses'] as $horse)          
-            <option value="{{$horse['id']}}">{{$horse['call_name']}}</option>
-            @endforeach
-          </select>           
-        </div>        
-      </div><!--end horse--> 
+        <h4 class="panel-title">{{ $horse['horse_name'] }}</h4>
+      </div>
+      <div class="panel-body">
 
-      <div class="form-group">
-        <label for="horse_name" class="col-sm-3 control-label">...or</label>
-        <div class="col-sm-4">
-          <input name="horse_name" class="form-control" id="horse_name" placeholder="call name">   
-        </div>
-        <div class="col-sm-5">
-          <input name="horse_link" class="form-control" id="horse_link" placeholder="stall page url">   
-        </div>             
-      </div><!--end other horse--> 
-    </div>
-  </div><!--end panel-->
-</div><!--end col-->
+  <div class="form-group">
+          <label for="horse" class="col-sm-3 control-label">ID</label>
+          <div class="col-sm-9">
+            <input disabled name="horse_id" class="form-control" id="horse_id" placeholder="" value="{{ $horse['horse_id'] }}">         
+          </div>        
+        </div><!--end horse--> 
+
+        <div class="form-group">
+          <label for="horse" class="col-sm-3 control-label">Call Name</label>
+          <div class="col-sm-9">
+            <input name="horse_name" class="form-control" id="horse_name" placeholder="" value="{{ $horse['horse_name'] }}">         
+          </div>        
+        </div><!--end horse--> 
+
+      </div>
+    </div><!--end panel-->
+  </div><!--end col-->
 
 </div><!--end row-->
 
@@ -108,8 +102,8 @@
 
 <div class="pull-right">    
 
-    <button type="submit" class="btn-lg btn btn-primary">Add</button>    
- 
+  <button type="submit" class="btn-lg btn btn-primary">Add</button>    
+
 </div>
 </form>
 @endsection
