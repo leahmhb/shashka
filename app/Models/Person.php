@@ -6,10 +6,9 @@ use Illuminate\Database\Eloquent\Model;
 
 class Person extends Model{
 	public $table = "person";
-    protected $fillable = array(
+  protected $fillable = array(
     'username',
-      'stable_name',
-      'stable_prefix'
-
+    'stable_name',
+    'stable_prefix'
     );
 }

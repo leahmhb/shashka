@@ -115,7 +115,9 @@
     </div><!--end racing-->
 
     <div role="tabpanel" class="tab-pane" id="records">
-     <h2>Top Five Race Records</h2>
+     <h2>Top Five Race Records  <a class="btn-xs btn btn-primary" href="/add-race-entrant/{{ $horse['id'] }}">Add</a></h2>
+    
+   
      <ol>       
       <li>First Place</li>
       <ol>

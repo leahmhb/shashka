@@ -27,6 +27,7 @@ Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 
 //races
 Route::match(array('GET', 'POST'), '/add-race', 'Races@add_race');
+Route::match(array('GET', 'POST'), '/add-race-entrant/{horse_id}', 'Races@add_race_entrant');
 
 //foals of horse
 Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny');
