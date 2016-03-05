@@ -83,8 +83,8 @@ class CreateRodiniaTables extends Migration {
             $table->foreign('pos_ability_2')->references('ability')->on('abilities')->onDelete('cascade');
             $table->string('neg_ability_1');
             $table->foreign('neg_ability_1')->references('ability')->on('abilities')->onDelete('cascade');
-            $table->integer('distance_min'); 
-            $table->integer('distance_max'); 
+            $table->float('distance_min'); 
+            $table->float('distance_max'); 
             $table->string('surface_dirt'); 
             $table->string('surface_turf'); 
             $table->string('bandages')->default('None');
@@ -113,7 +113,7 @@ class CreateRodiniaTables extends Migration {
             $table->string('name');
             $table->string('surface');
             $table->string('grade');
-            $table->integer('distance');
+            $table->float('distance');
             $table->date('ran_dt');
             $table->string('url');
             $table->timestamps();

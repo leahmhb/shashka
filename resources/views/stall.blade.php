@@ -18,7 +18,7 @@
           @else
           <li><b>Foundation {{ $horse['sex'] }}</b></li>
           @endif
-          <li><a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/lineage">Update</a></li> 
+          <li><a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}">Update</a></li> 
         </br>
         <li><b>Color:</b> {{ $horse['color'] }} - {{ $horse['phenotype'] }}</li>
         <li><b>Grade:</b> {{ $horse['grade'] }}</li>
@@ -116,73 +116,111 @@
 
     <div role="tabpanel" class="tab-pane" id="records">
      <h2>Top Five Race Records  <a class="btn-xs btn btn-primary" href="/add-race-entrant/{{ $horse['id'] }}">Add</a></h2>
-    
-   
+
+
      <ol>       
       <li>First Place</li>
       <ol>
+        @foreach($race_records as $r)
+        @if($r['placing'] == '1')
+        <li>
+        <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+            {{ $r['race']['surface'] }} 
+            {{ $r['race']['distance'] }}F 
+            {{ $r['race']['grade'] }} 
+          </span>
+        </li>
+        @endif    
+        @endforeach
+      </ol>
+      <li>Second Place</li>
+      <ol>
+        @foreach($race_records as $r)
+        @if($r['placing'] == '2')
+        <li>
+          <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+            {{ $r['race']['surface'] }} 
+            {{ $r['race']['distance'] }}F 
+            {{ $r['race']['grade'] }} 
+          </span>
+        </li>
+        @endif    
+        @endforeach
+      </ol>
+      <li>Third Place</li>
+      <ol>
+        @foreach($race_records as $r)
+        @if($r['placing'] == '3')
+        <li>
+          <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+            {{ $r['race']['surface'] }} 
+            {{ $r['race']['distance'] }}F 
+            {{ $r['race']['grade'] }} 
+          </span>
+        </li>
+        @endif    
+        @endforeach
+      </ol>
+      <li>Fourth Place</li>
       @foreach($race_records as $r)
-      @if($r['placing'] == '1')
-       <li>
-        <span class="text-capitalize"><a href="{{ $r['race']['url'] }}">{{ $r['race']['name'] }}</a> 
-        {{ $r['race']['surface'] }} 
-        {{ $r['race']['distance'] }}F 
-        {{ $r['race']['grade'] }} 
+      @if($r['placing'] == '4')
+      <li>
+        <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+          {{ $r['race']['surface'] }} 
+          {{ $r['race']['distance'] }}F 
+          {{ $r['race']['grade'] }} 
+        </span>
+      </li>
+      @endif    
+      @endforeach
+      <li>Fifth Place</li>
+      <ol>
+        @foreach($race_records as $r)
+        @if($r['placing'] == '5')
+        <li>
+          <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+            {{ $r['race']['surface'] }} 
+            {{ $r['race']['distance'] }}F 
+            {{ $r['race']['grade'] }} 
+          </span>
+        </li>
+        @endif    
+        @endforeach    
+      </ol>
+      <li>Other</li>
+      @foreach($race_records as $r)
+      @if($r['placing'] > '5')
+      <li>
+        <span class="text-capitalize"><a href="{{ $r['race']['url'] }}" target="_blank">{{ $r['race']['name'] }}</a> 
+          {{ $r['race']['surface'] }} 
+          {{ $r['race']['distance'] }}F 
+          {{ $r['race']['grade'] }} 
         </span>
       </li>
       @endif    
       @endforeach
     </ol>
-    <li>Second Place</li>
+  </div><!--end records-->
+  <div role="tabpanel" class="tab-pane" id="progeny">
+
+    <h2>Progeny <a class="btn-xs btn btn-primary" href="/add-progeny/{{ $horse['id'] }}">Add</a></h2>                          
     <ol>
-     <li>
-      <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-      </span>
+     @forelse ($offspring as $a)
+     <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>
+
+      @if($horse['sex'] == 'Stallion')
+      out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
+      @endif
+
+      @if($horse['sex'] == 'Mare')
+      by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
+      @endif
+
     </li>
+    @empty
+    No foals yet!
+    @endforelse
   </ol>
-  <li>Third Place</li>
-  <ol>
-   <li>
-    <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-    </span>
-  </li>
-</ol>
-<li>Fourth Place</li>
-<ol>
- <li>
-  <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-  </span>
-</li>
-</ol>
-<li>Fifth Place</li>
-<ol>
- <li>
-  <span class="text-capitalize"><a href="#">Race Name</a> Grade Distance Surface
-  </span>
-</li>        
-</ol>
-</ol>
-</div><!--end records-->
-<div role="tabpanel" class="tab-pane" id="progeny">
-
-  <h2>Progeny <a class="btn-xs btn btn-primary" href="/add-lineage/{{ $horse['id'] }}/progeny">Add</a></h2>                          
-  <ol>
-   @forelse ($offspring as $a)
-   <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>
-
-    @if($horse['sex'] == 'Stallion')
-    out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
-    @endif
-
-    @if($horse['sex'] == 'Mare')
-    by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
-    @endif
-
-  </li>
-  @empty
-  No foals yet!
-  @endforelse
-</ol>
 </div><!--end progeny-->
 
 

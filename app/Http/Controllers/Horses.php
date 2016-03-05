@@ -126,11 +126,10 @@ class Horses extends Base{
       $offspring = [];
 
       if($sex == 'Stallion'){
-        $offspring = Models\Horse_Progeny::where('sire_id', $horse_id)->get();        
-
+        $offspring = Models\Horse_Progeny::where('sire_id', $horse_id)->get();
 
         foreach($offspring as $i=>$o){
-         $foal = Models\Horse::where('id', $o['horse_id'])->first()->toArray();
+         $foal = Models\Horse::where('id', $o['horse_id'])->first();
          $offspring[$i]['horse_name'] = $foal['call_name'];
          $offspring[$i]['horse_link']= $foal['stall_path'];
 
@@ -143,18 +142,15 @@ class Horses extends Base{
       } else if($sex == 'Mare'){
         $offspring = Models\Horse_Progeny::where('dam_id', $horse_id)->get();
 
-
         foreach($offspring as $i=>$o){
-         $foal = Models\Horse::where('id', $o['horse_id'])->first()->toArray();
+         $foal = Models\Horse::where('id', $o['horse_id'])->first();
          $offspring[$i]['horse_name'] = $foal['call_name'];
          $offspring[$i]['horse_link']= $foal['stall_path'];
 
-         $sire = Models\Horse::where('id', $o['sire_id'])>first()->toArray();
+         $sire = Models\Horse::where('id', $o['sire_id'])->first();
          $offspring[$i]['sire_name'] = $sire['call_name'];
          $offspring[$i]['sire_link'] = $sire['stall_path'];
           }//end foreach
-
-
       }//end if-else  
 
       return $offspring;
@@ -193,7 +189,7 @@ class Horses extends Base{
        //echo "<pre>" . print_r($race, true) . "</pre>";
        array_push($records, ['race' => $race, 'placing' => $p['placing']]);     
      }//end foreach
-    //echo "<pre>" . print_r($records, true) . "</pre>";     
+         
      return $records;
     }//end getRaceRecords
 

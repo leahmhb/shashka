@@ -32,10 +32,12 @@ Route::get('/add-race-entrant/{horse_id}', 'Races@add_race_entrant');
 Route::post('/add-race-entrant/{horse_id}', 'Races@add_race_entrant_validate');
 
 //foals of horse
-Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/progeny', 'Horses_Progeny@add_progeny');
+Route::get('/add-progeny/{horse_id}', 'Horses_Progeny@add_progeny');
+Route::post('/add-progeny/{horse_id}', 'Horses_Progeny@add_progeny_validate');
 
 //parents of horse
-Route::match(array('GET', 'POST'), '/add-lineage/{horse_id}/lineage', 'Horses_Progeny@add_lineage');
+Route::get('/add-lineage/{horse_id}', 'Horses_Progeny@add_lineage');
+Route::post('/add-lineage/{horse_id}', 'Horses_Progeny@add_lineage_validate');
 
 //other people's horses
 Route::get('/add-other-horse', 'Horses_Progeny@add_other_horse');

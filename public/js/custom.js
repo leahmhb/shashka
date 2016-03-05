@@ -4,11 +4,9 @@ $(document).ready(function () {
     window.location.href = location;
     return false;
   });
+$.fn.datepicker.defaults.format = "yyyy/mm/dd";
+$.fn.datepicker.defaults.todayHighlight =
 
-
-  $('.datepicker').datepicker({
-    format:"yyyy-mm-dd",
-    todayHightlight: true,
-    todayBtn: true
-  });
+  $('#datepicker').datepicker();
+  
 });//end ready

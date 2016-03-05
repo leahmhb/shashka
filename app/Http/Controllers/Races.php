@@ -36,6 +36,7 @@ public function add_race_entrant($horse_id){
 public function add_race_entrant_validate($horse_id){
   $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
   $data = $_POST;
+  var_dump($data);
   $entry = Models\Race_Entrant::firstorCreate($data);
   return view('add_race_entrant', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
 }//end add_race_entrant

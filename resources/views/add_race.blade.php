@@ -29,7 +29,7 @@
         <label for="date" class="col-sm-3 control-label">Date</label>
         <div class="col-sm-9">
           <div class="input-group date" data-provide="datepicker">
-            <input type="text" name="ran_dt" class="datepicker form-control">
+            <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
             <div class="input-group-addon">
               <span class="glyphicon glyphicon-th"></span>
             </div>
