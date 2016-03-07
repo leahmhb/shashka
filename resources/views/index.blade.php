@@ -3,7 +3,7 @@
 @section('title', 'Welcome')
 
 @section('content')
-<h1>Welcome</h1>
+<div class="page-header"><h1>Welcome</h1></div>  
 <div class="row">
 
 	<div class="col-sm-4">
@@ -26,15 +26,12 @@
 			
 			<div class="panel panel-default">
 				<div class="panel-heading"><h3 class="panel-title">
-					Featured Horse: Sovenance
+					Featured Horse: Sovenance - Bred by Neco@Hard Tack
 				</h3>
 			</div>
 			<div class="panel-body">
 				<img class="stall-pic" src="{{ asset('img/welcome-horse.png') }}">  
-			</div><!--end panel content-->
-			<div class="panel-footer">  
-				Bred by Neco@Hard Tack
-			</div><!--end panel footer-->
+			</div><!--end panel content-->		
 			</div><!--end panel-->   
 	</div><!--end col-->
 

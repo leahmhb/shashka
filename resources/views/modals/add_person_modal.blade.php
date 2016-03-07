@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.modal')
 
 @section('title', 'Add Person')
 
@@ -6,7 +6,11 @@
 <div class="page-header"><h1>Add Person <small>Tracking owners, breeders, and hexers</small></h1></div>
 
 <form id="add-person" class="form-horizontal" method="post">
- <div class="row">
+
+  <div class="row">
+    <div class="col-sm-12">
+
+      <div class="row">
         <div class="col-sm-12">
           <div class="panel panel-default">
             <div class="panel-body">
@@ -26,13 +30,6 @@
         </div><!--end col-->
       </div><!--end row-->
 
-      
-  <div class="row">
-    <div class="col-sm-12">
-
-
-     
-
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">Basic Info</h4>
@@ -44,31 +41,17 @@
             <div class="col-sm-9">
               <input name="username" class="form-control" id="person_name" placeholder="Haubing">              
             </div>             
-          </div><!--end username-->       
-
-          <div class="form-group">
-            <label for="person_name" class="col-sm-3 control-label"><span class="text-info">!</span>Stable Name</label>
-            <div class="col-sm-9">       
-              <input name="stable_name" class="form-control" id="person_stable_name" placeholder="Shashka Stables">         
-            </div>             
-          </div><!--end stable name--> 
-
-          <div class="form-group">
-          <label for="person_name" class="col-sm-3 control-label"><span class="text-info">!</span>Stable Prefix</label>
-            <div class="col-sm-9"> 
-              <input name="stable_prefix" class="form-control" id="person_stable_prefix" placeholder="Haubing">   
-            </div>             
-          </div><!--end stable prefix--> 
+          </div><!--end username-->  
 
         </div><!--end panel-body-->
       </div><!--end panel--> 
 
       <div class="pull-right">
-        <button type="submit" name="" class="btn-lg btn btn-primary">Add</button>      
-      </div>
+       <button type="submit" name="" class="btn-lg btn btn-primary">Add</button>      
+     </div>
 
-    </div><!--end col-->
-  </div><!--end row-->
+   </div><!--end col-->
+ </div><!--end row-->
 
 </form>
 @endsection

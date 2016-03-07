@@ -78,15 +78,15 @@
                     </ul>
                 </li>
                 <li class="dropdown">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Forms<span class="caret"></span></a>
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
                     <ul class="dropdown-menu">                  
-                        <li><a href="/add-horse">Add Horse</a></li>
-                        <li><a href="/add-other-horse">Add Other Horse</a></li>
+                        <li><a href="/add-horse">Add Horse</a></li>                  
+                        <li><a href="/add-ancestory">Add Ancestory</a></li>                   
                         <li><a href="/add-person">Add Person</a></li>
-                        <li><a href="/add-race">Add Race</a></li>                       
+                        <li><a href="/add-race">Add Race</a></li>      
+                        <li><a href="/add-race-entrant">Add Race Entrant</a></li>                 
                     </ul>
                 </li>
-
             </ul>
             <ul class="nav navbar-nav navbar-right">
                 <li><a href="/theme">1</a></li>

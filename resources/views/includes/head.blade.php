@@ -11,7 +11,7 @@
    <!--Themed bootstrap css cdn-->
 
    <!--journal, paper, yeti -->
-   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/yeti/bootstrap.min.css" rel="stylesheet">
+   <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/lumen/bootstrap.min.css" rel="stylesheet">
 
    <!--Plugin styling-->
    <link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">

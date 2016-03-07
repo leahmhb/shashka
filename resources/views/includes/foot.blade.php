@@ -1,4 +1,3 @@
-
 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 
@@ -7,6 +6,8 @@
 
 <!-- Plugins -->
 <script src="{{ asset('js/bootstrap-datepicker.min.js') }}"></script>
+<script src="{{ asset('js/rsv.jquery.min.js') }}"></script>
 
+<!-- Custom -->
 <script src="{{ asset('js/custom.js') }}"></script>
 

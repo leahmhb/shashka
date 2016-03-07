@@ -3,162 +3,189 @@
 @section('title', 'Add Horse')
 
 @section('content')
+
 <div class="page-header"><h1>Add Horse <small>New Additions</small></h1></div>
 
-  <form id="add-horse" class="form-horizontal" method="post">
-      @if($validate == true)
-      <div class="alert alert-success" role="alert">
-        Successful addition!
-      </div><!--end alert-->
-      @endif
-    <div class="row">
-      <div class="col-sm-9">
+<form id="add-horse" class="form-horizontal" method="post">
 
-        <div class="panel panel-default">
-          <div class="panel-heading">
-            <h4 class="panel-title">Basic Info</h4>
-          </div>
-          <div class="panel-body">
-           <div class="form-group">
-            <label for="call-name" class="col-sm-2 control-label">Call Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="call_name" id="call-name" placeholder="Riparian">
-            </div>
-          </div><!--end call-name-->
-
-          <div class="form-group">
-            <label for="registered-name" class="col-sm-2 control-label">Reg'd Name</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="Lesson's Learned">
-            </div>
-          </div><!--end registered-name-->   
-
-          <div class="form-group">
-            <label for="sex" class="col-sm-2 control-label">Sex</label>
-            <div class="col-sm-10">
-              <select name="sex" class="form-control select">
-                <option></option>
-                @foreach ($domain['sexes'] as $sex)          
-                <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
-                @endforeach
-              </select>           
-            </div>        
-          </div><!--end sex-->   
-
-          <div class="form-group">
-            <label for="color-name" class="col-sm-2 control-label">Color</label>
-            <div class="col-sm-10">       
-              <input type="text" name="color" class="form-control" placeholder="Black">
-            </div>                
-          </div><!--end color-name-->
-
-          <div class="form-group">
-            <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="EE">
-            </div>
-          </div><!--end phenotype-name-->
-
-          <div class="form-group">
-            <label for="grade" class="col-sm-2 control-label">Grade</label>
-            <div class="col-sm-10">
-              <select name="grade" class="form-control select">
-                <option></option>
-                @foreach ($domain['grades'] as $grade)          
-                <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
-                @endforeach
-              </select>
-            </div>
-          </div><!--end grade-->
-
-        </div><!--end panel-body-->
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">
+          @if($validate == true)
+          <div class="alert alert-success" role="alert">
+            Successful addition!
+          </div><!--end alert-->
+          @endif
+          <div class="col-sm-2">
+            <span class="text-danger">*</span> Required 
+          </div><!--end col-->
+          <div class="col-sm-6">
+            <span class="text-info">!</span> Required if horse does not belong to Shashka Stables
+          </div><!--end col--> 
+        </div>
       </div><!--end panel-->
+    </div><!--end col-->
+  </div><!--end row-->
+
+  <div class="row">  
+    <div class="col-sm-9">
 
       <div class="panel panel-default">
         <div class="panel-heading">
-          <h4 class="panel-title">People</h4>
+          <h4 class="panel-title">Basic Info</h4>
         </div>
         <div class="panel-body">
-
-          <div class="form-group">
-            <label for="owner-name" class="col-sm-2 control-label">Owner</label>
-            <div class="col-sm-10">       
-              <select disabled name="owner" class="form-control select">                 
-                <option value="Haubing">Haubing</option>        
-              </select>
-            </div>                
-          </div><!--end owner-name-->
-
-          <div class="form-group">
-            <label for="breeder-name" class="col-sm-2 control-label">Breeder</label>
-            <div class="col-sm-10">
-             <select name="breeder" class="form-control select">
-              <option></option>
-              @foreach ($domain['person'] as $person)          
-              <option value="{{$person['username']}}">{{$person['username']}}</option>
-              @endforeach
-            </select>
+         <div class="form-group">
+          <label for="call-name" class="col-sm-2 control-label"><span class="text-danger">*</span>Call Name</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="call_name" id="call-name" placeholder="Riparian">
           </div>
-        </div><!--end breeder-name-->
+        </div><!--end call-name-->
 
         <div class="form-group">
-          <label for="hexer-name" class="col-sm-2 control-label">Hexer</label>
+          <label for="registered-name" class="col-sm-2 control-label"><span class="text-danger">*</span>Reg'd Name</label>
           <div class="col-sm-10">
-            <select name="hexer" class="form-control select">
+            <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="Lesson's Learned">
+          </div>
+        </div><!--end registered-name-->   
+
+        <div class="form-group">
+          <label for="sex" class="col-sm-2 control-label"><span class="text-danger">*</span>Sex</label>
+          <div class="col-sm-10">
+            <select name="sex" class="form-control select">
               <option></option>
-              @foreach ($domain['person'] as $person)          
-              <option value="{{$person['username']}}">{{$person['username']}}</option>
+              @foreach ($domain['sexes'] as $sex)          
+              <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+              @endforeach
+            </select>           
+          </div>        
+        </div><!--end sex-->   
+
+        <div class="form-group">
+          <label for="color-name" class="col-sm-2 control-label">Color</label>
+          <div class="col-sm-10">       
+            <input type="text" name="color" class="form-control" placeholder="Black">
+          </div>                
+        </div><!--end color-name-->
+
+        <div class="form-group">
+          <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="EE">
+          </div>
+        </div><!--end phenotype-name-->
+
+        <div class="form-group">
+          <label for="grade" class="col-sm-2 control-label">Grade</label>
+          <div class="col-sm-10">
+            <select name="grade" class="form-control select">
+              <option></option>
+              @foreach ($domain['grades'] as $grade)          
+              <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
               @endforeach
             </select>
           </div>
-        </div><!--end hexer-name-->
-  <div class="text-right">If not in list, <a class="btn-xs btn btn-primary" href="/add-person" target="_blank">Add</a></div>
+        </div><!--end grade-->
+
+        <div class="form-group">
+          <label for="stall_path" class="col-sm-2 control-label"><span class="text-info">!</span>Stall Page</label>
+          <div class="col-sm-10">
+            <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="stall page url">
+          </div>
+        </div><!--end stall page-->
+
       </div><!--end panel-body-->
     </div><!--end panel-->
 
     <div class="panel panel-default">
       <div class="panel-heading">
-        <h4 class="panel-title">Abilities</h4>
+        <h4 class="panel-title">People</h4>
       </div>
       <div class="panel-body">
-        <div class="form-group">
-          <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
-          <div class="col-sm-10">
-            <select name="pos_ability_1" class="form-control select">
-             <option></option>
-             @foreach ($domain['pos_abilities'] as $pos)          
-             <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
-             @endforeach     
-           </select>           
-         </div>  
-       </div><!--end pos_ability_1-->  
 
-       <div class="form-group">
-        <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
+        <div class="form-group">
+          <label for="owner-name" class="col-sm-2 control-label"><span class="text-danger">*</span>Owner</label>
+          <div class="col-sm-10">       
+            <select name="owner" class="form-control select">
+              <option></option>
+              @foreach ($domain['person'] as $person)          
+              <option value="{{$person['username']}}">{{$person['username']}}</option>
+              @endforeach
+            </select>
+          </div>                
+        </div><!--end owner-name-->
+
+        <div class="form-group">
+          <label for="breeder-name" class="col-sm-2 control-label">Breeder</label>
+          <div class="col-sm-10">
+           <select name="breeder" class="form-control select">
+            <option></option>
+            @foreach ($domain['person'] as $person)          
+            <option value="{{$person['username']}}">{{$person['username']}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div><!--end breeder-name-->
+
+      <div class="form-group">
+        <label for="hexer-name" class="col-sm-2 control-label">Hexer</label>
         <div class="col-sm-10">
-          <select name="pos_ability_2" class="form-control select">
+          <select name="hexer" class="form-control select">
+            <option></option>
+            @foreach ($domain['person'] as $person)          
+            <option value="{{$person['username']}}">{{$person['username']}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div><!--end hexer-name-->
+      <div class="text-right">If person not in list, <a class="btn-xs btn btn-primary" href="/add-person/quick" target="_blank">Add</a></div>
+    </div><!--end panel-body-->
+  </div><!--end panel-->
+
+  <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Abilities</h4>
+    </div>
+    <div class="panel-body">
+      <div class="form-group">
+        <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
+        <div class="col-sm-10">
+          <select name="pos_ability_1" class="form-control select">
            <option></option>
            @foreach ($domain['pos_abilities'] as $pos)          
            <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
-           @endforeach   
+           @endforeach     
          </select>           
        </div>  
-     </div><!--end pos_ability_2-->  
+     </div><!--end pos_ability_1-->  
 
      <div class="form-group">
-      <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+      <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
       <div class="col-sm-10">
-        <select name="neg_ability_1" class="form-control select">
+        <select name="pos_ability_2" class="form-control select">
          <option></option>
-         @foreach ($domain['neg_abilities'] as $neg)          
-         <option value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+         @foreach ($domain['pos_abilities'] as $pos)          
+         <option value="{{$pos['ability']}}">{{$pos['ability']}} - {{$pos['description']}}</option>
          @endforeach   
        </select>           
      </div>  
-   </div><!--end neg_ability_1-->  
+   </div><!--end pos_ability_2-->  
+
+   <div class="form-group">
+    <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+    <div class="col-sm-10">
+      <select name="neg_ability_1" class="form-control select">
+       <option></option>
+       @foreach ($domain['neg_abilities'] as $neg)          
+       <option value="{{$neg['ability']}}">{{$neg['ability']}} - {{$neg['description']}}</option>
+       @endforeach   
+     </select>           
+   </div>  
+ </div><!--end neg_ability_1-->  
 
 
- </div><!--end panel-body-->
+</div><!--end panel-body-->
 </div><!--end panel-->
 
 <div class="panel panel-default">

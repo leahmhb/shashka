@@ -5,8 +5,6 @@
 </head>
 
 <body>
-    @include('includes.nav')
-    <div id="bg"><img src="{{ asset('img/background.png') }}"></div>
     <div id="main" class="container">
         <div class="row">
             <div class="col-sm-12">

@@ -6,12 +6,23 @@
 <div class="page-header"><h1>Add Race Entrant <small>Record Entries and Placings</small></h1></div>
 
 <form id="add-race" class="form-horizontal" method="post">
-  <div class="row">
-    @if($validate == true)
-    <div class="alert alert-success" role="alert">
-      Successful addition!
-    </div><!--end alert-->
-    @endif
+
+ <div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      <div class="panel-body">
+        @if($validate == true)
+        <div class="alert alert-success" role="alert">
+          Successful addition!
+        </div><!--end alert-->
+        @endif              
+        <span class="text-danger">*</span> Required
+      </div>
+    </div><!--end panel-->
+  </div><!--end col-->    
+</div><!--end row-->
+
+  <div class="row"> 
     <div class="col-sm-6">
       <div class="panel panel-default">
        <div class="panel-heading">
@@ -20,7 +31,7 @@
       <div class="panel-body">
 
         <div class="form-group">
-        <label for="horse" class="col-sm-3 control-label">Select Race</label>
+        <label for="horse" class="col-sm-3 control-label"><span class="text-danger">*</span>Select Race</label>
           <div class="col-sm-9">
            <select name="race_id" class="form-control select">
             <option></option>
@@ -37,7 +48,7 @@
 
 
 
-      <div class="text-right">If not in list, <a class="btn-xs btn btn-primary" href="/add-race" target="_blank">Add</a></div>
+      <div class="text-right">If race not in list, <a class="btn-xs btn btn-primary" href="/add-race/quick" target="_blank">Add</a></div>
     </div><!--end panel-body-->
   </div><!--end panel-->
 </div><!--end col-->
@@ -49,7 +60,7 @@
     </div>
     <div class="panel-body">
       <div class="form-group">
-        <label for="horse" class="col-sm-3 control-label">Horse's Call Name</label>
+        <label for="horse" class="col-sm-3 control-label"><span class="text-danger">*</span>Horse's Call Name</label>
         <div class="col-sm-9">
           <select name="horse_id" class="form-control select">
             <option></option>
@@ -61,9 +72,9 @@
       </div><!--end horse--> 
 
       <div class="form-group">
-        <label for="distance" class="col-sm-3 control-label">Placing</label>            
+        <label for="distance" class="col-sm-3 control-label"><span class="text-danger">*</span>Placing</label>            
         <div class="col-sm-9">     
-          <input type="text" name="placing" class="form-control" placeholder="1st">     
+          <input type="number" name="placing" class="form-control" placeholder="1">     
         </div> 
       </div><!--end placing-->
 

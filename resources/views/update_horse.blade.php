@@ -6,6 +6,19 @@
 <div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information <small>Keep Records Current</small></h1></div>
 
 <form id="update-horse" class="form-horizontal" method="post">
+  @if($validate == true)
+  <div class="row">
+    <div class="col-sm-12">
+      <div class="panel panel-default">
+        <div class="panel-body">        
+          <div class="alert alert-success" role="alert">
+            Successful submission! See stall page with update information: <a href="{{$horse['stall_link']}}">{{ $horse['call_name'] }}</a></li>
+          </div><!--end alert-->                        
+        </div>
+      </div><!--end panel-->
+    </div><!--end col-->    
+  </div><!--end row-->
+  @endif  
 
   <div class="row">
     <div class="col-sm-8">
@@ -111,6 +124,7 @@
           </select>
         </div>
       </div><!--end hexer-name-->
+      <div class="text-right">If person not in list, <a class="btn-xs btn btn-primary" href="/add-person/quick" target="_blank">Add</a></div>
     </div><!--end panel-body-->
   </div><!--end panel-->
 
