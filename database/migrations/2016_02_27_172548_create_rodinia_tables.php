@@ -51,18 +51,18 @@ class CreateRodiniaTables extends Migration {
         Schema::create('horses', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->increments('id');
-            $table->string('owner')->nullable();
+            $table->string('owner')->default('');
             $table->foreign('owner')->references('username')->on('person')->onDelete('cascade'); 
-            $table->string('breeder')->nullable();
+            $table->string('breeder')->default('');
             $table->foreign('breeder')->references('username')->on('person')->onDelete('cascade');
-            $table->string('hexer')->nullable();
+            $table->string('hexer')->default('');
             $table->foreign('hexer')->references('username')->on('person')->onDelete('cascade');  
             $table->string('call_name');
-            $table->string('registered_name')->unique()->nullable();
+            $table->string('registered_name')->unique()->default('');
             $table->string('sex');
             $table->foreign('sex')->references('sex')->on('sexes')->onDelete('cascade');;
-            $table->string('color')->nullable();
-            $table->string('phenotype')->nullable();
+            $table->string('color')->default('');
+            $table->string('phenotype')->default('');
             $table->string('grade')->default('Open Level');
             $table->foreign('grade')->references('grade')->on('grades')->onDelete('cascade'); 
             $table->string('leg_type');
@@ -92,8 +92,8 @@ class CreateRodiniaTables extends Migration {
             $table->string('run_style')->default('Normal'); 
             $table->string('hood')->default('No'); 
             $table->string('shadow_roll')->default('No'); 
-            $table->string('stall_path')->nullable();
-            $table->string('img_path')->nullable();
+            $table->string('stall_path')->default('#');
+            $table->string('img_path')->default('#');
             $table->timestamps();
         });
 

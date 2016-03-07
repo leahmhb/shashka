@@ -1,5 +1,38 @@
-label {
+body
+{   
+  background-color: #51613d;
+  background-image: url(../img/white-diamond-dark.png);
+}
 
+#main
+{
+  border: 1px solid #000;
+  background: url(../img/groovepaper.png), rgba(252,251,227,.8);
+  margin-bottom: 2em;
+  padding-bottom: 1em;
+
+}
+
+#bg {
+  position: fixed;
+  bottom: -8px;
+  left: 0;
+
+  width: 50%;
+  height: auto;
+  z-index: -5;
+
+}
+
+#bg img {
+  width: 100
+  height: auto;
+
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+label {
   font-weight:bold;
 }
 
@@ -7,6 +40,10 @@ img.stall-pic {
 	display: block;  
 	margin: 0 auto;	
 	box-sizing: border-box;
+}
+
+.stall-panel {
+  min-height: 100%;
 }
 
 ul.stall-info{
@@ -23,18 +60,49 @@ ul.stall-info{
   margin-left: 2rem;
 }
 
-#main {
-  padding-bottom: 5em;
+ol.race-records ul {
+  padding-left: 10px;
 }
-
 .dropdown-header {
   color: #783e56;
   font-size: .95em;
 }
 
+.ability {
+  white-space: nowrap;
+}
+
+.vertical-align {
+  display: flex;
+  flex-direction: row;
+}
+
+.panel-footer{
+  margin-bottom:0;
+}
+
+
+.panel{
+  padding-bottom:0;
+}
+
+/*.vertical-align > [class^="col-"],
+.vertical-align > [class*=" col-"] {
+  display: flex;
+  align-items: center;
+  justify-content: center; 
+  }*/
+
+
+.text-danger, .text-info {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+
 @media only screen and (min-width : 768px) {
-    /* Make Navigation Toggle on Desktop Hover */
-    .dropdown:hover .dropdown-menu {
-        display: block;
-    }
+  /* Make Navigation Toggle on Desktop Hover */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
 }

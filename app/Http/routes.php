@@ -13,35 +13,29 @@
 
 Route::get('/', 'Base@index');
 
-//add person
-Route::match(array('GET', 'POST'), '/add-person', 'Person@add_person');
-
-//add horse
-Route::get('/add-horse', 'Horses@add_horse');
-Route::post('/add-horse', 'Horses@add_horse_validate');
+//add horse 
+Route::get('/add-horse/{type?}', 'Horses@add_horse');
+Route::post('/add-horse/{type?}', 'Horses@add_horse_validate');
 
 //update horse
 Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
 Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 
+//person
+Route::get('/add-person/{type?}', 'Person@add_person');
+Route::post('/add-person/{type?}', 'Person@add_person_validate');
+
 //races
-Route::get('/add-race', 'Races@add_race');
-Route::post('/add-race', 'Races@add_race_validate');
+Route::get('/add-race/{type?}', 'Races@add_race');
+Route::post('/add-race/{type?}', 'Races@add_race_validate');
 
-Route::get('/add-race-entrant/{horse_id}', 'Races@add_race_entrant');
-Route::post('/add-race-entrant/{horse_id}', 'Races@add_race_entrant_validate');
+//race entries
+Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');
+Route::post('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant_validate');
 
-//foals of horse
-Route::get('/add-progeny/{horse_id}', 'Horses_Progeny@add_progeny');
-Route::post('/add-progeny/{horse_id}', 'Horses_Progeny@add_progeny_validate');
-
-//parents of horse
-Route::get('/add-lineage/{horse_id}', 'Horses_Progeny@add_lineage');
-Route::post('/add-lineage/{horse_id}', 'Horses_Progeny@add_lineage_validate');
-
-//other people's horses
-Route::get('/add-other-horse', 'Horses_Progeny@add_other_horse');
-Route::post('/add-other-horse', 'Horses_Progeny@add_other_horse_validate');
+//horse ancestory
+Route::get('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory');
+Route::post('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory_validate');
 
 //stall pages
 Route::get('/stall/{horse_id}', 'Horses@stall_page');

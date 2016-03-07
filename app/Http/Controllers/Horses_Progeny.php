@@ -1,7 +1,6 @@
 <?php  
 namespace App\Http\Controllers;
 use App\Models as Models;
-use View;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -9,16 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses_Progeny extends Base{
-
-
-  public function __construct(){
-    View::composers(['App\Composers\HomeComposer'  => ['add_lineage']]);
-    View::composers(['App\Composers\HomeComposer'  => ['add_progeny_sire']]);
-    View::composers(['App\Composers\HomeComposer'  => ['add_progeny_dam']]);
-    View::composers(['App\Composers\HomeComposer'  => ['add_other_horse']]);
-    View::composers(['App\Composers\HomeComposer'  => ['index']]);
-  }//end construct
-
 
   public function index(){
 
@@ -54,77 +43,51 @@ class Horses_Progeny extends Base{
       return $domain;
   }//end getDomain
 
+  public function add_ancestory($sex = false, $horse_id = false){ //add sire and dam
+    $horse = ['id' => 0, 'call_name' => ''];
+    $sire = ['id' => 0, 'call_name' => ''];
+    $dam = ['id' => 0, 'call_name' => ''];
+    $relationship = "Ancestory";
 
-  public function add_other_horse(){     
-    return view('add_other_horse', ['domain' => $this->getDomain(), 'validate' => false]);
-    }//end add_horse 
-
-  public function add_other_horse_validate(){
-   $data = $_POST;
-
-   //ensure proper capitalization
-   foreach($data as $d=>$dt){
-    $data[$d] = ucwords($dt); 
-    }//end foreach
-
-    $horse = Models\Horse::firstOrCreate($data);
-
-    return view('add_other_horse', ['domain' => $this->getDomain(), 'validate' => true]);
-  }//end add_horse_validate
-
-public function add_progeny($horse_id){ //add foal
-  $horse = Models\Horse::select('id', 'call_name', 'registered_name', 'sex')->where('id', $horse_id)->first();
-  if($horse['sex'] == 'Mare'){
-   return view('add_progeny_dam', ['domain' => $this->getHorseDomain(), 'horse' => $horse, 'validate' => false]);
-      }//end if
-  if($horse['sex'] == 'Stallion'){
-    return view('add_progeny_sire', ['domain' => $this->getHorseDomain(), 'horse' => $horse, 'validate' => false]);
-  }//end if
-}//end add_lineage
-
-public function add_progeny_validate($horse_id){ //add foal
-  $horse = Models\Horse::select('id', 'call_name', 'registered_name', 'sex')->where('id', $horse_id)->first();
- $record = $_POST;
- var_dump($record);
- $progeny = Models\Horse_Progeny::create($record);
-
- if($horse['sex'] == 'Mare'){
-  return view('add_progeny_dam', ['domain' => $this->getHorseDomain(), 'horse' => $horse, 'validate' => true]);
-      }//end if
-
-      if($horse['sex'] == 'Stallion'){
-       return view('add_progeny_sire', ['domain' => $this->getHorseDomain(), 'horse' => $horse, 'validate' => true]);
-     }//end if
-}//end add_progeny_validate
-
-
-  public function add_lineage($horse_id){ //add sire and dam
-   $horse = Models\Horse::select('id', 'call_name', 'registered_name', 'sex')->where('id', $horse_id)->first();
-   $record = Models\Horse_Progeny::where('horse_id', $horse['id'])->first();
-   $data = [];
-
-    if(!$record){ //create new
-      $data['horse'] = $horse->toArray();
-      $data['sire_id'] = 0;
-      $data['dam_id'] = 0;   
-    } else { //edit existing      
-      $data['horse'] = $horse->toArray();
-      $data['sire_id'] = $record['sire_id'];
-      $data['dam_id'] = $record['dam_id'];
+    if($sex == "Mare" && $horse_id){
+      $dam = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
+      $relationship = "Progeny";
     }//end if
 
-    //echo "<pre>" . print_r($data, true) . "</pre>";
-    
-    return view('add_lineage', ['domain' => $this->getHorseDomain(), 'data' => $data, 'validate' => false]);
-  }//end add_lineage
+    if($sex == "Stallion" && $horse_id){
+      $sire = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
+      $relationship = "Progeny";
+    }//end if
 
-    public function add_lineage_validate($horse_id){ //add sire and dam
-     $record['horse_id'] = $_POST['horse_id'];
-     $record['sire_id'] = $_POST['sire_id'];
-     $record['dam_id'] = $_POST['dam_id'];
-     $lineage = Models\Horse_Progeny::create($record);
+    if(is_numeric($sex) && $horse_id){
+      $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
+      $record = Models\Horse_Progeny::where('horse_id', $horse['id'])->first();
+      $relationship = "Lineage"; 
+    }//end if
 
-     return view('add_lineage', ['domain' => $this->getHorseDomain(), 'validate' => true]);
+    return view('add_ancestory', ['domain' => $this->getHorseDomain(), 
+      'horse' => $horse, 
+      'sire' => $sire, 
+      'dam' => $dam, 
+      'relationship' => $relationship,
+      'validate' => false]);
+  }//end add_ancestory
+
+    public function add_ancestory_validate($relationship, $horse_id){ //add sire and dam
+      $record = $_POST;
+      //validate here
+      $ancestory = Models\Horse_Progeny::where('horse_id', $record['horse_id'])->first();
+
+    if(!$ancestory){ //create new
+      $ancestory = Models\Horse_Progeny::create($record)->first();
+    } else { //update existing
+       $ancestory->horse_id = $record['horse_id'];
+       $ancestory->sire_id = $record['sire_id'];
+       $ancestory->dam_id = $record['dam_id'];
+    }//end if else  
+
+
+   return view('add_ancestory', ['domain' => $this->getHorseDomain(), 'validate' => true]);
    }//end add_lineage_validate
 
 

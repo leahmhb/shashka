@@ -2,8 +2,6 @@
 namespace App\Http\Controllers;
 use App\Models as Models;
 
-use View;
-
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
@@ -11,27 +9,21 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses extends Base{
 
-	public function __construct(){
-		View::composers(['App\Composers\HomeComposer'  => ['stall']]);
-    View::composers(['App\Composers\HomeComposer'  => ['add_horse']]);
-    View::composers(['App\Composers\HomeComposer'  => ['update_horse']]);
-    }//end construct
-
-    public function getDomain(){
-      $domain = [];
-      $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
-      $domain['grades'] = Models\Grade::get()->toArray();
-      $domain['leg_types'] = Models\Leg_Type::get()->toArray();
-      $domain['sexes'] = Models\Sex::get()->toArray();
-      $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
-      $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-      $domain['person'] = Models\Person::select('username')->get()->toArray();
-      return $domain;
+  public function getDomain(){
+    $domain = [];
+    $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
+    $domain['grades'] = Models\Grade::get()->toArray();
+    $domain['leg_types'] = Models\Leg_Type::get()->toArray();
+    $domain['sexes'] = Models\Sex::get()->toArray();
+    $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
+    $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
+    $domain['person'] = Models\Person::select('username')->get()->toArray();
+    return $domain;
     }//end getDomain
 
     public function update_horse($horse_id){
       $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-      return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse]);
+      return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
     }//end update_horse
 
     public function update_horse_validate($horse_id){
@@ -79,24 +71,32 @@ class Horses extends Base{
 
      $horse->save();
 
-     return $this->stall_page($horse_id);
+     return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
     }//end update_horse_validate
 
-    public function add_horse(){     
-      return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+    public function add_horse($type = false){     
+      if(!$type){
+        return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+      } else if ($type == "quick"){
+        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
+      }//end if-else
     }//end add_horse 
 
-    public function add_horse_validate(){
-
+    public function add_horse_validate($type = false){
       $data = $_POST;
 
       $horse = Models\Horse::firstOrCreate($data);
-      $horse->stall_path = "/stall/" . $horse->id;
-      $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
-      $horse->save();
+      if($horse->owner == "Haubing"){
+        $horse->stall_path = "/stall/" . $horse->id;
+        $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
+        $horse->save();
+      }//end if
 
-
-      return view('add_horse', ['domain' => $this->getDomain(), 'validate' => true]);
+      if(!$type){
+        return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+      } else if ($type == "quick"){
+        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
+      }//end if-else
     }//end add_horse_validate
 
     public function stall_page($horse_id){
@@ -189,7 +189,7 @@ class Horses extends Base{
        //echo "<pre>" . print_r($race, true) . "</pre>";
        array_push($records, ['race' => $race, 'placing' => $p['placing']]);     
      }//end foreach
-         
+
      return $records;
     }//end getRaceRecords
 

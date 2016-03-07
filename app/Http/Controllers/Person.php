@@ -1,7 +1,6 @@
 <?php  
 namespace App\Http\Controllers;
 use App\Models as Models;
-use View;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -10,25 +9,27 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Person extends Base{
 
+  public function add_person($type = false){   
+    if(!$type){
+     return view('add_person', ['validate' => false]);
+   } else if ($type == "quick"){
+    return view('modals.add_person_modal', ['validate' => false]);
+      }//end if-else
+    }//end add_person
 
-  public function __construct(){
-    View::composers(['App\Composers\HomeComposer'  => ['add_person']]);
-  }//end construct
+  public function add_person_validate($type = false){   
+    $data = $_POST;     
 
+    //validation here
+    $person = Models\Person::firstOrCreate($data);
 
+    if(!$type){
+     return view('add_person', ['validate' => true]);
+    } else if ($type == "quick"){
+    return view('modals.add_person_modal', ['validate' => true]);
+    }//end if-else
 
-  public function add_person(){   
-    $validate = "";
-    if(isset($_POST['submit'])){
-      $data['username'] = $_POST['username'];
-      $data['stable_name'] = $_POST['stable_name'];
-      $data['stable_prefix'] = $_POST['stable_prefix'];
-      $person = Models\Person::firstOrCreate($data);
-      $validate = true;
-  }//end if
-
-  return view('add_person', ['validate' => $validate]);
-    }//end add_horse 
+  }//end add_person
 
 
   }//end class
