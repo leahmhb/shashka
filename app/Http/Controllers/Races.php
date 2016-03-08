@@ -20,7 +20,7 @@ class Races extends Base{
 
 public function add_race($type = false){
   if(!$type){
-   return view('add_race', ['domain' => $this->getDomain(),'validate' => false]);
+   return view('forms.add_race', ['domain' => $this->getDomain(),'validate' => false]);
  } else if ($type == "quick"){
   return view('modals.add_race_modal', ['domain' => $this->getDomain(),'validate' => false]);
       }//end if-else
@@ -30,7 +30,7 @@ public function add_race_validate($type = false){
   $data = $_POST;     
   $race = Models\Race::firstOrCreate($data);
   if(!$type){
-   return view('add_race', ['domain' => $this->getDomain(),'validate' => false]);
+   return view('forms.add_race', ['domain' => $this->getDomain(),'validate' => false]);
  } else if ($type == "quick"){
   return view('modals.add_race_modal', ['domain' => $this->getDomain(),'validate' => false]);
       }//end if-else
@@ -38,14 +38,14 @@ public function add_race_validate($type = false){
 
 public function add_race_entrant($horse_id = false){
   $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
-  return view('add_race_entrant', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
+  return view('forms.add_race_entrant', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
 }//end add_race_entrant
 
 public function add_race_entrant_validate(){
   $data = $_POST;
   var_dump($data);
   $entry = Models\Race_Entrant::firstorCreate($data);
-  return view('add_race_entrant', ['domain' => $this->getDomain(), 'horse' => [], 'validate' => true]);
+  return view('forms.add_race_entrant', ['domain' => $this->getDomain(), 'horse' => [], 'validate' => true]);
 }//end add_race_entrant
 
 

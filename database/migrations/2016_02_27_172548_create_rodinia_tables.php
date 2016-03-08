@@ -18,6 +18,7 @@ class CreateRodiniaTables extends Migration {
             $table->index('username');          
             $table->string('stable_name')->nullable()->default('');
             $table->string('stable_prefix')->nullable()->default('');
+            $table->string('racing_colors')->nullable()->default('');
             $table->timestamps();
         });
 

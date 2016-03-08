@@ -65,7 +65,7 @@ class Horses_Progeny extends Base{
       $relationship = "Lineage"; 
     }//end if
 
-    return view('add_ancestory', ['domain' => $this->getHorseDomain(), 
+    return view('forms.add_ancestory', ['domain' => $this->getHorseDomain(), 
       'horse' => $horse, 
       'sire' => $sire, 
       'dam' => $dam, 
@@ -87,7 +87,7 @@ class Horses_Progeny extends Base{
     }//end if else  
 
 
-   return view('add_ancestory', ['domain' => $this->getHorseDomain(), 'validate' => true]);
+   return view('forms.add_ancestory', ['domain' => $this->getHorseDomain(), 'validate' => true]);
    }//end add_lineage_validate
 
 

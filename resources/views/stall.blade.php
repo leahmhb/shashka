@@ -4,8 +4,8 @@
 
 @section('content')
 <div class="page-header">
-  <div class="row vertical-align">
-  <div class="col-sm-6">
+  <div class="row">
+    <div class="col-sm-6">
       <h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h1> 
     </div><!--end col-->
     <div class="col-sm-6">
@@ -18,7 +18,7 @@
     </div><!--end col-->
   </div><!--end row-->
 </div><!--end page header-->
-<div class="row vertical-align">
+<div class="row">
   <div class="col-md-7">
     <div class="panel panel-default stall-panel">
       <div class="panel-heading"><h3 class="panel-title">
@@ -57,9 +57,10 @@
     <div class="panel-heading"><h3 class="panel-title">
       <div class="stall-pills">
         <ul class="nav nav-pills" role="tablist">
-          <li role="presentation" class="active"><a href="#racing" aria-controls="racing" role="tab" data-toggle="tab">Racing Stats</a></li>
-          <li role="presentation" class=""><a href="#records" aria-controls="records" role="tab" data-toggle="tab">Top 5 Records</a></li>
+          <li role="presentation" class="active"><a href="#racing" aria-controls="racing" role="tab" data-toggle="tab">Stats</a></li>
+          <li role="presentation" class=""><a href="#records" aria-controls="records" role="tab" data-toggle="tab">Records</a></li>
           <li role="presentation" class=""><a href="#progeny" aria-controls="progeny" role="tab" data-toggle="tab">Progeny</a></li>
+          <li role="presentation" class=""><a href="#entry-form" aria-controls="entry-form" role="tab" data-toggle="tab">Entry</a></li>
         </ul>
       </h3>
     </div>
@@ -122,9 +123,7 @@
 
       <div role="tabpanel" class="tab-pane" id="records">
        <h2>Top Five Race Records </h2>
-
-
-
+       
        <ol class="race-records">       
         <li>First Place</li>
         <ul>
@@ -232,6 +231,49 @@
       @endforelse      
     </ul>
   </div><!--end progeny-->
+
+  <div role="tabpanel" class="tab-pane" id="entry-form">
+    <h2>Race Entry Form</h2>
+    <code><pre>
+[b]+++Form[/b]
+[b]++Stats:[/b]
+[b]Speed:[/b] {{ $horse['speed'] }}
+[b]Staying:[/b] {{ $horse['staying'] }}
+[b]Stamina:[/b] {{ $horse['stamina'] }}
+[b]Breaking:[/b] {{ $horse['breaking'] }}
+[b]Power:[/b] {{ $horse['power'] }}
+[b]Feel:[/b] {{ $horse['feel'] }}
+[b]Fierce:[/b] {{ $horse['fierce'] }}
+[b]Tenacity:[/b] {{ $horse['tenacity'] }}
+[b]Courage:[/b] {{ $horse['courage'] }}
+[b]Response:[/b] {{ $horse['response'] }}
+
+[b]Distance:[/b] {{ $horse['distance_min'] }}F - {{ $horse['distance_max'] }}F
+[b]Leg Type:[/b] {{ $horse['leg_type'] }}
+[b]Abilities:[/b][LIST]
+[b]+ {{ $horse['pos_ability_1'] }}[/b]  
+[b]+ {{ $horse['pos_ability_2'] }}[/b] 
+[b]- {{ $horse['neg_ability_1'] }}[/b]
+[/LIST][b]Dirt:[/b] {{ $horse['surface_dirt'] }}
+[b]Turf:[/b] {{ $horse['surface_turf'] }}
+
+[b]++Horse Info[/b]
+[b]Name:[/b] {{ $horse['call_name'] }}
+[b]Color:[/b] {{ $horse['color'] }}
+[b]Gender:[/b] {{ $horse['sex'] }}
+[b]Bandages:[/b] {{ $horse['bandages'] }}
+[b]Neck Height:[/b] {{ $horse['neck_height'] }}
+[b]Run Style:[/b] {{ $horse['run_style'] }}
+[b]Hood:[/b] {{ $horse['hood'] }}
+[b]Shadow Roll:[/b] {{ $horse['shadow_roll'] }}
+
+[b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
+[b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
+[img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
+      </pre></code>                         
+ 
+</div><!--end race entry-->
+
 
 </div><!--end tab content-->
 

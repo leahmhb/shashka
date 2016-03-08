@@ -11,7 +11,7 @@ class Person extends Base{
 
   public function add_person($type = false){   
     if(!$type){
-     return view('add_person', ['validate' => false]);
+     return view('forms.add_person', ['validate' => false]);
    } else if ($type == "quick"){
     return view('modals.add_person_modal', ['validate' => false]);
       }//end if-else
@@ -24,7 +24,7 @@ class Person extends Base{
     $person = Models\Person::firstOrCreate($data);
 
     if(!$type){
-     return view('add_person', ['validate' => true]);
+     return view('forms.add_person', ['validate' => true]);
     } else if ($type == "quick"){
     return view('modals.add_person_modal', ['validate' => true]);
     }//end if-else

@@ -23,7 +23,7 @@ class Horses extends Base{
 
     public function update_horse($horse_id){
       $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-      return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
+      return view('forms.update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
     }//end update_horse
 
     public function update_horse_validate($horse_id){
@@ -71,12 +71,12 @@ class Horses extends Base{
 
      $horse->save();
 
-     return view('update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
+     return view('forms.update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
     }//end update_horse_validate
 
     public function add_horse($type = false){     
       if(!$type){
-        return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
       } else if ($type == "quick"){
         return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
       }//end if-else
@@ -93,7 +93,7 @@ class Horses extends Base{
       }//end if
 
       if(!$type){
-        return view('add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
       } else if ($type == "quick"){
         return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
       }//end if-else
@@ -110,6 +110,8 @@ class Horses extends Base{
       $offspring = $this->getOffspring($horse_id, $horse['sex']);
       $race_records = $this->getRaceRecords($horse_id);
 
+      $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first()->toArray();
+
       $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first()->toArray();
 
       return view('stall', [
@@ -119,6 +121,7 @@ class Horses extends Base{
         'parents' => $parents, 
         'race_records' => $race_records,
         'prefix' => $prefix,
+        'entry' => $entry
         ]);
     }//end stall
 

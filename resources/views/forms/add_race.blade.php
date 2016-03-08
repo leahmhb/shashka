@@ -7,20 +7,18 @@
 
 <form id="add-race" class="form-horizontal" method="post">
 
- <div class="row">
-  <div class="col-sm-12">
-    <div class="panel panel-default">
-      <div class="panel-body">
-        @if($validate == true)
-        <div class="alert alert-success" role="alert">
-          Successful addition!
-        </div><!--end alert-->
-        @endif              
-        <span class="text-danger">*</span> Required
-      </div>
-    </div><!--end panel-->
-  </div><!--end col-->    
-</div><!--end row-->
+  <div class="row">
+    <div class="col-sm-12">
+          <div id="success">
+            @if($validate == true)
+            <div class="alert alert-success" role="alert">
+              Successful addition!
+            </div><!--end alert-->
+            @endif
+          </div>
+          <div id="rsvErrors" class="alert alert-danger"></div>
+    </div><!--end col-->
+  </div><!--end row-->
 
 <div class="row">
   <div class="col-sm-12">
@@ -31,7 +29,9 @@
     </div>
     <div class="panel-body">
      <div class="form-group">
-      <label for="race-name" class="col-sm-3 control-label">Race Name</label>
+      <label for="race-name" class="col-sm-3 control-label">
+      <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+      Race Name</label>
       <div class="col-sm-9">
         <input type="text" class="form-control" name="name" id="name" placeholder="...">
       </div>
@@ -50,7 +50,9 @@
     </div><!--end date-->
 
     <div class="form-group">
-      <label for="surface" class="col-sm-3 control-label">Surface</label>
+      <label for="surface" class="col-sm-3 control-label">
+      <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+      Surface</label>
       <div class="col-sm-9">             
         <label class="radio-inline">
           <input type="radio" name="surface" id="dirt" value="Dirt">
@@ -65,7 +67,9 @@
   </div><!--end surface-->          
 
   <div class="form-group">
-    <label for="distance" class="col-sm-3 control-label">Distance</label>            
+    <label for="distance" class="col-sm-3 control-label">
+    <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+    Distance</label>            
     <div class="col-sm-9"> 
       <div class="input-group">
         <input type="text" name="distance" class="form-control" placeholder="0">
@@ -76,7 +80,9 @@
 
 
   <div class="form-group">
-    <label for="grade" class="col-sm-3 control-label">Grade</label>
+    <label for="grade" class="col-sm-3 control-label">
+    <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+    Grade</label>
     <div class="col-sm-9">
       <select name="grade" class="form-control select">
         <option></option>
@@ -89,7 +95,9 @@
 
 
   <div class="form-group">
-    <label for="url" class="col-sm-3 control-label">URL</label>            
+    <label for="url" class="col-sm-3 control-label">
+<span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+    URL</label>            
     <div class="col-sm-9">         
       <input type="text" name="url" class="form-control" placeholder="www">
     </div> 
@@ -97,17 +105,18 @@
 
 </div><!--end panel-body-->
 </div><!--end panel-->
-
-
-<div class="pull-right">    
- <button type="submit" class="btn-lg btn btn-primary">Add</button>      
-</div>
 </div><!--end col-->
 </div><!--end row-->
 
 
 
-
+<div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="text-center form-group"> 
+      <button type="submit" class="btn-lg btn-block btn btn-primary">Add</button>    
+    </div>
+  </div><!--end col-->
+</div><!--end row-->
 
 
 </form>   

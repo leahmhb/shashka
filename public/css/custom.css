@@ -1,30 +1,24 @@
-body
-{   
+body {   
   background-color: #51613d;
   background-image: url(../img/white-diamond-dark.png);
 }
 
-#main
-{
+#main { /* for content views */
   border: 1px solid #000;
   background: url(../img/groovepaper.png), rgba(252,251,227,.8);
-  margin-bottom: 2em;
-  padding-bottom: 1em;
-
+  margin-bottom: 1em;
 }
 
-#bg {
+#bg { /* for bg image */
   position: fixed;
   bottom: -8px;
   left: 0;
-
   width: 50%;
   height: auto;
   z-index: -5;
-
 }
 
-#bg img {
+#bg img { /* for bg image */
   width: 100
   height: auto;
 
@@ -40,10 +34,6 @@ img.stall-pic {
 	display: block;  
 	margin: 0 auto;	
 	box-sizing: border-box;
-}
-
-.stall-panel {
-  min-height: 100%;
 }
 
 ul.stall-info{
@@ -68,41 +58,27 @@ ol.race-records ul {
   font-size: .95em;
 }
 
-.ability {
+.ability { /* tool tip */
   white-space: nowrap;
 }
 
-.vertical-align {
-  display: flex;
-  flex-direction: row;
-}
 
-.panel-footer{
-  margin-bottom:0;
-}
-
-
-.panel{
-  padding-bottom:0;
-}
-
-/*.vertical-align > [class^="col-"],
-.vertical-align > [class*=" col-"] {
-  display: flex;
-  align-items: center;
-  justify-content: center; 
-  }*/
-
-
-.text-danger, .text-info {
+.text-danger, .text-info { /* forms */
   font-weight: bold;
   font-size: 1.5em;
 }
-
 
 @media only screen and (min-width : 768px) {
   /* Make Navigation Toggle on Desktop Hover */
   .dropdown:hover .dropdown-menu {
     display: block;
   }
+}
+
+#rsvErrors {
+  display: none;  
+}
+
+#success {
+  display: none;  
 }
