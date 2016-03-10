@@ -141,7 +141,7 @@
                   </select>
                 </div>
               </div><!--end hexer-name-->
-              <div class="text-right">If person not in list, <a class="btn-xs btn btn-primary" href="/add-person/quick" target="_blank">Add</a></div>
+              <div class="text-right">If person not in list, <a id="add-person-btn" class="btn-xs btn btn-primary">Add</a></div>
             </div><!--end panel-body-->
           </div><!--end panel-->
 

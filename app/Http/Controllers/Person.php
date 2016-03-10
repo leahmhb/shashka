@@ -7,29 +7,35 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
+use Illuminate\Http\Request;
+use Illuminate\Http\Response;
+
+
 class Person extends Base{
 
-  public function add_person($type = false){   
-    if(!$type){
-     return view('forms.add_person', ['validate' => false]);
-   } else if ($type == "quick"){
-    return view('modals.add_person_modal', ['validate' => false]);
-      }//end if-else
+  public function add_person(){   
+    return view('forms.add_person', ['validate' => false]);
     }//end add_person
 
-  public function add_person_validate($type = false){   
-    $data = $_POST;     
+    public function add_person_validate(){ 
+      $data = $_POST;
+      //validation here
+      $person = Models\Person::firstOrCreate($data);
+      return view('forms.add_person', ['validate' => true]);
+  }//end add_person_validate
 
-    //validation here
+
+  public function add_person_quick(){
+    return view('modals.add_person_modal', ['validate' => false]);
+  }//end add_person_quick
+
+  public function add_person_quick_validate(Request $request){
+    $data = $request->all();
     $person = Models\Person::firstOrCreate($data);
+    return response()->json($data);
+    //return view('modals.add_person_modal', ['validate' => true]);
+  }//end add_person_quick_validate
 
-    if(!$type){
-     return view('forms.add_person', ['validate' => true]);
-    } else if ($type == "quick"){
-    return view('modals.add_person_modal', ['validate' => true]);
-    }//end if-else
-
-  }//end add_person
 
 
   }//end class

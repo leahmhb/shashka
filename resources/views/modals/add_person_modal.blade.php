@@ -3,32 +3,15 @@
 @section('title', 'Add Person')
 
 @section('content')
-<div class="page-header"><h1>Add Person <small>Tracking owners, breeders, and hexers</small></h1></div>
 
-<form id="add-person" class="form-horizontal" method="post">
 
+<div class="modal-header">
+  <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+  <h3>Add Person</h3>
+</div>
+<div class="modal-body">
   <div class="row">
     <div class="col-sm-12">
-
-      <div class="row">
-        <div class="col-sm-12">
-          <div class="panel panel-default">
-            <div class="panel-body">
-              <div class="col-sm-2">                
-                @if($validate == true)
-                <div class="alert alert-success" role="alert">
-                  Successful addition!
-                </div><!--end alert-->
-                @endif
-                <span class="text-danger">*</span> Required 
-              </div><!--end col-->
-              <div class="col-sm-6">
-                <span class="text-info">!</span> Required if horse does not belong to Shashka Stables
-              </div><!--end col--> 
-            </div>
-          </div><!--end panel-->
-        </div><!--end col-->
-      </div><!--end row-->
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -36,22 +19,45 @@
         </div>
 
         <div class="panel-body">
-          <div class="form-group">
-            <label for="person_name" class="col-sm-3 control-label"><span class="text-danger">*</span>Username</label>
-            <div class="col-sm-9">
-              <input name="username" class="form-control" id="person_name" placeholder="Haubing">              
-            </div>             
-          </div><!--end username-->  
+          <form id="add-person" class="form-horizontal" method="post">
 
-        </div><!--end panel-body-->
-      </div><!--end panel--> 
+            <div class="form-group">
+              <label for="person_name" class="col-sm-3 control-label">
+                <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+                Username</label>
+                <div class="col-sm-9">
+                  <input name="username" class="form-control" id="person_name" placeholder="Haubing">              
+                </div>             
+              </div><!--end username-->       
 
-      <div class="pull-right">
-       <button type="submit" name="" class="btn-lg btn btn-primary">Add</button>      
-     </div>
+              <div class="form-group">
+                <label for="person_name" class="col-sm-3 control-label">
+                 <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>        
+                 Stable Name</label>
+                 <div class="col-sm-9">       
+                  <input name="stable_name" class="form-control" id="person_stable_name" placeholder="Shashka Stables">         
+                </div>             
+              </div><!--end stable name--> 
 
-   </div><!--end col-->
- </div><!--end row-->
+              <div class="form-group">
+                <label for="person_name" class="col-sm-3 control-label">
+                 <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>        
+                 Stable Prefix</label>
+                 <div class="col-sm-9"> 
+                  <input name="stable_prefix" class="form-control" id="person_stable_prefix" placeholder="Haubing">   
+                </div>             
+              </div><!--end stable prefix--> 
 
-</form>
-@endsection
+            </form>
+          </div><!--end panel-body-->
+        </div><!--end panel--> 
+
+      </div><!--end col-->
+    </div><!--end row-->
+  </div>
+  <div class="modal-footer">
+    <button type="button" data-dismiss="modal" class="btn">Close</button>
+    <button type="button" class="btn btn-primary">Ok</button>
+  </div>
+
+  @endsection

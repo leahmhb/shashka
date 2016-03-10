@@ -22,8 +22,11 @@ Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
 Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 
 //person
-Route::get('/add-person/{type?}', 'Person@add_person');
-Route::post('/add-person/{type?}', 'Person@add_person_validate');
+Route::get('/add-person', 'Person@add_person');
+Route::post('/add-person', 'Person@add_person_validate');
+//person modal
+Route::get('/add-person-quick', 'Person@add_person_quick');
+Route::post('/add-person-quick', 'Person@add_person_quick_validate');
 
 //races
 Route::get('/add-race/{type?}', 'Races@add_race');

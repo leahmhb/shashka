@@ -83,6 +83,7 @@
                         <li><a href="/add-horse">Add Horse</a></li> 
                         <li><a href="/add-ancestory">Add Ancestory</a></li>
                         <li><a href="/add-person">Add Person</a></li>
+                        <li><a href="/add-person-quick">Add Person Quick</a></li>
                         <li><a href="/add-race">Add Race</a></li>      
                         <li><a href="/add-race-entrant">Add Race Entrant</a></li>                 
                     </ul>

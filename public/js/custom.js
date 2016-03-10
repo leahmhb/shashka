@@ -14,6 +14,35 @@ $(document).ready(function () {
     placeholder: 'Select...'
   });*/
 
+
+  var $modal = $('#ajax-modal');
+
+  $('#add-person-btn').on('click', function(){
+  // create the backdrop and wait for next modal to be triggered
+  $('body').modalmanager('loading');
+
+  setTimeout(function(){
+   $modal.load('/add-person/quick', '', function(){
+    $modal.modal();
+  });
+ }, 1000);
+});
+
+  $modal.on('click', '.update', function(){
+    $modal.modal('loading');
+    setTimeout(function(){
+      $modal
+      .modal('loading')
+      .find('.modal-body')
+      .prepend('<div class="alert alert-info fade in">' +
+        'Updated!<button type="button" class="close" data-dismiss="alert">&times;</button>' +
+        '</div>');
+    }, 1000);
+  });
+
+
+
+
   function myOnComplete() {
     $('#success').show();
     return true;
@@ -45,79 +74,98 @@ $(document).ready(function () {
   "if:username!=Haubing,required,stable_prefix,Stable prefix required."
   ];
 
+
+  var addHorseQuickRules = [
+  //required
+  "required,call_name,Please enter call name.",
+  "required,registered_name,Please enter registered name.",
+  "required,sex,Please enter sex.",
+  "required,owner,Please enter owner.",
+  //stall url      
+  "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing."
+  ];
+
   var addHorseRules = [
-      //required
-      "required,call_name,Please enter call name.",
-      "required,registered_name,Please enter registered name.",
-      "required,sex,Please enter sex.",
-      "required,owner,Please enter owner.",
-      //distance
-      "digits_only,distance_max,The max distance field may only contain digits.",
-      "digits_only,distance_min,The min distance field may only contain digits.",
-      //stats, digits only
-      "digits_only,speed,The speed field may only contain digits.",
-      "digits_only,staying,The staying field may only contain digits.",
-      "digits_only,stamina,The stamina field may only contain digits.",
-      "digits_only,breaking,The breaking field may only contain digits.",
-      "digits_only,power,The power field may only contain digits.",
-      "digits_only,feel,The feel field may only contain digits.",
-      "digits_only,fierce,The fierce field may only contain digits.",
-      "digits_only,tenacity,The tenacity field may only contain digits.",
-      "digits_only,courage,The courage field may only contain digits.",
-      "digits_only,response,The response field may only contain digits.",
-      //stats, >= 50
-      "range>=50,speed,Please enter a number >= 50 for speed.",
-      "range>=50,staying,Please enter a number >= 50 for staying.",
-      "range>=50,stamina,Please enter a number >= 50 for stamina.",
-      "range>=50,breaking,Please enter a number >= 50 for breaking.",
-      "range>=50,power,Please enter a number >= 50 for power.",
-      "range>=50,feel,Please enter a number >= 50 for feel.",
-      "range>=50,fierce,Please enter a number >= 50 for fierce.",
-      "range>=50,tenacity,Please enter a number >= 50 for tenacity.",
-      "range>=50,courage,Please enter a number >= 50 for courage.",
-      "range>=50,response,Please enter a number >= 50 for response.",
-      //stall url      
-      "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing."
+  //required
+  "required,call_name,Please enter call name.",
+  "required,registered_name,Please enter registered name.",
+  "required,sex,Please enter sex.",
+  "required,owner,Please enter owner.",
+  //distance
+  "digits_only,distance_max,The max distance field may only contain digits.",
+  "digits_only,distance_min,The min distance field may only contain digits.",
+  //stats, digits only
+  "digits_only,speed,The speed field may only contain digits.",
+  "digits_only,staying,The staying field may only contain digits.",
+  "digits_only,stamina,The stamina field may only contain digits.",
+  "digits_only,breaking,The breaking field may only contain digits.",
+  "digits_only,power,The power field may only contain digits.",
+  "digits_only,feel,The feel field may only contain digits.",
+  "digits_only,fierce,The fierce field may only contain digits.",
+  "digits_only,tenacity,The tenacity field may only contain digits.",
+  "digits_only,courage,The courage field may only contain digits.",
+  "digits_only,response,The response field may only contain digits.",
+  //stats, >= 50
+  "range>=50,speed,Please enter a number >= 50 for speed.",
+  "range>=50,staying,Please enter a number >= 50 for staying.",
+  "range>=50,stamina,Please enter a number >= 50 for stamina.",
+  "range>=50,breaking,Please enter a number >= 50 for breaking.",
+  "range>=50,power,Please enter a number >= 50 for power.",
+  "range>=50,feel,Please enter a number >= 50 for feel.",
+  "range>=50,fierce,Please enter a number >= 50 for fierce.",
+  "range>=50,tenacity,Please enter a number >= 50 for tenacity.",
+  "range>=50,courage,Please enter a number >= 50 for courage.",
+  "range>=50,response,Please enter a number >= 50 for response.",
+  //stall url      
+  "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing."
 ];//end addHorseRules
 
-   $("#add-horse, #update-horse").RSV({ //add horse form validation
-    onCompleteHandler: myOnComplete,
-    errorFieldClass: "errorFieldDemo5",
-    displayType: "display-html",
-    errorHTMLItemBullet: "&#8212; ",
-    rules: addHorseRules
+$("#add-horse, #update-horse").RSV({ 
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addHorseRules
 });//end rsv
 
-      $("#add-person").RSV({ //add horse form validation
-        onCompleteHandler: myOnComplete,
-        errorFieldClass: "errorFieldDemo5",
-        displayType: "display-html",
-        errorHTMLItemBullet: "&#8212; ",
-        rules: addPersonRules
+$("#add-horse-quick").RSV({ 
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addHorseQuickRules
 });//end rsv
 
-            $("#add-race").RSV({ //add horse form validation
-              onCompleteHandler: myOnComplete,
-              errorFieldClass: "errorFieldDemo5",
-              displayType: "display-html",
-              errorHTMLItemBullet: "&#8212; ",
-              rules: addRaceRules
+$("#add-person").RSV({ 
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addPersonRules
 });//end rsv
 
-            $("#add-race-entrant").RSV({ //add horse form validation
-              onCompleteHandler: myOnComplete,
-              errorFieldClass: "errorFieldDemo5",
-              displayType: "display-html",
-              errorHTMLItemBullet: "&#8212; ",
-              rules: addRaceEntrantRules
+$("#add-race").RSV({ 
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addRaceRules
 });//end rsv
 
-   $("#add-ancestory").RSV({ //update horse form validation
-    onCompleteHandler: myOnComplete,
-    errorFieldClass: "errorFieldDemo5",
-    displayType: "display-html",
-    errorHTMLItemBullet: "&#8212; ",
-    rules: addAncestoryRules
+$("#add-race-entrant").RSV({ 
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addRaceEntrantRules
+});//end rsv
+
+$("#add-ancestory").RSV({
+  onCompleteHandler: myOnComplete,
+  errorFieldClass: "errorFieldDemo5",
+  displayType: "display-html",
+  errorHTMLItemBullet: "&#8212; ",
+  rules: addAncestoryRules
 });//end rsv
 
 
