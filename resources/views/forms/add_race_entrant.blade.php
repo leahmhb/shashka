@@ -21,7 +21,7 @@
   </div><!--end row-->
 
   <div class="row"> 
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <div class="panel panel-default">
        <div class="panel-heading">
         <h4 class="panel-title">Race</h4>
@@ -51,7 +51,7 @@
       </div><!--end panel-->
     </div><!--end col-->
 
-    <div class="col-sm-6">
+    <div class="col-md-6">
       <div class="panel panel-default">
         <div class="panel-heading">
           <h4 class="panel-title">Horse</h4>
@@ -92,7 +92,7 @@
       <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
           <div class="text-center form-group"> 
-            <button type="submit" class="btn-lg btn-block btn btn-primary">Add</button>    
+            <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
           </div>
         </div><!--end col-->
       </div><!--end row-->

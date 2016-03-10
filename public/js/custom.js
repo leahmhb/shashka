@@ -9,14 +9,41 @@ $(document).ready(function () {
 
   $('#datepicker').datepicker();
 
-  $(function () {
-    $('[data-toggle="tooltip"]').tooltip()
-  })
+  $('[data-toggle="tooltip"]').tooltip();
+/*  $('.select').select2({
+    placeholder: 'Select...'
+  });*/
 
   function myOnComplete() {
     $('#success').show();
     return true;
   };//end myOnComplete
+
+  var addAncestoryRules = [
+  "required,horse_id,Please select horse's call name.",
+  "required,sire_id,Please select sire's call name.",
+  "required,dam_id,Please select dam's call name." 
+  ];
+
+  var addRaceRules = [
+  "required,name,Please enter race name.",
+  "required,surface,Please choose surface.",
+  "required,distance,Please enter distance.",
+  "required,grade,Please enter grade.",
+  "required,url,Please enter url."
+  ];
+
+  var addRaceEntrantRules = [
+  "required,horse_id,Please select horse's call name.",
+  "required,race_id,Please select race.",
+  "required,placing,Please enter placing."
+  ];
+
+  var addPersonRules = [
+  "required,username,Please enter username.",
+  "if:username!=Haubing,required,stable_name,Stable name required.",
+  "if:username!=Haubing,required,stable_prefix,Stable prefix required."
+  ];
 
   var addHorseRules = [
       //required
@@ -50,10 +77,10 @@ $(document).ready(function () {
       "range>=50,courage,Please enter a number >= 50 for courage.",
       "range>=50,response,Please enter a number >= 50 for response.",
       //stall url      
-      "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing.",
+      "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing."
 ];//end addHorseRules
 
-   $("#add-horse").RSV({ //add horse form validation
+   $("#add-horse, #update-horse").RSV({ //add horse form validation
     onCompleteHandler: myOnComplete,
     errorFieldClass: "errorFieldDemo5",
     displayType: "display-html",
@@ -61,13 +88,38 @@ $(document).ready(function () {
     rules: addHorseRules
 });//end rsv
 
+      $("#add-person").RSV({ //add horse form validation
+        onCompleteHandler: myOnComplete,
+        errorFieldClass: "errorFieldDemo5",
+        displayType: "display-html",
+        errorHTMLItemBullet: "&#8212; ",
+        rules: addPersonRules
+});//end rsv
 
-   $("#update-horse").RSV({ //update horse form validation
+            $("#add-race").RSV({ //add horse form validation
+              onCompleteHandler: myOnComplete,
+              errorFieldClass: "errorFieldDemo5",
+              displayType: "display-html",
+              errorHTMLItemBullet: "&#8212; ",
+              rules: addRaceRules
+});//end rsv
+
+            $("#add-race-entrant").RSV({ //add horse form validation
+              onCompleteHandler: myOnComplete,
+              errorFieldClass: "errorFieldDemo5",
+              displayType: "display-html",
+              errorHTMLItemBullet: "&#8212; ",
+              rules: addRaceEntrantRules
+});//end rsv
+
+   $("#add-ancestory").RSV({ //update horse form validation
     onCompleteHandler: myOnComplete,
     errorFieldClass: "errorFieldDemo5",
     displayType: "display-html",
     errorHTMLItemBullet: "&#8212; ",
-    rules: addHorseRules
+    rules: addAncestoryRules
 });//end rsv
+
+
 
 });//end ready

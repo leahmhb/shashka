@@ -7,7 +7,7 @@
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
             </button>
-            <a class="navbar-brand" href="/">Shashka Stables</a>
+            <a class="navbar-brand" href="/">Shashka Racers</a>
         </div>
         <div id="navbar" class="navbar-collapse collapse">
             <ul class="nav navbar-nav">  
@@ -79,9 +79,9 @@
                 </li>
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-                    <ul class="dropdown-menu">                  
-                        <li><a href="/add-horse">Add Horse</a></li>                  
-                        <li><a href="/add-ancestory">Add Ancestory</a></li>                   
+                    <ul class="dropdown-menu">
+                        <li><a href="/add-horse">Add Horse</a></li> 
+                        <li><a href="/add-ancestory">Add Ancestory</a></li>
                         <li><a href="/add-person">Add Person</a></li>
                         <li><a href="/add-race">Add Race</a></li>      
                         <li><a href="/add-race-entrant">Add Race Entrant</a></li>                 
@@ -89,9 +89,7 @@
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="/theme">1</a></li>
-                <li><a href="/theme">2</a></li>
-                <li class="active"><a href="/theme">3 <span class="sr-only">(current)</span></a></li>
+                <li><a href="#">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

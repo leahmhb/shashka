@@ -6,7 +6,7 @@
 <div class="page-header"><h1>Welcome</h1></div>  
 <div class="row">
 
-	<div class="col-sm-4">
+	<div class="col-md-4">
 		<div class="panel panel-default">
 			<div class="panel-heading">
 				<h4 class="panel-title">Updates</h4>
@@ -20,10 +20,12 @@
 					</ul>
 				</div>
 			</div><!--end panel-->
+
+
+
 		</div><!--end col-->
 
-		<div class="col-sm-8">
-			
+		<div class="col-md-8">			
 			<div class="panel panel-default">
 				<div class="panel-heading"><h3 class="panel-title">
 					Featured Horse: Sovenance - Bred by Neco@Hard Tack
@@ -32,7 +34,7 @@
 			<div class="panel-body">
 				<img class="stall-pic" src="{{ asset('img/welcome-horse.png') }}">  
 			</div><!--end panel content-->		
-			</div><!--end panel-->   
+		</div><!--end panel-->   
 	</div><!--end col-->
 
 

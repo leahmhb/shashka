@@ -1,39 +1,47 @@
 body {   
-  background-color: #51613d;
+  background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
-}
 
-#main { /* for content views */
+  }
+
+
+body, .panel-heading .panel-title, .panel .panel-footer {
+  color: rgb(0, 0, 0);
+}
+/*#main {  for content views
   border: 1px solid #000;
   background: url(../img/groovepaper.png), rgba(252,251,227,.8);
   margin-bottom: 1em;
-}
+  } */
 
-#bg { /* for bg image */
-  position: fixed;
-  bottom: -8px;
-  left: 0;
-  width: 50%;
-  height: auto;
-  z-index: -5;
-}
+  #bg { /* for bg image */
+    position: fixed;
+    bottom: -8px;
+    left: 0;
+    width: 50%;
+    height: auto;
+    z-index: -5;
+  }
 
-#bg img { /* for bg image */
-  width: 100
-  height: auto;
+  #bg img { /* for bg image */
+    width: 100
+    height: auto;
+    max-width: 100%;
+    box-sizing: border-box;
+  }
 
-  max-width: 100%;
-  box-sizing: border-box;
-}
+  label {
+    font-weight:bold;
+  }
 
-label {
-  font-weight:bold;
-}
+  img.stall-pic {
+   display: block;  
+   margin: 0 auto;	
+   box-sizing: border-box;
+ }
 
-img.stall-pic {
-	display: block;  
-	margin: 0 auto;	
-	box-sizing: border-box;
+ #stall-edit {
+  margin-top: 0;
 }
 
 ul.stall-info{
@@ -54,14 +62,13 @@ ol.race-records ul {
   padding-left: 10px;
 }
 .dropdown-header {
-  color: #783e56;
+  color: rgb(120, 62, 86, 1);
   font-size: .95em;
 }
 
-.ability { /* tool tip */
+.tooltip-overflow { /* tool tip */
   white-space: nowrap;
 }
-
 
 .text-danger, .text-info { /* forms */
   font-weight: bold;
@@ -79,6 +86,22 @@ ol.race-records ul {
   display: none;  
 }
 
-#success {
-  display: none;  
+.panel, .page-header {
+  background: rgba(255, 255, 255, .8);
 }
+
+input.form-control, 
+select.form-control  {
+  background: rgba(0, 0, 0, .2);
+}
+
+.page-header {
+  padding: 1em;
+  border-radius: 4px;
+}
+
+
+
+
+
+

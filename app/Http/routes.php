@@ -40,11 +40,6 @@ Route::post('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_an
 //stall pages
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
 
-//theme demo
-Route::get('/theme', function () {
-  View::composers(['App\Composers\HomeComposer'  => ['theme']]);
-  return view('theme');
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -56,6 +51,8 @@ Route::get('/theme', function () {
 | kernel and includes session state, CSRF protection, and more.
 |
 */
+
+
 
 Route::group(['middleware' => ['web']], function () {
     //

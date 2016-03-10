@@ -49,7 +49,7 @@ class Horses extends Base{
      $horse->distance_max = $data['distance_max'];
 
      $horse->surface_dirt = $data['surface_dirt'];
-     $horse->surface_dirt = $data['surface_dirt'];
+     $horse->surface_turf = $data['surface_turf'];
 
      $horse->speed = $data['speed'];
      $horse->staying = $data['staying'];
@@ -93,26 +93,26 @@ class Horses extends Base{
       }//end if
 
       if(!$type){
-        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
+        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => true]);
       } else if ($type == "quick"){
-        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
+        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => true]);
       }//end if-else
     }//end add_horse_validate
 
     public function stall_page($horse_id){
-    	$horse = Models\Horse::where('id', $horse_id)->first()->toArray();
+    	$horse = Models\Horse::where('id', $horse_id)->first();
 
       $abilities = Models\Ability::where('ability', $horse['pos_ability_1'])
       ->orWhere('ability', $horse['pos_ability_2'])
-      ->orWhere('ability', $horse['neg_ability_1'])->get()->toArray();      
+      ->orWhere('ability', $horse['neg_ability_1'])->get();      
 
       $parents = $this->getParents($horse_id);
       $offspring = $this->getOffspring($horse_id, $horse['sex']);
       $race_records = $this->getRaceRecords($horse_id);
 
-      $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first()->toArray();
+      $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first();
 
-      $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first()->toArray();
+      $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first();
 
       return view('stall', [
         'horse' => $horse,               

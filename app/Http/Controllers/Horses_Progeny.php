@@ -73,7 +73,17 @@ class Horses_Progeny extends Base{
       'validate' => false]);
   }//end add_ancestory
 
-    public function add_ancestory_validate($relationship, $horse_id){ //add sire and dam
+  public function add_ancestory_validate($sex = false, $horse_id = false){
+
+    $relationship = "Ancestory";
+    if(($sex == 'Stallion' || $sex == 'Mare') && $horse_id){
+      $relationship = "Progeny";
+      }//end if 
+      
+      if(is_numeric($sex) && $horse_id){
+        $relationship = "Lineage";
+      }//end if
+
       $record = $_POST;
       //validate here
       $ancestory = Models\Horse_Progeny::where('horse_id', $record['horse_id'])->first();
@@ -81,13 +91,22 @@ class Horses_Progeny extends Base{
     if(!$ancestory){ //create new
       $ancestory = Models\Horse_Progeny::create($record)->first();
     } else { //update existing
-       $ancestory->horse_id = $record['horse_id'];
-       $ancestory->sire_id = $record['sire_id'];
-       $ancestory->dam_id = $record['dam_id'];
+     $ancestory->horse_id = $record['horse_id'];
+     $ancestory->sire_id = $record['sire_id'];
+     $ancestory->dam_id = $record['dam_id'];
     }//end if else  
 
+    $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
+    $sire = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
+    $dam = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
 
-   return view('forms.add_ancestory', ['domain' => $this->getHorseDomain(), 'validate' => true]);
+    return view('forms.add_ancestory', [
+      'domain' => $this->getHorseDomain(), 
+      'relationship' => $relationship,
+      'horse' => $horse, 
+      'sire' => $sire, 
+      'dam' => $dam, 
+      'validate' => true]);
    }//end add_lineage_validate
 
 

@@ -8,14 +8,12 @@
 <form id="add-person" class="form-horizontal" method="post">
 
   <div class="row">
-    <div class="col-sm-12">
-          <div id="success">
+    <div class="col-sm-12">          
             @if($validate == true)
-            <div class="alert alert-success" role="alert">
+            <div id="success "class="alert alert-success" role="alert">
               Successful addition!
             </div><!--end alert-->
-            @endif
-          </div>
+            @endif        
           <div id="rsvErrors" class="alert alert-danger"></div>
     </div><!--end col-->
   </div><!--end row-->
@@ -65,7 +63,7 @@
     <div class="row">
       <div class="col-sm-offset-4 col-sm-4">
         <div class="text-center form-group"> 
-          <button type="submit" class="btn-lg btn-block btn btn-primary">Add</button>    
+          <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
         </div>
       </div><!--end col-->
     </div><!--end row-->

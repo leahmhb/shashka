@@ -5,11 +5,12 @@
 @section('content')
 <div class="page-header">
   <div class="row">
-    <div class="col-sm-6">
-      <h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h1> 
-    </div><!--end col-->
-    <div class="col-sm-6">
-      <div class="stall-edit btn-group btn-group-sm vcenter">
+    <div class="col-sm-12">  
+  
+
+       <h1>{{ $horse['call_name'] }} <small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h1> 
+
+             <div id="stall-edit" class="btn-group btn-group-sm btn-group-justified">
         <a class="btn btn-default" href="/update-horse/{{ $horse['id'] }}">Update Stall Info</a>  
         <a class="btn btn-default" href="/add-ancestory/{{ $horse['id'] }}/{{ $horse['id'] }}">Update Lineage</a>
         <a class="btn btn-default" href="/add-race-entrant/{{ $horse['id'] }}">Add Race Entry</a>
@@ -95,7 +96,7 @@
                   @foreach($abilities as $ability)
                   <li>                 
                     <b>@if($ability['type'] == 'positive') + @else - @endif</b>
-                    <span class="ability" data-toggle="tooltip" data-placement="right" title="{{ $ability['description'] }}">{{ $ability['ability'] }}</span>
+                    <span class="tooltip-overflow" data-toggle="tooltip" data-placement="right" title="{{ $ability['description'] }}">{{ $ability['ability'] }}</span>
                   </li>
                   @endforeach              
                 </ul>

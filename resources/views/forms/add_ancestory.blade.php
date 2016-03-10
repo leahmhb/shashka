@@ -7,15 +7,13 @@
 <form id="add-ancestory" class="form-horizontal" method="post">
 
   <div class="row">
-    <div class="col-sm-12">
-      <div id="success">
-        @if($validate == true)
-        <div class="alert alert-success" role="alert">
-          Successful addition!
-        </div><!--end alert-->
-        @endif
-      </div>
-      <div id="rsvErrors" class="alert alert-danger"></div>
+    <div class="col-sm-12">          
+            @if($validate == true)
+            <div id="success "class="alert alert-success" role="alert">
+              Successful addition!
+            </div><!--end alert-->
+            @endif        
+          <div id="rsvErrors" class="alert alert-danger"></div>
     </div><!--end col-->
   </div><!--end row-->
 
@@ -30,7 +28,7 @@
  </div><!--end row-->
 
  <div class="row">
-  <div class="col-sm-6">
+  <div class="col-md-6">
    <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">Sire</h4>
@@ -55,7 +53,7 @@
   </div><!--end panel-->
 </div><!--end col-->
 
-<div class="col-sm-6">
+<div class="col-md-6">
   <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">Dam</h4>
@@ -80,7 +78,7 @@
 </div><!--end row-->
 
 <div class="row">
-  <div class="col-sm-6 col-sm-offset-3">
+  <div class="col-md-6 col-md-offset-3">
    <div class="panel panel-default">
     <div class="panel-heading">
       <h4 class="panel-title">Horse</h4>
@@ -109,7 +107,7 @@
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
     <div class="text-center form-group"> 
-      <button type="submit" class="btn-lg btn  btn-block btn-primary">Add</button>    
+      <button type="submit" class="btn-lg btn  btn-block btn-default">Add</button>    
     </div>
   </div><!--end col-->
 </div><!--end row-->

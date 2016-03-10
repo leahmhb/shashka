@@ -12,7 +12,7 @@
       <div id="success">
         @if($validate == true)
         <div class="alert alert-success" role="alert">
-          Successful submission! See stall page with update information: <a href="{{$horse['stall_link']}}">{{ $horse['call_name'] }}</a></li>
+          Successful submission! See stall page with update information: <a href="{{$horse['stall_path']}}">{{ $horse['call_name'] }}</a></li>
         </div><!--end alert-->
         @endif
       </div>
@@ -21,7 +21,7 @@
   </div><!--end row-->
 
   <div class="row">
-    <div class="col-sm-9">
+    <div class="col-md-9">
 
       <div class="panel panel-default">
         <div class="panel-heading">
@@ -29,21 +29,28 @@
         </div>
         <div class="panel-body">
          <div class="form-group">
-          <label for="call-name" class="col-sm-2 control-label">Call Name</label>
+          <label for="call-name" class="col-sm-2 control-label">
+           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+           Call Name          
+           </label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="call_name" id="call-name" placeholder="" value="{{ $horse['call_name'] }}">
           </div>
         </div><!--end call-name-->
 
         <div class="form-group">
-          <label for="registered-name" class="col-sm-2 control-label">Reg'd Name</label>
+          <label for="registered-name" class="col-sm-2 control-label">
+           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+           Reg'd Name</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="" value="{{ $horse['registered_name'] }}">
           </div>
         </div><!--end registered-name-->   
 
         <div class="form-group">
-          <label for="sex" class="col-sm-2 control-label">Sex</label>
+          <label for="sex" class="col-sm-2 control-label">
+           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+          Sex</label>
           <div class="col-sm-10">
             <select name="sex" class="form-control select">
               <option></option>
@@ -81,7 +88,9 @@
         </div><!--end grade-->
 
         <div class="form-group">
-          <label for="stall_path" class="col-sm-2 control-label"><span class="text-info">!</span>Stall Page</label>
+          <label for="stall_path" class="col-sm-2 control-label">
+            <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>
+          Stall Page</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
           </div>
@@ -100,7 +109,9 @@
       <div class="panel-body">
 
         <div class="form-group">
-          <label for="owner-name" class="col-sm-2 control-label">Owner</label>
+          <label for="owner-name" class="col-sm-2 control-label">
+           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+           Owner</label>
           <div class="col-sm-10">       
             <select name="owner" class="form-control select">
               <option></option>
@@ -222,7 +233,7 @@
 
 </div><!--end col-->
 
-<div class="col-sm-3">
+<div class="col-md-3">
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -231,71 +242,71 @@
     <div class="panel-body">
 
       <div class="form-group">
-        <label for="speed" class="col-sm-6 control-label">Speed</label>
-        <div class="col-sm-6">       
+        <label for="speed" class="col-sm-2 col-md-6 control-label">Speed</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="speed" class="form-control" placeholder="50" value="{{ $horse['speed'] }}">
         </div>                
       </div><!--end speed-->
 
       <div class="form-group">
-        <label for="staying" class="col-sm-6 control-label">Staying</label>
-        <div class="col-sm-6">       
+        <label for="staying" class="col-sm-2 ol-md-6 control-label">Staying</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="staying" class="form-control" placeholder="50" value="{{ $horse['staying'] }}">
         </div>                
       </div><!--end staying-->
 
       <div class="form-group">
-        <label for="stamina" class="col-sm-6 control-label">Stamina</label>
-        <div class="col-sm-6">       
+        <label for="stamina" class="col-sm-2 col-md-6 control-label">Stamina</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="stamina" class="form-control" placeholder="50" value="{{ $horse['stamina'] }}">
         </div>                
       </div><!--end stamina-->
 
       <div class="form-group">
-        <label for="breaking" class="col-sm-6 control-label">Breaking</label>
-        <div class="col-sm-6">       
+        <label for="breaking" class="col-sm-2 col-md-6 control-label">Breaking</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="breaking" class="form-control" placeholder="50" value="{{ $horse['breaking'] }}">
         </div>                
       </div><!--end breaking-->
 
       <div class="form-group">
-        <label for="power" class="col-sm-6 control-label">Power</label>
-        <div class="col-sm-6">       
+        <label for="power" class="col-sm-2 col-md-6 control-label">Power</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="power" class="form-control" placeholder="50" value="{{ $horse['power'] }}">
         </div>                
       </div><!--end power-->
 
       <div class="form-group">
-        <label for="feel" class="col-sm-6 control-label">Feel</label>
-        <div class="col-sm-6">       
+        <label for="feel" class="col-sm-2 col-md-6 control-label">Feel</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="feel" class="form-control" placeholder="50" value="{{ $horse['feel'] }}">
         </div>                
       </div><!--end feel-->
 
       <div class="form-group">
-        <label for="fierce" class="col-sm-6 control-label">Fierce</label>
-        <div class="col-sm-6">       
+        <label for="fierce" class="col-sm-2 col-md-6 control-label">Fierce</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="fierce" class="form-control" placeholder="50" value="{{ $horse['fierce'] }}">
         </div>                
       </div><!--end fierce-->
 
       <div class="form-group">
-        <label for="tenacity" class="col-sm-6 control-label">Tenacity</label>
-        <div class="col-sm-6">       
+        <label for="tenacity" class="col-sm-2 col-md-6 control-label">Tenacity</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="tenacity" class="form-control" placeholder="50" value="{{ $horse['tenacity'] }}">
         </div>                
       </div><!--end tenacity-->
 
       <div class="form-group">
-        <label for="courage" class="col-sm-6 control-label">Courage</label>
-        <div class="col-sm-6">       
+        <label for="courage" class="col-sm-2 col-md-6 control-label">Courage</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="courage" class="form-control" placeholder="50" value="{{ $horse['courage'] }}">
         </div>                
       </div><!--end courage-->
 
       <div class="form-group">
-        <label for="response" class="col-sm-6 control-label">Response</label>
-        <div class="col-sm-6">       
+        <label for="response" class="col-sm-2 col-md-6 control-label">Response</label>
+        <div class="col-sm-10 col-md-6">       
           <input type="text" name="response" class="form-control" placeholder="50" value="{{ $horse['response'] }}">
         </div>                
       </div><!--end response-->
@@ -342,8 +353,8 @@
   <div class="panel-body">
 
     <div class="form-group">
-      <label for="leg-type" class="col-sm-6 control-label">Leg Type</label>
-      <div class="col-sm-6">
+      <label for="leg-type" class="col-sm-2 col-md-6 control-label"> Leg Type</label>
+      <div class="col-sm-10 col-md-6">
         <select name="leg_type" class="form-control select">
          <option></option>
          @foreach ($domain['leg_types'] as $leg)          
@@ -354,8 +365,8 @@
    </div><!--end leg-type-->
 
    <div class="form-group">
-    <label for="neck-height" class="col-sm-6 control-label">Neck Height</label>
-    <div class="col-sm-6">             
+    <label for="neck-height" class="col-sm-2 col-md-6 control-label"> Neck Height</label>
+    <div class="col-sm-10 col-md-6">             
       <select name="neck_height" class="form-control select">
        <option></option>
        <option @if( $horse['neck_height'] === "Normal") selected @endif value="Normal">Normal</option>
@@ -365,8 +376,8 @@
  </div><!--end neck-height-->
 
  <div class="form-group">
-  <label for="run-style" class="col-sm-6 control-label">Run Style</label>
-  <div class="col-sm-6">             
+  <label for="run-style" class="col-sm-2 col-md-6 control-label"> Run Style</label>
+  <div class="col-sm-10 col-md-6">             
     <select name="run_style" class="form-control select">
      <option></option>
      <option @if( $horse['run_style'] === "Normal") selected @endif value="Normal">Normal</option>
@@ -376,8 +387,8 @@
 </div><!--end run-style-->
 
 <div class="form-group">
-  <label for="bandages" class="col-sm-6 control-label">Bandages</label>
-  <div class="col-sm-6">             
+  <label for="bandages" class="col-sm-2 col-md-6 control-label"> Bandages</label>
+  <div class="col-sm-10 col-md-6">             
     <select name="bandages" class="form-control select">
      <option></option>
      <option @if( $horse['bandages'] === "Both") selected @endif value="Both">Both</option>
@@ -389,8 +400,8 @@
 </div><!--end bandages-->  
 
 <div class="form-group">
-  <label for="hood" class="col-sm-6 control-label">Hood</label>
-  <div class="col-sm-6">             
+  <label for="hood" class="col-sm-2 col-md-6 control-label"> Hood</label>
+  <div class="col-sm-10 col-md-6">             
     <select name="hood" class="form-control select">
       <option></option>
       <option @if( $horse['hood'] === "Yes") selected @endif value="Yes">Yes</option>
@@ -400,8 +411,8 @@
 </div><!--end hood-->
 
 <div class="form-group">
-  <label for="shadow-roll" class="col-sm-6 control-label">Shadow Roll</label>
-  <div class="col-sm-6">             
+  <label for="shadow-roll" class="col-sm-2 col-md-6 control-label"> Shadow Roll</label>
+  <div class="col-sm-10 col-md-6">             
     <select name="shadow_roll" class="form-control select">
      <option></option>
      <option @if( $horse['shadow_roll'] === "Yes") selected @endif value="Yes">Yes</option>
@@ -420,7 +431,7 @@
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
     <div class="text-center form-group"> 
-      <button type="submit" class="btn-lg btn-block btn btn-primary">Save</button>    
+      <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
     </div>
   </div><!--end col-->
 </div><!--end row-->
