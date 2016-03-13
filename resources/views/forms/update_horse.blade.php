@@ -92,7 +92,7 @@
             <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>
           Stall Page</label>
           <div class="col-sm-10">
-            <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
+            <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www" value="{{$horse['stall_path']}}">
           </div>
         </div><!--end stall page-->
 

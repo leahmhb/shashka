@@ -10,9 +10,10 @@ $(document).ready(function () {
   $('#datepicker').datepicker();
 
   $('[data-toggle="tooltip"]').tooltip();
-/*  $('.select').select2({
+  
+ $('.select').select2({
     placeholder: 'Select...'
-  });*/
+  });
 
   function myOnComplete() {
     $('#success').show();

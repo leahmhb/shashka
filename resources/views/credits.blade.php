@@ -21,6 +21,8 @@
         <li>http://bootswatch.com/</li>
         <li> https://bootstrap-datepicker.readthedocs.org/</li>
         <li>http://www.benjaminkeen.com/open-source-projects/smaller-projects/really-simple-validation-js/really-simple-validation-jquery-plugin/</li>
+        <li>https://select2.github.io/</li>
+        <li>https://github.com/techhysahil/Select2-Flat-UI/blob/master/Overide.css</li>
       </ul>
     </div><!--end panel content-->    
   </div><!--end panel-->   

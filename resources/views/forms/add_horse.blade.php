@@ -204,41 +204,41 @@
           <div class="form-group">
             <label for="distance-min" class="col-sm-3 control-label">Min</label>    
             <div class="col-sm-9">
-              <input type="text" name="distance_min" class="form-control" placeholder="0">
+              <div class="input-group">
+                <input type="text" name="distance_min" class="form-control" placeholder="0">
+                <span class="input-group-addon">Furlongs</span>
+              </div> 
             </div>
           </div><!--end distance--> 
 
           <div class="form-group">
             <label for="distance-min" class="col-sm-3 control-label">Max</label>    
             <div class="col-sm-9">
+             <div class="input-group">
               <input type="text" name="distance_max" class="form-control" placeholder="0">
-            </div>
-          </div> <!--end distance--> 
-        </div><!--end col-->
+              <span class="input-group-addon">Furlongs</span>
+            </div> 
+          </div>
+        </div> <!--end distance--> 
+      </div><!--end col-->
 
-        <div class="col-sm-4">
-          <ul>
-           <li><b>5 – 7.5:</b> Sprinter</li>
-           <li><b>7.5 – 9.5:</b> Middle / Common </li>
-           <li><b>10 – 12:</b> Classic </li>
-           <li><b>12 – 16:</b> Router / Marathoner</li>
-         </ul>
-         
-       </div><!--end col-->
-     </div><!--end row-->
+      <div class="col-sm-4">
+        <ul>
+         <li><b>5 – 7.5:</b> Sprinter</li>
+         <li><b>7.5 – 9.5:</b> Middle / Common </li>
+         <li><b>10 – 12:</b> Classic </li>
+         <li><b>12 – 16:</b> Router / Marathoner</li>
+       </ul>
+       
+     </div><!--end col-->
+   </div><!--end row-->
 
 
-   </div><!--end panel-body-->
- </div><!--end panel-->
+ </div><!--end panel-body-->
+</div><!--end panel-->
 
- 
- <div class="row">
-  <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group"> 
-      <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
-    </div>
-  </div><!--end col-->
-</div><!--end row-->
+
+
 
 </div><!--end col-->
 
@@ -435,7 +435,13 @@
 </div><!--end col-->
 </div><!--end row-->
 
-
+<div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="text-center form-group"> 
+      <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
+    </div>
+  </div><!--end col-->
+</div><!--end row-->
 
 </form>
 

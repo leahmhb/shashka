@@ -28,7 +28,7 @@
              <div class="form-group">
               <label for="sex" class="control-label">
                <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-               Sex</label>
+               Sex</label></br>
                <select name="sex" class="form-control select">
                 <option></option>
                 @foreach ($domain['sexes'] as $sex)          
@@ -47,7 +47,7 @@
               <div class="form-group">
                 <label for="owner-name" class="control-label">
                  <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-                 Owner</label>
+                 Owner</label></br>
                  <select name="owner" class="form-control select">
                   <option></option>
                   @foreach ($domain['person'] as $person)          
