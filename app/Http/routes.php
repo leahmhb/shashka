@@ -12,10 +12,20 @@
 */
 
 Route::get('/', 'Base@index');
+Route::get('/theme', 'Base@theme');
+Route::get('/credits', 'Base@credits');
+
+Route::get('contact', 
+  ['as' => 'contact', 'uses' => 'AboutController@create']);
+Route::post('contact', 
+  ['as' => 'contact_store', 'uses' => 'AboutController@store']);
 
 //add horse 
 Route::get('/add-horse/{type?}', 'Horses@add_horse');
 Route::post('/add-horse/{type?}', 'Horses@add_horse_validate');
+//horse modal
+Route::get('/add-horse-quick', 'Horses@add_horse_quick');
+Route::post('/add-horse-quick', 'Horses@add_horse_quick_validate');
 
 //update horse
 Route::get('/update-horse/{horse_id}', 'Horses@update_horse');

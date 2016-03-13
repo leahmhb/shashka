@@ -9,21 +9,9 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses extends Base{
 
-  public function getDomain(){
-    $domain = [];
-    $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
-    $domain['grades'] = Models\Grade::get()->toArray();
-    $domain['leg_types'] = Models\Leg_Type::get()->toArray();
-    $domain['sexes'] = Models\Sex::get()->toArray();
-    $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
-    $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-    $domain['person'] = Models\Person::select('username')->get()->toArray();
-    return $domain;
-    }//end getDomain
-
-    public function update_horse($horse_id){
-      $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-      return view('forms.update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
+  public function update_horse($horse_id){
+    $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
+    return view('forms.update_horse', ['horse' => $horse, 'validate' => false]);
     }//end update_horse
 
     public function update_horse_validate($horse_id){
@@ -71,18 +59,16 @@ class Horses extends Base{
 
      $horse->save();
 
-     return view('forms.update_horse', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
+     return view('forms.update_horse', ['horse' => $horse, 'validate' => true]);
     }//end update_horse_validate
 
     public function add_horse($type = false){     
-      if(!$type){
-        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => false]);
-      } else if ($type == "quick"){
-        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => false]);
-      }//end if-else
+
+      return view('forms.add_horse', ['validate' => false]);
+
     }//end add_horse 
 
-    public function add_horse_validate($type = false){
+    public function add_horse_validate(){
       $data = $_POST;
 
       $horse = Models\Horse::firstOrCreate($data);
@@ -92,11 +78,7 @@ class Horses extends Base{
         $horse->save();
       }//end if
 
-      if(!$type){
-        return view('forms.add_horse', ['domain' => $this->getDomain(), 'validate' => true]);
-      } else if ($type == "quick"){
-        return view('modals.add_horse_modal', ['domain' => $this->getDomain(), 'validate' => true]);
-      }//end if-else
+      return view('forms.add_horse', ['validate' => true]);
     }//end add_horse_validate
 
     public function stall_page($horse_id){

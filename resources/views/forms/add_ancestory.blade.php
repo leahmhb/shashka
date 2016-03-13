@@ -8,12 +8,12 @@
 
   <div class="row">
     <div class="col-sm-12">          
-            @if($validate == true)
-            <div id="success "class="alert alert-success" role="alert">
-              Successful addition!
-            </div><!--end alert-->
-            @endif        
-          <div id="rsvErrors" class="alert alert-danger"></div>
+      @if($validate == true)
+      <div id="success "class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif        
+      <div id="rsvErrors" class="alert alert-danger"></div>
     </div><!--end col-->
   </div><!--end row-->
 
@@ -21,13 +21,15 @@
     <div class="col-sm-12">
      <div class="panel panel-default">
        <div class="panel-body">
-         If horses are not in list, <a class="btn-xs btn btn-primary" href="/add-horse/quick" target="_blank">Add Horse</a>
-       </div>
-     </div><!--end panel-->
-   </div><!--end col-->
- </div><!--end row-->
+         If horses are not in list,   <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-horse-quick">
+         add
+         </button>.
+     </div>
+   </div><!--end panel-->
+ </div><!--end col-->
+</div><!--end row-->
 
- <div class="row">
+<div class="row">
   <div class="col-md-6">
    <div class="panel panel-default">
     <div class="panel-heading">

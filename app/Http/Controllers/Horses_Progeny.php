@@ -9,39 +9,6 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses_Progeny extends Base{
 
-  public function index(){
-
-    return view('index');
-    }//end stall
-
-
-    public function getDomain(){
-      $domain = [];
-      $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
-      $domain['grades'] = Models\Grade::get()->toArray();
-      $domain['leg_types'] = Models\Leg_Type::get()->toArray();
-      $domain['sexes'] = Models\Sex::get()->toArray();
-      $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
-      $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-      $domain['person'] = Models\Person::select('username')->get()->toArray();
-      return $domain;
-    }//end getDomain
-
-
-    public function getHorseDomain(){
-      $domain['sires'] = Models\Horse::select('id', 'call_name')
-      ->where('sex', 'Stallion')
-      ->get()->toArray();
-
-      $domain['dams'] = Models\Horse::select('id', 'call_name')
-      ->where('sex', 'Mare')
-      ->get()->toArray();
-
-      $domain['horses'] = Models\Horse::select('id', 'call_name')
-      ->get()->toArray();
-
-      return $domain;
-  }//end getDomain
 
   public function add_ancestory($sex = false, $horse_id = false){ //add sire and dam
     $horse = ['id' => 0, 'call_name' => ''];
@@ -65,7 +32,7 @@ class Horses_Progeny extends Base{
       $relationship = "Lineage"; 
     }//end if
 
-    return view('forms.add_ancestory', ['domain' => $this->getHorseDomain(), 
+    return view('forms.add_ancestory', [
       'horse' => $horse, 
       'sire' => $sire, 
       'dam' => $dam, 
@@ -100,8 +67,7 @@ class Horses_Progeny extends Base{
     $sire = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
     $dam = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
 
-    return view('forms.add_ancestory', [
-      'domain' => $this->getHorseDomain(), 
+    return view('forms.add_ancestory', [      
       'relationship' => $relationship,
       'horse' => $horse, 
       'sire' => $sire, 

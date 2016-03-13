@@ -11,41 +11,30 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Races extends Base{
 
 
-  public function getDomain(){
-    $domain['grades'] = Models\Grade::get()->toArray();
-    $domain['races'] = Models\Race::all()->toArray();
-    $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
-    return $domain;
-}//end getDomain
-
 public function add_race($type = false){
-  if(!$type){
-   return view('forms.add_race', ['domain' => $this->getDomain(),'validate' => false]);
- } else if ($type == "quick"){
-  return view('modals.add_race_modal', ['domain' => $this->getDomain(),'validate' => false]);
-      }//end if-else
+
+   return view('forms.add_race', ['validate' => false]);
+
 }//end add_race
 
 public function add_race_validate($type = false){
   $data = $_POST;     
   $race = Models\Race::firstOrCreate($data);
-  if(!$type){
-   return view('forms.add_race', ['domain' => $this->getDomain(),'validate' => false]);
- } else if ($type == "quick"){
-  return view('modals.add_race_modal', ['domain' => $this->getDomain(),'validate' => false]);
-      }//end if-else
+
+   return view('forms.add_race', ['validate' => false]);
+
 }//end add_race_validate
 
 public function add_race_entrant($horse_id = false){
   $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
-  return view('forms.add_race_entrant', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => false]);
+  return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => false]);
 }//end add_race_entrant
 
 public function add_race_entrant_validate(){
   $data = $_POST;
   $horse['id'] = $data['horse_id'];
   $entry = Models\Race_Entrant::firstorCreate($data);
-  return view('forms.add_race_entrant', ['domain' => $this->getDomain(), 'horse' => $horse, 'validate' => true]);
+  return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => true]);
 }//end add_race_entrant
 
 }

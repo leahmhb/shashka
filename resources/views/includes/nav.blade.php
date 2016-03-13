@@ -14,7 +14,7 @@
                 <li class="dropdown">
                     <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Stallions<span class="caret"></span></a>
                     <ul class="dropdown-menu">
-                        <li role="separator" class="divider"></li>
+                     
                         <li class="dropdown-header">GI</li>
                         @forelse ($stallions['gi_stallions'] as $stallion)
                         <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
@@ -82,15 +82,16 @@
                     <ul class="dropdown-menu">
                         <li><a href="/add-horse">Add Horse</a></li> 
                         <li><a href="/add-ancestory">Add Ancestory</a></li>
-                        <li><a href="/add-person">Add Person</a></li>
-                        <li><a href="/add-person-quick">Add Person Quick</a></li>
+                        <li><a href="/add-person">Add Person</a></li>         
                         <li><a href="/add-race">Add Race</a></li>      
                         <li><a href="/add-race-entrant">Add Race Entrant</a></li>                 
                     </ul>
                 </li>
             </ul>
             <ul class="nav navbar-nav navbar-right">
-                <li><a href="#">Contact</a></li>
+                <li><a href="/theme">Theme</a></li>
+                <li><a href="/credits">Credits</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </div><!--/.nav-collapse -->
     </div>

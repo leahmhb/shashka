@@ -1,46 +1,98 @@
+@import url("http://fonts.googleapis.com/css?family=Marcellus|Marcellus+SC");
+
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
-
-  }
-
-
-body, .panel-heading .panel-title, .panel .panel-footer {
-  color: rgb(0, 0, 0);
+  font-family:  Georgia,Times,'Times New Roman',serif;
+  font-size: 16px;
 }
-/*#main {  for content views
-  border: 1px solid #000;
-  background: url(../img/groovepaper.png), rgba(252,251,227,.8);
-  margin-bottom: 1em;
-  } */
 
-  #bg { /* for bg image */
-    position: fixed;
-    bottom: -8px;
-    left: 0;
-    width: 50%;
-    height: auto;
-    z-index: -5;
-  }
+h1, h2, h3, h4, h5, h6 {
+  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
 
-  #bg img { /* for bg image */
-    width: 100
-    height: auto;
-    max-width: 100%;
-    box-sizing: border-box;
-  }
+.page-header h1, .panel-heading .panel-title, .panel .panel-footer, .navbar, li.dropdown-header {
+ color: rgb(62, 63, 58);
+}
 
-  label {
-    font-weight:bold;
-  }
+li.dropdown-header {
+  font-weight: bold;
+}
 
-  img.stall-pic {
-   display: block;  
-   margin: 0 auto;	
-   box-sizing: border-box;
- }
+ul.dropdown-menu li a{
+  font-size: 14px;
+  font-family: Georgia,Times,'Times New Roman',serif;
+  text-transform:none;
+}
 
- #stall-edit {
+.page-header {
+  margin-top: 0;
+  padding:0;
+}
+
+.panel-header h1 {
+  font-size: 5em;
+  margin:0;
+  padding:0;
+  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
+
+.panel-heading .panel-title, .panel .panel-footer {
+  font-family: "Marcellus", Georgia,Times,'Times New Roman',serif;  
+  text-transform: none;
+}
+
+.panel-heading .panel-title {
+  font-size: 1.5em;
+}
+
+.panel .panel-footer, .stall-pills ul.nav {
+  font-size: .95em;
+}
+
+.panel .panel-footer {
+  min-height: 45px;
+}
+
+div.panel-body h2 {
+  margin-top: 0;
+}
+
+
+.navbar-brand,
+li.dropdown a.dropdown-toggle,
+ul.nav.navbar-nav.navbar-right li a {
+  font-size: 1.25em;
+  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
+
+#bg { /* for bg image */
+  position: fixed;
+  bottom: -8px;
+  left: 0;
+  width: 50%;
+  height: auto;
+  z-index: -5;
+}
+
+#bg img { /* for bg image */
+  width: 100
+  height: auto;
+  max-width: 100%;
+  box-sizing: border-box;
+}
+
+label {
+  font-weight:bold;
+}
+
+img.stall-pic {
+ display: block;  
+ margin: 0 auto;	
+ box-sizing: border-box;
+}
+
+#stall-edit {
   margin-top: 0;
 }
 
@@ -86,13 +138,13 @@ ol.race-records ul {
   display: none;  
 }
 
-.panel, .page-header {
-  background: rgba(255, 255, 255, .8);
+.panel, .page-header, .well {
+  background: url(../img/groovepaper.png),rgba(255, 255, 255, .9);
 }
 
 input.form-control, 
 select.form-control  {
-  background: rgba(0, 0, 0, .2);
+  background: rgba(62, 63, 58, .2);
 }
 
 .page-header {
@@ -100,6 +152,28 @@ select.form-control  {
   border-radius: 4px;
 }
 
+.modal {
+  background:rgba(81, 97, 61, .3);
+}
 
+.modal .panel {
+  margin: 0;
+  padding: 0;
+}
 
+.modal input.form-control, 
+.modal select.form-control  {
+  background: rgba(255, 255, 255, .2);
+}
+
+.form-control::-moz-placeholder {
+  color: rgba(62, 63, 58, .7);
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: rgba(62, 63, 58, .7);
+}
+.form-control::-webkit-input-placeholder {
+  color: rgba(62, 63, 58, .7);
+}
 

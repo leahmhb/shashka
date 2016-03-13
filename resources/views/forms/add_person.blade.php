@@ -38,7 +38,7 @@
 
             <div class="form-group">
               <label for="person_name" class="col-sm-3 control-label">
-               <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>        
+               <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by HaubingRequired">!</span>        
                Stable Name</label>
                <div class="col-sm-9">       
                 <input name="stable_name" class="form-control" id="person_stable_name" placeholder="Shashka Stables">         
@@ -47,7 +47,7 @@
 
             <div class="form-group">
               <label for="person_name" class="col-sm-3 control-label">
-               <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>        
+               <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required">!</span>        
                Stable Prefix</label>
                <div class="col-sm-9"> 
                 <input name="stable_prefix" class="form-control" id="person_stable_prefix" placeholder="Haubing">   

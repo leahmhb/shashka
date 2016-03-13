@@ -12,15 +12,20 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Base extends Controller{
 
  public function __construct(){
-   View::composers(['App\Composers\HomeComposer'  => ['includes.nav']]);
-
+   View::composers(['App\Composers\HomeComposer'  => ['layout.*', 'includes.*', 'forms.*', 'errors.*']]);
     }//end construct
 
-
     public function index(){
-
       return view('index');
-    }//end stall
+    }//end index
+
+    public function theme(){
+      return view('theme');
+    }//end credits
+
+    public function credits(){
+      return view('credits');
+    }//end credits
 
 
   }

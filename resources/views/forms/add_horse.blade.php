@@ -10,12 +10,12 @@
 
   <div class="row">
     <div class="col-sm-12">          
-            @if($validate == true)
-            <div id="success "class="alert alert-success" role="alert">
-              Successful addition!
-            </div><!--end alert-->
-            @endif        
-          <div id="rsvErrors" class="alert alert-danger"></div>
+      @if($validate == true)
+      <div id="success "class="alert alert-success" role="alert">
+        Successful addition!
+      </div><!--end alert-->
+      @endif        
+      <div id="rsvErrors" class="alert alert-danger"></div>
     </div><!--end col-->
   </div><!--end row-->
 
@@ -141,95 +141,108 @@
                   </select>
                 </div>
               </div><!--end hexer-name-->
-              <div class="text-right">If person not in list, <a id="add-person-btn" class="btn-xs btn btn-primary">Add</a></div>
-            </div><!--end panel-body-->
-          </div><!--end panel-->
+              <div class="text-right">If person not in list, 
+                <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-person-quick">
+                 Add
+               </button>
+             </div>
+           </div><!--end panel-body-->
+         </div><!--end panel-->
 
-          <div class="panel panel-default">
-            <div class="panel-heading">
-              <h4 class="panel-title">Abilities</h4>
-            </div>
-            <div class="panel-body">
-              <div class="form-group">
-                <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
-                <div class="col-sm-10">
-                  <select name="pos_ability_1" class="form-control select">
-                   <option></option>
-                   @foreach ($domain['pos_abilities'] as $pos)          
-                   <option value="{{$pos['ability']}}">{{$pos['ability']}}: {{$pos['description']}}</option>
-                   @endforeach     
-                 </select>           
-               </div>  
-             </div><!--end pos_ability_1-->  
-
-             <div class="form-group">
-              <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
+         <div class="panel panel-default">
+          <div class="panel-heading">
+            <h4 class="panel-title">Abilities</h4>
+          </div>
+          <div class="panel-body">
+            <div class="form-group">
+              <label for="pos-ability-1" class="col-sm-2 control-label">+</label>
               <div class="col-sm-10">
-                <select name="pos_ability_2" class="form-control select">
+                <select name="pos_ability_1" class="form-control select">
                  <option></option>
                  @foreach ($domain['pos_abilities'] as $pos)          
                  <option value="{{$pos['ability']}}">{{$pos['ability']}}: {{$pos['description']}}</option>
-                 @endforeach   
+                 @endforeach     
                </select>           
              </div>  
-           </div><!--end pos_ability_2-->  
+           </div><!--end pos_ability_1-->  
 
            <div class="form-group">
-            <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+            <label for="pos-ability-2" class="col-sm-2 control-label">+</label>
             <div class="col-sm-10">
-              <select name="neg_ability_1" class="form-control select">
+              <select name="pos_ability_2" class="form-control select">
                <option></option>
-               @foreach ($domain['neg_abilities'] as $neg)          
-               <option value="{{$neg['ability']}}">{{$neg['ability']}}: {{$neg['description']}}</option>
+               @foreach ($domain['pos_abilities'] as $pos)          
+               <option value="{{$pos['ability']}}">{{$pos['ability']}}: {{$pos['description']}}</option>
                @endforeach   
              </select>           
            </div>  
-         </div><!--end neg_ability_1-->  
+         </div><!--end pos_ability_2-->  
 
-
-       </div><!--end panel-body-->
-     </div><!--end panel-->
-
-     <div class="panel panel-default">
-      <div class="panel-heading">
-        <h4 class="panel-title">Distance (furlongs)</h4>
-      </div>
-      <div class="panel-body">
-        <div class="row">
-          <div class="col-sm-8">
-            <div class="form-group">
-              <label for="distance-min" class="col-sm-3 control-label">Min</label>    
-              <div class="col-sm-9">
-                <input type="text" name="distance_min" class="form-control" placeholder="0">
-              </div>
-            </div><!--end distance--> 
-
-            <div class="form-group">
-              <label for="distance-min" class="col-sm-3 control-label">Max</label>    
-              <div class="col-sm-9">
-                <input type="text" name="distance_max" class="form-control" placeholder="0">
-              </div>
-            </div> <!--end distance--> 
-          </div><!--end col-->
-
-          <div class="col-sm-4">
-            <ul>
-             <li><b>5 – 7.5:</b> Sprinter</li>
-             <li><b>7.5 – 9.5:</b> Middle / Common </li>
-             <li><b>10 – 12:</b> Classic </li>
-             <li><b>12 – 16:</b> Router / Marathoner</li>
-           </ul>
-           
-         </div><!--end col-->
-       </div><!--end row-->
+         <div class="form-group">
+          <label for="neg-ability-1" class="col-sm-2 control-label">-</label>
+          <div class="col-sm-10">
+            <select name="neg_ability_1" class="form-control select">
+             <option></option>
+             @foreach ($domain['neg_abilities'] as $neg)          
+             <option value="{{$neg['ability']}}">{{$neg['ability']}}: {{$neg['description']}}</option>
+             @endforeach   
+           </select>           
+         </div>  
+       </div><!--end neg_ability_1-->  
 
 
      </div><!--end panel-body-->
    </div><!--end panel-->
 
- </div><!--end col-->
+   <div class="panel panel-default">
+    <div class="panel-heading">
+      <h4 class="panel-title">Distance (furlongs)</h4>
+    </div>
+    <div class="panel-body">
+      <div class="row">
+        <div class="col-sm-8">
+          <div class="form-group">
+            <label for="distance-min" class="col-sm-3 control-label">Min</label>    
+            <div class="col-sm-9">
+              <input type="text" name="distance_min" class="form-control" placeholder="0">
+            </div>
+          </div><!--end distance--> 
 
- <div class="col-md-3">
+          <div class="form-group">
+            <label for="distance-min" class="col-sm-3 control-label">Max</label>    
+            <div class="col-sm-9">
+              <input type="text" name="distance_max" class="form-control" placeholder="0">
+            </div>
+          </div> <!--end distance--> 
+        </div><!--end col-->
+
+        <div class="col-sm-4">
+          <ul>
+           <li><b>5 – 7.5:</b> Sprinter</li>
+           <li><b>7.5 – 9.5:</b> Middle / Common </li>
+           <li><b>10 – 12:</b> Classic </li>
+           <li><b>12 – 16:</b> Router / Marathoner</li>
+         </ul>
+         
+       </div><!--end col-->
+     </div><!--end row-->
+
+
+   </div><!--end panel-body-->
+ </div><!--end panel-->
+
+ 
+ <div class="row">
+  <div class="col-sm-offset-4 col-sm-4">
+    <div class="text-center form-group"> 
+      <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
+    </div>
+  </div><!--end col-->
+</div><!--end row-->
+
+</div><!--end col-->
+
+<div class="col-md-3">
 
   <div class="panel panel-default">
     <div class="panel-heading">
@@ -422,13 +435,7 @@
 </div><!--end col-->
 </div><!--end row-->
 
-<div class="row">
-  <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group"> 
-      <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
-    </div>
-  </div><!--end col-->
-</div><!--end row-->
+
 
 </form>
 

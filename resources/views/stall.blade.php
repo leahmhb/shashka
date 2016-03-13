@@ -235,8 +235,7 @@
 
   <div role="tabpanel" class="tab-pane" id="entry-form">
     <h2>Race Entry Form</h2>
-    <code><pre>
-[b]+++Form[/b]
+    <pre><code>[b]+++Form[/b]
 [b]++Stats:[/b]
 [b]Speed:[/b] {{ $horse['speed'] }}
 [b]Staying:[/b] {{ $horse['staying'] }}
@@ -270,8 +269,7 @@
 
 [b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
 [b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
-[img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
-      </pre></code>                         
+[img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]</code></pre>                         
  
 </div><!--end race entry-->
 
@@ -279,6 +277,7 @@
 </div><!--end tab content-->
 
 </div><!--end tabs-->
+ <div class="panel-footer">  </div>
 </div><!--end panel body-->
 </div><!--end panel-->  
 </div><!--end col-->

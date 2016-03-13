@@ -9,14 +9,14 @@
 
   <div class="row">
     <div class="col-sm-12">
-          <div id="success">
-            @if($validate == true)
-            <div class="alert alert-success" role="alert">
-              Successful addition!
-            </div><!--end alert-->
-            @endif
-          </div>
-          <div id="rsvErrors" class="alert alert-danger"></div>
+      <div id="success">
+        @if($validate == true)
+        <div class="alert alert-success" role="alert">
+          Successful addition!
+        </div><!--end alert-->
+        @endif
+      </div>
+      <div id="rsvErrors" class="alert alert-danger"></div>
     </div><!--end col-->
   </div><!--end row-->
 
@@ -45,8 +45,11 @@
             </div>        
           </div><!--end race--> 
 
-
-          <div class="text-right">If race not in list, <a class="btn-xs btn btn-primary" href="/add-race/quick" target="_blank">Add</a></div>
+          <div class="text-right">If race not in list, 
+            <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-race-quick">
+              add
+            </button>.
+          </div>
         </div><!--end panel-body-->
       </div><!--end panel-->
     </div><!--end col-->

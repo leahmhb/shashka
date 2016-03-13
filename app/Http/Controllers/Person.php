@@ -25,17 +25,5 @@ class Person extends Base{
   }//end add_person_validate
 
 
-  public function add_person_quick(){
-    return view('modals.add_person_modal', ['validate' => false]);
-  }//end add_person_quick
-
-  public function add_person_quick_validate(Request $request){
-    $data = $request->all();
-    $person = Models\Person::firstOrCreate($data);
-    return response()->json($data);
-    //return view('modals.add_person_modal', ['validate' => true]);
-  }//end add_person_quick_validate
-
-
 
   }//end class
