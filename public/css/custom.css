@@ -266,6 +266,28 @@ img.stall-pic {
   padding: 0;
 }
 
+.modal input.form-control, 
+.modal select.form-control, 
+.modal .select2-container--default .select2-selection--single,
+.modal .select2-container .select2-choice
+{ 
+  background: rgb(248, 245, 240);
+  line-height:20px;
+  height: 46px;
+  border-radius: 4px;
+  border: 1px solid rgb(223, 215, 202);
+}
+
+.modal textarea {
+  background: rgb(248, 245, 240);
+  border-radius: 4px;
+  border: 1px solid rgb(223, 215, 202);
+}
+
+.modal .form-control[disabled]{
+  background: rgba(62, 63, 58, .6);
+  border: 1px solid rgb(223, 215, 202);
+}
 
 
 

@@ -25,7 +25,7 @@ $( '#add-horse-quick-btn' ).click(function(e) {
     type: "POST",
     url: '/add-horse-quick',
     beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-    data: (_token : <?php Session::token() ?>, $('#add-horse-quick').serialize()},
+    data: $('#add-horse-quick').serialize(),
     success: function( msg ) { alert( msg );}
   });
 });
@@ -37,7 +37,7 @@ $( '#add-person-quick-btn' ).click(function(e) {
     type: "POST",
     url: '/add-person-quick',
     beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-    data: (_token : <?php Session::token() ?>, $('#add-horse-quick').serialize()},
+    data: $('#add-person-quick').serialize(),
     success: function( msg ) { alert( msg );}
   });
 });
@@ -49,7 +49,7 @@ $( '#add-race-quick-btn' ).click(function(e) {
     type: "POST",
     url: '/add-race-quick',
     beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-    data: (_token : <?php Session::token() ?>, $('#add-horse-quick').serialize()},
+    data: $('#add-horse-quick').serialize(),
     success: function( msg ) { alert( msg );}
   });
 });
