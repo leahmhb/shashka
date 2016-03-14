@@ -3,7 +3,7 @@
 @section('title', 'Add Race Entrant')
 
 @section('content')
-<div class="page-header"><h1>Add Race Entrant <small>Record Entries and Placings</small></h1></div>
+<div class="page-header"><h1>Add Race Entrant <h2><small>Record Entries and Placings</small></h2></h1></div>
 
 <form id="add-race-entrant" class="form-horizontal" method="post">
 
@@ -30,7 +30,7 @@
 
         <div class="form-group">
           <label for="horse" class="col-sm-3 control-label">
-            <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
             Select</label>
             <div class="col-sm-9">
              <select name="race_id" class="form-control select">
@@ -62,8 +62,8 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="horse" class="col-sm-3 control-label">
-              <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-              Call Name</label>
+              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+              Name</label>
               <div class="col-sm-9">
                 <select name="horse_id" class="form-control select">
                   <option></option>
@@ -76,7 +76,7 @@
 
             <div class="form-group">
               <label for="distance" class="col-sm-3 control-label">
-                <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
                 Placing</label>            
                 <div class="col-sm-9">     
                   <input type="number" name="placing" class="form-control" placeholder="1">     

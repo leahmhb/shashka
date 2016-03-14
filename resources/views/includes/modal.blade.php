@@ -1,72 +1,73 @@
-  <div class="modal fade" id="add-horse-quick" tabindex="-1" role="dialog" aria-labelledby="add-horse-quick_Label">
-    <div class="modal-dialog" role="document">
-      <div class="modal-content">
-        <div class="modal-header">
-         <div class="panel panel-default">
-          <div class="panel-heading">
-            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-            <h4 class="modal-title" id="add-horse-quick_Label">Add Horse Quick</h4>
-          </div>          
-        </div>
-        <div class="modal-body">
-          <form id="add-horse" class="form" role="form">
-            <div class="panel-body">
-             <div class="form-group">
-              <label for="call-name" class="control-label">
-               <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-               Call Name</label>               
-               <input type="text" class="form-control" name="call_name" id="call-name" placeholder="...">
-             </div><!--end call-name-->
+<div class="modal fade" id="add-horse-quick" tabindex="-1" role="dialog" aria-labelledby="add-horse-quick_Label">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+       <div class="panel panel-default">
+        <div class="panel-heading">
+          <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+          <h4 class="modal-title" id="add-horse-quick_Label">Add Horse Quick</h4>
+        </div>          
+      </div>
+      <div class="modal-body">
 
-             <div class="form-group">
-              <label for="registered-name" class="control-label">
-               <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-               Reg'd Name</label>
-               <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="...">
-             </div><!--end registered-name-->   
+        <form id="add-horse-quick" class="form" role="form" method="post">
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
+          <div class="panel-body">
+           <div class="form-group">
+            <label for="call-name" class="control-label">
+             <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+             Call Name</label>               
+             <input type="text" class="form-control" name="call_name" id="call-name" placeholder="...">
+           </div><!--end call-name-->
 
-             <div class="form-group">
-              <label for="sex" class="control-label">
-               <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-               Sex</label></br>
-               <select name="sex" class="form-control select">
-                <option></option>
-                @foreach ($domain['sexes'] as $sex)          
-                <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
-                @endforeach
-              </select>           
-            </div><!--end sex-->   
+           <div class="form-group">
+            <label for="registered-name" class="control-label">
+             <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+             Reg'd Name</label>
+             <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="...">
+           </div><!--end registered-name-->   
+
+           <div class="form-group">
+            <label for="sex" class="control-label">
+             <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+             Sex</label></br>
+             <select name="sex" class="form-control select">
+              <option></option>
+              @foreach ($domain['sexes'] as $sex)          
+              <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+              @endforeach
+            </select>           
+          </div><!--end sex-->   
+
+          <div class="form-group">
+            <label for="stall_path" class="control-label">
+              <span class="text-info tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required">!</span>
+              Stall Page</label>
+              <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
+            </div><!--end stall page-->
 
             <div class="form-group">
-              <label for="stall_path" class="control-label">
-                <span class="text-info tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required">!</span>
-                Stall Page</label>
-                <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
-              </div><!--end stall page-->
+              <label for="owner-name" class="control-label">
+               <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+               Owner</label></br>
+               <select name="owner" class="form-control select">
+                <option></option>
+                @foreach ($domain['person'] as $person)          
+                <option value="{{$person['username']}}">{{$person['username']}}</option>
+                @endforeach
+              </select>
+            </div><!--end owner-name-->
 
-              <div class="form-group">
-                <label for="owner-name" class="control-label">
-                 <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-                 Owner</label></br>
-                 <select name="owner" class="form-control select">
-                  <option></option>
-                  @foreach ($domain['person'] as $person)          
-                  <option value="{{$person['username']}}">{{$person['username']}}</option>
-                  @endforeach
-                </select>
-              </div><!--end owner-name-->
-
-            </div><!--end panel-body-->
-          </div><!--end panel-->
-
-        </form>
+          </div><!--end panel-body-->
+        </div><!--end panel-->        
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Save</button>
+        <button id="add-horse-quick-btn" type="submit" class="btn btn-primary">Save</button>
       </div>
-    </div>
+    </form>
   </div>
+</div>
 </div><!--end add horse-->
 
 <div class="modal fade" id="add-person-quick" tabindex="-1" role="dialog" aria-labelledby="add-person-quick_Label">
@@ -82,7 +83,10 @@
           </div>
         </div>
         <div class="modal-body">
-          <form id="add-person" class="form form-horizontal" role="form">
+
+          <form id="add-person-quick" class="form form-horizontal" role="form" method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
             <div class="panel-body">     
 
               <div class="form-group">
@@ -90,7 +94,7 @@
                   <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
                   Username</label>
                   <div class="col-sm-9">
-                    <input name="username" class="form-control" id="person_name" placeholder="...">              
+                    <input name="username" class="form-control" id="person_name" placeholder="...">             
                   </div>             
                 </div><!--end username-->       
 
@@ -114,13 +118,12 @@
 
               </div><!--end panel-body-->
             </div><!--end panel--> 
-
-          </form>
-        </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="button" class="btn btn-primary">Save</button>
-        </div>
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+            <button id="add-person-quick-btn" type="submit" class="btn btn-primary">Save</button>
+          </div>
+        </form>
       </div>
     </div>
   </div><!--end add person-->
@@ -139,7 +142,9 @@
           </div>
         </div>
         <div class="modal-body">
-          <form id="add-race" class="form form-horizontal" role="form">
+
+          <form id="add-race-quick" class="form form-horizontal" role="form" method="post">
+          <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="panel-body">               
               <div class="form-group">
@@ -150,7 +155,6 @@
                     <input type="text" class="form-control" name="name" id="name" placeholder="...">
                   </div>
                 </div><!--end race-name-->
-
 
                 <div class="form-group">
                   <label for="surface" class="col-sm-3 control-label">
@@ -181,7 +185,6 @@
                     </div> 
                   </div><!--end distance-->
 
-
                   <div class="form-group">
                     <label for="grade" class="col-sm-3 control-label">
                       <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
@@ -196,7 +199,6 @@
                       </div>
                     </div><!--end grade-->    
 
-
                     <div class="form-group">
                       <label for="url" class="col-sm-3 control-label">
                         <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
@@ -206,12 +208,13 @@
                         </div> 
                       </div><!--end url-->
 
-                    </form>
-                  </div>
-                  <div class="modal-footer">
-                    <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                    <button type="button" class="btn btn-primary">Save</button>
-                  </div>
+                    </div>
+                    <div class="modal-footer">
+                      <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+                      <button id="add-race-quick-btn" type="submit" class="btn btn-primary">Save</button>
+                    </div>
+                  </form>
                 </div>
               </div>
-    </div><!--end add race-->
+            </div><!--end add race-->
+

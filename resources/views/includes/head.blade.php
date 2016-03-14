@@ -4,6 +4,7 @@
    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
    <meta name="description" content="">
    <meta name="author" content="">   
+   <meta id="token" name="token" content="{{ csrf_token() }}">
    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
    <title>Shashka Stables - @yield('title')</title>
@@ -16,7 +17,6 @@
    <!--Plugin styling-->
    <link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
-   <link href="{{ asset('css/theme/select2.custom.css') }}" rel="stylesheet">
    
    <!--CUSTOM STYLES-->
    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">

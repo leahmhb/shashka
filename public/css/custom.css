@@ -1,9 +1,12 @@
-@import url("http://fonts.googleapis.com/css?family=Marcellus|Marcellus+SC");
+@import url("http://fonts.googleapis.com/css?family=Marcellus|Marcellus+SC|Cinzel:700,900|Quattrocento+Sans:400,400italic,700,700italic");
+@import url("select2.css");
+
+/************* GENERAL **************/
 
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
-  font-family:  Georgia,Times,'Times New Roman',serif;
+  font-family:  'Quattrocento Sans', sans-serif;
   font-size: 16px;
 }
 
@@ -11,18 +14,89 @@ h1, h2, h3, h4, h5, h6 {
   font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
 }
 
-.page-header h1, .panel-heading .panel-title, .panel .panel-footer, .navbar, li.dropdown-header {
- color: rgb(62, 63, 58);
+.tooltip-overflow { /* tool tip */
+  white-space: nowrap;
 }
 
+form .text-danger, form .text-info {
+  font-weight: bold;
+  font-size: 1.5em;
+}
+
+label {
+  font-weight:bold;
+}
+
+ul {
+  margin: 0;
+  padding:0;
+  padding-left: .75em;
+  list-style-position: inside;
+  list-style-type: square;
+}
+}
+
+b, strong {
+  color: rgb(52, 52, 48);
+  font-weight: 700;
+  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;  
+
+}
+
+i, em {
+  color: rgb(192, 190, 153);
+  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;  
+}
+
+.text-primary, .text-info, .text-success, .text-warning, .text-danger {
+  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;
+}
+
+
+/************* NAVBAR **************/
 li.dropdown-header {
   font-weight: bold;
 }
 
 ul.dropdown-menu li a{
   font-size: 14px;
-  font-family: Georgia,Times,'Times New Roman',serif;
+  font-family:  'Quattrocento Sans', sans-serif;
   text-transform:none;
+}
+
+
+.navbar-brand,
+li.dropdown a.dropdown-toggle,
+ul.nav.navbar-nav.navbar-right li a {
+  font-size: 1.5em;
+  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
+
+.dropdown-header {
+  color: rgb(120, 62, 86, 1);
+  font-size: .95em;
+}
+
+@media only screen and (min-width : 768px) {
+  /* Make Navigation Toggle on Desktop Hover */
+  .dropdown:hover .dropdown-menu {
+    display: block;
+  }
+}
+
+/************* PANELS **************/
+
+ul.nav.nav-pills li a { /* nav pills */
+  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
+
+.panel-heading .panel-title, .panel .panel-footer, .navbar, li.dropdown-header {
+  font-family: "Cinzel", Georgia,Times,'Times New Roman',serif;
+  color: rgb(62, 63, 58);
+}
+
+.panel, .page-header, .well {
+  background: url(../img/groovepaper.png),rgba(255, 255, 255, .9);
 }
 
 .page-header {
@@ -58,13 +132,28 @@ div.panel-body h2 {
   margin-top: 0;
 }
 
+/************* PAGE HEADER **************/
 
-.navbar-brand,
-li.dropdown a.dropdown-toggle,
-ul.nav.navbar-nav.navbar-right li a {
-  font-size: 1.5em;
-  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+.page-header {
+  padding: 1em;
+  border-radius: 4px;
 }
+
+.page-header h1, .page-header h2{
+  font-family: "Cinzel", Georgia,Times,'Times New Roman',serif;
+  font-weight: 700;
+  font-variant:small-caps;
+  margin:0;
+  padding:0;
+}
+
+.page-header h1 {
+  font-size: 5rem;
+  color: rgb(52, 52, 48);
+  text-shadow:  rgb(248, 245, 240) 1px 1px 1px;  
+}
+
+/************* BACKGROUND **************/
 
 #bg { /* for bg image */
   position: fixed;
@@ -82,71 +171,16 @@ ul.nav.navbar-nav.navbar-right li a {
   box-sizing: border-box;
 }
 
-label {
-  font-weight:bold;
-}
-
-img.stall-pic {
- display: block;  
- margin: 0 auto;	
- box-sizing: border-box;
-}
-
-#stall-edit {
-  margin-top: 0;
-}
-
-ul.stall-info{
-	margin: 0;
-  padding: none;
-}
-
-.stall-info li{
-	margin:0.5rem;
-  padding:0;
-}
-
-.stall-info li ul {
-  margin-left: 2rem;
-}
-
-ol.race-records ul {
-  padding-left: 10px;
-}
-.dropdown-header {
-  color: rgb(120, 62, 86, 1);
-  font-size: .95em;
-}
-
-.tooltip-overflow { /* tool tip */
-  white-space: nowrap;
-}
-
-.text-danger, .text-info { /* forms */
-  font-weight: bold;
-  font-size: 1.5em;
-}
-
-@media only screen and (min-width : 768px) {
-  /* Make Navigation Toggle on Desktop Hover */
-  .dropdown:hover .dropdown-menu {
-    display: block;
-  }
-}
-
-#rsvErrors {
+/************* FORM **************/
+#rsvErrors, #success {
   display: none;  
-}
-
-.panel, .page-header, .well {
-  background: url(../img/groovepaper.png),rgba(255, 255, 255, .9);
 }
 
 input.form-control, 
 select.form-control, 
 .select2-container--default .select2-selection--single,
 .select2-container .select2-choice
- { 
+{ 
   background: rgba(62, 63, 58, .2);
   line-height:20px;
   height: 46px;
@@ -154,17 +188,77 @@ select.form-control,
   border: 1px solid rgb(223, 215, 202);
 }
 
-.page-header {
-  padding: 1em;
+textarea {
+  background: rgba(62, 63, 58, .2);
   border-radius: 4px;
+  border: 1px solid rgb(223, 215, 202);
 }
 
+.form-control[disabled]{
+  background: rgba(62, 63, 58, .6);
+  border: 1px solid rgb(223, 215, 202);
+}
+
+/************* PLACEHOLDERS **************/
+
+.form-control::-moz-placeholder {
+  color: rgba(62, 63, 58, .2);
+  opacity: 1;
+}
+.form-control:-ms-input-placeholder {
+  color: rgba(62, 63, 58, .2);
+}
+.form-control::-webkit-input-placeholder {
+  color: rgba(62, 63, 58, .2);
+}
+
+.form-control[disabled]::-moz-placeholder {
+  color: rgba(192, 190, 153, .2);
+  opacity: 1;
+}
+.form-control[disabled]:-ms-input-placeholder {
+  color: rgba(192, 190, 153, .2);
+}
+.form-control[disabled]::-webkit-input-placeholder {
+  color: rgba(192, 190, 153, .2);
+}
+
+/************* STALL **************/
+#stall-edit {
+  margin-top:10px;  
+}
+
+#stall-edit a.btn {
+  font-weight:bold;
+  text-transform: small-caps;
+}
+
+img.stall-pic {
+ display: block;  
+ margin: 0 auto;  
+ box-sizing: border-box;
+}
+
+.stall-info li{
+  margin:0.5rem;
+  padding:0;
+}
+
+.stall-info li ul {
+  margin-left: 2rem;
+}
+
+.stall-pills ul.nav.nav-pills li a {
+  padding: 5px;
+}
+
+/************* MODAL **************/
 .modal {
   background:rgba(81, 97, 61, .3);
 }
 
 .modal .modal-dialog, .modal .modal-content {
-   color: rgb(62, 63, 58);
+ color: rgb(62, 63, 58);
 }
 
 .modal .panel {
@@ -173,14 +267,7 @@ select.form-control,
 }
 
 
-.form-control::-moz-placeholder {
-  color: rgba(62, 63, 58, .7);
-  opacity: 1;
-}
-.form-control:-ms-input-placeholder {
-  color: rgba(62, 63, 58, .7);
-}
-.form-control::-webkit-input-placeholder {
-  color: rgba(62, 63, 58, .7);
-}
+
+
+
 

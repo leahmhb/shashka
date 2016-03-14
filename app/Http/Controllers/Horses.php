@@ -56,19 +56,33 @@ class Horses extends Base{
      $horse->bandages = $data['bandages'];
      $horse->hood = $data['hood'];
      $horse->shadow_roll = $data['shadow_roll'];
+     $horse->notes = $data['notes'];
 
      $horse->save();
 
      return view('forms.update_horse', ['horse' => $horse, 'validate' => true]);
     }//end update_horse_validate
 
-    public function add_horse($type = false){     
-
+    public function add_horse(){  
       return view('forms.add_horse', ['validate' => false]);
-
     }//end add_horse 
 
-    public function add_horse_validate(){
+    public function add_horse_quick_validate(){
+     $data = $_POST;
+     return "Horse Quick";
+     exit;
+  //echo "<pre>" . print_r($data, true) . "</pre>";
+
+    /* $horse = Models\Horse::firstOrCreate($data);
+     if($horse->owner == "Haubing"){
+      $horse->stall_path = "/stall/" . $horse->id;
+      $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
+      $horse->save();
+    }//end if*/
+
+     }//end add_horse_validate
+
+     public function add_horse_validate(){
       $data = $_POST;
 
       $horse = Models\Horse::firstOrCreate($data);
@@ -93,9 +107,10 @@ class Horses extends Base{
       $race_records = $this->getRaceRecords($horse_id);
 
       $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first();
-
       $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first();
 
+      $leg_type = Models\Leg_Type::select('description')->where('type', $horse['leg_type'])->first();
+      
       return view('stall', [
         'horse' => $horse,               
         'abilities' => $abilities,
@@ -103,6 +118,7 @@ class Horses extends Base{
         'parents' => $parents, 
         'race_records' => $race_records,
         'prefix' => $prefix,
+        'leg_type' => $leg_type,
         'entry' => $entry
         ]);
     }//end stall
@@ -161,10 +177,12 @@ class Horses extends Base{
 
     }//end getParents
 
+
     public function getRaceRecords($horse_id){
       $records = [];
       $placings = Models\Race_Entrant::select('race_id', 'horse_id', 'placing')
       ->where('horse_id', $horse_id)
+      ->orderBy('placing')
       ->get()->toArray();
       //echo "<pre>" . print_r($placings, true) . "</pre>";
       foreach($placings as $p){
@@ -177,5 +195,6 @@ class Horses extends Base{
 
      return $records;
     }//end getRaceRecords
+
 
 }//end class

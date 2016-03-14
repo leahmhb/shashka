@@ -11,18 +11,23 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Races extends Base{
 
 
-public function add_race($type = false){
-
+  public function add_race(){
    return view('forms.add_race', ['validate' => false]);
-
 }//end add_race
 
-public function add_race_validate($type = false){
+public function add_race_quick_validate(){
+  $data = $_POST;     
+  return "Race Quick";
+  exit;
+  //echo "<pre>" . print_r($data, true) . "</pre>";
+  
+  //$race = Models\Race::firstOrCreate($data);
+}//end add_race_validate
+
+public function add_race_validate(){
   $data = $_POST;     
   $race = Models\Race::firstOrCreate($data);
-
-   return view('forms.add_race', ['validate' => false]);
-
+  return view('forms.add_race', ['validate' => false]);
 }//end add_race_validate
 
 public function add_race_entrant($horse_id = false){
@@ -34,6 +39,8 @@ public function add_race_entrant_validate(){
   $data = $_POST;
   $horse['id'] = $data['horse_id'];
   $entry = Models\Race_Entrant::firstorCreate($data);
+  var_dump($entry);
+  exit;
   return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => true]);
 }//end add_race_entrant
 

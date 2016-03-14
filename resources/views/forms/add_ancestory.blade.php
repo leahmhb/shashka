@@ -3,7 +3,7 @@
 @section('title', 'Add Ancestory')
 
 @section('content')
-<div class="page-header"><h1>Add {{ $relationship }} <small>Extending the bloodlines</small></h1></div>
+<div class="page-header"><h1>Add {{ $relationship }}</h1><h2><small>Extending the bloodlines</small></h2></div>
 <form id="add-ancestory" class="form-horizontal" method="post">
 
   <div class="row">
@@ -39,8 +39,8 @@
 
      <div class="form-group">
       <label for="sire" class="col-sm-3 control-label">
-        <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-        Call Name</label>
+        <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+        Name</label>
         <div class="col-sm-9">
           <select name="sire_id" class="form-control select">
             <option></option>
@@ -63,8 +63,8 @@
     <div class="panel-body">
       <div class="form-group">
         <label for="dam" class="col-sm-3 control-label">
-          <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-          Call Name</label>
+          <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+          Name</label>
           <div class="col-sm-9">
             <select name="dam_id" class="form-control select">
               <option></option>
@@ -89,8 +89,8 @@
 
       <div class="form-group">
         <label for="horse" class="col-sm-3 control-label">
-          <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-          Call Name</label>
+          <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+          Name</label>
           <div class="col-sm-9">
             <select name="horse_id" class="form-control select">
               <option></option>

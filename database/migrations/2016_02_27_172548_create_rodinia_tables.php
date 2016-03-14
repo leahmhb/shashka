@@ -18,7 +18,7 @@ class CreateRodiniaTables extends Migration {
             $table->index('username');          
             $table->string('stable_name')->nullable()->default('');
             $table->string('stable_prefix')->nullable()->default('');
-            $table->string('racing_colors')->nullable()->default('');
+            $table->string('racing_colors')->nullable()->default('');        
             $table->timestamps();
         });
 
@@ -68,16 +68,16 @@ class CreateRodiniaTables extends Migration {
             $table->foreign('grade')->references('grade')->on('grades')->onDelete('cascade'); 
             $table->string('leg_type');
             $table->foreign('leg_type')->references('type')->on('leg_types')->onDelete('cascade');
-            $table->integer('speed')->default(50); 
-            $table->integer('staying')->default(50); 
-            $table->integer('stamina')->default(50); 
-            $table->integer('breaking')->default(50); 
-            $table->integer('power')->default(50); 
-            $table->integer('feel')->default(50); 
-            $table->integer('fierce')->default(50); 
-            $table->integer('tenacity')->default(50); 
-            $table->integer('courage')->default(50); 
-            $table->integer('response')->default(50); 
+            $table->integer('speed')->default(0); 
+            $table->integer('staying')->default(0); 
+            $table->integer('stamina')->default(0); 
+            $table->integer('breaking')->default(0); 
+            $table->integer('power')->default(0); 
+            $table->integer('feel')->default(0); 
+            $table->integer('fierce')->default(0); 
+            $table->integer('tenacity')->default(0); 
+            $table->integer('courage')->default(0); 
+            $table->integer('response')->default(0); 
             $table->string('pos_ability_1');
             $table->foreign('pos_ability_1')->references('ability')->on('abilities')->onDelete('cascade');
             $table->string('pos_ability_2');
@@ -88,11 +88,12 @@ class CreateRodiniaTables extends Migration {
             $table->float('distance_max'); 
             $table->string('surface_dirt'); 
             $table->string('surface_turf'); 
-            $table->string('bandages')->default('None');
-            $table->string('neck_height')->default('Normal');
-            $table->string('run_style')->default('Normal'); 
-            $table->string('hood')->default('No'); 
-            $table->string('shadow_roll')->default('No'); 
+            $table->string('bandages')->default('');
+            $table->string('neck_height')->default('');
+            $table->string('run_style')->default(''); 
+            $table->string('hood')->default(''); 
+            $table->string('shadow_roll')->default(''); 
+            $table->longText('notes')->default(''); 
             $table->string('stall_path')->default('#');
             $table->string('img_path')->default('#');
             $table->timestamps();
@@ -118,8 +119,7 @@ class CreateRodiniaTables extends Migration {
             $table->date('ran_dt');
             $table->string('url');
             $table->timestamps();
-        });
-        
+        });        
 
 
         Schema::create('horses_progeny', function (Blueprint $table) {

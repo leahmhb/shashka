@@ -1,3 +1,5 @@
+/************* SELECT2 **************/
+
 /*********************************
 Author : Techhysahil
 Link : http://techhysahil.com
@@ -5,7 +7,7 @@ Link : http://techhysahil.com
 
 /* Assign min-width to container */
 .select2-container{
-    min-width:100px;
+    width:100%;
 }
 /*Theme Color override*/
 .select2-container--default .select2-results__option--highlighted[aria-selected]{
@@ -188,7 +190,7 @@ Link : http://techhysahil.com
 }
 /*Placeholder Text Color */
 .select2-container--default .select2-selection--single .select2-selection__placeholder {
-    color: rgba(62, 63, 58, .7);
+    color: rgba(62, 63, 58, .2);
     padding-top: 10px;
     padding-bottom:5px;
 }

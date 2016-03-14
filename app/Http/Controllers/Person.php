@@ -19,11 +19,19 @@ class Person extends Base{
 
     public function add_person_validate(){ 
       $data = $_POST;
+      return "Person Quick";
+      exit;
+      //echo "<pre>" . print_r($data, true) . "</pre>";
+      
       //validation here
-      $person = Models\Person::firstOrCreate($data);
-      return view('forms.add_person', ['validate' => true]);
+      //$person = Models\Person::firstOrCreate($data);
+     //return view('forms.add_person', ['validate' => true]);
   }//end add_person_validate
 
-
+  public function add_person_quick_validate(){ 
+    $data = $_POST;
+      //validation here
+    $person = Models\Person::firstOrCreate($data);     
+  }//end add_person_validate
 
   }//end class

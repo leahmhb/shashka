@@ -3,7 +3,7 @@
 @section('title', 'Add Race')
 
 @section('content')
-<div class="page-header"><h1>Add Race <small>New Records</small></h1></div>
+<div class="page-header"><h1>Add Race <h2><small>New Records</small></h2></h1></div>
 
 <form id="add-race" class="form-horizontal" method="post">
 
@@ -30,7 +30,7 @@
     <div class="panel-body">
      <div class="form-group">
       <label for="race-name" class="col-sm-3 control-label">
-      <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+      <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
       Race Name</label>
       <div class="col-sm-9">
         <input type="text" class="form-control" name="name" id="name" placeholder="...">
@@ -43,7 +43,7 @@
         <div class="input-group date" data-provide="datepicker">
           <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
           <div class="input-group-addon">
-            <span class="glyphicon glyphicon-th"></span>
+            <span class="glyphicon glyphicon-calendar"></span>
           </div>
         </div>
       </div>
@@ -51,7 +51,7 @@
 
     <div class="form-group">
       <label for="surface" class="col-sm-3 control-label">
-      <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+      <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
       Surface</label>
       <div class="col-sm-9">             
         <label class="radio-inline">
@@ -68,7 +68,7 @@
 
   <div class="form-group">
     <label for="distance" class="col-sm-3 control-label">
-    <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+    <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
     Distance</label>            
     <div class="col-sm-9"> 
       <div class="input-group">
@@ -81,7 +81,7 @@
 
   <div class="form-group">
     <label for="grade" class="col-sm-3 control-label">
-    <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+    <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
     Grade</label>
     <div class="col-sm-9">
       <select name="grade" class="form-control select">
@@ -96,7 +96,7 @@
 
   <div class="form-group">
     <label for="url" class="col-sm-3 control-label">
-<span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+<small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
     URL</label>            
     <div class="col-sm-9">         
       <input type="text" name="url" class="form-control" placeholder="www">

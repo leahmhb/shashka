@@ -3,7 +3,7 @@
 @section('title', 'Add Horse')
 
 @section('content')
-<div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information <small>Keep Records Current</small></h1></div>
+<div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information </h1> <h2><small>Keep Records Current</small></h2></div>
 
 <form id="update-horse" class="form-horizontal" method="post">
 
@@ -30,72 +30,76 @@
         <div class="panel-body">
          <div class="form-group">
           <label for="call-name" class="col-sm-2 control-label">
-           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
            Call Name          
-           </label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="call_name" id="call-name" placeholder="" value="{{ $horse['call_name'] }}">
-          </div>
-        </div><!--end call-name-->
+         </label>
+         <div class="col-sm-10">
+          <input type="text" class="form-control" name="call_name" id="call-name" placeholder="" value="{{ $horse['call_name'] }}">
+        </div>
+      </div><!--end call-name-->
 
-        <div class="form-group">
-          <label for="registered-name" class="col-sm-2 control-label">
-           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-           Reg'd Name</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="" value="{{ $horse['registered_name'] }}">
-          </div>
-        </div><!--end registered-name-->   
+      <div class="form-group">
+        <label for="registered-name" class="col-sm-2 control-label">
+         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+         Reg'd Name</label>
+         <div class="col-sm-10">
+          <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="" value="{{ $horse['registered_name'] }}">
+        </div>
+      </div><!--end registered-name-->   
 
-        <div class="form-group">
-          <label for="sex" class="col-sm-2 control-label">
-           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
-          Sex</label>
-          <div class="col-sm-10">
-            <select name="sex" class="form-control select">
-              <option></option>
-              @foreach ($domain['sexes'] as $sex)          
-              <option @if( $horse['sex'] === $sex['sex']) selected @endif value="{{$sex['sex']}}">{{$sex['sex']}}</option>
-              @endforeach
-            </select>           
-          </div>        
-        </div><!--end sex-->   
+      <div class="form-group">
+        <label for="sex" class="col-sm-2 control-label">
+         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+         Sex</label>
+         <div class="col-sm-10">
+          <select name="sex" class="form-control select">
+            <option></option>
+            @foreach ($domain['sexes'] as $sex)          
+            <option @if( $horse['sex'] === $sex['sex']) selected @endif value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+            @endforeach
+          </select>           
+        </div>        
+      </div><!--end sex-->   
 
-        <div class="form-group">
-          <label for="color-name" class="col-sm-2 control-label">Color</label>
-          <div class="col-sm-10">       
-            <input type="text" name="color" class="form-control" placeholder="" value="{{ $horse['color'] }}">
-          </div>                
-        </div><!--end color-name-->
+      <div class="form-group">
+        <label for="color-name" class="col-sm-2 control-label">Color</label>
+        <div class="col-sm-10">       
+          <input type="text" name="color" class="form-control" placeholder="" value="{{ $horse['color'] }}">
+        </div>                
+      </div><!--end color-name-->
 
-        <div class="form-group">
-          <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
-          <div class="col-sm-10">
-            <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="" value="{{ $horse['phenotype'] }}">
-          </div>
-        </div><!--end phenotype-name-->
+      <div class="form-group">
+        <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
+        <div class="col-sm-10">
+          <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="" value="{{ $horse['phenotype'] }}">
+        </div>
+      </div><!--end phenotype-name-->
 
-        <div class="form-group">
-          <label for="grade" class="col-sm-2 control-label">Grade</label>
-          <div class="col-sm-10">
-            <select name="grade" class="form-control select">
-              <option></option>
-              @foreach ($domain['grades'] as $grade)          
-              <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
-              @endforeach
-            </select>
-          </div>
-        </div><!--end grade-->
+      <div class="form-group">
+        <label for="grade" class="col-sm-2 control-label">Grade</label>
+        <div class="col-sm-10">
+          <select name="grade" class="form-control select">
+            <option></option>
+            @foreach ($domain['grades'] as $grade)          
+            <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
+            @endforeach
+          </select>
+        </div>
+      </div><!--end grade-->
 
-        <div class="form-group">
-          <label for="stall_path" class="col-sm-2 control-label">
-            <span class="text-info" data-toggle="tooltip" data-placement="left" title="Required for horses not owned by Haubing">!</span>
+      <div class="form-group">
+        <label for="stall_path" class="col-sm-2 control-label">
+          <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
           Stall Page</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www" value="{{$horse['stall_path']}}">
           </div>
         </div><!--end stall page-->
-
+        
+        <div class"form-group">
+          <label for="notes" class="col-sm-2 control-label">Notes</label>     
+          <textarea name="notes" class="col-sm-10" rows="3"></textarea>          
+        </div><!--end notes-->
 
       </div><!--end panel-body-->
     </div><!--end panel-->
@@ -110,9 +114,9 @@
 
         <div class="form-group">
           <label for="owner-name" class="col-sm-2 control-label">
-           <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
+           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
            Owner</label>
-          <div class="col-sm-10">       
+           <div class="col-sm-10">       
             <select name="owner" class="form-control select">
               <option></option>
               @foreach ($domain['person'] as $person)          
@@ -244,70 +248,70 @@
       <div class="form-group">
         <label for="speed" class="col-sm-2 col-md-6 control-label">Speed</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="speed" class="form-control" placeholder="50" value="{{ $horse['speed'] }}">
+          <input type="text" name="speed" class="form-control" placeholder="0" value="{{ $horse['speed'] }}">
         </div>                
       </div><!--end speed-->
 
       <div class="form-group">
-        <label for="staying" class="col-sm-2 ol-md-6 control-label">Staying</label>
+        <label for="staying" class="col-sm-2 col-md-6 control-label">Staying</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="staying" class="form-control" placeholder="50" value="{{ $horse['staying'] }}">
+          <input type="text" name="staying" class="form-control" placeholder="0" value="{{ $horse['staying'] }}">
         </div>                
       </div><!--end staying-->
 
       <div class="form-group">
         <label for="stamina" class="col-sm-2 col-md-6 control-label">Stamina</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="stamina" class="form-control" placeholder="50" value="{{ $horse['stamina'] }}">
+          <input type="text" name="stamina" class="form-control" placeholder="0" value="{{ $horse['stamina'] }}">
         </div>                
       </div><!--end stamina-->
 
       <div class="form-group">
         <label for="breaking" class="col-sm-2 col-md-6 control-label">Breaking</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="breaking" class="form-control" placeholder="50" value="{{ $horse['breaking'] }}">
+          <input type="text" name="breaking" class="form-control" placeholder="0" value="{{ $horse['breaking'] }}">
         </div>                
       </div><!--end breaking-->
 
       <div class="form-group">
         <label for="power" class="col-sm-2 col-md-6 control-label">Power</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="power" class="form-control" placeholder="50" value="{{ $horse['power'] }}">
+          <input type="text" name="power" class="form-control" placeholder="0" value="{{ $horse['power'] }}">
         </div>                
       </div><!--end power-->
 
       <div class="form-group">
         <label for="feel" class="col-sm-2 col-md-6 control-label">Feel</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="feel" class="form-control" placeholder="50" value="{{ $horse['feel'] }}">
+          <input type="text" name="feel" class="form-control" placeholder="0" value="{{ $horse['feel'] }}">
         </div>                
       </div><!--end feel-->
 
       <div class="form-group">
         <label for="fierce" class="col-sm-2 col-md-6 control-label">Fierce</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="fierce" class="form-control" placeholder="50" value="{{ $horse['fierce'] }}">
+          <input type="text" name="fierce" class="form-control" placeholder="0" value="{{ $horse['fierce'] }}">
         </div>                
       </div><!--end fierce-->
 
       <div class="form-group">
         <label for="tenacity" class="col-sm-2 col-md-6 control-label">Tenacity</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="tenacity" class="form-control" placeholder="50" value="{{ $horse['tenacity'] }}">
+          <input type="text" name="tenacity" class="form-control" placeholder="0" value="{{ $horse['tenacity'] }}">
         </div>                
       </div><!--end tenacity-->
 
       <div class="form-group">
         <label for="courage" class="col-sm-2 col-md-6 control-label">Courage</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="courage" class="form-control" placeholder="50" value="{{ $horse['courage'] }}">
+          <input type="text" name="courage" class="form-control" placeholder="0" value="{{ $horse['courage'] }}">
         </div>                
       </div><!--end courage-->
 
       <div class="form-group">
         <label for="response" class="col-sm-2 col-md-6 control-label">Response</label>
         <div class="col-sm-10 col-md-6">       
-          <input type="text" name="response" class="form-control" placeholder="50" value="{{ $horse['response'] }}">
+          <input type="text" name="response" class="form-control" placeholder="0" value="{{ $horse['response'] }}">
         </div>                
       </div><!--end response-->
 

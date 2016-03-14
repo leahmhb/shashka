@@ -21,10 +21,9 @@ Route::post('contact',
   ['as' => 'contact_store', 'uses' => 'AboutController@store']);
 
 //add horse 
-Route::get('/add-horse/{type?}', 'Horses@add_horse');
-Route::post('/add-horse/{type?}', 'Horses@add_horse_validate');
+Route::get('/add-horse', 'Horses@add_horse');
+Route::post('/add-horse', 'Horses@add_horse_validate');
 //horse modal
-Route::get('/add-horse-quick', 'Horses@add_horse_quick');
 Route::post('/add-horse-quick', 'Horses@add_horse_quick_validate');
 
 //update horse
@@ -35,12 +34,13 @@ Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 Route::get('/add-person', 'Person@add_person');
 Route::post('/add-person', 'Person@add_person_validate');
 //person modal
-Route::get('/add-person-quick', 'Person@add_person_quick');
 Route::post('/add-person-quick', 'Person@add_person_quick_validate');
 
 //races
-Route::get('/add-race/{type?}', 'Races@add_race');
-Route::post('/add-race/{type?}', 'Races@add_race_validate');
+Route::get('/add-race', 'Races@add_race');
+Route::post('/add-race', 'Races@add_race_validate');
+//race modal
+Route::post('/add-race-quick', 'Races@add_race_quick_validate');
 
 //race entries
 Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');

@@ -10,9 +10,9 @@ class DatabaseSeeder extends Seeder {
      * @return void
      */
     public function run(){
-        Model::unguard();
+       /* Model::unguard();
         $this->call('PersonTableSeeder');
     	$this->call('DomainTableSeeder');
-    	$this->call('HorsesTableSeeder');
+    	$this->call('HorsesTableSeeder');*/
     }//end run
   }

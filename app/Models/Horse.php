@@ -40,7 +40,8 @@ class Horse extends Model{
     'hood',
     'shadow_roll',
     'stall_path',
-    'img_path'
+    'img_path',
+    'notes'
     );
 
 }//end Horse

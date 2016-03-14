@@ -9,6 +9,7 @@ class Person extends Model{
   protected $fillable = array(
     'username',
     'stable_name',
-    'stable_prefix'
+    'stable_prefix',
+    'racing_colors'
     );
 }
