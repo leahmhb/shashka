@@ -91,7 +91,8 @@ $("#add-horse, #update-horse").RSV({
   displayType: "display-html",
   errorHTMLItemBullet: "&#8212; ",
   rules: addHorseQuickRules
-});//end rsv*/
+});//end rsv
+*/
 
 $("#add-person").RSV({ 
   onCompleteHandler: myOnComplete,

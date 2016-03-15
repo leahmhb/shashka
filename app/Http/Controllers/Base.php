@@ -16,15 +16,15 @@ class Base extends Controller{
     }//end construct
 
     public function index(){
-      return view('index');
+      return view('pages.index');
     }//end index
 
     public function theme(){
-      return view('theme');
+      return view('pages.theme');
     }//end credits
 
     public function credits(){
-      return view('credits');
+      return view('pages.credits');
     }//end credits
 
 

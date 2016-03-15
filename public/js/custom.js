@@ -12,6 +12,7 @@ $(document).ready(function () {
   $('#datepicker').datepicker();
 
   $('[data-toggle="tooltip"]').tooltip();
+   $(".dropdown-toggle").dropdown();
   
   $('.select').select2({
     placeholder: 'Select...',

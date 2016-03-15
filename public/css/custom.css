@@ -2,7 +2,6 @@
 @import url("select2.css");
 
 /************* GENERAL **************/
-
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
@@ -172,8 +171,12 @@ div.panel-body h2 {
 }
 
 /************* FORM **************/
-#rsvErrors, #success {
+#rsvErrors {
   display: none;  
+}
+
+#success {
+  background: #293817;
 }
 
 input.form-control, 
@@ -249,6 +252,7 @@ img.stall-pic {
 }
 
 .stall-pills ul.nav.nav-pills li a {
+  font-size: .95em;
   padding: 5px;
 }
 

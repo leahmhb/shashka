@@ -13,15 +13,18 @@ use Illuminate\Http\Response;
 
 class Person extends Base{
 
-  public function add_person(){   
-    return view('forms.add_person', ['validate' => false]);
+  public function person_list(){
+    $person = Models\Person::get()->toArray();
+    return view('pages.person_list', ['person' => $person]);
+}//end person_list
+
+public function add_person(){   
+  return view('forms.add_person', ['validate' => false]);
     }//end add_person
 
     public function add_person_validate(){ 
       $data = $_POST;
-
-      //echo "<pre>" . print_r($data, true) . "</pre>";
-      
+      //echo "<pre>" . print_r($data, true) . "</pre>";      
       //validation here
       $person = Models\Person::firstOrCreate($data);
       return view('forms.add_person', ['validate' => true]);
@@ -34,5 +37,7 @@ class Person extends Base{
     exit;
     //$person = Models\Person::firstOrCreate($data);     
   }//end add_person_validate
+
+
 
   }//end class

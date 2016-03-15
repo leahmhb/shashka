@@ -26,15 +26,15 @@
 			</div>
 			<div class="panel-body">				
 
-					<button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#add-person-quick">
+					<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-person-quick">
 						Add Person 
 					</button>
 
-					<button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#add-horse-quick">
+					<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-horse-quick">
 						Add Horse 
 					</button>
 
-					<button type="button" class="btn btn-primary btn-xs btn-block" data-toggle="modal" data-target="#add-race-quick">
+					<button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#add-race-quick">
 						Add Race 
 					</button>
 				</div>
@@ -48,7 +48,7 @@
 				</h3>
 			</div>
 			<div class="panel-body">
-				<img class="stall-pic" src="{{ asset('img/welcome-horse.png') }}">  
+				<img class="stall-pic img-responsive" src="{{ asset('img/welcome-horse.png') }}">  
 			</div><!--end panel content-->		
 		</div><!--end panel-->   
 	</div><!--end col-->

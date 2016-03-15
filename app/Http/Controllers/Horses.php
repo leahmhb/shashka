@@ -7,11 +7,16 @@ use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-class Horses extends Base{
 
-  public function update_horse($horse_id){
-    $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-    return view('forms.update_horse', ['horse' => $horse, 'validate' => false]);
+class Horses extends Base{
+  public function horse_list(){
+    $horse = Models\Horse::get()->toArray();
+    return view('pages.horse_list', ['horse' => $horse]);
+}//end horse_list
+
+public function update_horse($horse_id){
+  $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
+  return view('forms.update_horse', ['horse' => $horse, 'validate' => false]);
     }//end update_horse
 
     public function update_horse_validate($horse_id){
@@ -95,6 +100,9 @@ class Horses extends Base{
       return view('forms.add_horse', ['validate' => true]);
     }//end add_horse_validate
 
+
+
+
     public function stall_page($horse_id){
     	$horse = Models\Horse::where('id', $horse_id)->first();
 
@@ -111,7 +119,7 @@ class Horses extends Base{
 
       $leg_type = Models\Leg_Type::select('description')->where('type', $horse['leg_type'])->first();
       
-      return view('stall', [
+      return view('pages.stall', [
         'horse' => $horse,               
         'abilities' => $abilities,
         'offspring' => $offspring, 

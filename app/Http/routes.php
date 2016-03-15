@@ -11,10 +11,17 @@
 |
 */
 
+//basics
 Route::get('/', 'Base@index');
 Route::get('/theme', 'Base@theme');
 Route::get('/credits', 'Base@credits');
 
+//lists
+Route::get('/horse-list', 'Horses@horse_list');
+Route::get('/person-list', 'Person@person_list');
+Route::get('/race-list', 'Races@race_list');
+
+//contact form mess
 Route::get('contact', 
   ['as' => 'contact', 'uses' => 'AboutController@create']);
 Route::post('contact', 
@@ -50,7 +57,7 @@ Route::post('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant_validate');
 Route::get('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory');
 Route::post('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory_validate');
 
-//stall pages
+//stall page
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
 
 
