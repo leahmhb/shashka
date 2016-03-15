@@ -7,25 +7,41 @@ class HomeComposer{
 
 	public function compose($view){        
 		$view
-      ->with('stallions', $this->getStallions())
-      ->with('mares', $this->getMares())
-      ->with('domain', $this->getDomain());
+    ->with('my_stallions', $this->getStallions())
+    ->with('my_mares', $this->getMares())
+    ->with('domain', $this->getDomain())
+    ->with('my_horses', $this->getMyHorses())
+    ->with('others_horses', $this->getOthersHorses());
 	}//end compose
 
   public function getDomain(){
     $domain = [];
-    $domain['horses'] = Models\Horse::select('id', 'call_name')->get()->toArray();
+    $domain['horses'] = Models\Horse::select('call_name', 'grade', 'id')->get()->toArray();
     $domain['grades'] = Models\Grade::get()->toArray();
     $domain['leg_types'] = Models\Leg_Type::get()->toArray();
     $domain['sexes'] = Models\Sex::get()->toArray();
     $domain['pos_abilities'] = Models\Ability::where('type', 'positive')->get()->toArray();
     $domain['neg_abilities'] = Models\Ability::where('type', 'negative')->get()->toArray();
-    $domain['person'] = Models\Person::select('username')->get()->toArray();
+    $domain['person'] = Models\Person::get()->toArray();
     $domain['sires'] = Models\Horse::select('id', 'call_name')->where('sex', 'Stallion')->get()->toArray();
     $domain['dams'] = Models\Horse::select('id', 'call_name')->where('sex', 'Mare')->get()->toArray();
     $domain['races'] = Models\Race::all()->toArray();
     return $domain;
     }//end getDomain
+
+    public function getMyHorses(){
+      return Models\Horse::select('call_name', 'grade', 'id', 'sex', 'grade', 'registered_name', 'stall_path')
+      ->where('owner', 'Haubing')  
+      ->get()
+      ->toArray();
+    }//end getMyHorses
+
+    public function getOthersHorses(){
+      return Models\Horse::select('call_name', 'grade', 'id', 'sex', 'grade', 'registered_name', 'stall_path')
+      ->whereNotIn('owner', ['Haubing'])  
+      ->get()
+      ->toArray();
+    }//end getOthersHorses
 
     public function getStallions(){
       $gi_stallions = Models\Horse::select('call_name', 'grade', 'id')
@@ -53,11 +69,11 @@ class HomeComposer{
       ->get()
       ->toArray();
       $stallions = array (
-         'gi_stallions' => $gi_stallions,
-         'gii_stallions' => $gii_stallions,
-         'giii_stallions' => $giii_stallions,     
-         'ol_stallions' => $ol_stallions,   
-         );
+       'gi_stallions' => $gi_stallions,
+       'gii_stallions' => $gii_stallions,
+       'giii_stallions' => $giii_stallions,     
+       'ol_stallions' => $ol_stallions,   
+       );
 
       return $stallions;
     }//end getStallions
@@ -90,4 +106,4 @@ class HomeComposer{
       ->toArray();
       return $mares;
     }//end getMares
- }
+  }

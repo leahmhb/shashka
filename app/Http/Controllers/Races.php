@@ -20,38 +20,44 @@ class Races extends Base{
     'GI' => []
     ];
 
-    //seperate by grade
-    foreach($races_query as $i=>$r){
-      foreach($races as $j=>$d){
-        if($r['grade'] == $j){
-          array_push($races[$j], $r);
-        }//end if
-    }//end foreach
-    }//end foreach
-
-
-  //echo "<pre>" . print_r($raceData, true) . "</pre>";
-    //exit;
+    foreach($races_query as $i=>$r){foreach($races as $j=>$d){if($r['grade'] == $j){ array_push($races[$j], $r);}}}//end foreach
 
     return view('pages.race_list', ['races' => $races, 'entries' => $entries]);
 }//end race_list
 
+public function update_race($race_id){
+  $race = Models\Race::where('id', $race_id)->first()->toArray();
+  return view('forms.update_race', ['race' => $race, 'validate' => false]);
+}//end update_race
+
+public function update_race_validate($race_id){
+  $data = $_POST;
+
+  $race = Models\Race::where('id', $race_id)->first();
+  $race->name = $data['name'];
+  $race->ran_dt = $data['ran_dt'];
+  $race->surface = $data['surface'];
+  $race->distance = $data['distance'];
+  $race->grade = $data['grade'];
+
+  return view('forms.update_race', ['race' => $race, 'validate' => true]);
+}//end update_race_validation
+
 
 public function add_race(){
- return view('forms.add_race', ['validate' => false]);
+  return view('forms.add_race', ['validate' => false]);
 }//end add_race
 
 public function add_race_quick_validate(){
-  $data = $_POST;     
+  $data = $_POST; 
+
   return "Race Quick";
   exit;
-  //echo "<pre>" . print_r($data, true) . "</pre>";
-  
-  //$race = Models\Race::firstOrCreate($data);
 }//end add_race_validate
 
 public function add_race_validate(){
   $data = $_POST;     
+
   $race = Models\Race::firstOrCreate($data);
   return view('forms.add_race', ['validate' => false]);
 }//end add_race_validate
@@ -63,6 +69,7 @@ public function add_race_entrant($horse_id = false){
 
 public function add_race_entrant_validate(){
   $data = $_POST;
+  
   $horse['id'] = $data['horse_id'];
   $entry = Models\Race_Entrant::firstorCreate($data);
 

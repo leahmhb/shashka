@@ -175,8 +175,8 @@ div.panel-body h2 {
   display: none;  
 }
 
-#success {
-  background: #293817;
+.alert { 
+  border: 1px solid #fff;
 }
 
 input.form-control, 

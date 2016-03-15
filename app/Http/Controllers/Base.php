@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Base extends Controller{
 
  public function __construct(){
-   View::composers(['App\Composers\HomeComposer'  => ['layout.*', 'includes.*', 'forms.*', 'errors.*']]);
+   View::composers(['App\Composers\HomeComposer'  => ['layout.*', 'includes.*', 'forms.*', 'pages.*',  'errors.*']]);
     }//end construct
 
     public function index(){

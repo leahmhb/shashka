@@ -16,28 +16,28 @@
                     <ul class="dropdown-menu">
 
                         <li class="dropdown-header">GI</li>
-                        @forelse ($stallions['gi_stallions'] as $stallion)
+                        @forelse ($my_stallions['gi_stallions'] as $stallion)
                         <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>      
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GII</li>
-                        @forelse ($stallions['gii_stallions'] as $stallion)
+                        @forelse ($my_stallions['gii_stallions'] as $stallion)
                         <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GIII</li>
-                        @forelse ($stallions['giii_stallions'] as $stallion)
+                        @forelse ($my_stallions['giii_stallions'] as $stallion)
                         <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Open Level</li>
-                        @forelse ($stallions['ol_stallions'] as $stallion)
+                        @forelse ($my_stallions['ol_stallions'] as $stallion)
                         <li><a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
@@ -49,28 +49,28 @@
                     <ul class="dropdown-menu">
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GI</li>
-                        @forelse ($mares['gi_mares'] as $mare)
+                        @forelse ($my_mares['gi_mares'] as $mare)
                         <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GII</li>
-                        @forelse ($mares['gii_mares'] as $mare)
+                        @forelse ($my_mares['gii_mares'] as $mare)
                         <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">GIII</li>
-                        @forelse ($mares['giii_mares'] as $mare)
+                        @forelse ($my_mares['giii_mares'] as $mare)
                         <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>
                         @empty
                         <li><a href="#">Horse</a></li>
                         @endforelse
                         <li role="separator" class="divider"></li>
                         <li class="dropdown-header">Open Level</li>
-                        @forelse ($mares['ol_mares'] as $mare)
+                        @forelse ($my_mares['ol_mares'] as $mare)
                         <li><a href="/stall/{{$mare['id']}}">{{$mare['call_name']}}</a></li>                        
                         @empty
                         <li><a href="#">Horse</a></li>

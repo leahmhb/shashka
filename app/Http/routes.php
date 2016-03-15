@@ -43,11 +43,19 @@ Route::post('/add-person', 'Person@add_person_validate');
 //person modal
 Route::post('/add-person-quick', 'Person@add_person_quick_validate');
 
+//update person
+Route::get('/update-person/{person_id}', 'Person@update_person');
+Route::post('/update-person/{person_id}', 'Person@update_person_validate');
+
 //races
 Route::get('/add-race', 'Races@add_race');
 Route::post('/add-race', 'Races@add_race_validate');
 //race modal
 Route::post('/add-race-quick', 'Races@add_race_quick_validate');
+
+//update race
+Route::get('/update-race/{race_id}', 'Races@update_race');
+Route::post('/update-race/{race_id}', 'Races@update_race_validate');
 
 //race entries
 Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');
