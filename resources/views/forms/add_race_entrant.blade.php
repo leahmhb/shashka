@@ -30,7 +30,7 @@
 
         <div class="form-group">
           <label for="horse" class="col-sm-3 control-label">
-            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
             Select</label>
             <div class="col-sm-9">
              <select name="race_id" class="form-control select">
@@ -62,7 +62,7 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="horse" class="col-sm-3 control-label">
-              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Name</label>
               <div class="col-sm-9">
                 <select name="horse_id" class="form-control select">
@@ -76,10 +76,10 @@
 
             <div class="form-group">
               <label for="distance" class="col-sm-3 control-label">
-                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                 Placing</label>            
                 <div class="col-sm-9">     
-                  <input type="number" name="placing" class="form-control" placeholder="1">     
+                  <input type="number" name="placing" class="form-control" placeholder="0">     
                 </div> 
               </div><!--end placing-->
 

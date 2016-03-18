@@ -29,7 +29,7 @@
         <div class="panel-body">
          <div class="form-group">
           <label for="call-name" class="col-sm-2 control-label">        
-            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
             Call Name</label>
             <div class="col-sm-10">
               <input type="text" class="form-control" name="call_name" id="call-name" placeholder="...">
@@ -38,71 +38,71 @@
 
           <div class="form-group">
             <label for="registered-name" class="col-sm-2 control-label">
-              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
-              Reg'd Name</label>
+             <small><span class="text-info glyphicon glyphicon-star" data-toggle="tooltip" data-placement="top" title="Conditional"></span></small>  
+             Reg'd Name</label>
+             <div class="col-sm-10">
+              <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="...">
+            </div>
+          </div><!--end registered-name-->   
+
+          <div class="form-group">
+            <label for="sex" class="col-sm-2 control-label">
+              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+              Sex</label>
               <div class="col-sm-10">
-                <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="...">
-              </div>
-            </div><!--end registered-name-->   
+                <select name="sex" class="form-control select">
+                  <option></option>
+                  @foreach ($domain['sexes'] as $sex)          
+                  <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
+                  @endforeach
+                </select>           
+              </div>        
+            </div><!--end sex-->   
 
             <div class="form-group">
-              <label for="sex" class="col-sm-2 control-label">
-                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
-                Sex</label>
-                <div class="col-sm-10">
-                  <select name="sex" class="form-control select">
-                    <option></option>
-                    @foreach ($domain['sexes'] as $sex)          
-                    <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
-                    @endforeach
-                  </select>           
-                </div>        
-              </div><!--end sex-->   
+              <label for="color-name" class="col-sm-2 control-label">Color</label>
+              <div class="col-sm-10">       
+                <input type="text" name="color" class="form-control" placeholder="...">
+              </div>                
+            </div><!--end color-name-->
 
-              <div class="form-group">
-                <label for="color-name" class="col-sm-2 control-label">Color</label>
-                <div class="col-sm-10">       
-                  <input type="text" name="color" class="form-control" placeholder="...">
-                </div>                
-              </div><!--end color-name-->
+            <div class="form-group">
+              <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="...">
+              </div>
+            </div><!--end phenotype-name-->
 
-              <div class="form-group">
-                <label for="phenotype-name" class="col-sm-2 control-label">Phenotype</label>
-                <div class="col-sm-10">
-                  <input type="text" class="form-control" name="phenotype" id="phenotype" placeholder="...">
-                </div>
-              </div><!--end phenotype-name-->
+            <div class="form-group">
+              <label for="grade" class="col-sm-2 control-label">Grade</label>
+              <div class="col-sm-10">
+                <select name="grade" class="form-control select">
+                  <option></option>
+                  @foreach ($domain['grades'] as $grade)          
+                  <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
+                  @endforeach
+                </select>
+              </div>
+            </div><!--end grade-->
 
-              <div class="form-group">
-                <label for="grade" class="col-sm-2 control-label">Grade</label>
-                <div class="col-sm-10">
-                  <select name="grade" class="form-control select">
-                    <option></option>
-                    @foreach ($domain['grades'] as $grade)          
-                    <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
-                    @endforeach
-                  </select>
-                </div>
-              </div><!--end grade-->
+            <div class="form-group">
+              <label for="stall_path" class="col-sm-2 control-label">
+               <small><span class="text-info glyphicon glyphicon-star-empty" data-toggle="tooltip" data-placement="top" title="Conditional"></span></small>             
+               Stall Page</label>
+               <div class="col-sm-10">
+                <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
+              </div>
+            </div><!--end stall path-->
 
-              <div class="form-group">
-                <label for="stall_path" class="col-sm-2 control-label">
-                 <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="left" title="Required"></span></small>             
-                 Stall Page</label>
-                 <div class="col-sm-10">
-                  <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
-                </div>
-              </div><!--end stall path-->
-
-              <div class"form-group">
+            <div class"form-group">
               <label for="notes" class="col-sm-2 control-label">Notes</label>     
-               <textarea name="notes" class="col-sm-10" rows="3"></textarea>          
-             </div><!--end notes-->
+              <textarea name="notes" class="col-sm-10" rows="3"></textarea>          
+            </div><!--end notes-->
 
-           </div><!--end panel-body-->
-         </div><!--end panel-->
+          </div><!--end panel-body-->
+        </div><!--end panel-->
 
-         <div class="panel panel-default">
+        <div class="panel panel-default">
           <div class="panel-heading">
             <h4 class="panel-title">People</h4>
           </div>
@@ -110,7 +110,7 @@
 
             <div class="form-group">
               <label for="owner-name" class="col-sm-2 control-label">
-                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                 Owner</label>
                 <div class="col-sm-10">       
                   <select name="owner" class="form-control select">

@@ -19,7 +19,7 @@ public function update_horse($horse_id){
 }//end update_horse
 
 public function update_horse_validate($horse_id){
-  $data = $_POST;
+   $data = Base::trimWhiteSpace($_POST);
 
   $horse = Models\Horse::where('id', $horse_id)->first();
 
@@ -73,13 +73,13 @@ public function add_horse(){
 }//end add_horse 
 
 public function add_horse_quick_validate(){
-  $data = $_POST;
+   $data = Base::trimWhiteSpace($_POST);
   return "Horse Quick";
   exit;
 }//end add_horse_validate
 
 public function add_horse_validate(){
-  $data = $_POST;
+   $data = Base::trimWhiteSpace($_POST);
 
   $horse = Models\Horse::firstOrCreate($data);
 

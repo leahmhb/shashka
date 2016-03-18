@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
+use Carbon\Carbon;
+
 class Race extends Model{
   public $table = "races";
 
@@ -15,5 +17,11 @@ class Race extends Model{
     'grade',
     'url'
     );
+
+public function getRanDtAttribute($date){ 
+   return Carbon::parse($date);
+  }
+
+
 
 }

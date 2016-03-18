@@ -27,5 +27,12 @@ class Base extends Controller{
       return view('pages.credits');
     }//end credits
 
+    public function trimWhiteSpace($data){
+     foreach($data as $i=>$d){
+      $data[$i] = trim($d);
+    }//strip whitespace
+    return $data;
+    }//end trimWhitespace
+
 
   }

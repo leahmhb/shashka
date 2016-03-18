@@ -30,7 +30,7 @@
         <div class="panel-body">
          <div class="form-group">
           <label for="call-name" class="col-sm-2 control-label">
-           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
            Call Name          
          </label>
          <div class="col-sm-10">
@@ -40,7 +40,7 @@
 
       <div class="form-group">
         <label for="registered-name" class="col-sm-2 control-label">
-         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+         <small><span class="text-info glyphicon glyphicon-star tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Conditional"></span></small>
          Reg'd Name</label>
          <div class="col-sm-10">
           <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="" value="{{ $horse['registered_name'] }}">
@@ -49,7 +49,7 @@
 
       <div class="form-group">
         <label for="sex" class="col-sm-2 control-label">
-         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
          Sex</label>
          <div class="col-sm-10">
           <select name="sex" class="form-control select">
@@ -89,7 +89,7 @@
 
       <div class="form-group">
         <label for="stall_path" class="col-sm-2 control-label">
-          <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+          <small><span class="text-info glyphicon glyphicon-star-empty" data-toggle="tooltip" data-placement="top" title="Conditional"></span></small>
           Stall Page</label>
           <div class="col-sm-10">
             <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www" value="{{$horse['stall_path']}}">
@@ -114,7 +114,7 @@
 
         <div class="form-group">
           <label for="owner-name" class="col-sm-2 control-label">
-           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
            Owner</label>
            <div class="col-sm-10">       
             <select name="owner" class="form-control select">

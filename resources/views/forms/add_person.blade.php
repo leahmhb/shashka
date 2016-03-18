@@ -29,7 +29,7 @@
         <div class="panel-body">
           <div class="form-group">
             <label for="person_name" class="col-sm-3 control-label">
-              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="left" title="Required"></span></small>
+              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Username</label>
               <div class="col-sm-9">
                 <input name="username" class="form-control" id="person_name" placeholder="...">              
@@ -38,7 +38,7 @@
 
             <div class="form-group">
               <label for="stable_name" class="col-sm-3 control-label">
-               <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="left" title="Required"></span></small>        
+               <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="top" title="Required"></span></small>        
                Stable Name</label>
                <div class="col-sm-9">       
                 <input name="stable_name" class="form-control" id="person_stable_name" placeholder="...">         
@@ -47,7 +47,7 @@
 
             <div class="form-group">
               <label for="stable_prefix" class="col-sm-3 control-label">
-               <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="left" title="Required"></span></small>        
+               <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="top" title="Required"></span></small>        
                Stable Prefix</label>
                <div class="col-sm-9"> 
                 <input name="stable_prefix" class="form-control" id="person_stable_prefix" placeholder="...">   

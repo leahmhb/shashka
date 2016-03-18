@@ -2,17 +2,16 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-       <div class="panel panel-default">
-        <div class="panel-heading">
+   
           <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
           <h4 class="modal-title" id="add-horse-quick_Label">Add Horse Quick</h4>
-        </div>          
+        
       </div>
       <div class="modal-body">
 
-        <form id="add-horse-quick" class="form" role="form" method="post">
+        <form id="add-horse-quick" class="form" role="form" method="post" action="/add-horse-quick">
         <input type="hidden" name="_token" value="{{ csrf_token() }}">
-          <div class="panel-body">
+        
            <div class="form-group">
             <label for="call-name" class="control-label">
              <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
@@ -58,8 +57,7 @@
               </select>
             </div><!--end owner-name-->
 
-          </div><!--end panel-body-->
-        </div><!--end panel-->        
+         
       </div>
       <div class="modal-footer">
         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -74,21 +72,19 @@
   <div class="modal-dialog" role="document">
     <div class="modal-content">
       <div class="modal-header">
-        <div class="panel panel-default">
-          <div class="panel-heading">
+ 
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <h4 class="modal-title" id="add-person-quick_Label">Add Person Quick</h4>
-          </div>
+    
         </div>
         <div class="modal-body">
 
-          <form id="add-person-quick" class="form form-horizontal" role="form" method="post">
+          <form id="add-person-quick" class="form form-horizontal" role="form" method="post" action="/add-person-quick">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
-            <div class="panel-body">     
-
+           
               <div class="form-group">
                 <label for="person_name" class="col-sm-3 control-label">
                   <span class="text-danger" data-toggle="tooltip" data-placement="left" title="Required">*</span>
@@ -116,8 +112,6 @@
                   </div>             
                 </div><!--end stable prefix--> 
 
-              </div><!--end panel-body-->
-            </div><!--end panel--> 
           </div>
           <div class="modal-footer">
             <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
@@ -133,17 +127,16 @@
     <div class="modal-dialog" role="document">
       <div class="modal-content">
         <div class="modal-header">
-         <div class="panel panel-default">
-           <div class="panel-heading"> 
+
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
             <h4 class="modal-title" id="add-race-quick_Label">Add Race Quick</h4>
           </div>
-        </div>
+       
         <div class="modal-body">
 
-          <form id="add-race-quick" class="form form-horizontal" role="form" method="post">
+          <form id="add-race-quick" class="form form-horizontal" role="form" action="/add-race-quick" method="post">
           <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
             <div class="panel-body">               

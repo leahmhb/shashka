@@ -183,7 +183,7 @@
       @endif
     </li>
     @empty
-    No fillies yet!
+    No foals yet!
     @endforelse      
   </ul>
 </div><!--end progeny-->

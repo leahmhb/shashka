@@ -1,11 +1,11 @@
 @extends('layouts.master')
 
-@section('title', 'Update Race')
+@section('title', 'Add Race and Entrant')
 
 @section('content')
-<div class="page-header"><h1>Update Race <h2><small>New Records</small></h2></h1></div>
+<div class="page-header"><h1>Add Race and Entrant <h2><small>Efficient race records</small></h2></h1></div>
 
-<form id="update-race" class="form-horizontal" method="post">
+<form id="add-race-and-entrant" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">
@@ -21,7 +21,7 @@
   </div><!--end row-->
 
   <div class="row">
-    <div class="col-sm-12">
+    <div class="col-md-6">
 
       <div class="panel panel-default">
        <div class="panel-heading">
@@ -33,15 +33,17 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Race Name</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" id="name" value="{{ $race['name'] }}">
+            <input type="text" class="form-control" name="name" id="name" placeholder="...">
           </div>
         </div><!--end race-name-->
 
         <div class="form-group">
-          <label for="date" class="col-sm-3 control-label">Date</label>
-          <div class="col-sm-9">
+          <label for="date" class="col-sm-3 control-label">
+           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+           Date</label>
+           <div class="col-sm-9">
             <div class="input-group date" data-provide="datepicker">
-              <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy-mm-dd" value="{{ date('Y-m-d', strtotime($race['ran_dt']))}} ">
+              <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
               <div class="input-group-addon">
                 <span class="glyphicon glyphicon-calendar"></span>
               </div>
@@ -55,11 +57,11 @@
             Surface</label>
             <div class="col-sm-9">             
               <label class="radio-inline">
-                <input type="radio" name="surface" id="dirt" value="Dirt" @if($race['surface'] == 'Dirt') checked @endif>
+                <input type="radio" name="surface" id="dirt" value="Dirt">
                 Dirt
               </label>
               <label class="radio-inline">
-                <input type="radio" name="surface" id="turf" value="Turf" @if($race['surface'] == 'Turf') checked @endif>
+                <input type="radio" name="surface" id="turf" value="Turf">
                 Turf
               </label>  
             </label>              
@@ -72,7 +74,7 @@
             Distance</label>            
             <div class="col-sm-9"> 
               <div class="input-group">
-                <input type="text" name="distance" class="form-control" value="{{ $race['distance'] }}">
+                <input type="text" name="distance" class="form-control" placeholder="0">
                 <span class="input-group-addon">Furlongs</span>
               </div> 
             </div> 
@@ -87,7 +89,7 @@
                 <select name="grade" class="form-control select">
                   <option></option>
                   @foreach ($domain['grades'] as $grade)          
-                  <option value="{{$grade['grade']}}"  @if($race['grade'] == $grade['grade']) selected @endif>{{$grade['grade']}}</option>
+                  <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
                   @endforeach
                 </select>
               </div>
@@ -99,13 +101,48 @@
                 <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                 URL</label>            
                 <div class="col-sm-9">         
-                  <input type="text" name="url" class="form-control" value="{{ $race['url'] }}">
+                  <input type="text" name="url" class="form-control" placeholder="www">
                 </div> 
               </div><!--end url-->
 
             </div><!--end panel-body-->
           </div><!--end panel-->
         </div><!--end col-->
+
+
+ <div class="col-md-6">
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h4 class="panel-title">Horse</h4>
+        </div>
+        <div class="panel-body">
+          <div class="form-group">
+            <label for="horse" class="col-sm-3 control-label">
+              <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+              Name</label>
+              <div class="col-sm-9">
+                <select name="horse_id" class="form-control select">
+                  <option></option>
+                  @foreach ($my_horses as $h)          
+                  <option value="{{$h['id']}}">{{$h['call_name']}}</option>
+                  @endforeach
+                </select>           
+              </div>        
+            </div><!--end horse--> 
+
+            <div class="form-group">
+              <label for="distance" class="col-sm-3 control-label">
+                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+                Placing</label>            
+                <div class="col-sm-9">     
+                  <input type="number" name="placing" class="form-control" placeholder="0">     
+                </div> 
+              </div><!--end placing-->
+
+            </div><!--end panel-body-->
+          </div><!--end panel-->
+
+
       </div><!--end row-->
 
 

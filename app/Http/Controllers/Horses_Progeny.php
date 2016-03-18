@@ -51,8 +51,8 @@ class Horses_Progeny extends Base{
         $relationship = "Lineage";
       }//end if
 
-      $record = $_POST;
-      //validate here
+      $record = Base::trimWhiteSpace($_POST);
+
       $ancestory = Models\Horse_Progeny::where('horse_id', $record['horse_id'])->first();
 
     if(!$ancestory){ //create new

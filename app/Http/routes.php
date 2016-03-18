@@ -61,6 +61,10 @@ Route::post('/update-race/{race_id}', 'Races@update_race_validate');
 Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');
 Route::post('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant_validate');
 
+//add race and entry
+Route::get('/add-race-and-entry', 'Races@add_race_and_entry');
+Route::post('/add-race-and-entry', 'Races@add_race_and_entry_validate');
+
 //horse ancestory
 Route::get('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory');
 Route::post('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory_validate');
