@@ -47,7 +47,7 @@
         Dirt
       </label>
       <label class="radio-inline">
-        <input type="radio" name="surface" id="turf" value="Turf" checked>
+        <input type="radio" name="surface" id="turf" value="Turf">
         Turf
       </label>  
     </div><!--end surface-->     

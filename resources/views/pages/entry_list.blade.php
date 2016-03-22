@@ -47,8 +47,8 @@
           @endif
           <td>{{ $e['race_name'] }} - {{ $e['race_distance'] }}F - {{ $e['race_surface'] }} - {{ $e['race_grade'] }}</td>
           
-          <td><a class="btn btn-primary btn-sm" href="{{ $e['url'] }}" target="_blank">Link</a></td>
-          <td><a class="btn btn-primary btn-sm" href="/update-race-entrant/{{ $e['id'] }}">Update</a></td>
+          <td><a class="btn btn-default btn-sm" href="{{ $e['url'] }}" target="_blank">Link</a></td>
+          <td><a class="btn btn-info btn-sm" href="/update-race-entrant/{{ $e['id'] }}">Update</a></td>
         </tr>      
         @endforeach 
       </tbody>

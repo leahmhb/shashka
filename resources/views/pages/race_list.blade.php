@@ -40,9 +40,9 @@
         <td>{{ $r['name'] }} </td>
         <td>{{ $r['distance'] }}F</td>
         <td>{{ $r['surface'] }} </td>     
-        <td>{{ date('Y-m-d', strtotime($r['ran_dt']))}} </td>
-        <td><a class="btn btn-primary btn-sm" href="{{ $r['url'] }}" target="_blank">Link</a></td>
-        <td><a class="btn btn-primary btn-sm" href="/update-race/{{ $r['id'] }}">Update</a></td>
+        <td>@if(date('Y-m-d', strtotime($r['ran_dt'])) == '1000-01-01') TBA @else {{ date('Y-m-d', strtotime($r['ran_dt']))}} @endif</td>
+        <td><a class="btn btn-default btn-sm" href="{{ $r['url'] }}" target="_blank">Link</a></td>
+        <td><a class="btn btn-info btn-sm" href="/update-race/{{ $r['id'] }}">Update</a></td>
       </tr>
       @endforeach   
     </tbody>

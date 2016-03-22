@@ -68,7 +68,7 @@
                 <select name="horse_id" class="form-control select">
                   <option></option>
                   @foreach ($my_horses as $h)          
-                  <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>
+                  <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id'] and $validate) disabled @endif>{{$h['call_name']}}</option>
                   @endforeach
                 </select>           
               </div>        

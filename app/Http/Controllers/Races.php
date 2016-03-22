@@ -189,9 +189,20 @@ public function add_race_entrant($horse_id = false){
 
 public function add_race_entrant_validate(){
   $data = Base::trimWhiteSpace($_POST);
-  
-  $horse['id'] = $data['horse_id'];
-  $entry = Models\Race_Entrant::firstorCreate($data);
+
+  $entry  = Models\Race_Entrant::where('horse_id', $data['horse_id'])
+  ->where('race_id', $data['race_id'])
+  ->where('placing', 'TBA')
+  ->first();
+
+  if($entry){
+    $entry->placing = $data['placing'];
+    $entry->save();
+  } else {
+     $entry = Models\Race_Entrant::firstorCreate($data);
+  }
+
+  $horse['id'] = $data['horse_id']; 
 
   return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => true]);
 }//end add_race_entrant
