@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Sex extends Model
-{
-    //
+class Sex extends Model{
+   public $table = "sexes";
+     public $timestamps = false;
 }

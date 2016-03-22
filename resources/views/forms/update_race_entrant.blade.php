@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Add Race Entrant')
+@section('title', 'Update Race Entrant')
 
 @section('content')
-<div class="page-header"><h1>Add Race Entrant <h2><small>Record Entries and Placings</small></h2></h1></div>
+<div class="page-header"><h1>Update Race Entrant <h2><small>Record Entries and Placings</small></h2></h1></div>
 
 <form id="add-race-entrant" class="form-horizontal" method="post">
 
@@ -36,7 +36,7 @@
              <select name="race_id" class="form-control select">
               <option></option>
               @foreach ($domain['races'] as $race)          
-              <option value="{{$race['id']}}">{{$race['name']}}
+              <option @if($race['id'] == $entry['race_id']) selected @endif value="{{$race['id']}}">{{$race['name']}}
                 {{ $race['surface'] }} 
                 {{ $race['distance'] }}F 
                 {{ $race['grade'] }} </option>
@@ -68,7 +68,7 @@
                 <select name="horse_id" class="form-control select">
                   <option></option>
                   @foreach ($my_horses as $h)          
-                  <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>
+                  <option value="{{$h['id']}}" @if($entry['horse_id'] == $h['id']) selected @elseif($entry['horse_id'] != $h['id'] and $entry['horse_id']) disabled @endif>{{$h['call_name']}}</option>
                   @endforeach
                 </select>           
               </div>        
@@ -79,7 +79,7 @@
                 <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                 Placing</label>            
                 <div class="col-sm-9">     
-                  <input type="number" name="placing" class="form-control" placeholder="0">     
+                  <input type="number" name="placing" class="form-control" value="{{ $entry['placing'] }}">     
                 </div> 
               </div><!--end placing-->
 
@@ -95,7 +95,7 @@
       <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
           <div class="text-center form-group panel-body"> 
-            <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
+            <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
           </div>
         </div><!--end col-->
       </div><!--end row-->

@@ -29,6 +29,10 @@ class Horses_Progeny extends Base{
     if(is_numeric($sex) && $horse_id){
       $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
       $record = Models\Horse_Progeny::where('horse_id', $horse['id'])->first();
+
+      $sire = Models\Horse::select('id', 'call_name')->where('id', $record['sire_id'])->first();
+      $dam = Models\Horse::select('id', 'call_name')->where('id', $record['dam_id'])->first();
+      
       $relationship = "Lineage"; 
     }//end if
 
@@ -61,6 +65,7 @@ class Horses_Progeny extends Base{
      $ancestory->horse_id = $record['horse_id'];
      $ancestory->sire_id = $record['sire_id'];
      $ancestory->dam_id = $record['dam_id'];
+     $ancestory->save();
     }//end if else  
 
     $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();

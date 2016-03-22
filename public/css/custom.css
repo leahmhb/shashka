@@ -14,7 +14,8 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .tooltip-overflow { /* tool tip */
-  white-space: nowrap;
+ /* white-space: nowrap;*/
+  max-width: 100px;
 }
 
 form .text-danger, form .text-info {
@@ -24,6 +25,7 @@ form .text-danger, form .text-info {
 
 label {
   font-weight:bold;
+  font-size: .85em;
 }
 
 ul {
@@ -51,8 +53,18 @@ i, em {
   text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;
 }
 
+.row-eq-height {
+  display: -webkit-box;
+  display: -webkit-flex;
+  display: -ms-flexbox;
+  display:         flex;
+}
 
 /************* NAVBAR **************/
+
+.navbar {
+  border-radius: 0;
+}
 li.dropdown-header {
   font-weight: bold;
 }
@@ -61,8 +73,8 @@ ul.dropdown-menu li a{
   font-size: 14px;
   font-family:  'Quattrocento Sans', sans-serif;
   text-transform:none;
+  color: rgb(52, 52, 48);
 }
-
 
 .navbar-brand,
 li.dropdown a.dropdown-toggle,
@@ -89,8 +101,7 @@ ul.nav.nav-pills li a { /* nav pills */
   font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
 }
 
-.panel-heading .panel-title, .panel .panel-footer, .navbar, li.dropdown-header {
-  font-family: "Cinzel", Georgia,Times,'Times New Roman',serif;
+.panel-default .panel-heading .panel-title, .panel-default .panel-footer, .navbar, li.dropdown-header {
   color: rgb(62, 63, 58);
 }
 
@@ -166,7 +177,7 @@ div.panel-body h2 {
 #bg img { /* for bg image */
   width: 100
   height: auto;
-  max-width: 100%;
+  max-width: 450px;
   box-sizing: border-box;
 }
 
@@ -200,6 +211,15 @@ textarea {
 .form-control[disabled]{
   background: rgba(62, 63, 58, .6);
   border: 1px solid rgb(223, 215, 202);
+}
+
+.btn-block  {
+  padding: 1em;
+}
+}
+
+ul.distance-info li{
+  font-size: .5em;
 }
 
 /************* PLACEHOLDERS **************/
@@ -256,44 +276,9 @@ img.stall-pic {
   padding: 5px;
 }
 
-/************* MODAL **************/
-.modal {
-  background:rgba(81, 97, 61, .3);
+/************* Tooltips **************/
+
+.tooltip-inner {
+    text-transform: none;
+    font-weight: normal;
 }
-
-.modal .modal-dialog, .modal .modal-content {
- color: rgb(62, 63, 58);
-}
-
-.modal .panel {
-  margin: 0;
-  padding: 0;
-}
-
-.modal input.form-control, 
-.modal select.form-control, 
-.modal .select2-container--default .select2-selection--single,
-.modal .select2-container .select2-choice
-{ 
-  background: rgb(248, 245, 240);
-  line-height:20px;
-  height: 46px;
-  border-radius: 4px;
-  border: 1px solid rgb(223, 215, 202);
-}
-
-.modal textarea {
-  background: rgb(248, 245, 240);
-  border-radius: 4px;
-  border: 1px solid rgb(223, 215, 202);
-}
-
-.modal .form-control[disabled]{
-  background: rgba(62, 63, 58, .6);
-  border: 1px solid rgb(223, 215, 202);
-}
-
-
-
-
-

@@ -6,6 +6,8 @@ $(document).ready(function () {
     return false;
   });
 
+  $('.collapse').collapse("hide");
+
   $.fn.datepicker.defaults.format = "yyyy-mm-dd";
   $.fn.datepicker.defaults.todayHighlight = true;
 
@@ -19,23 +21,14 @@ $(document).ready(function () {
     width: '100%' 
   });
 
-//modal - add person quick
-$( '#add-person-quick-btn' ).click(function(e) {
-  alert($('#add-person-quick').serialize());
-  e.preventDefault(); 
+  $('.modal').on('hidden.bs.modal', function(){
+    $(this).find('form')[0].reset();
+  });
 
- /* $.ajax({
-    type: "POST",
-    url: '/add-person-quick',
-    beforeSend: function(xhr){xhr.setRequestHeader('X-CSRF-TOKEN', $("#token").attr('content'));},
-    data: $('#add-person-quick').serializeArray(),
-    success: function( msg ) { 
-      alert( msg ); 
-      
-    }//end success
-  });//end ajax*/
-});//end submit
-
-
+// Fill modal with content from link href
+$("#quick-form").on("show.bs.modal", function(e) {
+    var link = $(e.relatedTarget);
+    $(this).find(".form-part").load(link.attr("href"));
+});
 
 });//end ready

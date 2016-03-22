@@ -146,9 +146,9 @@
               </div>
             </div><!--end hexer-name-->
             <div class="text-right">If person not in list, 
-              <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-person-quick">
-               Add
-             </button>
+             <a href="/quick-add-person" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+      Add Person 
+    </a>
            </div>
          </div><!--end panel-body-->
        </div><!--end panel-->
@@ -209,7 +209,7 @@
           <label for="distance-min" class="col-sm-3 control-label">Min</label>    
           <div class="col-sm-9">
             <div class="input-group">
-              <input type="text" name="distance_min" class="form-control" placeholder="0">
+              <input type="number" name="distance_min" class="form-control" placeholder="0">
               <span class="input-group-addon">Furlongs</span>
             </div> 
           </div>
@@ -219,7 +219,7 @@
           <label for="distance-min" class="col-sm-3 control-label">Max</label>    
           <div class="col-sm-9">
            <div class="input-group">
-            <input type="text" name="distance_max" class="form-control" placeholder="0">
+            <input type="number" name="distance_max" class="form-control" placeholder="0">
             <span class="input-group-addon">Furlongs</span>
           </div> 
         </div>
@@ -227,7 +227,7 @@
     </div><!--end col-->
 
     <div class="col-sm-4">
-      <ul>
+      <ul class="small">
        <li><b>5 – 7.5:</b> Sprinter</li>
        <li><b>7.5 – 9.5:</b> Middle / Common </li>
        <li><b>10 – 12:</b> Classic </li>
@@ -366,8 +366,8 @@
   <div class="panel-body">
 
     <div class="form-group">
-      <label for="leg-type" class="col-sm-2 col-md-6 control-label">Leg Type</label>
-      <div class="col-sm-10 col-md-6">
+      <label for="leg-type" class="col-sm-4 control-label">Leg Type</label>
+      <div class="col-sm-8">
         <select name="leg_type" class="form-control select">
          <option></option>
          @foreach ($domain['leg_types'] as $leg)          
@@ -378,8 +378,8 @@
    </div><!--end leg-type-->
 
    <div class="form-group">
-    <label for="neck-height" class="col-sm-2 col-md-6 control-label">Neck Height</label>
-    <div class="col-sm-10 col-md-6">             
+    <label for="neck-height" class="col-sm-4 control-label">Neck Height</label>
+    <div class="col-sm-8">             
       <select name="neck_height" class="form-control select">
        <option></option>
        <option value="Normal">Normal</option>
@@ -389,8 +389,8 @@
  </div><!--end neck-height-->
 
  <div class="form-group">
-  <label for="run-style" class="col-sm-2 col-md-6 control-label">Run Style</label>
-  <div class="col-sm-10 col-md-6">             
+  <label for="run-style" class="col-sm-4 control-label">Run Style</label>
+  <div class="col-sm-8">             
     <select name="run_style" class="form-control select">
      <option></option>
      <option value="Normal">Normal</option>
@@ -400,8 +400,8 @@
 </div><!--end run-style-->
 
 <div class="form-group">
-  <label for="bandages" class="col-sm-2 col-md-6 control-label">Bandages</label>
-  <div class="col-sm-10 col-md-6">             
+  <label for="bandages" class="col-sm-4 control-label">Bandages</label>
+  <div class="col-sm-8">             
     <select name="bandages" class="form-control select">
      <option></option>
      <option value="Both">Both</option>
@@ -413,8 +413,8 @@
 </div><!--end bandages-->  
 
 <div class="form-group">
-  <label for="hood" class="col-sm-2 col-md-6 control-label">Hood</label>
-  <div class="col-sm-10 col-md-6">             
+  <label for="hood" class="col-sm-4 control-label">Hood</label>
+  <div class="col-sm-8">             
     <select name="hood" class="form-control select">
       <option></option>
       <option value="Yes">Yes</option>
@@ -424,8 +424,8 @@
 </div><!--end hood-->
 
 <div class="form-group">
-  <label for="shadow-roll" class="col-sm-2 col-md-6 control-label">Shadow Roll</label>
-  <div class="col-sm-10 col-md-6">             
+  <label for="shadow-roll" class="col-sm-4 control-label">Shadow Roll</label>
+  <div class="col-sm-8">             
     <select name="shadow_roll" class="form-control select">
      <option></option>
      <option value="Yes">Yes</option>
@@ -441,7 +441,7 @@
 
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group"> 
+    <div class="text-center form-group panel-body"> 
       <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
     </div>
   </div><!--end col-->

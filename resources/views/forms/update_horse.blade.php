@@ -1,6 +1,6 @@
 @extends('layouts.master')
 
-@section('title', 'Add Horse')
+@section('title', 'Update Horse')
 
 @section('content')
 <div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information </h1> <h2><small>Keep Records Current</small></h2></div>
@@ -149,7 +149,9 @@
           </select>
         </div>
       </div><!--end hexer-name-->
-      <div class="text-right">If person not in list, <a class="btn-xs btn btn-primary" href="/add-person/quick" target="_blank">Add</a></div>
+      <div class="text-right">If person not in list, <a href="/quick-add-person" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+      Add Person 
+    </a></div>
     </div><!--end panel-body-->
   </div><!--end panel-->
 
@@ -207,20 +209,20 @@
         <div class="form-group">
           <label for="distance-min" class="col-sm-3 control-label">Min</label>    
           <div class="col-sm-9">
-            <input type="text" name="distance_min" class="form-control" placeholder="0" value="{{ $horse['distance_min'] }}">
+            <input type="number" name="distance_min" class="form-control" placeholder="0" value="{{ $horse['distance_min'] }}">
           </div>
         </div><!--end distance--> 
 
         <div class="form-group">
           <label for="distance-min" class="col-sm-3 control-label">Max</label>    
           <div class="col-sm-9">
-            <input type="text" name="distance_max" class="form-control" placeholder="0" value="{{ $horse['distance_max'] }}">
+            <input type="number" name="distance_max" class="form-control" placeholder="0" value="{{ $horse['distance_max'] }}">
           </div>
         </div> <!--end distance--> 
       </div><!--end col-->
 
       <div class="col-sm-4">
-        <ul>
+        <ul class="small">
          <li><b>5 – 7.5:</b> Sprinter</li>
          <li><b>7.5 – 9.5:</b> Middle / Common </li>
          <li><b>10 – 12:</b> Classic </li>
@@ -434,7 +436,7 @@
 
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group"> 
+    <div class="text-center form-group panel-body"> 
       <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
     </div>
   </div><!--end col-->

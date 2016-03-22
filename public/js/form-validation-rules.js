@@ -17,8 +17,7 @@ $(document).ready(function () {
   "required,surface,Please choose surface.",
   "required,distance,Please enter distance.",
   "required,ran_dt,Please enter ran date.",
-  "required,grade,Please enter grade.",
-  "required,url,Please enter url."
+  "required,grade,Please enter grade."
   ];
 
   var addRaceEntrantRules = [
@@ -75,7 +74,7 @@ $("#add-horse, #update-horse").RSV({
   rules: addHorseRules
 });//end rsv
 
-$("#add-person, #update-person").RSV({ 
+$("#add-person, #update-person, #add-person-quick").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",

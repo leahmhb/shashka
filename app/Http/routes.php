@@ -20,6 +20,15 @@ Route::get('/credits', 'Base@credits');
 Route::get('/horse-list', 'Horses@horse_list');
 Route::get('/person-list', 'Person@person_list');
 Route::get('/race-list', 'Races@race_list');
+Route::get('/entry-list', 'Races@entry_list');
+
+//quick forms
+Route::get('/quick-add-horse', 'Horses@quick_add_horse');
+Route::post('/quick-add-horse', 'Horses@add_horse_validate');
+Route::get('/quick-add-person', 'Person@quick_add_person');
+Route::post('/quick-add-person', 'Person@add_person_validate');
+Route::get('/quick-add-race', 'Races@quick_add_race');
+Route::post('/quick-add-race', 'Races@add_race_validate');
 
 //contact form mess
 Route::get('contact', 
@@ -30,8 +39,6 @@ Route::post('contact',
 //add horse 
 Route::get('/add-horse', 'Horses@add_horse');
 Route::post('/add-horse', 'Horses@add_horse_validate');
-//horse modal
-Route::post('/add-horse-quick', 'Horses@add_horse_quick_validate');
 
 //update horse
 Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
@@ -40,8 +47,6 @@ Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
 //person
 Route::get('/add-person', 'Person@add_person');
 Route::post('/add-person', 'Person@add_person_validate');
-//person modal
-Route::post('/add-person-quick', 'Person@add_person_quick_validate');
 
 //update person
 Route::get('/update-person/{person_id}', 'Person@update_person');
@@ -50,8 +55,6 @@ Route::post('/update-person/{person_id}', 'Person@update_person_validate');
 //races
 Route::get('/add-race', 'Races@add_race');
 Route::post('/add-race', 'Races@add_race_validate');
-//race modal
-Route::post('/add-race-quick', 'Races@add_race_quick_validate');
 
 //update race
 Route::get('/update-race/{race_id}', 'Races@update_race');
@@ -60,6 +63,10 @@ Route::post('/update-race/{race_id}', 'Races@update_race_validate');
 //race entries
 Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');
 Route::post('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant_validate');
+
+//update race entries
+Route::get('/update-race-entrant/{entry_id}', 'Races@update_race_entrant');
+Route::post('/update-race-entrant/{entry_id}', 'Races@update_race_entrant_validate');
 
 //add race and entry
 Route::get('/add-race-and-entry', 'Races@add_race_and_entry');

@@ -21,9 +21,9 @@
     <div class="col-sm-12">
      <div class="panel panel-default">
        <div class="panel-body">
-         If horses are not in list,   <button type="button" class="btn btn-primary btn-xs" data-toggle="modal" data-target="#add-horse-quick">
-         add
-         </button>.
+         If horses are not in list, <a href="/quick-add-horse" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+      Add Horse 
+    </a>.
      </div>
    </div><!--end panel-->
  </div><!--end col-->
@@ -92,10 +92,10 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Name</label>
           <div class="col-sm-9">
-            <select name="horse_id" class="form-control select">
+            <select name="horse_id" class="form-control select" >
               <option></option>
               @foreach ($domain['horses'] as $h)          
-              <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @endif>{{$h['call_name']}}</option>
+              <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>
               @endforeach
             </select>           
           </div>
@@ -108,13 +108,15 @@
 
 <div class="row">
   <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group"> 
+    <div class="text-center form-group panel-body"> 
       <button type="submit" class="btn-lg btn  btn-block btn-default">Add</button>    
     </div>
   </div><!--end col-->
 </div><!--end row-->
 
 </form>
+
+
 
 
 @endsection

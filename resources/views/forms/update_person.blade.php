@@ -70,8 +70,8 @@
 
     <div class="row">
       <div class="col-sm-offset-4 col-sm-4">
-        <div class="text-center form-group"> 
-          <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
+        <div class="text-center form-group panel-body"> 
+          <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
         </div>
       </div><!--end col-->
     </div><!--end row-->

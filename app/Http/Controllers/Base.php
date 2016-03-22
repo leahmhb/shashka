@@ -34,5 +34,12 @@ class Base extends Controller{
     return $data;
     }//end trimWhitespace
 
+    public function output($a){
+      echo "<pre>" . print_r($a, true) . "</pre>";
+      exit;
+    }//end printArray
+
+    function ordinal($i){return$i.@(($j=abs($i)%100)>10&&$j<14?th:[th,st,nd,rd][$j%10]?:th);}
+
 
   }

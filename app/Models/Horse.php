@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Horse extends Model{
   public $table = "horses";
+  public $timestamps = false;
   protected $fillable = array(
     'call_name',
     'registered_name',
@@ -44,4 +45,5 @@ class Horse extends Model{
     'notes'
     );
 
+ 
 }//end Horse

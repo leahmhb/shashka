@@ -36,22 +36,21 @@
             <input type="text" class="form-control" name="name" id="name" placeholder="...">
           </div>
         </div><!--end race-name-->
+                
 
         <div class="form-group">
-          <label for="date" class="col-sm-3 control-label">
-           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
-           Date</label>
-           <div class="col-sm-9">
-            <div class="input-group date" data-provide="datepicker">
-              <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
-              <div class="input-group-addon">
-                <span class="glyphicon glyphicon-calendar"></span>
-              </div>
-            </div>
-          </div>
-        </div><!--end date-->
+          <label for="distance" class="col-sm-3 control-label">
+            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+            Distance</label>            
+            <div class="col-sm-9"> 
+              <div class="input-group">
+                <input type="number" name="distance" class="form-control" placeholder="0">
+                <span class="input-group-addon">Furlongs</span>
+              </div> 
+            </div> 
+          </div><!--end distance-->
 
-        <div class="form-group">
+            <div class="form-group">
           <label for="surface" class="col-sm-3 control-label">
             <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
             Surface</label>
@@ -66,19 +65,7 @@
               </label>  
             </label>              
           </div>
-        </div><!--end surface-->          
-
-        <div class="form-group">
-          <label for="distance" class="col-sm-3 control-label">
-            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
-            Distance</label>            
-            <div class="col-sm-9"> 
-              <div class="input-group">
-                <input type="text" name="distance" class="form-control" placeholder="0">
-                <span class="input-group-addon">Furlongs</span>
-              </div> 
-            </div> 
-          </div><!--end distance-->
+        </div><!--end surface-->    
 
 
           <div class="form-group">
@@ -98,12 +85,26 @@
 
             <div class="form-group">
               <label for="url" class="col-sm-3 control-label">
-                <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
+               
                 URL</label>            
                 <div class="col-sm-9">         
                   <input type="text" name="url" class="form-control" placeholder="www">
                 </div> 
               </div><!--end url-->
+
+                  <div class="form-group">
+          <label for="date" class="col-sm-3 control-label">
+          
+           Date</label>
+           <div class="col-sm-9">
+            <div class="input-group date" data-provide="datepicker">
+              <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
+              <div class="input-group-addon">
+                <span class="glyphicon glyphicon-calendar"></span>
+              </div>
+            </div>
+          </div>
+        </div><!--end date-->
 
             </div><!--end panel-body-->
           </div><!--end panel-->
@@ -114,7 +115,7 @@
 
       <div class="row">
         <div class="col-sm-offset-4 col-sm-4">
-          <div class="text-center form-group"> 
+          <div class="text-center form-group panel-body"> 
             <button type="submit" class="btn-lg btn-block btn btn-default">Add</button>    
           </div>
         </div><!--end col-->

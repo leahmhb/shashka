@@ -8,6 +8,7 @@ use Carbon\Carbon;
 
 class Race extends Model{
   public $table = "races";
+  public $timestamps = false;
 
   protected $fillable = array(
     'name',
@@ -18,9 +19,9 @@ class Race extends Model{
     'url'
     );
 
-public function getRanDtAttribute($date){ 
+  public function getRanDtAttribute($date){ 
    return Carbon::parse($date);
-  }
+ }
 
 
 

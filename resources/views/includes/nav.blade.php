@@ -17,7 +17,7 @@
                        @forelse ($my_stallions as $stallion)
                        <li>
                         <a href="/stall/{{$stallion['id']}}">{{$stallion['call_name']}} 
-                        <small class="text-muted">{{$stallion['grade']}}</small>
+                            <small class="text-muted">{{$stallion['grade']}}</small>
                         </a>
                     </li>
                     @empty
@@ -40,22 +40,25 @@
                 </ul>
             </li>
             <li class="dropdown">
+            <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Lists<span class="caret"></span></a>
+                <ul class="dropdown-menu">  
+                    <li><a href="/horse-list">Horses</a></li> 
+                    <li><a href="/race-list">Races</a></li> 
+                    <li><a href="/entry-list">Entries</a></li> 
+                    <li><a href="/person-list">Person</a></li> 
+                </ul>
+            </li>
+            <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Admin<span class="caret"></span></a>
-                <ul class="dropdown-menu">
-                    <li class="dropdown-header">Manage</li>     
+                <ul class="dropdown-menu"> 
                     <li><a href="/add-horse">Add Horse</a></li> 
                     <li><a href="/add-ancestory">Add Ancestory</a></li>
                     <li role="separator" class="divider"></li>
                     <li><a href="/add-person">Add Person</a></li>    
                     <li role="separator" class="divider"></li>     
                     <li><a href="/add-race">Add Race</a></li>      
-                    <li><a href="/add-race-entrant">Add Race Entrant</a></li>                     
-                    <li><a href="/add-race-and-entry">Add Race and Entry</a></li>     
-                    <li role="separator" class="divider"></li>
-                    <li class="dropdown-header">Overview</li>  
-                    <li><a href="/horse-list">Horse List</a></li> 
-                    <li><a href="/race-list">Race List</a></li> 
-                    <li><a href="/person-list">Person List</a></li>          
+                    <li><a href="/add-race-entrant">Add Race Entrant</a></li>
+                    <li><a href="/add-race-and-entry">Add Race and Entry</a></li>
                 </ul>
             </li>
         </ul>

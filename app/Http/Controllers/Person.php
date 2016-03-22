@@ -13,10 +13,14 @@ use Illuminate\Http\Response;
 
 class Person extends Base{
 
-public function person_list(){
+  public function person_list(){
     $person = Models\Person::get()->toArray();
     return view('pages.person_list', ['person' => $person]);
 }//end person_list
+
+public function quick_add_person(){
+  return view('forms.quick_add_person');
+}
 
 public function update_person($person_id){
   $person = Models\Person::where('id', $person_id)->first()->toArray();
@@ -25,8 +29,6 @@ public function update_person($person_id){
 
 public function update_person_validate($person_id){
   $data = $_POST;
-
-
 
   $person = Models\Person::where('id', $person_id)->first();
   $person->username = $data['username'];
@@ -44,19 +46,15 @@ public function add_person(){
   return view('forms.add_person', ['validate' => false]);
 }//end add_person
 
-public function add_person_validate(){ 
+public function add_person_validate(){  
   $data = Base::trimWhiteSpace($_POST);
+  unset($data['_token']);
+  Base::output($data);
 
   $person = Models\Person::firstOrCreate($data);
   return view('forms.add_person', ['validate' => true]);
 }//end add_person_validate
 
-public function add_person_quick_validate(){ 
-  //$data = $_POST; 
 
-  //$person = Models\Person::firstOrCreate($data);
-  //"<pre>" . print_r($data, true) . "</pre>"; 
-  return $data;
-}//end add_person_validate
 
 }//end class
