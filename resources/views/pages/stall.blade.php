@@ -39,8 +39,7 @@
       <img class="stall-pic img-responsive" src="{{ $horse['img_path'] }}">   
 
     </div><!--end panel content-->
-    <div class="panel-footer">    
-    </div><!--end panel footer-->
+
   </div><!--end panel-->       
 </div><!--end col-->
 
@@ -76,8 +75,7 @@
 
      <p>{{ $horse['notes'] }}</p>
    </div>
-   <div class="panel-footer">
-   </div>
+
  </div>
 
 </div><!--end col-->
@@ -265,7 +263,7 @@
   @foreach($race_records as $r)     
   @if($r['placing'] > 3)  
   <li>              
-  <b>{{ $r['placing'] }}</b> <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+    <b>{{ $r['placing'] }}</b> <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
     title="{{ $r['race']['surface'] }} 
     {{ $r['race']['distance'] }}F 
     {{ $r['race']['grade'] }}">
@@ -303,7 +301,7 @@
 </div><!--end tab content-->
 
 </div><!--end tabs-->
-<div class="panel-footer">  </div>
+
 </div><!--end panel body-->
 </div><!--end panel-->  
 </div><!--end col-->

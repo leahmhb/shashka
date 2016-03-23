@@ -39,7 +39,8 @@ class Base extends Controller{
       exit;
     }//end printArray
 
-    function ordinal($i){return$i.@(($j=abs($i)%100)>10&&$j<14?th:[th,st,nd,rd][$j%10]?:th);}
+    public function ordinal($i){return$i.@(($j=abs($i)%100)>10&&$j<14?th:[th,st,nd,rd][$j%10]?:th);}
 
+   
 
   }

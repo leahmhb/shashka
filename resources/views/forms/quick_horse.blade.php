@@ -2,12 +2,13 @@
 <form id="horse" class="form" role="form" method="post" action="/quick-add-horse">
  <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
-  <h4 class="modal-title" id="add-horse-quick_Label">Add Horse Quick</h4>
+  <h4 class="modal-title" id="add-horse-quick_Label">Add Horse</h4>
 </div>
 
 <div class="modal-body">
 
   <input type="hidden" name="_token" value="{{ csrf_token() }}">
+  <input type="number" class="form-control hidden" readonly name="id" value="-1">
 
   <div class="form-group">
     <label for="call-name" class="control-label">
@@ -16,7 +17,7 @@
       </small>
       Call Name
     </label>               
-    <input type="text" class="form-control" name="call_name" id="call-name" placeholder="...">
+    <input type="text" class="form-control" name="call_name" placeholder="...">
   </div><!--end call-name-->
 
   <div class="form-group">
@@ -26,7 +27,7 @@
       </small>  
       Reg'd Name
     </label>
-    <input type="text" class="form-control" name="registered_name" id="registered-name" placeholder="...">
+    <input type="text" class="form-control" name="registered_name" placeholder="...">
   </div><!--end registered-name-->   
 
   <div class="form-group">
@@ -52,7 +53,7 @@
       </small>  
       Stall Page
     </label>
-    <input type="text" class="form-control" name="stall_path" id="stall page" placeholder="www">
+    <input type="text" class="form-control" name="stall_path" placeholder="www">
   </div><!--end stall page-->
 
   <div class="form-group">
@@ -74,7 +75,7 @@
 
 <div class="modal-footer">
   <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button id="add-horse-quick-btn" type="submit" class="btn btn-primary">Save</button>
+  <button id="add-horse-quick-btn" type="submit" class="btn btn-success">Save</button>
 </div><!--end modal footer-->
 
 </form>

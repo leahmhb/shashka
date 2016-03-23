@@ -69,8 +69,8 @@
         <td>{{$h['registered_name']}}</td>
         <td>{{$h['sex']}}</td>
         <td>{{$h['grade']}}</td>
-        <td><a class="btn btn-primary btn-sm" href="{{$h['stall_path']}}">Stall Page</a></td>
-        <td><a class="btn btn-primary btn-sm" href="/update-horse/{{ $h['id'] }}">Update</a></td>
+        <td><a class="btn btn-default btn-sm" href="{{$h['stall_path']}}">Stall Page</a></td>
+        <td><a class="btn btn-info btn-sm" href="/update-horse/{{ $h['id'] }}">Update</a></td>
       </tr>
       @endforeach   
     </tbody>

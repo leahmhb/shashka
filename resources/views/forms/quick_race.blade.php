@@ -5,12 +5,14 @@
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span aria-hidden="true">&times;</span>
     </button>
-    <h4 class="modal-title" id="add-race-quick_Label">Add Race Quick</h4>
+    <h4 class="modal-title" id="add-race-quick_Label">Add Race</h4>
   </div>
-
+  
   <div class="modal-body">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
+
+     <input type="number" class="form-control hidden" readonly name="id" value="-1">
 
     <div class="form-group">
       <label for="race-name" class="control-label">
@@ -19,7 +21,7 @@
         </small>
         Name
       </label>
-      <input type="text" class="form-control" name="name" id="name" placeholder="...">
+      <input type="text" class="form-control" name="name" placeholder="...">
     </div><!--end race-name-->
 
 
@@ -43,11 +45,11 @@
       </label>
       <br>
       <label class="radio-inline">
-        <input type="radio" name="surface" id="dirt" value="Dirt">
+        <input type="radio" name="surface" value="Dirt">
         Dirt
       </label>
       <label class="radio-inline">
-        <input type="radio" name="surface" id="turf" value="Turf">
+        <input type="radio" name="surface" value="Turf">
         Turf
       </label>  
     </div><!--end surface-->     
@@ -76,7 +78,7 @@
 
   <div class="modal-footer">
     <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button id="add-race-quick-btn" type="submit" class="btn btn-primary">Save</button>
+    <button id="add-race-quick-btn" type="submit" class="btn btn-success">Save</button>
   </div>
 
 </form>

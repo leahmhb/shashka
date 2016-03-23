@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Add Race and Entrant')
+@section('title', 'Race and Entry')
 
 @section('content')
-<div class="page-header"><h1>Add Race and Entrant <h2><small>Efficient race records</small></h2></h1></div>
+<div class="page-header"><h1>Add Race and Entry<h2><small>Efficient race records</small></h2></h1></div>
 
 <form id="race-and-entry" class="form-horizontal" method="post">
 

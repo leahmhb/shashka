@@ -12,7 +12,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Races extends Base{
 
-public function remove_race($race_id){
+  public function remove_race($race_id){
 
 }//end remove_race
 
@@ -21,26 +21,26 @@ public function remove_entry($entry_id){
 }//end remove_entry
 
 public function race_list(){
-    $races_query = Models\Race::select('id', 'name', 'grade', 'surface', 'distance', 'ran_dt', 'url')
-    ->orderBy('ran_dt')
-    ->get()->toArray();    
+  $races_query = Models\Race::select('id', 'name', 'grade', 'surface', 'distance', 'ran_dt', 'url')
+  ->orderBy('ran_dt')
+  ->get()->toArray();    
 
-    $races = [    
-    'GI' => [],    
-    'GII' => [], 
-    'GIII' => [], 
-    'Open Level' => [], 
-    'All' => [],
-    ];
+  $races = [    
+  'GI' => [],    
+  'GII' => [], 
+  'GIII' => [], 
+  'Open Level' => [], 
+  'All' => [],
+  ];
 
-    foreach($races_query as $i=>$r){
-      $r['entries'] = [];
-      foreach($races as $j=>$d){
+  foreach($races_query as $i=>$r){
+    $r['entries'] = [];
+    foreach($races as $j=>$d){
 
-        if($r['grade'] == $j){ 
-          array_push($races[$j], $r);
-        }        
-      }
+      if($r['grade'] == $j){ 
+        array_push($races[$j], $r);
+      }        
+    }
     }//end foreach
 
     $races['OpenLevel'] = $races['Open Level'];
@@ -114,8 +114,8 @@ public function entry_list(){
     return view('pages.entry_list', ['entries' => $final]);
   }//end entry_list
 
-public function race($race_id = false){
-  $race = [
+  public function race($race_id = false){
+    $race = [
     'id' => 0,
     'name' => '',
     'surface' => '',
@@ -125,8 +125,8 @@ public function race($race_id = false){
     'url' => ''
     ];
 
-  if($race_id){
-    $race = Models\Race::where('id', $race_id)->first();
+    if($race_id){
+      $race = Models\Race::where('id', $race_id)->first();
   }//end if
 
   if($race){
@@ -141,18 +141,29 @@ public function race($race_id = false){
 public function race_validate($race_id = false){
   $data = Base::trimWhiteSpace($_POST);
 
+  if($data['id'] == -1){
+    unset($data['_token']);
+  }
+
   $race = Models\Race::firstOrNew(['id' => $data['id']]);
+
+  if(! isset($data['ran_dt'])){
+    $data['ran_dt'] = '1000-01-01';
+  }
 
   $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])->startOfDay();
 
-  $race->name = $data['name'];
+  $race->name = (isset($data['name']) ? $data['name'] : '');
+  $race->distance = (isset($data['distance']) ? $data['distance'] : '');
+  $race->grade = (isset($data['grade']) ? $data['grade'] : '');
+  $race->surface = (isset($data['surface']) ? $data['surface'] : '');
+  $race->url = (isset($data['url']) ? $data['url'] : '');
   $race->ran_dt = $date;
-  $race->surface = $data['surface'];
-  $race->distance = $data['distance'];
-  $race->grade = $data['grade'];
   $race->save();
 
-  return $this->race_list();
+  if($data['id'] != -1){
+    return $this->race_list();
+  }
 }//end update_race_validation
 
 public function race_and_entry(){
@@ -162,24 +173,41 @@ public function race_and_entry(){
 public function race_and_entry_validate(){
   $data = Base::trimWhiteSpace($_POST); 
 
+
+  if(! isset($data['ran_dt'])){
+    $data['ran_dt'] = '1000-01-01';
+  }
+
   $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])->startOfDay();
 
-  $race = new Models\Race;
-  $race->name = $data['name'];
-  $race->distance = $data['distance'];
-  $race->grade = $data['grade'];
-  $race->surface = $data['surface'];
-  $race->url = $data['url'];
+  $race = Models\Race::firstOrNew([
+    'name' => $data['name'],
+    'distance' => $data['distance'],
+    'surface' => $data['surface'],
+    'grade' => $data['grade'],
+    ]);
+
+  $race->name = (isset($data['name']) ? $data['name'] : '');
+  $race->distance = (isset($data['distance']) ? $data['distance'] : '');
+  $race->grade = (isset($data['grade']) ? $data['grade'] : '');
+  $race->surface = (isset($data['surface']) ? $data['surface'] : '');
+  $race->url = (isset($data['url']) ? $data['url'] : '');
   $race->ran_dt = $date;
   $race->save();
 
-  $entry = new Models\Race_Entrant;
-  $entry->horse_id = $data['horse_id'];
+  $entry = Models\Race_Entrant::firstOrNew([
+    'horse_id' => $data['horse_id'], 
+    'race_id' => $race->id
+    ]);
+
+  $entry->horse_id = (isset($data['horse_id']) ? $data['horse_id'] : '');
   $entry->race_id = $race->id;
-  $entry->placing = $data['placing'];
+  $entry->placing = (isset($data['placing']) ? $data['placing'] : '');
   $entry->save();
 
+
   return view('forms.race_and_entry', ['validate' => true]);
+
 }//end race_and_entrant_validate
 
 
@@ -215,10 +243,14 @@ public function race_entrant_validate(){
   $action = "";
   $data = Base::trimWhiteSpace($_POST);
 
-  $entry = Models\Race_Entrant::firstOrNew(['id' => $data['id']]);
-  $entry->horse_id = $data['horse_id'];
-  $entry->race_id = $data['race_id'];
-  $entry->placing = $data['placing'];
+  $entry = Models\Race_Entrant::firstOrNew([
+    'horse_id' => $data['horse_id'], 
+    'race_id' => $data['race_id']
+    ]);
+  
+  $entry->horse_id = (isset($data['horse_id']) ? $data['horse_id'] : '');
+  $entry->race_id = (isset($data['race_id']) ? $data['race_id'] : '');
+  $entry->placing = (isset($data['placing']) ? $data['placing'] : '');
   $entry->save();
 
   if($data['id'] == 0){

@@ -25,13 +25,13 @@
       <h4 class="panel-title">Modal Form Testing</h4>
     </div>
     <div class="panel-body">
-     <a href="/quick-add-person" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+     <a href="/quick-person" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
       Add Person 
     </a>
-    <a href="/quick-add-horse" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+    <a href="/quick-horse" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
       Add Horse 
     </a>
-    <a href="/quick-add-race" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+    <a href="/quick-race" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form" >
       Add Race 
     </a>
   </div>

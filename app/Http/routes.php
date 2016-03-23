@@ -23,26 +23,21 @@ Route::get('/race-list', 'Races@race_list');
 Route::get('/entry-list', 'Races@entry_list');
 
 //quick forms
-Route::get('/quick-add-horse', 'Horses@quick_horse');
-Route::post('/quick-add-horse', 'Horses@horse_validate');
-Route::get('/quick-add-person', 'Person@quick_person');
-Route::post('/quick-add-person', 'Person@person_validate');
-Route::get('/quick-add-race', 'Races@quick_race');
-Route::post('/quick-add-race', 'Races@race_validate');
+Route::get('/quick-horse', 'Horses@quick_horse');
+Route::get('/quick-person', 'Person@quick_person');
+Route::get('/quick-race', 'Races@quick_race');
 
-//contact form mess
-Route::get('contact', 
-  ['as' => 'contact', 'uses' => 'AboutController@create']);
-Route::post('contact', 
-  ['as' => 'contact_store', 'uses' => 'AboutController@store']);
+Route::post('/quick-horse', 'Horses@horse_validate');
+Route::post('/quick-person', 'Person@quick_person_validate');
+Route::post('/quick-race', 'Races@race_validate');
 
 //horse 
 Route::get('/horse/{horse_id?}', 'Horses@horse');
 Route::post('/horse/{horse_id?}', 'Horses@horse_validate');
 
 //person
-Route::get('/person', 'Person@person');
-Route::post('/person', 'Person@person_validate');
+Route::get('/person/{person_id?}', 'Person@person');
+Route::post('/person/{person_id?}', 'Person@person_validate');
 
 //race
 Route::get('/race/{race_id?}', 'Races@race');
@@ -62,6 +57,7 @@ Route::post('/ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@ancestory_
 
 //stall
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
+
 
 /*
 |--------------------------------------------------------------------------

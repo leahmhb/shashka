@@ -1,9 +1,9 @@
 @extends('layouts.master')
 
-@section('title', 'Update Person')
+@section('title', 'Person')
 
 @section('content')
-<div class="page-header"><h1>Update Person <h2><small>Tracking owners, breeders, and hexers</small></h2></h1></div>
+<div class="page-header"><h1>{{ $action }} Person <h2><small>Tracking owners, breeders, and hexers</small></h2></h1></div>
 
 <form id="person" class="form-horizontal" method="post">
 
@@ -28,6 +28,7 @@
 
         <div class="panel-body">
           <div class="form-group">
+          <input name="id" class="form-control hidden" readonly id="id" value="{{ $person['id'] }}">       
             <label for="person_name" class="col-sm-3 control-label">
               <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Username</label>

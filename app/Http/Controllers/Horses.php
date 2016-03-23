@@ -31,48 +31,52 @@ public function horse($horse_id = false){
 public function horse_validate(){
   $action = "";
   $data = Base::trimWhiteSpace($_POST);
+  
+  if($data['id'] == -1){
+    unset($data['_token']);
+  }
 
   $horse = Models\Horse::firstOrNew(['id' => $data['id']]);
 
-  $horse->call_name = $data['call_name'];
-  $horse->registered_name = $data['registered_name'];
-  $horse->sex = $data['sex'];
-  $horse->color = $data['color'];
-  $horse->phenotype = $data['phenotype'];
-  $horse->grade = $data['grade'];
+  $horse->call_name = (isset($data['call_name']) ? $data['call_name'] : '');
+  $horse->registered_name = (isset($data['registered_name']) ? $data['registered_name'] : '');
+  $horse->sex = (isset($data['sex']) ? $data['sex'] : '');
+  $horse->color = (isset($data['color']) ? $data['color'] : '');
+  $horse->phenotype = (isset($data['phenotype']) ? $data['phenotype'] : '');
+  $horse->grade = (isset($data['grade']) ? $data['grade'] : '');
 
-  $horse->owner = $data['owner'];
-  $horse->breeder = $data['breeder'];
-  $horse->hexer = $data['hexer'];
+  $horse->owner = (isset($data['owner']) ? $data['owner'] : '');
+  $horse->breeder = (isset($data['breeder']) ? $data['breeder'] : '');
+  $horse->hexer = (isset($data['hexer']) ? $data['hexer'] : '');
 
-  $horse->pos_ability_1 = $data['pos_ability_1'];
-  $horse->pos_ability_2 = $data['pos_ability_2'];
-  $horse->neg_ability_1 = $data['neg_ability_1'];
+  $horse->pos_ability_1 = (isset($data['pos_ability_1']) ? $data['pos_ability_1'] : '');
+  $horse->pos_ability_2 = (isset($data['pos_abilit_2']) ? $data['pos_abilit_2'] : '');
+  $horse->neg_ability_1 = (isset($data['neg_ability_1']) ? $data['neg_ability_1'] : '');
 
-  $horse->distance_min = $data['distance_min'];
-  $horse->distance_max = $data['distance_max'];
+  $horse->distance_min = (isset($data['distance_min']) ? $data['distance_min'] : '');
+  $horse->distance_max = (isset($data['distance_max']) ? $data['distance_max'] : '');
 
-  $horse->surface_dirt = $data['surface_dirt'];
-  $horse->surface_turf = $data['surface_turf'];
+  $horse->surface_dirt = (isset($data['surface_dirt']) ? $data['surface_dirt'] : '');
+  $horse->surface_turf = (isset($data['surface_turf']) ? $data['surface_turf'] : '');
 
-  $horse->speed = $data['speed'];
-  $horse->staying = $data['staying'];
-  $horse->stamina = $data['stamina'];
-  $horse->breaking = $data['breaking'];
-  $horse->power = $data['power'];
-  $horse->feel = $data['feel'];
-  $horse->fierce = $data['fierce'];
-  $horse->tenacity = $data['tenacity'];
-  $horse->courage = $data['courage'];
-  $horse->response = $data['response'];
+  $horse->speed = (isset($data['speed']) ? $data['speed'] : '');
+  $horse->staying = (isset($data['saying']) ? $data['saying'] : '');
+  $horse->stamina = (isset($data['stamina']) ? $data['stamina'] : '');
+  $horse->breaking = (isset($data['breaking']) ? $data['breaking'] : '');
+  $horse->power = (isset($data['power']) ? $data['power'] : '');
+  $horse->feel = (isset($data['feel']) ? $data['feel'] : '');
+  $horse->fierce = (isset($data['fierce']) ? $data['fierce'] : '');
+  $horse->tenacity = (isset($data['tenacity']) ? $data['tenacity'] : '');
+  $horse->courage = (isset($data['courage']) ? $data['courage'] : '');
+  $horse->response = (isset($data['response']) ? $data['response'] : '');
 
-  $horse->leg_type = $data['leg_type'];
-  $horse->neck_height = $data['neck_height'];
-  $horse->run_style = $data['run_style'];
-  $horse->bandages = $data['bandages'];
-  $horse->hood = $data['hood'];
-  $horse->shadow_roll = $data['shadow_roll'];
-  $horse->notes = $data['notes'];
+  $horse->leg_type = (isset($data['leg_type']) ? $data['leg_type'] : '');
+  $horse->neck_height = (isset($data['neck_height']) ? $data['neck_height'] : '');
+  $horse->run_style = (isset($data['run_style']) ? $data['run_style'] : '');
+  $horse->bandages = (isset($data['bandages']) ? $data['bandages'] : '');
+  $horse->hood = (isset($data['hood']) ? $data['hood'] : '');
+  $horse->shadow_roll = (isset($data['shadow_roll']) ? $data['shadow_roll'] : '');
+  $horse->notes = (isset($data['notes']) ? $data['notes'] : '');
 
   if($horse->owner == "Haubing"){
     $horse->stall_path = "/stall/" . $horse->id;
@@ -87,8 +91,10 @@ public function horse_validate(){
   } else {
     $action = 'Create';
   }
-
-  return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => true]);
+  
+  if($data['id'] != -1){
+    return $this->stall_page($horse->id);
+  }
 }//end horse_validate
 
 public function stall_page($horse_id){

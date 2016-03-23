@@ -3,7 +3,7 @@
     <div class="modal-content">
       <div class="row">
         <div class="col-sm-12">
-          <div id="success "class="alert alert-success hidden " role="alert">
+          <div id="success "class="alert alert-success hidden" role="alert">
           </div><!--end alert-->
           <div id="rsvErrors" class="alert alert-danger"></div>
         </div><!--end col-->
