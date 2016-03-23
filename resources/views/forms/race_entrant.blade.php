@@ -1,11 +1,14 @@
 @extends('layouts.master')
 
-@section('title', 'Update Race Entrant')
+@section('title', 'Race Entrant')
 
 @section('content')
-<div class="page-header"><h1>Update Race Entrant <h2><small>Record Entries and Placings</small></h2></h1></div>
+<div class="page-header">
+<h1>{{ $action }} Race Entrant</h1>
+<h2><small>@if($action == 'Update') Change Records @else New Entry @endif</small></h2>
+</div>
 
-<form id="add-race-entrant" class="form-horizontal" method="post">
+<form id="race-entrant" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">
@@ -28,8 +31,11 @@
       </div>
       <div class="panel-body">
 
+
         <div class="form-group">
-          <label for="horse" class="col-sm-3 control-label">
+         <input type="text" readonly class="form-control hidden" name="id" id="id" placeholder="" value="{{ $entry['id'] }}">
+
+          <label for="race" class="col-sm-3 control-label">
             <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
             Select</label>
             <div class="col-sm-9">

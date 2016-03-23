@@ -26,6 +26,16 @@ $(document).ready(function () {
   "required,placing,Please enter placing."
   ];
 
+  var addRaceandEntryRules = [
+  "required,name,Please enter race name.",
+  "required,surface,Please choose surface.",
+  "required,distance,Please enter distance.",
+  "required,ran_dt,Please enter ran date.",
+  "required,grade,Please enter grade.",
+  "required,horse_id,Please select horse's call name.",
+  "required,placing,Please enter placing."
+  ];
+
   var addPersonRules = [
   "required,username,Please enter username.",
   "if:username!=Haubing,required,stable_name,Stable name required.",
@@ -66,7 +76,7 @@ $(document).ready(function () {
 "if:owner=Haubing,required,registered_name,Registered name required for horses owned by Haubing."
 ];//end addHorseRules
 
-$("#add-horse, #update-horse").RSV({ 
+$("#horse").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
@@ -74,7 +84,7 @@ $("#add-horse, #update-horse").RSV({
   rules: addHorseRules
 });//end rsv
 
-$("#add-person, #update-person, #add-person-quick").RSV({ 
+$("#person").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
@@ -82,7 +92,7 @@ $("#add-person, #update-person, #add-person-quick").RSV({
   rules: addPersonRules
 });//end rsv
 
-$("#add-race, #update-race").RSV({ 
+$("#race").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
@@ -90,7 +100,7 @@ $("#add-race, #update-race").RSV({
   rules: addRaceRules
 });//end rsv
 
-$("#add-race-entrant").RSV({ 
+$("#race-entrant").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
@@ -98,22 +108,21 @@ $("#add-race-entrant").RSV({
   rules: addRaceEntrantRules
 });//end rsv
 
-$("#add-race-and-entry").RSV({ 
+$("#race-and-entry").RSV({ 
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
   errorHTMLItemBullet: "&#8212; ",
-  rules: addRaceEntrantRules.concat(addRaceRules)
+  rules: addRaceandEntryRules
 });//end rsv
 
-$("#add-ancestory").RSV({
+$("#ancestory").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
   errorHTMLItemBullet: "&#8212; ",
   rules: addAncestoryRules
 });//end rsv
-
 
 
 

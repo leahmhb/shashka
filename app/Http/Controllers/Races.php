@@ -12,8 +12,15 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Races extends Base{
 
+public function remove_race($race_id){
 
-  public function race_list(){
+}//end remove_race
+
+public function remove_entry($entry_id){
+
+}//end remove_entry
+
+public function race_list(){
     $races_query = Models\Race::select('id', 'name', 'grade', 'surface', 'distance', 'ran_dt', 'url')
     ->orderBy('ran_dt')
     ->get()->toArray();    
@@ -107,18 +114,37 @@ public function entry_list(){
     return view('pages.entry_list', ['entries' => $final]);
   }//end entry_list
 
-  public function update_race($race_id){
-    $race = Models\Race::where('id', $race_id)->first()->toArray();
-    return view('forms.update_race', ['race' => $race, 'validate' => false]);
-}//end update_race
+public function race($race_id = false){
+  $race = [
+    'id' => 0,
+    'name' => '',
+    'surface' => '',
+    'distance' => '',
+    'grade' => '',
+    'ran_dt' => '1000-01-01',
+    'url' => ''
+    ];
 
-public function update_race_validate($race_id){
+  if($race_id){
+    $race = Models\Race::where('id', $race_id)->first();
+  }//end if
+
+  if($race){
+    $action = "Update";      
+  } else {
+    $action = "Add";      
+  }//end if-else
+
+  return view('forms.race', ['race' => $race, 'action' => $action, 'validate' => false]);
+}//end race
+
+public function race_validate($race_id = false){
   $data = Base::trimWhiteSpace($_POST);
 
-  $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])
-  ->startOfDay();
+  $race = Models\Race::firstOrNew(['id' => $data['id']]);
 
-  $race = Models\Race::where('id', $race_id)->first();
+  $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])->startOfDay();
+
   $race->name = $data['name'];
   $race->ran_dt = $date;
   $race->surface = $data['surface'];
@@ -129,15 +155,14 @@ public function update_race_validate($race_id){
   return $this->race_list();
 }//end update_race_validation
 
-public function add_race_and_entry(){
-  return view('forms.add_race_and_entry', ['validate' => false]);
-}//end add_race_and_entrant
+public function race_and_entry(){
+  return view('forms.race_and_entry', ['validate' => false]);
+}//end race_and_entrant
 
-public function add_race_and_entry_validate(){
-  $data = Base::trimWhiteSpace($_POST);     
+public function race_and_entry_validate(){
+  $data = Base::trimWhiteSpace($_POST); 
 
-  $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])
-  ->startOfDay();
+  $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])->startOfDay();
 
   $race = new Models\Race;
   $race->name = $data['name'];
@@ -154,78 +179,57 @@ public function add_race_and_entry_validate(){
   $entry->placing = $data['placing'];
   $entry->save();
 
-  return view('forms.add_race_and_entry', ['validate' => true]);
-}//end add_race_and_entrant_validate
+  return view('forms.race_and_entry', ['validate' => true]);
+}//end race_and_entrant_validate
 
-public function add_race(){
-  return view('forms.add_race', ['validate' => false]);
-}//end add_race
 
-public function quick_add_race(){
-  return view('forms.quick_add_race');
-}//end quick_add_race
+public function quick_race(){
+  return view('forms.quick_race');
+}//end quick_race
 
-public function add_race_validate(){
-  $data = Base::trimWhiteSpace($_POST);  
 
-  unset($data['_token']);
-  Base::output($data);   
+public function race_entrant($horse_id = false, $entry_id = false){
+  $entry = [
+  'id' => 0,
+  'race_id' => 0,
+  'horse_id' => 0,
+  'placing' => 0
+  ];
 
-  $date = Carbon::createFromFormat('Y-m-d', $data['ran_dt'])
-  ->startOfDay();
-
-  $race = Models\Race::firstOrCreate($data);
-
-  $race->ran_dt = $date;
-  $race->save();
-
-  return view('forms.add_race', ['validate' => true]);
-}//end add_race_validate
-
-public function add_race_entrant($horse_id = false){
-  $horse = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
-  return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => false]);
-}//end add_race_entrant
-
-public function add_race_entrant_validate(){
-  $data = Base::trimWhiteSpace($_POST);
-
-  $entry  = Models\Race_Entrant::where('horse_id', $data['horse_id'])
-  ->where('race_id', $data['race_id'])
-  ->where('placing', 'TBA')
-  ->first();
+  if(!$entry_id && $horse_id){
+    $entry['horse_id'] = $horse_id;
+  } else if ($entry_id && $horse_id){
+   $entry  = Models\Race_Entrant::where('id', $entry_id)->first();
+  }//end if-else
 
   if($entry){
-    $entry->placing = $data['placing'];
-    $entry->save();
+    $action = "Update";
   } else {
-     $entry = Models\Race_Entrant::firstorCreate($data);
-  }
+    $action = "Add";
+  }//end if-else
 
-  $horse['id'] = $data['horse_id']; 
+  return view('forms.race_entrant', ['entry' => $entry, 'action' => $action, 'validate' => false]);
+}//end race_entrant
 
-  return view('forms.add_race_entrant', ['horse' => $horse, 'validate' => true]);
-}//end add_race_entrant
+public function race_entrant_validate(){
+  $action = "";
+  $data = Base::trimWhiteSpace($_POST);
 
-
-public function update_race_entrant($entry_id){
-  $entry  = Models\Race_Entrant::where('id', $entry_id)->first()->toArray();
-
-  return view('forms.update_race_entrant', ['entry' => $entry, 'validate' => false]);
-
-}//end update_race_entrant
-
-public function update_race_entrant_validate($entry_id){
-  $data = $_POST;
-
-  $entry = Models\Race::where('id', $entry_id)->first();
-  $entry->horse_name = $data['horse_name'];
-  $entry->race_name = $data['race_name'];
+  $entry = Models\Race_Entrant::firstOrNew(['id' => $data['id']]);
+  $entry->horse_id = $data['horse_id'];
+  $entry->race_id = $data['race_id'];
   $entry->placing = $data['placing'];
   $entry->save();
 
-  return view('forms.update_race_entrant', ['entry' => $entry, 'validate' => true]);
-}//end update_race_entrant_validate
+  if($data['id'] == 0){
+    $action = 'Add';
+  } else {
+    $action = 'Update';
+  }//end if-else
+
+  return $this->entry_list();
+
+}//end race_entrant_validate
 
 
 }

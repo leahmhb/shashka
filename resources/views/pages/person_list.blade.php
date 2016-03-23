@@ -31,7 +31,7 @@
             <td>{{$p['stable_name']}}</td>
             <td>{{$p['stable_prefix']}}</td>
             <td>{{$p['racing_colors']}}</td>
-            <td><a class="btn btn-primary btn-sm" href="/update-person/{{ $p['id'] }}">Update</a></td>
+            <td><a class="btn btn-primary btn-sm" href="/person/{{ $p['id'] }}">Update</a></td>
           </tr>
           @endforeach   
         </tbody>

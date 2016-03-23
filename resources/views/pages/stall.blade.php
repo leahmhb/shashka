@@ -3,6 +3,7 @@
 @section('title', 'Stall')
 
 @section('content')
+
 <div class="page-header">
   <div class="row">
     <div class="col-sm-12">    
@@ -11,17 +12,17 @@
      <h2><small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h2>
 
      <div id="stall-edit" class="btn-group btn-group-sm btn-group-justified">
-      <a class="btn btn-default" href="/update-horse/{{ $horse['id'] }}">Update Stall Info</a>  
-      <a class="btn btn-default" href="/add-ancestory/{{ $horse['id'] }}/{{ $horse['id'] }}">Update Lineage</a>
-      <a class="btn btn-default" href="/add-race-entrant/{{ $horse['id'] }}">Add Race Entry</a>
-      <a class="btn btn-default" href="/add-ancestory/{{ $horse['sex'] }}/{{ $horse['id'] }}">Add Progeny</a>
+      <a class="btn btn-default" href="/horse/{{ $horse['id'] }}">Update Stall Info</a>  
+      <a class="btn btn-default" href="/ancestory/{{ $horse['id'] }}/{{ $horse['id'] }}">Update Lineage</a>
+      <a class="btn btn-default" href="/race-entrant/{{ $horse['id'] }}">Add Race Entry</a>
+      <a class="btn btn-default" href="/ancestory/{{ $horse['sex'] }}/{{ $horse['id'] }}">Add Progeny</a>
     </div><!--end btn group-->
   </div><!--end col-->
 </div><!--end row-->
 </div><!--end page header-->
 
 <div class="row">
-  <div class="col-md-8">
+  <div class="col-md-8 eq-height">
     <div class="panel panel-default stall-panel">
       <div class="panel-heading"><h3 class="panel-title">
         <ul class="stall-info list-inline text-center"> 
@@ -43,9 +44,13 @@
   </div><!--end panel-->       
 </div><!--end col-->
 
-<div class="col-md-4">
+<div class="col-md-4 eq-height">
   <div class="panel panel-default stall-panel">
-    <div class="panel-heading"><h3 class="panel-title">Notes</h3></div>
+    <div class="panel-heading"><h3 class="panel-title">
+      <ul class="stall-info list-inline text-center"> 
+        <li><b>Notes</b></li>
+      </ul>
+    </h3></div>
     <div class="panel-body">
       <ul>
         <li><b>Owner:</b> {{ $horse['owner'] }}</li>
@@ -87,18 +92,16 @@
             <li role="presentation" class="active"><a href="#racing" aria-controls="racing" role="tab" data-toggle="tab">Stats</a></li>
             <li role="presentation" class=""><a href="#records" aria-controls="records" role="tab" data-toggle="tab">Records</a></li>
             <li role="presentation" class=""><a href="#progeny" aria-controls="progeny" role="tab" data-toggle="tab">Progeny</a></li>
-            <li role="presentation" class=""><a href="#entry-form" aria-controls="entry-form" role="tab" data-toggle="tab">Entry</a></li>
-
           </ul>
         </h3>
       </div>
-      <div class="panel-body">
+      <div class="panel-body eq-height">
         <div class="tab-content">    
 
          <div role="tabpanel" class="tab-pane active" id="racing">
            <h2>Racing Statistics</h2>
            <div class="row">
-             <div class="col-sm-6">
+             <div class="col-sm-4">
               <ul class="stall-info list-unstyled stats" > 
                 <li><b>Speed:</b> {{ $horse['speed'] }} </li>
                 <li><b>Staying:</b> {{ $horse['staying'] }} </li> 
@@ -113,7 +116,7 @@
               </ul> 
 
             </div><!--end col-->
-            <div class="col-sm-6">
+            <div class="col-sm-4">
               <ul class="stall-info list-unstyled"> 
                 <li><b>Distance:</b> {{ $horse['distance_min'] }}F to {{ $horse['distance_max'] }}F</li>
                 <li><b>Leg Type:</b> 
@@ -150,93 +153,152 @@
               </ul>
             </div><!--end col-->
 
+            <div class="col-sm-4">      
+              <textarea class="form-control" rows="20" readonly>
+                [b]+++Form[/b]
+                [b]++Stats:[/b]
+                [b]Speed:[/b] {{ $horse['speed'] }}
+                [b]Staying:[/b] {{ $horse['staying'] }}
+                [b]Stamina:[/b] {{ $horse['stamina'] }}
+                [b]Breaking:[/b] {{ $horse['breaking'] }}
+                [b]Power:[/b] {{ $horse['power'] }}
+                [b]Feel:[/b] {{ $horse['feel'] }}
+                [b]Fierce:[/b] {{ $horse['fierce'] }}
+                [b]Tenacity:[/b] {{ $horse['tenacity'] }}
+                [b]Courage:[/b] {{ $horse['courage'] }}
+                [b]Response:[/b] {{ $horse['response'] }}
+
+                [b]Distance:[/b] {{ $horse['distance_min'] }}F - {{ $horse['distance_max'] }}F
+                [b]Leg Type:[/b] {{ $horse['leg_type'] }}
+                [b]Abilities:[/b][LIST]
+                [b]+ {{ $horse['pos_ability_1'] }}[/b]  
+                [b]+ {{ $horse['pos_ability_2'] }}[/b] 
+                [b]- {{ $horse['neg_ability_1'] }}[/b]
+                [/LIST][b]Dirt:[/b] {{ $horse['surface_dirt'] }}
+                [b]Turf:[/b] {{ $horse['surface_turf'] }}
+
+                [b]++Horse Info[/b]
+                [b]Name:[/b] {{ $horse['call_name'] }}
+                [b]Color:[/b] {{ $horse['color'] }}
+                [b]Gender:[/b] {{ $horse['sex'] }}
+                [b]Bandages:[/b] {{ $horse['bandages'] }}
+                [b]Neck Height:[/b] {{ $horse['neck_height'] }}
+                [b]Run Style:[/b] {{ $horse['run_style'] }}
+                [b]Hood:[/b] {{ $horse['hood'] }}
+                [b]Shadow Roll:[/b] {{ $horse['shadow_roll'] }}
+
+                [b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
+                [b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
+                [img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
+              </textarea>                       
+
+            </div><!--end col-->
+
           </div><!--end row-->
         </div><!--end racing-->
 
         <div role="tabpanel" class="tab-pane" id="records">
          <h2>Race Records </h2>
+         <div class="col-sm-3">
+           <h3>First Place</h3>
+           <ul class="race-records"> 
+            @foreach($race_records as $r)     
+            @if($r['placing'] == 1)  
+            <li>
+              <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+              title="{{ $r['race']['surface'] }} 
+              {{ $r['race']['distance'] }}F 
+              {{ $r['race']['grade'] }}">
+              <a href="{{ $r['race']['url'] }}" target="_blank">
+                {{ $r['race']['name'] }} 
+              </a>            
+            </span>
+          </li> 
+          @endif    
+          @endforeach
+        </ul>
+      </div><!--end col-->
 
-         <ul class="race-records"> 
-          @foreach($race_records as $r)       
-          <li>
-            <b>{{ $r['placing'] }}</b> 
-            <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
-            title="{{ $r['race']['surface'] }} 
-            {{ $r['race']['distance'] }}F 
-            {{ $r['race']['grade'] }}">
-            <a href="{{ $r['race']['url'] }}" target="_blank">
-              {{ $r['race']['name'] }} 
-            </a>            
-          </span>
-        </li>     
-        @endforeach
-      </ul>
-
-    </div><!--end records-->
-    <div role="tabpanel" class="tab-pane" id="progeny">
-
-      <h2>Progeny</h2>                          
-      <ul>
-       @forelse ($offspring as $a)
-       <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>
-
-        @if($horse['sex'] == 'Stallion')
-        out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
-        @endif
-
-        @if($horse['sex'] == 'Mare')
-        by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
-        @endif
-      </li>
-      @empty
-      No foals yet!
-      @endforelse      
+      <div class="col-sm-3">
+       <h3>Second Place</h3>
+       <ul class="race-records"> 
+        @foreach($race_records as $r)     
+        @if($r['placing'] == 2)  
+        <li>
+          <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+          title="{{ $r['race']['surface'] }} 
+          {{ $r['race']['distance'] }}F 
+          {{ $r['race']['grade'] }}">
+          <a href="{{ $r['race']['url'] }}" target="_blank">
+            {{ $r['race']['name'] }} 
+          </a>            
+        </span>
+      </li> 
+      @endif    
+      @endforeach
     </ul>
-  </div><!--end progeny-->
+  </div><!--end col-->
 
-  <div role="tabpanel" class="tab-pane" id="entry-form">
-    <h2>Race Entry Form</h2>
-    <pre><code>
-      [b]+++Form[/b]
-      [b]++Stats:[/b]
-      [b]Speed:[/b] {{ $horse['speed'] }}
-      [b]Staying:[/b] {{ $horse['staying'] }}
-      [b]Stamina:[/b] {{ $horse['stamina'] }}
-      [b]Breaking:[/b] {{ $horse['breaking'] }}
-      [b]Power:[/b] {{ $horse['power'] }}
-      [b]Feel:[/b] {{ $horse['feel'] }}
-      [b]Fierce:[/b] {{ $horse['fierce'] }}
-      [b]Tenacity:[/b] {{ $horse['tenacity'] }}
-      [b]Courage:[/b] {{ $horse['courage'] }}
-      [b]Response:[/b] {{ $horse['response'] }}
+  <div class="col-sm-3">
+   <h3>Third Place</h3>
+   <ul class="race-records"> 
+    @foreach($race_records as $r)     
+    @if($r['placing'] == 3)  
+    <li>            
+      <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+      title="{{ $r['race']['surface'] }} 
+      {{ $r['race']['distance'] }}F 
+      {{ $r['race']['grade'] }}">
+      <a href="{{ $r['race']['url'] }}" target="_blank">
+        {{ $r['race']['name'] }} 
+      </a>            
+    </span>
+  </li> 
+  @endif    
+  @endforeach
+</ul>
+</div><!--end col-->
 
-      [b]Distance:[/b] {{ $horse['distance_min'] }}F - {{ $horse['distance_max'] }}F
-      [b]Leg Type:[/b] {{ $horse['leg_type'] }}
-      [b]Abilities:[/b][LIST]
-      [b]+ {{ $horse['pos_ability_1'] }}[/b]  
-      [b]+ {{ $horse['pos_ability_2'] }}[/b] 
-      [b]- {{ $horse['neg_ability_1'] }}[/b]
-      [/LIST][b]Dirt:[/b] {{ $horse['surface_dirt'] }}
-      [b]Turf:[/b] {{ $horse['surface_turf'] }}
+<div class="col-sm-3">
+ <h3>Other</h3>
+ <ul class="race-records"> 
+  @foreach($race_records as $r)     
+  @if($r['placing'] > 3)  
+  <li>              
+  <b>{{ $r['placing'] }}</b> <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+    title="{{ $r['race']['surface'] }} 
+    {{ $r['race']['distance'] }}F 
+    {{ $r['race']['grade'] }}">
+    <a href="{{ $r['race']['url'] }}" target="_blank">
+      {{ $r['race']['name'] }} 
+    </a>            
+  </span>
+</li> 
+@endif    
+@endforeach
+</ul>
+</div><!--end col-->
+</div><!--end records-->
+<div role="tabpanel" class="tab-pane" id="progeny">
 
-      [b]++Horse Info[/b]
-      [b]Name:[/b] {{ $horse['call_name'] }}
-      [b]Color:[/b] {{ $horse['color'] }}
-      [b]Gender:[/b] {{ $horse['sex'] }}
-      [b]Bandages:[/b] {{ $horse['bandages'] }}
-      [b]Neck Height:[/b] {{ $horse['neck_height'] }}
-      [b]Run Style:[/b] {{ $horse['run_style'] }}
-      [b]Hood:[/b] {{ $horse['hood'] }}
-      [b]Shadow Roll:[/b] {{ $horse['shadow_roll'] }}
+  <h2>Progeny</h2>                          
+  <ul>
+   @forelse ($offspring as $a)
+   <li><a href="{{ $a['horse_link'] }}">{{ $a['horse_name'] }}</a>
 
-      [b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
-      [b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
-      [img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
-    </code></pre>                         
+    @if($horse['sex'] == 'Stallion')
+    out of <a href="{{ $a['dam_link'] }}">{{ $a['dam_name'] }}</a>
+    @endif
 
-  </div><!--end race entry-->
-
-
+    @if($horse['sex'] == 'Mare')
+    by <a href="{{ $a['sire_link'] }}">{{ $a['sire_name'] }}</a>
+    @endif
+  </li>
+  @empty
+  No foals yet!
+  @endforelse      
+</ul>
+</div><!--end progeny-->
 
 </div><!--end tab content-->
 

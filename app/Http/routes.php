@@ -23,12 +23,12 @@ Route::get('/race-list', 'Races@race_list');
 Route::get('/entry-list', 'Races@entry_list');
 
 //quick forms
-Route::get('/quick-add-horse', 'Horses@quick_add_horse');
-Route::post('/quick-add-horse', 'Horses@add_horse_validate');
-Route::get('/quick-add-person', 'Person@quick_add_person');
-Route::post('/quick-add-person', 'Person@add_person_validate');
-Route::get('/quick-add-race', 'Races@quick_add_race');
-Route::post('/quick-add-race', 'Races@add_race_validate');
+Route::get('/quick-add-horse', 'Horses@quick_horse');
+Route::post('/quick-add-horse', 'Horses@horse_validate');
+Route::get('/quick-add-person', 'Person@quick_person');
+Route::post('/quick-add-person', 'Person@person_validate');
+Route::get('/quick-add-race', 'Races@quick_race');
+Route::post('/quick-add-race', 'Races@race_validate');
 
 //contact form mess
 Route::get('contact', 
@@ -36,49 +36,32 @@ Route::get('contact',
 Route::post('contact', 
   ['as' => 'contact_store', 'uses' => 'AboutController@store']);
 
-//add horse 
-Route::get('/add-horse', 'Horses@add_horse');
-Route::post('/add-horse', 'Horses@add_horse_validate');
-
-//update horse
-Route::get('/update-horse/{horse_id}', 'Horses@update_horse');
-Route::post('/update-horse/{horse_id}', 'Horses@update_horse_validate');
+//horse 
+Route::get('/horse/{horse_id?}', 'Horses@horse');
+Route::post('/horse/{horse_id?}', 'Horses@horse_validate');
 
 //person
-Route::get('/add-person', 'Person@add_person');
-Route::post('/add-person', 'Person@add_person_validate');
+Route::get('/person', 'Person@person');
+Route::post('/person', 'Person@person_validate');
 
-//update person
-Route::get('/update-person/{person_id}', 'Person@update_person');
-Route::post('/update-person/{person_id}', 'Person@update_person_validate');
+//race
+Route::get('/race/{race_id?}', 'Races@race');
+Route::post('/race/{race_id?}', 'Races@race_validate');
 
-//races
-Route::get('/add-race', 'Races@add_race');
-Route::post('/add-race', 'Races@add_race_validate');
+//race entrant
+Route::get('/race-entrant/{horse_id?}/{entry_id?}', 'Races@race_entrant');
+Route::post('/race-entrant/{horse_id?}/{entry_id?}', 'Races@race_entrant_validate');
 
-//update race
-Route::get('/update-race/{race_id}', 'Races@update_race');
-Route::post('/update-race/{race_id}', 'Races@update_race_validate');
+//race and entry
+Route::get('/race-and-entry', 'Races@race_and_entry');
+Route::post('/race-and-entry', 'Races@race_and_entry_validate');
 
-//race entries
-Route::get('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant');
-Route::post('/add-race-entrant/{horse_id?}', 'Races@add_race_entrant_validate');
+//ancestory
+Route::get('/ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@ancestory');
+Route::post('/ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@ancestory_validate');
 
-//update race entries
-Route::get('/update-race-entrant/{entry_id}', 'Races@update_race_entrant');
-Route::post('/update-race-entrant/{entry_id}', 'Races@update_race_entrant_validate');
-
-//add race and entry
-Route::get('/add-race-and-entry', 'Races@add_race_and_entry');
-Route::post('/add-race-and-entry', 'Races@add_race_and_entry_validate');
-
-//horse ancestory
-Route::get('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory');
-Route::post('/add-ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@add_ancestory_validate');
-
-//stall page
+//stall
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
-
 
 /*
 |--------------------------------------------------------------------------

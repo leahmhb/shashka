@@ -1,5 +1,5 @@
 @include('includes.modal')
-<form id="add-horse-quick" class="form" role="form" method="post" action="/quick-add-horse">
+<form id="horse" class="form" role="form" method="post" action="/quick-add-horse">
  <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title" id="add-horse-quick_Label">Add Horse Quick</h4>

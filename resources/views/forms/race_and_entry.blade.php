@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header"><h1>Add Race and Entrant <h2><small>Efficient race records</small></h2></h1></div>
 
-<form id="add-race-and-entrant" class="form-horizontal" method="post">
+<form id="race-and-entry" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">
@@ -33,7 +33,7 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Race Name</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" id="name" placeholder="...">
+            <input type="text" class="form-control" name="name" id="name">
           </div>
         </div><!--end race-name-->
         
@@ -44,7 +44,7 @@
             Distance</label>            
             <div class="col-sm-9"> 
               <div class="input-group">
-                <input type="number" name="distance" class="form-control" placeholder="0">
+                <input type="number" name="distance" class="form-control">
                 <span class="input-group-addon">Furlongs</span>
               </div> 
             </div> 
@@ -87,7 +87,7 @@
               <label for="url" class="col-sm-3 control-label">               
                 URL</label>            
                 <div class="col-sm-9">         
-                  <input type="text" name="url" class="form-control" placeholder="www">
+                  <input type="text" name="url" class="form-control">
                 </div> 
               </div><!--end url-->
 
@@ -96,7 +96,7 @@
                  Date</label>
                  <div class="col-sm-9">
                   <div class="input-group date" data-provide="datepicker">
-                    <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd">
+                    <input type="text" name="ran_dt" class="datepicker form-control" data-date-format="yyyy/mm/dd" value="1000-01-01">
                     <div class="input-group-addon">
                       <span class="glyphicon glyphicon-calendar"></span>
                     </div>
@@ -135,7 +135,7 @@
                     <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                     Placing</label>            
                     <div class="col-sm-9">     
-                      <input type="number" name="placing" class="form-control" placeholder="0">     
+                      <input type="number" name="placing" class="form-control">     
                     </div> 
                   </div><!--end placing-->
 

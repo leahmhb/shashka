@@ -4,7 +4,7 @@
 
 @section('content')
 <div class="page-header"><h1>Add {{ $relationship }}</h1><h2><small>Extending the bloodlines</small></h2></div>
-<form id="add-ancestory" class="form-horizontal" method="post">
+<form id="ancestory" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">          

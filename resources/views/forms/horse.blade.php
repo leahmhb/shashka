@@ -1,18 +1,23 @@
 @extends('layouts.master')
 
-@section('title', 'Update Horse')
+@section('title', 'Horse')
 
 @section('content')
-<div class="page-header"><h1>Update {{ $horse['call_name'] }}'s Information </h1> <h2><small>Keep Records Current</small></h2></div>
+<div class="page-header">
 
-<form id="update-horse" class="form-horizontal" method="post">
+<h1>{{ $action }} @if($action == 'Update') {{ $horse['call_name'] }}'s Information @else Horse @endif</h1>
+<h2><small>@if($action == 'Update') Keep Records Current @else New Additions @endif</small></h2>
+
+</div>
+
+<form id="horse" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">
       <div id="success">
         @if($validate == true)
         <div class="alert alert-success" role="alert">
-          Successful submission! See stall page with update information: <a href="{{$horse['stall_path']}}">{{ $horse['call_name'] }}</a></li>
+          Successful submission! See stall page with horse information: <a href="{{$horse['stall_path']}}">{{ $horse['call_name'] }}</a></li>
         </div><!--end alert-->
         @endif
       </div>
@@ -29,6 +34,9 @@
         </div>
         <div class="panel-body">
          <div class="form-group">
+
+ <input type="text" readonly class="form-control hidden" name="id" id="call-name" placeholder="" value="{{ $horse['id'] }}">
+
           <label for="call-name" class="col-sm-2 control-label">
            <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
            Call Name          

@@ -10,7 +10,7 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 class Horses_Progeny extends Base{
 
 
-  public function add_ancestory($sex = false, $horse_id = false){ //add sire and dam
+  public function ancestory($sex = false, $horse_id = false){ //add sire and dam
     $horse = ['id' => 0, 'call_name' => ''];
     $sire = ['id' => 0, 'call_name' => ''];
     $dam = ['id' => 0, 'call_name' => ''];
@@ -36,15 +36,15 @@ class Horses_Progeny extends Base{
       $relationship = "Lineage"; 
     }//end if
 
-    return view('forms.add_ancestory', [
+    return view('forms.ancestory', [
       'horse' => $horse, 
       'sire' => $sire, 
       'dam' => $dam, 
       'relationship' => $relationship,
       'validate' => false]);
-  }//end add_ancestory
+  }//end ancestory
 
-  public function add_ancestory_validate($sex = false, $horse_id = false){
+  public function ancestory_validate($sex = false, $horse_id = false){
 
     $relationship = "Ancestory";
     if(($sex == 'Stallion' || $sex == 'Mare') && $horse_id){
@@ -72,13 +72,13 @@ class Horses_Progeny extends Base{
     $sire = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
     $dam = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
 
-    return view('forms.add_ancestory', [      
+    return view('forms.ancestory', [      
       'relationship' => $relationship,
       'horse' => $horse, 
       'sire' => $sire, 
       'dam' => $dam, 
       'validate' => true]);
-   }//end add_lineage_validate
+   }//end ancestory_validate
 
 
   }//end class

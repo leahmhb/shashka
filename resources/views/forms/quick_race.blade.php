@@ -1,5 +1,5 @@
 @include('includes.modal')
-<form id="add-race-quick" class="form" role="form" action="/quick-add-race" method="post">
+<form id="race" class="form" role="form" action="/quick-add-race" method="post">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">

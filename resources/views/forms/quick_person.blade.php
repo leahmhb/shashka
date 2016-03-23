@@ -1,5 +1,5 @@
 @include('includes.modal')
-<form id="add-person-quick" class="form" role="form" method="post" action="/quick-add-person">
+<form id="person" class="form" role="form" method="post" action="/quick-add-person">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>

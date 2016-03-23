@@ -28,6 +28,11 @@ label {
   font-size: .85em;
 }
 
+pre, code {
+   white-space: initial;
+
+}
+
 ul {
   margin: 0;
   padding:0;
@@ -51,13 +56,6 @@ i, em {
 
 .text-primary, .text-info, .text-success, .text-warning, .text-danger {
   text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;
-}
-
-.row-eq-height {
-  display: -webkit-box;
-  display: -webkit-flex;
-  display: -ms-flexbox;
-  display:         flex;
 }
 
 /************* NAVBAR **************/
@@ -274,6 +272,22 @@ img.stall-pic {
 .stall-pills ul.nav.nav-pills li a {
   font-size: .95em;
   padding: 5px;
+}
+
+ul.race-records {
+  list-style-position: outside;
+}
+
+ul.race-records li{
+  font-size: 14px;
+}
+
+.tab-pane h3 {
+  margin-top: 0;
+}
+
+.eq-height .panel-body, .eq-height .tab-pane {
+  min-height: 500px;
 }
 
 /************* Tooltips **************/

@@ -13,91 +13,83 @@ class Horses extends Base{
     return view('pages.horse_list', ['horse' => $horse]);
 }//end horse_list
 
-public function quick_add_horse(){
-  return view('forms.quick_add_horse');
+public function quick_horse(){
+  return view('forms.quick_horse');
 }
 
-public function update_horse($horse_id){
-  $horse = Models\Horse::where('id', $horse_id)->first()->toArray();
-  return view('forms.update_horse', ['horse' => $horse, 'validate' => false]);
-}//end update_horse
+public function horse($horse_id = false){
+  $horse = Models\Horse::where('id', $horse_id)->first();
 
-public function update_horse_validate($horse_id){
- $data = Base::trimWhiteSpace($_POST);
+  if($horse){
+    $action = "Update";
+  } else {
+    $action = "Add";
+  }
+  return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => false]);
+}//end horse
 
- $horse = Models\Horse::where('id', $horse_id)->first();
+public function horse_validate(){
+  $action = "";
+  $data = Base::trimWhiteSpace($_POST);
 
- $horse->call_name = $data['call_name'];
- $horse->registered_name = $data['registered_name'];
- $horse->sex = $data['sex'];
- $horse->color = $data['color'];
- $horse->phenotype = $data['phenotype'];
- $horse->grade = $data['grade'];
+  $horse = Models\Horse::firstOrNew(['id' => $data['id']]);
 
- $horse->owner = $data['owner'];
- $horse->breeder = $data['breeder'];
- $horse->hexer = $data['hexer'];
+  $horse->call_name = $data['call_name'];
+  $horse->registered_name = $data['registered_name'];
+  $horse->sex = $data['sex'];
+  $horse->color = $data['color'];
+  $horse->phenotype = $data['phenotype'];
+  $horse->grade = $data['grade'];
 
- $horse->pos_ability_1 = $data['pos_ability_1'];
- $horse->pos_ability_2 = $data['pos_ability_2'];
- $horse->neg_ability_1 = $data['neg_ability_1'];
+  $horse->owner = $data['owner'];
+  $horse->breeder = $data['breeder'];
+  $horse->hexer = $data['hexer'];
 
- $horse->distance_min = $data['distance_min'];
- $horse->distance_max = $data['distance_max'];
+  $horse->pos_ability_1 = $data['pos_ability_1'];
+  $horse->pos_ability_2 = $data['pos_ability_2'];
+  $horse->neg_ability_1 = $data['neg_ability_1'];
 
- $horse->surface_dirt = $data['surface_dirt'];
- $horse->surface_turf = $data['surface_turf'];
+  $horse->distance_min = $data['distance_min'];
+  $horse->distance_max = $data['distance_max'];
 
- $horse->speed = $data['speed'];
- $horse->staying = $data['staying'];
- $horse->stamina = $data['stamina'];
- $horse->breaking = $data['breaking'];
- $horse->power = $data['power'];
- $horse->feel = $data['feel'];
- $horse->fierce = $data['fierce'];
- $horse->tenacity = $data['tenacity'];
- $horse->courage = $data['courage'];
- $horse->response = $data['response'];
+  $horse->surface_dirt = $data['surface_dirt'];
+  $horse->surface_turf = $data['surface_turf'];
 
- $horse->leg_type = $data['leg_type'];
- $horse->neck_height = $data['neck_height'];
- $horse->run_style = $data['run_style'];
- $horse->bandages = $data['bandages'];
- $horse->hood = $data['hood'];
- $horse->shadow_roll = $data['shadow_roll'];
- $horse->notes = $data['notes'];
+  $horse->speed = $data['speed'];
+  $horse->staying = $data['staying'];
+  $horse->stamina = $data['stamina'];
+  $horse->breaking = $data['breaking'];
+  $horse->power = $data['power'];
+  $horse->feel = $data['feel'];
+  $horse->fierce = $data['fierce'];
+  $horse->tenacity = $data['tenacity'];
+  $horse->courage = $data['courage'];
+  $horse->response = $data['response'];
 
- $horse->save();
+  $horse->leg_type = $data['leg_type'];
+  $horse->neck_height = $data['neck_height'];
+  $horse->run_style = $data['run_style'];
+  $horse->bandages = $data['bandages'];
+  $horse->hood = $data['hood'];
+  $horse->shadow_roll = $data['shadow_roll'];
+  $horse->notes = $data['notes'];
 
- return view('forms.update_horse', ['horse' => $horse, 'validate' => true]);
-}//end update_horse_validate
-
-public function add_horse(){  
-  return view('forms.add_horse', ['validate' => false]);
-}//end add_horse 
-
-public function add_horse_quick_validate(){
- $data = Base::trimWhiteSpace($_POST);
- return "Horse Quick";
- exit;
-}//end add_horse_validate
-
-public function add_horse_validate(){
- $data = Base::trimWhiteSpace($_POST);
- 
- unset($data['_token']);
- Base::output($data);
-
- $horse = Models\Horse::firstOrCreate($data);
-
- if($horse->owner == "Haubing"){
-  $horse->stall_path = "/stall/" . $horse->id;
-  $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
-  $horse->save();
+  if($horse->owner == "Haubing"){
+    $horse->stall_path = "/stall/" . $horse->id;
+    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
+    $horse->save();
   }//end if
 
-  return view('forms.add_horse', ['validate' => true]);
-}//end add_horse_validate
+  $horse->save();
+
+  if($data['id'] == 0){
+    $action = 'Add';
+  } else {
+    $action = 'Create';
+  }
+
+  return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => true]);
+}//end horse_validate
 
 public function stall_page($horse_id){
   $horse = Models\Horse::where('id', $horse_id)->first();
@@ -184,7 +176,7 @@ public function getParents($horse_id){
 
 public function getRaceRecords($horse_id){
   $records = [];
-  $placings = Models\Race_Entrant::select('race_id', 'horse_id', 'placing')
+  $placings = Models\Race_Entrant::select('id', 'race_id', 'horse_id', 'placing')
   ->where('horse_id', $horse_id)
   ->orderBy('placing')
   ->get()->toArray();

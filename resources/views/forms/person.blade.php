@@ -5,7 +5,7 @@
 @section('content')
 <div class="page-header"><h1>Update Person <h2><small>Tracking owners, breeders, and hexers</small></h2></h1></div>
 
-<form id="update-person" class="form-horizontal" method="post">
+<form id="person" class="form-horizontal" method="post">
 
   <div class="row">
     <div class="col-sm-12">          
