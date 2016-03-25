@@ -6,20 +6,29 @@ $(document).ready(function () {
     return false;
   });
 
-  $('.collapse').collapse("hide");
-
   $.fn.datepicker.defaults.format = "yyyy-mm-dd";
   $.fn.datepicker.defaults.todayHighlight = true;
-
+  $.fn.datepicker.defaults.todayBtn = true;
+  
   $('#datepicker').datepicker();
+
+  $.extend( $.fn.dataTable.defaults, {
+    "pagingType": "simple_numbers",    
+  });
+
+  $('#races, #horses, #entries').DataTable();
+
 
   $('[data-toggle="tooltip"]').tooltip();
   $(".dropdown-toggle").dropdown();
   
-  $('.select').select2({
-    placeholder: 'Select...',
-    width: '100%' 
-  });
+  $( "select" ).addClass( "select" );
+
+  $(".select").chosen({
+    width: "100%",
+    placeholder_text_single: "Select...",
+    no_results_text: "Oops, nothing found!",
+});
 
 // Fill modal with content from link href
 $("#quick-form").on("show.bs.modal", function(e) {
@@ -27,23 +36,34 @@ $("#quick-form").on("show.bs.modal", function(e) {
   $(this).find(".form-part").load(link.attr("href"));
 });
 
-});//end ready
-
+var formData = "";
 //ajax
-var frm = $('#person-quick');
+$('#quick').submit(function (ev) { 
 
-$(frm).submit(function (ev) { 
-  ev.preventDefault();
-
-  var formData = $(frm).serialize();
+  formData = $(this).serialize();
 
   $.ajax({
-    type: $(frm).attr('method'),
-    url: $(frm).attr('action'),
-    data: $(frm).serialize(),
-    success: function (data) {
-      alert('Success');
+    type: "POST",
+    url: "/quick-person",
+    data: formData,
+    success: function (data, textStatus, jqXHR) {
+      console.log(data);
+      console.log(textStatus);     
+    },
+    error: function(jqXHR, textStatus, errorThrown){
+      console.log(textStatus);
+      console.log(errorThrown);   
     }
-  });
-});
+ });//end ajax
+
+  ev.preventDefault();
+
+  return false;
+
+});//end submit
+
+
+});//end ready
+
+
 

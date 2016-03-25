@@ -55,7 +55,7 @@
                     <li><a href="/horse">Add Horse</a></li> 
                     <li><a href="/ancestory">Add Ancestory</a></li>                 
                     <li><a href="/race">Add Race</a></li>      
-                    <li><a href="/race-entrant">Add Race Entrant</a></li>
+                    <li><a href="/race-entry">Add Race Entry</a></li>
                     <li><a href="/race-and-entry">Add Race and Entry</a></li>
                 </ul>
             </li>

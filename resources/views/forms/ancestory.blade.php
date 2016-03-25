@@ -21,7 +21,7 @@
     <div class="col-sm-12">
      <div class="panel panel-default">
        <div class="panel-body">
-         If horses are not in list, <a href="/quick-add-horse" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
+         If horses are not in list, <a href="/quick-horse" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
       Add Horse 
     </a>.
      </div>
@@ -42,7 +42,7 @@
         <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
         Name</label>
         <div class="col-sm-9">
-          <select name="sire_id" class="form-control select">
+          <select name="sire_id" class="form-control">
             <option></option>
             @foreach ($domain['sires'] as $s)          
             <option value="{{$s['id']}}" @if($sire['id'] == $s['id']) selected @endif>{{$s['call_name']}}</option>
@@ -66,7 +66,7 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Name</label>
           <div class="col-sm-9">
-            <select name="dam_id" class="form-control select">
+            <select name="dam_id" class="form-control">
               <option></option>
               @foreach ($domain['dams'] as $d)          
               <option value="{{$d['id']}}" @if($dam['id'] == $d['id']) selected @endif>{{$d['call_name']}}</option>
@@ -92,7 +92,7 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Name</label>
           <div class="col-sm-9">
-            <select name="horse_id" class="form-control select" >
+            <select name="horse_id" class="form-control" >
               <option></option>
               @foreach ($domain['horses'] as $h)          
               <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>

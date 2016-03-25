@@ -1,4 +1,4 @@
-@extends('layouts.master')
+ @extends('layouts.master')
 
 @section('title', 'Race and Entry')
 
@@ -33,7 +33,7 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Race Name</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" id="name">
+            <input type="text" class="form-control" name="name" id="name" placeholder="...">
           </div>
         </div><!--end race-name-->
         
@@ -44,7 +44,7 @@
             Distance</label>            
             <div class="col-sm-9"> 
               <div class="input-group">
-                <input type="number" name="distance" class="form-control">
+                <input type="number" name="distance" class="form-control" step="any" min="0" placeholder="0">
                 <span class="input-group-addon">Furlongs</span>
               </div> 
             </div> 
@@ -73,7 +73,7 @@
               <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Grade</label>
               <div class="col-sm-9">
-                <select name="grade" class="form-control select">
+                <select name="grade" class="form-control">
                   <option></option>
                   @foreach ($domain['grades'] as $grade)          
                   <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
@@ -87,7 +87,7 @@
               <label for="url" class="col-sm-3 control-label">               
                 URL</label>            
                 <div class="col-sm-9">         
-                  <input type="text" name="url" class="form-control">
+                  <input type="text" name="url" class="form-control" placeholder="www">
                 </div> 
               </div><!--end url-->
 
@@ -121,7 +121,7 @@
                   <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                   Name</label>
                   <div class="col-sm-9">
-                    <select name="horse_id" class="form-control select">
+                    <select name="horse_id" class="form-control">
                       <option></option>
                       @foreach ($my_horses as $h)          
                       <option value="{{$h['id']}}">{{$h['call_name']}}</option>
@@ -135,7 +135,7 @@
                     <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
                     Placing</label>            
                     <div class="col-sm-9">     
-                      <input type="number" name="placing" class="form-control">     
+                      <input type="number" name="placing" class="form-control" placeholder="0">     
                     </div> 
                   </div><!--end placing-->
 

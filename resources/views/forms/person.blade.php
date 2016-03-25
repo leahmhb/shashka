@@ -33,7 +33,7 @@
               <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Username</label>
               <div class="col-sm-9">
-                <input name="username" class="form-control" id="person_name" value="{{ $person['username'] }}">              
+                <input name="username" class="form-control" id="person_name" value="{{ $person['username'] }}" placeholder="...">              
               </div>             
             </div><!--end username-->       
 
@@ -42,7 +42,7 @@
                <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="top" title="Required"></span></small>        
                Stable Name</label>
                <div class="col-sm-9">       
-                <input name="stable_name" class="form-control" id="person_stable_name" value="{{ $person['stable_name'] }}">         
+                <input name="stable_name" class="form-control" id="person_stable_name" value="{{ $person['stable_name'] }}" placeholder="...">         
               </div>             
             </div><!--end stable name--> 
 
@@ -51,7 +51,7 @@
                <small><span class="text-info glyphicon glyphicon-grain" data-toggle="tooltip" data-placement="top" title="Required"></span></small>        
                Stable Prefix</label>
                <div class="col-sm-9"> 
-                <input name="stable_prefix" class="form-control" id="person_stable_prefix" value="{{ $person['stable_prefix'] }}">   
+                <input name="stable_prefix" class="form-control" id="person_stable_prefix" value="{{ $person['stable_prefix'] }}" placeholder="...">   
               </div>             
             </div><!--end stable prefix--> 
 
@@ -59,7 +59,7 @@
               <label for="racing_colors" class="col-sm-3 control-label">                 
                Racing Colors</label>
                <div class="col-sm-9"> 
-                <input name="racing_colors" class="form-control" id="person_racing_colors" value="{{ $person['racing_colors'] }}">   
+                <input name="racing_colors" class="form-control" id="person_racing_colors" value="{{ $person['racing_colors'] }}" placeholder="...">   
               </div>             
             </div><!--end racing colors--> 
 

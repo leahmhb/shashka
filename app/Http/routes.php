@@ -27,9 +27,9 @@ Route::get('/quick-horse', 'Horses@quick_horse');
 Route::get('/quick-person', 'Person@quick_person');
 Route::get('/quick-race', 'Races@quick_race');
 
-Route::post('/quick-horse', 'Horses@horse_validate');
+Route::post('/quick-horse', 'Horses@quick_horse_validate');
 Route::post('/quick-person', 'Person@quick_person_validate');
-Route::post('/quick-race', 'Races@race_validate');
+Route::post('/quick-race', 'Races@quick_race_validate');
 
 //horse 
 Route::get('/horse/{horse_id?}', 'Horses@horse');
@@ -43,9 +43,9 @@ Route::post('/person/{person_id?}', 'Person@person_validate');
 Route::get('/race/{race_id?}', 'Races@race');
 Route::post('/race/{race_id?}', 'Races@race_validate');
 
-//race entrant
-Route::get('/race-entrant/{horse_id?}/{entry_id?}', 'Races@race_entrant');
-Route::post('/race-entrant/{horse_id?}/{entry_id?}', 'Races@race_entrant_validate');
+//race entry
+Route::get('/race-entry/{horse_id?}/{entry_id?}', 'Races@race_entry');
+Route::post('/race-entry/{horse_id?}/{entry_id?}', 'Races@race_entry_validate');
 
 //race and entry
 Route::get('/race-and-entry', 'Races@race_and_entry');
@@ -58,7 +58,10 @@ Route::post('/ancestory/{relationship?}/{horse_id?}', 'Horses_Progeny@ancestory_
 //stall
 Route::get('/stall/{horse_id}', 'Horses@stall_page');
 
-
+//delete
+Route::get('/remove-entry/{entry_id}', 'Races@remove_entry');
+Route::get('/remove-race/{race_id}', 'Races@remove_race');
+Route::get('/remove-horse/{horse_id}', 'Horses@remove_horse');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

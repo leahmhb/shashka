@@ -35,7 +35,7 @@
           <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
           Name</label>
           <div class="col-sm-9">
-            <input type="text" class="form-control" name="name" id="name" value="{{ $race['name'] }}">
+            <input type="text" class="form-control" name="name" id="name" value="{{ $race['name'] }}" placeholder="...">
           </div>
         </div><!--end race-name-->
 
@@ -45,7 +45,7 @@
             Distance</label>            
             <div class="col-sm-9"> 
               <div class="input-group">
-                <input type="text" name="distance" class="form-control" value="{{ $race['distance'] }}">
+                <input type="text" name="distance" class="form-control" value="{{ $race['distance'] }}" step="any" min="0">
                 <span class="input-group-addon">Furlongs</span>
               </div> 
             </div> 
@@ -74,7 +74,7 @@
               <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
               Grade</label>
               <div class="col-sm-9">
-                <select name="grade" class="form-control select">
+                <select name="grade" class="form-control">
                   <option></option>
                   @foreach ($domain['grades'] as $grade)          
                   <option value="{{$grade['grade']}}"  @if($race['grade'] == $grade['grade']) selected @endif>{{$grade['grade']}}</option>
@@ -89,7 +89,7 @@
 
                 URL</label>            
                 <div class="col-sm-9">         
-                  <input type="text" name="url" class="form-control" value="{{ $race['url'] }}">
+                  <input type="text" name="url" class="form-control" value="{{ $race['url'] }}" placeholder="www">
                 </div> 
               </div><!--end url-->
 

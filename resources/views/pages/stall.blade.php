@@ -9,7 +9,7 @@
     <div class="col-sm-12">    
 
      <h1>{{ $horse['call_name'] }}</h1> 
-     <h2><small>{{ $prefix['stable_prefix'] }} {{ $horse['registered_name'] }}</small></h2>
+     <h2><small>{{ $prefix['stable_prefix'] }}'s' {{ $horse['registered_name'] }}</small></h2>
 
      <div id="stall-edit" class="btn-group btn-group-sm btn-group-justified">
       <a class="btn btn-default" href="/horse/{{ $horse['id'] }}">Update Stall Info</a>  
@@ -197,7 +197,7 @@
 
         <div role="tabpanel" class="tab-pane" id="records">
          <h2>Race Records </h2>
-         <div class="col-sm-3">
+         <div class="col-md-3">
            <h3>First Place</h3>
            <ul class="race-records"> 
             @foreach($race_records as $r)     
@@ -217,7 +217,7 @@
         </ul>
       </div><!--end col-->
 
-      <div class="col-sm-3">
+      <div class="col-md-3">
        <h3>Second Place</h3>
        <ul class="race-records"> 
         @foreach($race_records as $r)     
@@ -237,7 +237,7 @@
     </ul>
   </div><!--end col-->
 
-  <div class="col-sm-3">
+  <div class="col-md-3">
    <h3>Third Place</h3>
    <ul class="race-records"> 
     @foreach($race_records as $r)     
@@ -257,7 +257,7 @@
 </ul>
 </div><!--end col-->
 
-<div class="col-sm-3">
+<div class="col-md-3">
  <h3>Other</h3>
  <ul class="race-records"> 
   @foreach($race_records as $r)     

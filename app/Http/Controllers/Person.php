@@ -8,8 +8,6 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-
 
 class Person extends Base{
 
@@ -23,35 +21,15 @@ public function quick_person(){
 }
 
 public function quick_person_validate(Request $request){
-
   $data = Base::trimWhiteSpace($request->except(['_token']));
-  Base::output($data);
-
-  exit;
-
-  $person = Models\Person::firstOrNew(['id' => $data['id']]);
-  $person->username = (isset($data['username']) ? $data['username'] : '');
-  $person->stable_name = (isset($data['stable_name']) ? $data['stable_name'] : '');
-  $person->stable_prefix = (isset($data['stable_preifx']) ? $data['stable_preifx'] : '');
-  $person->racing_colors = (isset($data['racing_colors']) ? $data['racing_colors'] : '');
-  $person->save();
-
-
+  $person_id = $this->createPerson($data);  
+  echo json_encode("Success!");
 }//end quick_person_validate
 
 public function person_validate(){
   $data = Base::trimWhiteSpace($_POST);
-
-
-  $person = Models\Person::firstOrNew(['id' => $data['id']]);
-  $person->username = (isset($data['username']) ? $data['username'] : '');
-  $person->stable_name = (isset($data['stable_name']) ? $data['stable_name'] : '');
-  $person->stable_prefix = (isset($data['stable_preifx']) ? $data['stable_preifx'] : '');
-  $person->racing_colors = (isset($data['racing_colors']) ? $data['racing_colors'] : '');
-  $person->save();
-  
+  $person_id = $this->createPerson($data);  
   return $this->person_list();  
-
 }//end update_person_validate
 
 public function person($person_id = false){   
@@ -63,7 +41,7 @@ public function person($person_id = false){
   'stable_prefix' => '',
   'racing_colors' => ''
   ];
-
+  
   if($person_id){
     $person = Models\Person::where('id', $person_id)->first();
     $action = "Update";
@@ -74,5 +52,14 @@ public function person($person_id = false){
   return view('forms.person', ['person' => $person, 'action' => $action, 'validate' => false]);
 }//end person
 
+public function createPerson($data){
+ $person = Models\Person::firstOrNew(['id' => $data['id']]);
+ $person->username = (isset($data['username']) ? $data['username'] : '');
+ $person->stable_name = (isset($data['stable_name']) ? $data['stable_name'] : '');
+ $person->stable_prefix = (isset($data['stable_prefix']) ? $data['stable_prefix'] : '');
+ $person->racing_colors = (isset($data['racing_colors']) ? $data['racing_colors'] : '');
+ $person->save();
+ return $person;
+}//end createPerson
 
 }//end class

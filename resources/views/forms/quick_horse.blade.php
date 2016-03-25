@@ -1,5 +1,5 @@
 @include('includes.modal')
-<form id="horse" class="form" role="form" method="post" action="/quick-add-horse">
+
  <div class="modal-header">
   <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
   <h4 class="modal-title" id="add-horse-quick_Label">Add Horse</h4>
@@ -38,7 +38,7 @@
       </small>
       Sex
     </label>
-    <select name="sex" class="form-control select">
+    <select name="sex" class="form-control">
       <option></option>
       @foreach ($domain['sexes'] as $sex)          
       <option value="{{$sex['sex']}}">{{$sex['sex']}}</option>
@@ -63,7 +63,7 @@
       </small>
       Owner
     </label>
-    <select name="owner" class="form-control select">
+    <select name="owner" class="form-control">
       <option></option>
       @foreach ($domain['person'] as $person)          
       <option value="{{$person['username']}}">{{$person['username']}}</option>
@@ -73,9 +73,3 @@
 
 </div><!--end modal body-->
 
-<div class="modal-footer">
-  <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-  <button id="add-horse-quick-btn" type="submit" class="btn btn-success">Save</button>
-</div><!--end modal footer-->
-
-</form>

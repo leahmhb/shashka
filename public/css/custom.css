@@ -1,12 +1,12 @@
 @import url("http://fonts.googleapis.com/css?family=Marcellus|Marcellus+SC|Cinzel:700,900|Quattrocento+Sans:400,400italic,700,700italic");
-@import url("select2.css");
+
 
 /************* GENERAL **************/
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
   font-family:  'Quattrocento Sans', sans-serif;
-  font-size: 16px;
+  font-size: 14px;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -15,7 +15,7 @@ h1, h2, h3, h4, h5, h6 {
 
 .tooltip-overflow { /* tool tip */
  /* white-space: nowrap;*/
-  max-width: 100px;
+ max-width: 100px;
 }
 
 form .text-danger, form .text-info {
@@ -29,7 +29,7 @@ label {
 }
 
 pre, code {
-   white-space: initial;
+ white-space: initial;
 
 }
 
@@ -189,48 +189,73 @@ div.panel-body h2 {
 }
 
 input.form-control, 
-select.form-control, 
-.select2-container--default .select2-selection--single,
-.select2-container .select2-choice
+select.form-control,
+.form-control[disabled],
+.chosen-container-single .chosen-single
 { 
-  background: rgba(62, 63, 58, .2);
-  line-height:20px;
-  height: 46px;
+  background: rgba(255, 255, 255, .8);
+  font-size: 12px;
+  height: 40px;
+  line-height: 24px;
   border-radius: 4px;
-  border: 1px solid rgb(223, 215, 202);
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
-textarea {
-  background: rgba(62, 63, 58, .2);
+textarea.form-control {
+  background: rgba(255, 255, 255, .8);
   border-radius: 4px;
-  border: 1px solid rgb(223, 215, 202);
-}
-
-.form-control[disabled]{
-  background: rgba(62, 63, 58, .6);
-  border: 1px solid rgb(223, 215, 202);
+  border: 1px solid #CCCCCC;
+  box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
 .btn-block  {
   padding: 1em;
-}
 }
 
 ul.distance-info li{
   font-size: .5em;
 }
 
+/************* CHOSEN **************/
+
+.chosen-container-single .chosen-single span,
+.chosen-container-single .chosen-single div b {
+  padding-top: 3px;
+  margin-top: 3px;
+  padding-left: 5px;
+}
+
+.chosen-container-active .chosen-single,
+.chosen-container-active.chosen-with-drop .chosen-single {
+ border: 1px solid #CCCCCC;
+}
+
+.chosen-results li.active-result.highlighted{
+  background: #F8F5F0;
+  color: rgb(52, 52, 48);
+}
+
+.chosen-container-single .chosen-search input[type="text"]{
+  border: 1px solid #CCCCCC;
+  border-radius: 4px;
+}
+
+.chosen-drop .chosen-results {
+  max-height: 90px;
+}
+
 /************* PLACEHOLDERS **************/
 
 .form-control::-moz-placeholder {
-  color: rgba(62, 63, 58, .2);
+  color: #999;
   opacity: 1;
 }
 .form-control:-ms-input-placeholder {
-  color: rgba(62, 63, 58, .2);
+  color: #999;
 }
 .form-control::-webkit-input-placeholder {
-  color: rgba(62, 63, 58, .2);
+  color: #999;
 }
 
 .form-control[disabled]::-moz-placeholder {
@@ -283,7 +308,7 @@ ul.race-records li{
 }
 
 .tab-pane h3 {
-  margin-top: 0;
+  margin-top: 10px;
 }
 
 .eq-height .panel-body, .eq-height .tab-pane {
@@ -293,6 +318,24 @@ ul.race-records li{
 /************* Tooltips **************/
 
 .tooltip-inner {
-    text-transform: none;
-    font-weight: normal;
+  text-transform: none;
+  font-weight: normal;
+}
+
+/************* MODAL **************/
+.modal {
+  background:rgba(0,0,0, .3);
+}
+
+.modal .modal-dialog, .modal .modal-content {
+ color: rgb(62, 63, 58);
+}
+
+.modal .panel {
+  margin: 0;
+  padding: 0;
+}
+
+.modal .modal-content {
+  background: #eee;
 }

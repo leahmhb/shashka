@@ -1,5 +1,4 @@
 @include('includes.modal')
-<form id="race" class="form" role="form" action="/quick-add-race" method="post">
 
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -11,8 +10,6 @@
   <div class="modal-body">
 
     <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
-     <input type="number" class="form-control hidden" readonly name="id" value="-1">
 
     <div class="form-group">
       <label for="race-name" class="control-label">
@@ -33,7 +30,7 @@
         Distance
       </label> 
       <div class="input-group">
-        <input type="number" name="distance" class="form-control" placeholder="0">
+        <input type="number" name="distance" class="form-control" placeholder="0" step="any" min="0">
         <span class="input-group-addon">Furlongs</span>
       </div> 
     </div><!--end distance-->
@@ -61,7 +58,7 @@
         </small>
         Grade
       </label>
-      <select name="grade" class="form-control select">
+      <select name="grade" class="form-control">
         <option></option>
         @foreach ($domain['grades'] as $grade)          
         <option value="{{$grade['grade']}}">{{$grade['grade']}}</option>
@@ -76,9 +73,3 @@
 
   </div>
 
-  <div class="modal-footer">
-    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button id="add-race-quick-btn" type="submit" class="btn btn-success">Save</button>
-  </div>
-
-</form>

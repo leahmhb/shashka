@@ -5,8 +5,9 @@
    <link href="{{ asset('css/theme/theme.css') }}" rel="stylesheet">
    <!--Plugin styling-->
    <link href="{{ asset('css/bootstrap-datepicker3.min.css') }}" rel="stylesheet">
-   <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" />
-   
+   <!--    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.2/css/select2.min.css" rel="stylesheet" /> -->
+   <link href="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.min.css" rel="stylesheet">
+   <link href="https://cdn.datatables.net/1.10.11/css/dataTables.bootstrap.min.css" rel="stylesheet" />
    <!--CUSTOM STYLES-->
    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
 

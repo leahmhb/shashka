@@ -8,10 +8,16 @@
           <div id="rsvErrors" class="alert alert-danger"></div>
         </div><!--end col-->
       </div><!--end row-->
-      <div class="form-part">
+      <form id="quick" class="form" role="form">
+        <div class="form-part">         
 
+        </div><!--end form part-->
 
-      </div><!--end form part-->
+        <div class="modal-footer">
+          <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
+          <button id="person-quick-btn" type="submit" class="btn btn-success">Save</button> 
+        </div><!--end modal footer-->
+      </form>
     </div><!--end modal content-->
   </div><!--end modal dialog-->
 </div><!--end quick form modal-->

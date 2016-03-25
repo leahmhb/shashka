@@ -1,11 +1,13 @@
 @include('includes.modal')
-<form id="person-quick" class="form" role="form" method="post" action="/quick-person" >
+
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
     <h4 class="modal-title" id="add-person-quick_Label">Add Person</h4>
   </div>
 
   <div class="modal-body"> 
+  
+  <input type="hidden" name="_token" value="{{ csrf_token() }}">
 
     <div class="form-group">     
       <label for="person_name" class="control-label">
@@ -37,9 +39,4 @@
 
   </div>
 
-  <div class="modal-footer">
-    <button type="reset" class="btn btn-default" data-dismiss="modal">Close</button>
-    <button id="person-quick-btn" type="submit" class="btn btn-success">Save</button> 
-  </div>
 
-</form>

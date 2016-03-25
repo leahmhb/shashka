@@ -8,14 +8,31 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses extends Base{
-  public function horse_list(){
-    $horse = Models\Horse::get()->toArray();
-    return view('pages.horse_list', ['horse' => $horse]);
+
+  public function remove_horse($horse_id){
+    $horse = Models\Horse::find($horse_id);
+    $horse->delete();
+    return $this->horse_list();
+}//end remove_race
+
+
+public function horse_list(){
+  $horse = Models\Horse::get()->toArray();
+  return view('pages.horse_list', ['horse' => $horse]);
 }//end horse_list
 
 public function quick_horse(){
   return view('forms.quick_horse');
 }
+
+public function quick_horse_validate(Request $request){
+  $data = Base::trimWhiteSpace($request->except(['_token']));
+
+  $horse_id = $this->createHorse($data);
+  
+  echo json_encode("Success!");
+}//end quick_horse_validate
+
 
 public function horse($horse_id = false){
   $horse = Models\Horse::where('id', $horse_id)->first();
@@ -32,59 +49,9 @@ public function horse_validate(){
   $action = "";
   $data = Base::trimWhiteSpace($_POST);
   
-  if($data['id'] == -1){
-    unset($data['_token']);
-  }
+  $horse = $this->createHorse($data);
 
-  $horse = Models\Horse::firstOrNew(['id' => $data['id']]);
 
-  $horse->call_name = (isset($data['call_name']) ? $data['call_name'] : '');
-  $horse->registered_name = (isset($data['registered_name']) ? $data['registered_name'] : '');
-  $horse->sex = (isset($data['sex']) ? $data['sex'] : '');
-  $horse->color = (isset($data['color']) ? $data['color'] : '');
-  $horse->phenotype = (isset($data['phenotype']) ? $data['phenotype'] : '');
-  $horse->grade = (isset($data['grade']) ? $data['grade'] : '');
-
-  $horse->owner = (isset($data['owner']) ? $data['owner'] : '');
-  $horse->breeder = (isset($data['breeder']) ? $data['breeder'] : '');
-  $horse->hexer = (isset($data['hexer']) ? $data['hexer'] : '');
-
-  $horse->pos_ability_1 = (isset($data['pos_ability_1']) ? $data['pos_ability_1'] : '');
-  $horse->pos_ability_2 = (isset($data['pos_abilit_2']) ? $data['pos_abilit_2'] : '');
-  $horse->neg_ability_1 = (isset($data['neg_ability_1']) ? $data['neg_ability_1'] : '');
-
-  $horse->distance_min = (isset($data['distance_min']) ? $data['distance_min'] : '');
-  $horse->distance_max = (isset($data['distance_max']) ? $data['distance_max'] : '');
-
-  $horse->surface_dirt = (isset($data['surface_dirt']) ? $data['surface_dirt'] : '');
-  $horse->surface_turf = (isset($data['surface_turf']) ? $data['surface_turf'] : '');
-
-  $horse->speed = (isset($data['speed']) ? $data['speed'] : '');
-  $horse->staying = (isset($data['saying']) ? $data['saying'] : '');
-  $horse->stamina = (isset($data['stamina']) ? $data['stamina'] : '');
-  $horse->breaking = (isset($data['breaking']) ? $data['breaking'] : '');
-  $horse->power = (isset($data['power']) ? $data['power'] : '');
-  $horse->feel = (isset($data['feel']) ? $data['feel'] : '');
-  $horse->fierce = (isset($data['fierce']) ? $data['fierce'] : '');
-  $horse->tenacity = (isset($data['tenacity']) ? $data['tenacity'] : '');
-  $horse->courage = (isset($data['courage']) ? $data['courage'] : '');
-  $horse->response = (isset($data['response']) ? $data['response'] : '');
-
-  $horse->leg_type = (isset($data['leg_type']) ? $data['leg_type'] : '');
-  $horse->neck_height = (isset($data['neck_height']) ? $data['neck_height'] : '');
-  $horse->run_style = (isset($data['run_style']) ? $data['run_style'] : '');
-  $horse->bandages = (isset($data['bandages']) ? $data['bandages'] : '');
-  $horse->hood = (isset($data['hood']) ? $data['hood'] : '');
-  $horse->shadow_roll = (isset($data['shadow_roll']) ? $data['shadow_roll'] : '');
-  $horse->notes = (isset($data['notes']) ? $data['notes'] : '');
-
-  if($horse->owner == "Haubing"){
-    $horse->stall_path = "/stall/" . $horse->id;
-    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
-    $horse->save();
-  }//end if
-
-  $horse->save();
 
   if($data['id'] == 0){
     $action = 'Add';
@@ -92,9 +59,7 @@ public function horse_validate(){
     $action = 'Create';
   }
   
-  if($data['id'] != -1){
-    return $this->stall_page($horse->id);
-  }
+  return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => true]);
 }//end horse_validate
 
 public function stall_page($horse_id){
@@ -189,7 +154,7 @@ public function getRaceRecords($horse_id){
 
   foreach($placings as $p){
     $race = Models\Race::select('id', 'name', 'surface', 'grade', 'distance', 'ran_dt', 'url')
-    ->where('id', $p['race_id'])->first()->toArray();
+    ->where('id', $p['race_id'])->first();
     
     $placement = Base::ordinal($p['placing']);
     if($placement == '0th'){
@@ -202,5 +167,58 @@ public function getRaceRecords($horse_id){
   return $records;
 }//end getRaceRecords
 
+public function createHorse($data){
+  $horse = Models\Horse::firstOrNew(['id' => $data['id']]);
+
+  $horse->call_name = (isset($data['call_name']) ? $data['call_name'] : '');
+  $horse->registered_name = (isset($data['registered_name']) ? $data['registered_name'] : '');
+  $horse->sex = (isset($data['sex']) ? $data['sex'] : '');
+  $horse->color = (isset($data['color']) ? $data['color'] : '');
+  $horse->phenotype = (isset($data['phenotype']) ? $data['phenotype'] : '');
+  $horse->grade = (isset($data['grade']) ? $data['grade'] : '');
+
+  $horse->owner = (isset($data['owner']) ? $data['owner'] : '');
+  $horse->breeder = (isset($data['breeder']) ? $data['breeder'] : '');
+  $horse->hexer = (isset($data['hexer']) ? $data['hexer'] : '');
+
+  $horse->pos_ability_1 = (isset($data['pos_ability_1']) ? $data['pos_ability_1'] : '');
+  $horse->pos_ability_2 = (isset($data['pos_ability_2']) ? $data['pos_ability_2'] : '');
+  $horse->neg_ability_1 = (isset($data['neg_ability_1']) ? $data['neg_ability_1'] : '');
+
+  $horse->distance_min = (isset($data['distance_min']) ? $data['distance_min'] : '');
+  $horse->distance_max = (isset($data['distance_max']) ? $data['distance_max'] : '');
+
+  $horse->surface_dirt = (isset($data['surface_dirt']) ? $data['surface_dirt'] : '');
+  $horse->surface_turf = (isset($data['surface_turf']) ? $data['surface_turf'] : '');
+
+  $horse->speed = (isset($data['speed']) ? $data['speed'] : '');
+  $horse->staying = (isset($data['staying']) ? $data['staying'] : '');
+  $horse->stamina = (isset($data['stamina']) ? $data['stamina'] : '');
+  $horse->breaking = (isset($data['breaking']) ? $data['breaking'] : '');
+  $horse->power = (isset($data['power']) ? $data['power'] : '');
+  $horse->feel = (isset($data['feel']) ? $data['feel'] : '');
+  $horse->fierce = (isset($data['fierce']) ? $data['fierce'] : '');
+  $horse->tenacity = (isset($data['tenacity']) ? $data['tenacity'] : '');
+  $horse->courage = (isset($data['courage']) ? $data['courage'] : '');
+  $horse->response = (isset($data['response']) ? $data['response'] : '');
+
+  $horse->leg_type = (isset($data['leg_type']) ? $data['leg_type'] : '');
+  $horse->neck_height = (isset($data['neck_height']) ? $data['neck_height'] : '');
+  $horse->run_style = (isset($data['run_style']) ? $data['run_style'] : '');
+  $horse->bandages = (isset($data['bandages']) ? $data['bandages'] : '');
+  $horse->hood = (isset($data['hood']) ? $data['hood'] : '');
+  $horse->shadow_roll = (isset($data['shadow_roll']) ? $data['shadow_roll'] : '');
+  $horse->notes = (isset($data['notes']) ? $data['notes'] : '');
+
+  if($horse->owner == "Haubing"){
+    $horse->stall_path = "/stall/" . $horse->id;
+    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
+    $horse->save();
+  }//end if
+
+  $horse->save();
+
+  return $horse;
+}//end createHorse
 
 }//end class

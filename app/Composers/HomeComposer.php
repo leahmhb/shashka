@@ -17,7 +17,7 @@ class HomeComposer{
   public function getDomain(){
     $domain = [];
 
-    $domain['horses'] = Models\Horse::select('call_name', 'grade', 'id')
+    $domain['horses'] = Models\Horse::select('call_name', 'grade', 'owner', 'sex', 'id', 'stall_path')
     ->orderBy('call_name')
     ->get()->toArray();
 
