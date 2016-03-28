@@ -18,9 +18,9 @@
             <th class="col-sm-1">Sex</th>
             <th class="col-sm-1">Grade</th>         
             <th class="col-sm-1">Owner</th>
-            <th class="col-sm-1">Stall Page</th>
-            <th class="col-sm-1">Update</th>
-            <th class="col-sm-1">Remove</th>
+            <th class="col-sm-1"><span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span></th>
+            <th class="col-sm-1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></th>
+            <th class="col-sm-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
           </tr>
         </thead>
         <tbody>
@@ -28,11 +28,24 @@
           <tr>
             <td>{{$h['call_name']}}</td>    
             <td>{{$h['sex']}}</td>
-            <td>{{$h['grade']}}</td>
+            <td>@if($h['grade'] != "Open Level") {{ $h['grade'] }} @else OL @endif</td> 
             <td>{{$h['owner']}}</td>
-            <td><a class="btn btn-default btn-sm" href="{{$h['stall_path']}}" target="_blank">Stall Page</a></td>
-            <td><a class="btn btn-info btn-sm" href="/horse/{{ $h['id'] }}">Update</a></td>
-            <td><a class="btn btn-danger btn-sm" href="/remove-horse/{{ $h['id'] }}">Remove</a></td>
+            <td>
+              @if($h['stall_path'])
+              <a class="btn btn-default btn-sm" href="{{$h['stall_path']}}" target="_blank">
+                <span class="glyphicon glyphicon-list-alt" aria-hidden="true"></span>
+              </a>@endif
+            </td>
+            <td>
+              <a class="btn btn-info btn-sm" href="/horse/{{ $h['id'] }}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-sm" href="/remove-horse/{{ $h['id'] }}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </a>
+            </td>
           </tr>
           @endforeach   
         </tbody>

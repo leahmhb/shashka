@@ -11,12 +11,7 @@
      <h1>{{ $horse['call_name'] }}</h1> 
      <h2><small>{{ $prefix['stable_prefix'] }}'s' {{ $horse['registered_name'] }}</small></h2>
 
-     <div id="stall-edit" class="btn-group btn-group-sm btn-group-justified">
-      <a class="btn btn-default" href="/horse/{{ $horse['id'] }}">Update Stall Info</a>  
-      <a class="btn btn-default" href="/ancestory/{{ $horse['id'] }}/{{ $horse['id'] }}">Update Lineage</a>
-      <a class="btn btn-default" href="/race-entrant/{{ $horse['id'] }}">Add Race Entry</a>
-      <a class="btn btn-default" href="/ancestory/{{ $horse['sex'] }}/{{ $horse['id'] }}">Add Progeny</a>
-    </div><!--end btn group-->
+ 
   </div><!--end col-->
 </div><!--end row-->
 </div><!--end page header-->
@@ -153,41 +148,41 @@
 
             <div class="col-sm-4">      
               <textarea class="form-control" rows="20" readonly>
-                [b]+++Form[/b]
-                [b]++Stats:[/b]
-                [b]Speed:[/b] {{ $horse['speed'] }}
-                [b]Staying:[/b] {{ $horse['staying'] }}
-                [b]Stamina:[/b] {{ $horse['stamina'] }}
-                [b]Breaking:[/b] {{ $horse['breaking'] }}
-                [b]Power:[/b] {{ $horse['power'] }}
-                [b]Feel:[/b] {{ $horse['feel'] }}
-                [b]Fierce:[/b] {{ $horse['fierce'] }}
-                [b]Tenacity:[/b] {{ $horse['tenacity'] }}
-                [b]Courage:[/b] {{ $horse['courage'] }}
-                [b]Response:[/b] {{ $horse['response'] }}
+[b]+++Form[/b]
+[b]++Stats:[/b]
+[b]Speed:[/b] {{ $horse['speed'] }}
+[b]Staying:[/b] {{ $horse['staying'] }}
+[b]Stamina:[/b] {{ $horse['stamina'] }}
+[b]Breaking:[/b] {{ $horse['breaking'] }}
+[b]Power:[/b] {{ $horse['power'] }}
+[b]Feel:[/b] {{ $horse['feel'] }}
+[b]Fierce:[/b] {{ $horse['fierce'] }}
+[b]Tenacity:[/b] {{ $horse['tenacity'] }}
+[b]Courage:[/b] {{ $horse['courage'] }}
+[b]Response:[/b] {{ $horse['response'] }}
 
-                [b]Distance:[/b] {{ $horse['distance_min'] }}F - {{ $horse['distance_max'] }}F
-                [b]Leg Type:[/b] {{ $horse['leg_type'] }}
-                [b]Abilities:[/b][LIST]
-                [b]+ {{ $horse['pos_ability_1'] }}[/b]  
-                [b]+ {{ $horse['pos_ability_2'] }}[/b] 
-                [b]- {{ $horse['neg_ability_1'] }}[/b]
-                [/LIST][b]Dirt:[/b] {{ $horse['surface_dirt'] }}
-                [b]Turf:[/b] {{ $horse['surface_turf'] }}
+[b]Distance:[/b] {{ $horse['distance_min'] }}F - {{ $horse['distance_max'] }}F
+[b]Leg Type:[/b] {{ $horse['leg_type'] }}
+[b]Abilities:[/b][LIST]
+[b]+ {{ $horse['pos_ability_1'] }}[/b]  
+[b]+ {{ $horse['pos_ability_2'] }}[/b] 
+[b]- {{ $horse['neg_ability_1'] }}[/b]
+[/LIST][b]Dirt:[/b] {{ $horse['surface_dirt'] }}
+[b]Turf:[/b] {{ $horse['surface_turf'] }}
 
-                [b]++Horse Info[/b]
-                [b]Name:[/b] {{ $horse['call_name'] }}
-                [b]Color:[/b] {{ $horse['color'] }}
-                [b]Gender:[/b] {{ $horse['sex'] }}
-                [b]Bandages:[/b] {{ $horse['bandages'] }}
-                [b]Neck Height:[/b] {{ $horse['neck_height'] }}
-                [b]Run Style:[/b] {{ $horse['run_style'] }}
-                [b]Hood:[/b] {{ $horse['hood'] }}
-                [b]Shadow Roll:[/b] {{ $horse['shadow_roll'] }}
+[b]++Horse Info[/b]
+[b]Name:[/b] {{ $horse['call_name'] }}
+[b]Color:[/b] {{ $horse['color'] }}
+[b]Gender:[/b] {{ $horse['sex'] }}
+[b]Bandages:[/b] {{ $horse['bandages'] }}
+[b]Neck Height:[/b] {{ $horse['neck_height'] }}
+[b]Run Style:[/b] {{ $horse['run_style'] }}
+[b]Hood:[/b] {{ $horse['hood'] }}
+[b]Shadow Roll:[/b] {{ $horse['shadow_roll'] }}
 
-                [b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
-                [b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
-                [img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
+[b]Farm/stable name:[/b] {{ $entry['stable_name'] }}
+[b]Racing Colors:[/b] {{ $entry['racing_colors'] }}
+[img]http://shashka-racers.nfshost.com/horses/race-pose/{{ strtolower($horse['call_name']) }}.png[/img]
               </textarea>                       
 
             </div><!--end col-->
@@ -197,16 +192,23 @@
 
         <div role="tabpanel" class="tab-pane" id="records">
          <h2>Race Records </h2>
-         <div class="col-md-3">
-           <h3>First Place</h3>
+         <div class="row">
+
+
+          <div class="col-md-3">
+           <h3>TBA</h3>
            <ul class="race-records"> 
             @foreach($race_records as $r)     
-            @if($r['placing'] == 1)  
-            <li>
+            @if($r['placing'] == 0)  
+            <li>              
+              <b>{{ $r['placing'] }}</b>          
               <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
-              title="{{ $r['race']['surface'] }} 
+              title="
+              {{ $r['race']['series'] }} 
+              {{ $r['race']['surface'] }} 
               {{ $r['race']['distance'] }}F 
-              {{ $r['race']['grade'] }}">
+              {{ $r['race']['grade'] }}"
+              >
               <a href="{{ $r['race']['url'] }}" target="_blank">
                 {{ $r['race']['name'] }} 
               </a>            
@@ -215,13 +217,13 @@
           @endif    
           @endforeach
         </ul>
-      </div><!--end col-->
+      </div>
 
       <div class="col-md-3">
-       <h3>Second Place</h3>
+       <h3>First Place</h3>
        <ul class="race-records"> 
         @foreach($race_records as $r)     
-        @if($r['placing'] == 2)  
+        @if($r['placing'] == 1)  
         <li>
           <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
           title="{{ $r['race']['surface'] }} 
@@ -238,15 +240,18 @@
   </div><!--end col-->
 
   <div class="col-md-3">
-   <h3>Third Place</h3>
+   <h3>Second Place</h3>
    <ul class="race-records"> 
     @foreach($race_records as $r)     
-    @if($r['placing'] == 3)  
-    <li>            
+    @if($r['placing'] == 2)  
+    <li>
       <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
-      title="{{ $r['race']['surface'] }} 
+      title="
+      {{ $r['race']['series'] }} 
+      {{ $r['race']['surface'] }} 
       {{ $r['race']['distance'] }}F 
-      {{ $r['race']['grade'] }}">
+      {{ $r['race']['grade'] }}"
+      >
       <a href="{{ $r['race']['url'] }}" target="_blank">
         {{ $r['race']['name'] }} 
       </a>            
@@ -258,15 +263,18 @@
 </div><!--end col-->
 
 <div class="col-md-3">
- <h3>Other</h3>
+ <h3>Third Place</h3>
  <ul class="race-records"> 
   @foreach($race_records as $r)     
-  @if($r['placing'] > 3)  
-  <li>              
-    <b>{{ $r['placing'] }}</b> <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
-    title="{{ $r['race']['surface'] }} 
+  @if($r['placing'] == 3)  
+  <li>            
+    <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+    title="
+    {{ $r['race']['series'] }} 
+    {{ $r['race']['surface'] }} 
     {{ $r['race']['distance'] }}F 
-    {{ $r['race']['grade'] }}">
+    {{ $r['race']['grade'] }}"
+    >
     <a href="{{ $r['race']['url'] }}" target="_blank">
       {{ $r['race']['name'] }} 
     </a>            
@@ -276,6 +284,35 @@
 @endforeach
 </ul>
 </div><!--end col-->
+
+</div><!--end row-->
+
+<div class="row">
+  <div class="col-md-3">
+   <h3>Other</h3>
+   <ul class="race-records"> 
+    @foreach($race_records as $r)     
+    @if($r['placing'] > 3)  
+    <li>              
+      <b>{{ $r['placing'] }}</b>          
+      <span class="tooltip-overflow text-capitalize" data-toggle="tooltip" data-placement="top" 
+      title="
+      {{ $r['race']['series'] }} 
+      {{ $r['race']['surface'] }} 
+      {{ $r['race']['distance'] }}F 
+      {{ $r['race']['grade'] }}"
+      >
+      <a href="{{ $r['race']['url'] }}" target="_blank">
+        {{ $r['race']['name'] }} 
+      </a>            
+    </span>
+  </li> 
+  @endif    
+  @endforeach
+</ul>
+</div><!--end col-->
+</div><!--end row-->
+
 </div><!--end records-->
 <div role="tabpanel" class="tab-pane" id="progeny">
 

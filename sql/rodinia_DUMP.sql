@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost
--- Generation Time: Mar 23, 2016 at 10:31 AM
+-- Generation Time: Mar 26, 2016 at 10:43 PM
 -- Server version: 5.6.28-0ubuntu0.15.10.1
 -- PHP Version: 5.6.11-1ubuntu3.1
 
@@ -142,7 +142,7 @@ CREATE TABLE IF NOT EXISTS `horses` (
   `notes` longtext COLLATE utf8_unicode_ci NOT NULL,
   `stall_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#',
   `img_path` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '#'
-) ENGINE=MyISAM AUTO_INCREMENT=38 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=42 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `horses`
@@ -150,11 +150,10 @@ CREATE TABLE IF NOT EXISTS `horses` (
 
 INSERT INTO `horses` (`id`, `call_name`, `registered_name`, `sex`, `color`, `phenotype`, `grade`, `leg_type`, `owner`, `breeder`, `hexer`, `speed`, `staying`, `stamina`, `breaking`, `power`, `feel`, `fierce`, `tenacity`, `courage`, `response`, `pos_ability_1`, `pos_ability_2`, `neg_ability_1`, `distance_min`, `distance_max`, `surface_dirt`, `surface_turf`, `bandages`, `neck_height`, `run_style`, `hood`, `shadow_roll`, `notes`, `stall_path`, `img_path`) VALUES
 (1, 'Riparian', 'Lessons Learned', 'Stallion', 'Black', 'EE', 'GI', 'Front Runner', 'Haubing', 'Neco', 'Neco', 87, 76, 85, 72, 77, 71, 75, 71, 75, 77, 'Front Runner', 'Second Wind', 'Stubborn', 8.0, 12.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/1', 'http://leahmhb.info/stall_img/Riparian.png'),
-(35, 'Example Horse', '', 'Gelding', '', '', '', '', 'ExampleUser', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', '#', '#'),
-(36, '', '', '', '', '', '', '', '', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', '#', '#'),
+(35, 'Example Horse', '', 'Gelding', '', '', '', '', 'ExampleUser', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '...', '', ''),
 (2, 'American Pharoah', 'Divine Right', 'Stallion', 'Bay', 'EeAa', 'GIII', 'Front Runner', 'Haubing', '', 'Katann', 87, 69, 69, 68, 69, 69, 67, 68, 67, 68, 'Last Corner Leader', 'Second Wind', 'Dust Not OK', 8.0, 12.0, 'Great', 'Okay', 'Both', 'Normal', 'Normal', 'No', 'Yes', 'Part of the Triple Crown 2015 raffle. Still can''t believe I won him!!', '/stall/2', 'http://leahmhb.info/stall_img/American%20Pharoah.png'),
 (3, 'Sovenance', 'A Kinder Reminiscence', 'Mare', 'Bay', 'EeAA', 'GII', 'Closer', 'Haubing', 'Neco', 'Neco', 76, 71, 80, 70, 72, 67, 73, 63, 67, 73, 'Stretch Burst', 'Closer', 'Slow Start', 8.0, 12.0, 'Great', 'Okay', 'Both', 'Normal', 'Normal', 'No', 'Yes', '', '/stall/3', 'http://leahmhb.info/stall_img/Sovenance.png'),
-(4, 'Trickery', 'Beneath Still Waters', 'Stallion', 'Bay', 'EeAA', 'Open Level', 'Closer', 'Haubing', 'Artemis', 'Artemis', 67, 70, 70, 60, 60, 61, 62, 60, 58, 58, 'Stretch Burst', 'Instant Response', 'Stubborn', 7.0, 10.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'No', 'Yes', '', '/stall/4', 'http://leahmhb.info/stall_img/Trickery.png'),
+(4, 'Trickery', 'Beneath Still Waters', 'Stallion', 'Bay', 'EeAA', 'Open Level', 'Closer', 'Haubing', 'Artemis', 'Artemis', 67, 58, 70, 60, 60, 61, 62, 60, 58, 58, 'Stretch Burst', 'Instant Response', 'Stubborn', 7.0, 10.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'No', 'Yes', '...', '/stall/4', 'http://leahmhb.info/stall_img/Trickery.png'),
 (19, 'Antebellum', 'Southern Belle', 'Mare', '', '', 'GIII', 'Stalker', 'Haubing', 'Neco', 'Neco', 77, 71, 71, 65, 67, 65, 67, 70, 68, 74, 'Stretch Burst', 'Persistency', 'Inflexible', 8.0, 12.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/19', 'http://leahmhb.info/stall_img/Antebellum.png'),
 (14, 'Reverence', '', 'Mare', '', '', '', '', 'Neco', '', '', 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, '', '', '', 0.0, 0.0, '', '', 'None', 'Normal', 'Normal', 'No', 'No', '', 'Http://seeingstars.boards.net/thread/2395', ''),
 (13, 'Ziio', '', 'Mare', '', '', '', '', 'Artemis', '', '', 50, 50, 50, 50, 50, 50, 50, 50, 50, 50, '', '', '', 0.0, 0.0, '', '', 'None', 'Normal', 'Normal', 'No', 'No', '', 'Http://seeingstars.boards.net/thread/2009', ''),
@@ -164,7 +163,7 @@ INSERT INTO `horses` (`id`, `call_name`, `registered_name`, `sex`, `color`, `phe
 (23, 'Longevity', 'Love the Quiet Life', 'Stallion', '', '', 'Open Level', 'Follower', 'Haubing', 'Gor', 'Gor', 70, 59, 60, 59, 60, 58, 59, 59, 58, 58, 'Instant Response', 'Whip', 'Slow Start', 10.0, 14.0, 'Great', 'Okay', 'Both', 'High', 'Leg Lift', 'Yes', 'Yes', '', '/stall/23', 'http://leahmhb.info/stall_img/Longevity.png'),
 (24, 'Leise', 'Always the Quiet Ones', 'Mare', '', '', 'GIII', 'Closer', 'Haubing', '', 'Daveena', 69, 66, 67, 63, 65, 61, 62, 60, 62, 63, 'Spurt', 'Persistency', 'Bears', 12.0, 16.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/24', 'http://leahmhb.info/stall_img/Leise.png'),
 (25, 'Zippa', 'Buzzin'' By', 'Mare', 'Bay', '', 'GIII', 'Follower', 'Haubing', '', 'Neco', 73, 68, 69, 59, 65, 58, 61, 57, 60, 63, 'Instant Response', 'Grit', 'Bears', 8.0, 10.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'No', 'No', '', '/stall/25', 'http://leahmhb.info/stall_img/Zippa.png'),
-(26, 'Capricious', 'Flirt', 'Mare', 'Gray', '', 'GI', 'Stalker', 'Haubing', '', 'Mak', 87, 73, 80, 70, 80, 71, 71, 72, 72, 72, 'Stretch Burst', 'Whip', 'Delicate', 5.0, 8.0, 'Good', 'Good', 'Front', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/26', 'http://leahmhb.info/stall_img/Capricious.png'),
+(26, 'Capricious', 'Flirt', 'Mare', 'Gray', '', 'GI', 'Stalker', 'Haubing', '', 'Mak', 87, 73, 80, 73, 80, 71, 71, 72, 72, 72, 'Stretch Burst', 'Whip', 'Delicate', 5.0, 8.0, 'Good', 'Good', 'Front', 'High', 'Normal', 'Yes', 'Yes', '', '/stall/26', 'http://leahmhb.info/stall_img/Capricious.png'),
 (27, 'Winnie', 'Watch Me', 'Mare', '', '', 'GIII', 'Stalker', 'Haubing', '', 'Gor', 67, 65, 65, 64, 67, 62, 64, 62, 61, 66, 'Free', 'Grit', 'Stubborn', 7.0, 11.0, 'Good', 'Good', 'Front', 'Normal', 'Leg Lift', 'No', 'Yes', '', '/stall/27', 'http://leahmhb.info/stall_img/Winnie.png'),
 (28, 'Pollyanna', 'Paint a Smile', 'Mare', 'Gray', '', 'Open Level', 'Follower', 'Haubing', 'Katann', 'Katann', 60, 59, 57, 56, 59, 55, 61, 59, 61, 63, 'Whip', 'Instant Response', 'Bears', 9.0, 14.0, 'Good', 'Good', 'Both', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/28', 'http://leahmhb.info/stall_img/Pollyanna.png'),
 (29, 'Nouvar', 'Bring on the Rain', 'Mare', 'Gray', '', 'GIII', 'Follower', 'Haubing', '', 'Haubing', 73, 71, 72, 60, 70, 62, 63, 59, 63, 65, 'Likes Pack', 'Tough', 'Inflexible', 8.0, 12.0, 'Okay', 'Great', 'Both', 'Normal', 'Normal', 'Yes', 'Yes', '', '/stall/29', 'http://leahmhb.info/stall_img/Nouvar.png'),
@@ -172,7 +171,11 @@ INSERT INTO `horses` (`id`, `call_name`, `registered_name`, `sex`, `color`, `phe
 (31, 'Ruffian', '', 'Mare', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', 'http://seeingstars.boards.net/thread/448', '#'),
 (32, 'Seattle Slew', '', 'Stallion', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', 'http://seeingstars.boards.net/thread/444', '#'),
 (33, 'Seabiscuit', '', 'Stallion', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', 'http://seeingstars.boards.net/thread/445', '#'),
-(34, 'Zenyatta', '', 'Mare', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', 'http://seeingstars.boards.net/thread/425', '#');
+(34, 'Zenyatta', '', 'Mare', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', 'http://seeingstars.boards.net/thread/425', '#'),
+(38, 'Sass Street Wonder', '', 'Mare', '', '', '', '', 'Gor', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '...', '', ''),
+(39, 'Nico', '', 'Stallion', '', '', '', '', 'Brynn', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '...', '', ''),
+(40, 'Man O War', '', 'Stallion', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '...', '#', '#'),
+(41, 'Southern Dancer', '', 'Mare', '', '', '', '', 'Neco', '', '', 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, '', '', '', 0.0, 0.0, '', '', '', '', '', '', '', '', '#', '#');
 
 -- --------------------------------------------------------
 
@@ -185,7 +188,7 @@ CREATE TABLE IF NOT EXISTS `horses_progeny` (
   `horse_id` int(10) unsigned NOT NULL,
   `sire_id` int(10) unsigned NOT NULL,
   `dam_id` int(10) unsigned NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=6 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=9 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `horses_progeny`
@@ -196,7 +199,10 @@ INSERT INTO `horses_progeny` (`id`, `horse_id`, `sire_id`, `dam_id`) VALUES
 (2, 14, 1, 3),
 (3, 4, 1, 13),
 (4, 1, 32, 31),
-(5, 3, 33, 34);
+(5, 3, 33, 34),
+(6, 22, 1, 38),
+(7, 20, 39, 29),
+(8, 19, 40, 41);
 
 -- --------------------------------------------------------
 
@@ -250,7 +256,7 @@ CREATE TABLE IF NOT EXISTS `person` (
   `stable_name` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `stable_prefix` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT '',
   `racing_colors` varchar(255) COLLATE utf8_unicode_ci NOT NULL DEFAULT ''
-) ENGINE=MyISAM AUTO_INCREMENT=17 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=21 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `person`
@@ -264,7 +270,8 @@ INSERT INTO `person` (`id`, `username`, `stable_name`, `stable_prefix`, `racing_
 (5, 'Gor', 'BlueJay Racing', 'BlueJay', ''),
 (6, 'Mak', 'Falling in Like', 'Falling', ''),
 (13, 'Daveena', 'Moonmist', 'Daveena', ''),
-(14, 'ExampleUser', 'ExampleStable', 'ExamplePrefix', 'ExampleColors');
+(14, 'ExampleUser', 'ExampleStable', 'ExamplePrefix', 'ExampleColors'),
+(20, 'Brynn', '?', '?', '');
 
 -- --------------------------------------------------------
 
@@ -274,84 +281,117 @@ INSERT INTO `person` (`id`, `username`, `stable_name`, `stable_prefix`, `racing_
 
 CREATE TABLE IF NOT EXISTS `races` (
   `id` int(10) unsigned NOT NULL,
+  `series` varchar(255) COLLATE utf8_unicode_ci DEFAULT NULL,
   `name` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `surface` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `grade` varchar(255) COLLATE utf8_unicode_ci NOT NULL,
   `distance` decimal(8,1) NOT NULL,
   `ran_dt` date NOT NULL DEFAULT '1000-01-01',
   `url` varchar(255) COLLATE utf8_unicode_ci NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=70 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=106 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `races`
 --
 
-INSERT INTO `races` (`id`, `name`, `surface`, `grade`, `distance`, `ran_dt`, `url`) VALUES
-(1, 'Sordid Affair Stakes', 'Dirt', 'GII', 7.0, '1000-01-01', 'http://seeingstars.boards.net/thread/5528/'),
-(2, 'Dubai Millenium Stakes', 'Dirt', 'GIII', 10.0, '2016-03-14', 'http://seeingstars.boards.net/thread/5596'),
-(3, 'Down and Out Stakes', 'Turf', 'Open Level', 12.0, '2015-09-02', 'http://seeingstars.boards.net/thread/3120'),
-(4, '(DWC Series) Zabeel Mile', 'Turf', 'GIII', 8.0, '2016-03-17', 'http://seeingstars.boards.net/thread/5594'),
-(5, '(DWC Series) Al Shindagha Sprint', 'Dirt', 'GIII', 6.0, '2016-03-17', 'http://seeingstars.boards.net/thread/5593'),
-(6, '(DWC Series) Firebreak Stakes', 'Dirt', 'GIII', 8.0, '2016-03-17', 'http://seeingstars.boards.net/thread/5595'),
-(7, 'Running Roses Stakes', 'Dirt', 'GIII', 8.0, '2016-03-22', 'http://seeingstars.boards.net/thread/5616'),
-(8, 'Guns Blazing Stakes', 'Dirt', 'GIII', 7.0, '2016-03-16', 'http://seeingstars.boards.net/thread/5601'),
-(9, 'Celtic Bride Stakes', 'Turf', 'Open Level', 12.0, '2015-05-24', 'http://seeingstars.boards.net/thread/1762'),
-(10, 'Summer Front Stakes', 'Dirt', 'Open Level', 11.5, '2015-05-24', 'http://seeingstars.boards.net/thread/1713'),
-(11, '[WT: Canada] Woodbine Racetrack', 'Dirt', 'Open Level', 8.0, '2015-05-26', 'http://seeingstars.boards.net/thread/1793'),
-(12, '[WT Canada] Breeders'' Stakes', 'Turf', 'Open Level', 12.0, '2015-05-30', 'http://seeingstars.boards.net/thread/1806'),
-(13, 'Wirlwind Tour Handicap', 'Dirt', 'GIII', 9.0, '2015-06-27', 'http://seeingstars.boards.net/thread/2288'),
-(14, 'Stars and Stripes Handicap', 'Turf', 'GIII', 8.0, '2015-07-08', 'http://seeingstars.boards.net/thread/2428'),
-(15, 'Old Friends Stakes', 'Turf', 'GIII', 8.0, '2015-09-15', 'http://seeingstars.boards.net/thread/3140'),
-(16, '(Breeder''s Cup) Dirt Mile', 'Dirt', 'All', 8.0, '2015-11-01', 'http://seeingstars.boards.net/thread/4130'),
-(17, '(DWC Series) Firebreak Stakes', 'Dirt', 'GIII', 8.0, '2016-03-19', 'http://seeingstars.boards.net/thread/5595'),
-(18, '(Kentucky Derby Prep) Fountain of Youth', 'Dirt', 'All', 9.0, '2016-03-19', 'http://seeingstars.boards.net/thread/5571'),
-(19, '(Kentucky Oaks Prep) Fairground Oaks', 'Dirt', 'All', 8.5, '2016-03-18', 'http://seeingstars.boards.net/thread/5563'),
-(20, 'Road Less Travelled', 'Dirt', 'GIII', 9.0, '2016-03-16', 'http://seeingstars.boards.net/thread/5602'),
-(21, 'Dec 12 Maiden Special Weight', 'Dirt', 'Open Level', 8.0, '1000-01-01', ''),
-(22, 'Mar 27 NW x 3 / Optional Claimer', 'Turf', 'Open Level', 9.0, '1000-01-01', ''),
-(23, 'Ice and Fire Handicap', 'Turf', 'GII', 8.0, '2015-08-19', 'http://seeingstars.boards.net/thread/2806'),
-(24, 'Sycorax Handicap', 'Turf', 'Open Level', 11.0, '1000-01-01', ''),
-(25, 'May 24 Maiden Special Weight', 'Turf', 'Open Level', 7.0, '2015-04-26', 'http://seeingstars.boards.net/thread/1808'),
-(26, 'Dead Man''s Sprint Stakes', 'Turf', 'GIII', 7.0, '2015-10-20', 'http://seeingstars.boards.net/thread/4020'),
-(27, 'The Tin Man Handicap', 'Turf', 'Open Level', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1591'),
-(28, 'May 21 Maiden Special Weight', 'Dirt', 'Open Level', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1750'),
-(29, '[WT Canada] Toronto Cup', 'Turf', 'Open Level', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1805'),
-(30, 'Above and Below Handicap', 'Turf', 'GIII', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2691'),
-(31, 'Slow Burn Handicap', 'Turf', 'GIII', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3172'),
-(32, '(Breeder''s Cup) Corinthian Stakes', 'Dirt', 'All', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3412'),
-(33, '(Breeder''s Cup) Goldikova Stakes', 'Turf', 'All', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3411'),
-(34, '(Breeder''s Cup) Frankel Handicap', 'Turf', 'All', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3539'),
-(35, 'Self Destruct Handicap', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3626'),
-(36, 'Loveburn Handicap', 'Dirt', 'GII', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/4106'),
-(37, '(Breeder''s Cup) Classic', 'Dirt', 'All', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/4136'),
-(38, 'Shadowrun Handicap', 'Dirt', 'GIII', 10.5, '1000-01-01', 'http://seeingstars.boards.net/thread/3516'),
-(39, 'Mammoth Handicap', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1995'),
-(40, 'Empire State Handicap', 'Dirt', 'GIII', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1941'),
-(41, 'Paranormal Party Handicap', 'Dirt', 'GIII', 10.5, '1000-01-01', 'http://seeingstars.boards.net/thread/2372'),
-(42, '[World Tour UAE] Dubai Classic', 'Dirt', 'GIII', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2445'),
-(43, 'Seize The Day Handicap', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2693'),
-(44, '(Breeder''s Cup) Cigar Handicap', 'Dirt', 'All', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2854'),
-(45, 'Sink or Swim Stakes', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3092'),
-(46, 'Mad House Handicap', 'Dirt', 'GII', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3881'),
-(47, 'Warbler Handicap', 'Dirt', 'Open Level', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1751'),
-(48, 'Rising Tide Stakes', 'Dirt', 'Open Level', 10.5, '1000-01-01', 'http://seeingstars.boards.net/thread/1566'),
-(49, '[World Tour: Canada] Nunavut Stakes', 'Turf', 'Open Level', 9.0, '2015-04-01', 'http://seeingstars.boards.net/thread/1904'),
-(50, 'Winsome Handicap', 'Dirt', 'GIII', 8.0, '2016-03-18', 'http://seeingstars.boards.net/thread/2076'),
-(51, 'Game On Dude Handicap', 'Dirt', 'GIII', 9.0, '2016-03-18', 'http://seeingstars.boards.net/thread/3141'),
-(52, '(Breeder''s Cup) Coaltown Handicap', 'Dirt', 'All', 8.0, '2016-03-18', 'http://seeingstars.boards.net/thread/3540'),
-(53, 'Uninvited Guests Handicap', 'Turf', 'GII', 12.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4023'),
-(54, 'Together Forward Handicap', 'Dirt', 'GII', 9.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4346'),
-(55, 'Steamroller Stakes', 'Turf', 'GII', 10.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4521'),
-(56, 'May 7 Maiden Special Weight 70 and under', 'Turf', 'GIII', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1602'),
-(57, 'May 24 NW x 3/Optional Claiming', 'Turf', 'Open Level', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1809'),
-(58, 'Belmont Gold Cup', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/1942'),
-(59, 'Lead Me Home Stakes', 'Turf', 'GIII', 11.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2429'),
-(60, 'Funny Bone Handicap', 'Dirt', 'GIII', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2493'),
-(61, 'Affirmed Handicap', 'Dirt', 'GIII', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/2692'),
-(62, 'Sea The Stars Handicap', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3585'),
-(63, 'Paranormal Witness Handicap', 'Turf', 'GII', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3804'),
-(64, 'Pender Harbor Stakes', 'Turf', 'GII', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/4565'),
-(65, 'Sort It Out Handicap', 'Turf', 'GIII', 12.0, '1000-01-01', 'http://seeingstars.boards.net/thread/3398');
+INSERT INTO `races` (`id`, `series`, `name`, `surface`, `grade`, `distance`, `ran_dt`, `url`) VALUES
+(1, NULL, 'Sordid Affair Stakes', 'Dirt', 'GII', 7.0, '2016-03-23', 'http://seeingstars.boards.net/thread/5528/'),
+(2, NULL, 'Dubai Millenium Stakes', 'Dirt', 'GIII', 10.0, '1000-01-01', 'http://seeingstars.boards.net/thread/5596'),
+(3, NULL, 'Down and Out Stakes', 'Turf', 'Open Level', 12.0, '2015-09-02', 'http://seeingstars.boards.net/thread/3120'),
+(4, '(DWC Series)', 'Zabeel Mile', 'Turf', 'GIII', 8.0, '1000-01-01', 'http://seeingstars.boards.net/thread/5594'),
+(5, '(DWC Series)', 'Al Shindagha Sprint', 'Dirt', 'GIII', 6.0, '1000-01-01', 'http://seeingstars.boards.net/thread/5593'),
+(105, '(DWC Series)', 'Firebreak Stakes', 'Dirt', 'GIII', 8.0, '2016-03-14', 'http://seeingstars.boards.net/thread/5595'),
+(7, NULL, 'Running Roses Stakes', 'Dirt', 'GIII', 8.0, '2016-03-22', 'http://seeingstars.boards.net/thread/5616'),
+(8, NULL, 'Guns Blazing Stakes', 'Dirt', 'GIII', 7.0, '2016-03-16', 'http://seeingstars.boards.net/thread/5601'),
+(9, NULL, 'Celtic Bride Stakes', 'Turf', 'Open Level', 12.0, '2015-05-24', 'http://seeingstars.boards.net/thread/1762'),
+(10, NULL, 'Summer Front Stakes', 'Dirt', 'Open Level', 11.5, '2015-05-24', 'http://seeingstars.boards.net/thread/1713'),
+(11, '[WT Canada]', 'Woodbine Racetrack', 'Dirt', 'Open Level', 8.0, '2015-05-26', 'http://seeingstars.boards.net/thread/1793'),
+(12, '[WT Canada]', 'Breeders'' Stakes', 'Turf', 'Open Level', 12.0, '2015-05-30', 'http://seeingstars.boards.net/thread/1806'),
+(13, NULL, 'Wirlwind Tour Handicap', 'Dirt', 'GIII', 9.0, '2015-06-27', 'http://seeingstars.boards.net/thread/2288'),
+(14, NULL, 'Stars and Stripes Handicap', 'Turf', 'GIII', 8.0, '2015-07-08', 'http://seeingstars.boards.net/thread/2428'),
+(15, NULL, 'Old Friends Stakes', 'Turf', 'GIII', 8.0, '2015-09-15', 'http://seeingstars.boards.net/thread/3140'),
+(16, '(Breeder''s Cup)', 'Dirt Mile', 'Dirt', 'All', 8.0, '2015-11-01', 'http://seeingstars.boards.net/thread/4130'),
+(18, '(Kentucky Derby Prep)', 'Fountain of Youth', 'Dirt', 'All', 9.0, '2016-03-19', 'http://seeingstars.boards.net/thread/5571'),
+(19, '(Kentucky Oaks Prep)', 'Fairground Oaks', 'Dirt', 'All', 8.5, '2016-03-18', 'http://seeingstars.boards.net/thread/5563'),
+(20, NULL, 'Road Less Travelled', 'Dirt', 'GIII', 9.0, '2016-03-16', 'http://seeingstars.boards.net/thread/5602'),
+(21, 'Maiden Special Weight', 'Dec 12', 'Dirt', 'Open Level', 8.0, '2015-12-12', ''),
+(22, 'AOC/NW', 'Mar 27 NW x 3 / Optional Claimer', 'Turf', 'Open Level', 9.0, '2015-05-27', ''),
+(23, NULL, 'Ice and Fire Handicap', 'Turf', 'GII', 8.0, '2015-07-30', 'http://seeingstars.boards.net/thread/2806'),
+(24, NULL, 'Sycorax Handicap', 'Turf', 'Open Level', 11.0, '1000-01-01', ''),
+(25, 'Maiden Special Weight', 'May 24', 'Turf', 'Open Level', 7.0, '2015-04-26', 'http://seeingstars.boards.net/thread/1808'),
+(26, NULL, 'Dead Man''s Sprint Stakes', 'Turf', 'GIII', 7.0, '2015-10-20', 'http://seeingstars.boards.net/thread/4020'),
+(27, NULL, 'The Tin Man Handicap', 'Turf', 'Open Level', 12.0, '2015-05-05', 'http://seeingstars.boards.net/thread/1591'),
+(28, 'Maiden Special Weight', 'May 21', 'Dirt', 'Open Level', 8.0, '2015-05-21', 'http://seeingstars.boards.net/thread/1750'),
+(29, '[WT Canada]', 'Toronto Cup', 'Turf', 'Open Level', 9.0, '2015-05-24', 'http://seeingstars.boards.net/thread/1805'),
+(30, NULL, 'Above and Below Handicap', 'Turf', 'GIII', 8.0, '2015-07-24', 'http://seeingstars.boards.net/thread/2691'),
+(31, NULL, 'Slow Burn Handicap', 'Turf', 'GIII', 9.0, '2015-09-05', 'http://seeingstars.boards.net/thread/3172'),
+(32, '(Breeder''s Cup)', 'Corinthian Stakes', 'Dirt', 'All', 8.0, '2015-09-18', 'http://seeingstars.boards.net/thread/3412'),
+(33, '(Breeder''s Cup)', 'Goldikova Stakes', 'Turf', 'All', 8.0, '2015-09-15', 'http://seeingstars.boards.net/thread/3411'),
+(34, '(Breeder''s Cup)', 'Frankel Handicap', 'Turf', 'All', 8.0, '2015-09-26', 'http://seeingstars.boards.net/thread/3539'),
+(35, NULL, 'Self Destruct Handicap', 'Turf', 'GIII', 12.0, '2015-10-02', 'http://seeingstars.boards.net/thread/3626'),
+(36, NULL, 'Loveburn Handicap', 'Dirt', 'GII', 8.0, '2015-10-23', 'http://seeingstars.boards.net/thread/4106'),
+(37, '(Breeder''s Cup)', 'Classic', 'Dirt', 'All', 10.0, '2015-10-25', 'http://seeingstars.boards.net/thread/4136'),
+(38, NULL, 'Shadowrun Handicap', 'Dirt', 'GIII', 10.5, '2015-09-25', 'http://seeingstars.boards.net/thread/3516'),
+(39, NULL, 'Mammoth Handicap', 'Turf', 'GIII', 12.0, '2015-06-03', 'http://seeingstars.boards.net/thread/1995'),
+(40, NULL, 'Empire State Handicap', 'Dirt', 'GIII', 9.0, '2015-05-31', 'http://seeingstars.boards.net/thread/1941'),
+(41, NULL, 'Paranormal Party Handicap', 'Dirt', 'GIII', 10.5, '2015-06-29', 'http://seeingstars.boards.net/thread/2372'),
+(42, '[World Tour UAE]', 'Dubai Classic', 'Dirt', 'GIII', 10.0, '2015-07-05', 'http://seeingstars.boards.net/thread/2445'),
+(43, NULL, 'Seize The Day Handicap', 'Turf', 'GIII', 12.0, '2015-07-24', 'http://seeingstars.boards.net/thread/2693'),
+(44, '(Breeder''s Cup)', 'Cigar Handicap', 'Dirt', 'All', 10.0, '2015-08-03', 'http://seeingstars.boards.net/thread/2854'),
+(45, NULL, 'Sink or Swim Stakes', 'Turf', 'GIII', 12.0, '2015-08-27', 'http://seeingstars.boards.net/thread/3092'),
+(46, NULL, 'Mad House Handicap', 'Dirt', 'GII', 10.0, '2015-10-31', 'http://seeingstars.boards.net/thread/3881'),
+(47, NULL, 'Warbler Handicap', 'Dirt', 'Open Level', 9.0, '2015-05-22', 'http://seeingstars.boards.net/thread/1751'),
+(48, NULL, 'Rising Tide Stakes', 'Dirt', 'Open Level', 10.5, '2015-05-03', 'http://seeingstars.boards.net/thread/1566'),
+(49, '[World Tour: Canada]', 'Nunavut Stakes', 'Turf', 'Open Level', 9.0, '2015-04-01', 'http://seeingstars.boards.net/thread/1904'),
+(50, NULL, 'Winsome Handicap', 'Dirt', 'GIII', 8.0, '2016-03-18', 'http://seeingstars.boards.net/thread/2076'),
+(51, NULL, 'Game On Dude Handicap', 'Dirt', 'GIII', 9.0, '2016-03-18', 'http://seeingstars.boards.net/thread/3141'),
+(52, '(Breeder''s Cup)', 'Coaltown Handicap', 'Dirt', 'All', 8.0, '2016-03-18', 'http://seeingstars.boards.net/thread/3540'),
+(53, NULL, 'Uninvited Guests Handicap', 'Turf', 'GII', 12.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4023'),
+(54, NULL, 'Together Forward Handicap', 'Dirt', 'GII', 9.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4346'),
+(55, NULL, 'Steamroller Stakes', 'Turf', 'GII', 10.0, '2016-03-18', 'http://seeingstars.boards.net/thread/4521'),
+(56, 'Maiden Special Weight', 'May 7 (70 and Under)', 'Turf', 'GIII', 8.0, '2015-05-27', 'http://seeingstars.boards.net/thread/1602'),
+(57, 'AOC/NW', 'May 24 NW x 3/Optional Claiming', 'Turf', 'Open Level', 9.0, '2015-05-24', 'http://seeingstars.boards.net/thread/1809'),
+(58, NULL, 'Belmont Gold Cup', 'Turf', 'GIII', 12.0, '2015-05-31', 'http://seeingstars.boards.net/thread/1942'),
+(59, NULL, 'Lead Me Home Stakes', 'Turf', 'GIII', 11.0, '2015-07-04', 'http://seeingstars.boards.net/thread/2429'),
+(60, NULL, 'Funny Bone Handicap', 'Dirt', 'GIII', 9.0, '2015-07-08', 'http://seeingstars.boards.net/thread/2493'),
+(61, NULL, 'Affirmed Handicap', 'Dirt', 'GIII', 10.0, '2015-07-24', 'http://seeingstars.boards.net/thread/2692'),
+(62, NULL, 'Sea The Stars Handicap', 'Turf', 'GIII', 12.0, '2015-09-28', 'http://seeingstars.boards.net/thread/3585'),
+(63, NULL, 'Paranormal Witness Handicap', 'Turf', 'GII', 9.0, '2015-10-09', 'http://seeingstars.boards.net/thread/3804'),
+(64, NULL, 'Pender Harbor Stakes', 'Turf', 'GII', 10.0, '2015-11-29', 'http://seeingstars.boards.net/thread/4565'),
+(65, NULL, 'Sort It Out Handicap', 'Turf', 'GIII', 12.0, '2015-09-17', 'http://seeingstars.boards.net/thread/3398'),
+(71, NULL, 'Burnin'' From the Start Stakes', 'Turf', 'GIII', 9.0, '2016-03-23', 'http://seeingstars.boards.net/thread/5732'),
+(72, NULL, 'Let It Go', 'Dirt', 'GIII', 9.5, '2016-03-23', 'http://seeingstars.boards.net/thread/5617'),
+(73, NULL, 'Seeing Stars Handicap', 'Turf', 'GII', 9.0, '1000-01-01', 'http://seeingstars.boards.net/thread/5731'),
+(74, 'Maiden Special Weight', 'May 5th', 'Turf', 'Open Level', 9.0, '2015-05-05', 'http://seeingstars.boards.net/thread/1592'),
+(75, 'AOC/NW', 'May 5 NW x 2 / Optional Claiming', 'Dirt', 'All', 10.0, '2015-05-05', 'http://seeingstars.boards.net/thread/1593/optional-claiming-10f-dirt-aoc'),
+(76, NULL, 'Sweet Amber Stakes', 'Dirt', 'GII', 10.0, '2015-06-25', 'http://seeingstars.boards.net/thread/2331/sweet-amber-stakes-10f-dirt'),
+(77, NULL, 'Evergleam Stakes', 'Turf', 'GIII', 8.0, '2015-06-29', 'http://seeingstars.boards.net/thread/2379'),
+(78, '[World Tour UAE]', 'Sheema Classic', 'Turf', 'GIII', 12.0, '2015-07-08', 'http://seeingstars.boards.net/thread/2491'),
+(79, '(Breeder''s Cup)', 'Shergar Memorial Stakes', 'Turf', 'All', 11.0, '2015-07-18', 'http://seeingstars.boards.net/thread/2528'),
+(80, '(Breeder''s Cup)', 'Tiznow Handicap', 'Dirt', 'All', 9.0, '2015-07-19', 'http://seeingstars.boards.net/thread/2618'),
+(81, '(Breeder''s Cup)', 'English Channel Handicap', 'Turf', 'All', 12.0, '2015-07-19', 'http://seeingstars.boards.net/thread/2616'),
+(82, '(Breeder''s Cup)', 'Spectacular Bid Stakes', 'Dirt', 'All', 10.0, '2015-07-26', 'http://seeingstars.boards.net/thread/2712'),
+(83, '(Breeder''s Cup)', 'Orfevre Handicap', 'Turf', 'All', 12.0, '2015-08-03', 'http://seeingstars.boards.net/thread/2856'),
+(84, NULL, 'Speed Demon Stakes', 'Dirt', 'GIII', 9.0, '2015-08-27', 'http://seeingstars.boards.net/thread/3091'),
+(85, NULL, 'Jack Be Nimble', 'Dirt', 'GIII', 12.0, '2015-09-09', 'http://seeingstars.boards.net/thread/3306'),
+(86, NULL, 'Left Behing Stakes', 'Dirt', 'GIII', 10.0, '2015-09-09', 'http://seeingstars.boards.net/thread/3305'),
+(87, NULL, 'Macho Uno Stakes', 'Dirt', 'GII', 8.5, '2015-10-02', 'http://seeingstars.boards.net/thread/3627'),
+(88, NULL, 'On Ice Handicap', 'Turf', 'GIII', 12.0, '2015-10-15', 'http://seeingstars.boards.net/thread/4022'),
+(89, NULL, 'War Front Stakes', 'Dirt', 'GII', 10.0, '2016-11-03', 'http://seeingstars.boards.net/thread/4228'),
+(90, NULL, 'Unobtainium Stakes', 'Turf', 'GII', 12.0, '2015-11-18', 'http://seeingstars.boards.net/thread/4442'),
+(91, 'Maiden Special Weight', 'Oct 3', 'Turf', 'Open Level', 9.0, '2015-10-03', 'http://seeingstars.boards.net/thread/3646/oct-maiden-special-weight-turf'),
+(92, 'Maiden Special Weight', 'Sept 22', 'Turf', 'Open Level', 8.0, '2015-09-22', 'http://seeingstars.boards.net/thread/3462'),
+(93, 'Maiden Special Weight', 'Sept 27', 'Dirt', 'Open Level', 9.0, '2015-09-27', 'http://seeingstars.boards.net/thread/3566'),
+(94, NULL, 'Claiborne Futurity Stakes', 'Dirt', 'Open Level', 9.0, '2015-11-01', 'http://seeingstars.boards.net/thread/4184'),
+(95, NULL, 'Winter Showers Stakes', 'Dirt', 'Open Level', 12.0, '2015-11-09', 'http://seeingstars.boards.net/thread/4287'),
+(96, NULL, 'Ghost of Me Stakes', 'Dirt', 'Open Level', 7.0, '2015-09-22', 'http://seeingstars.boards.net/thread/3468'),
+(97, NULL, 'White Collar Stakes', 'Dirt', 'Open Level', 7.0, '2015-11-01', 'http://seeingstars.boards.net/thread/4180'),
+(98, '(Kentucky Oaks Prep)', 'Ashland Stakes', 'Dirt', 'All', 8.5, '1000-01-01', 'http://seeingstars.boards.net/thread/5747'),
+(99, 'Maiden Special Weight', 'August 30', 'Dirt', 'Open Level', 9.0, '2015-08-30', 'http://seeingstars.boards.net/thread/3114'),
+(100, 'Maiden Special Weight', 'Sept 1', 'Dirt', 'Open Level', 9.0, '2015-09-01', 'http://seeingstars.boards.net/thread/3143'),
+(101, 'Maiden Special Weight', 'Sept 8', 'Dirt', 'Open Level', 9.0, '2015-09-08', 'http://seeingstars.boards.net/thread/3286'),
+(102, 'Maiden Special Weight', 'Sept 30', 'Dirt', 'Open Level', 8.0, '2015-09-30', 'http://seeingstars.boards.net/thread/3609'),
+(103, NULL, 'Motivational Stakes', 'Dirt', 'Open Level', 7.0, '2015-11-17', 'http://seeingstars.boards.net/thread/4417');
 
 -- --------------------------------------------------------
 
@@ -364,7 +404,7 @@ CREATE TABLE IF NOT EXISTS `race_entrants` (
   `horse_id` int(10) unsigned NOT NULL,
   `race_id` int(10) unsigned NOT NULL,
   `placing` int(11) NOT NULL
-) ENGINE=MyISAM AUTO_INCREMENT=75 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
+) ENGINE=MyISAM AUTO_INCREMENT=146 DEFAULT CHARSET=utf8 COLLATE=utf8_unicode_ci;
 
 --
 -- Dumping data for table `race_entrants`
@@ -380,7 +420,7 @@ INSERT INTO `race_entrants` (`id`, `horse_id`, `race_id`, `placing`) VALUES
 (7, 1, 14, 1),
 (8, 1, 15, 1),
 (9, 1, 16, 1),
-(10, 26, 1, 0),
+(10, 26, 1, 3),
 (11, 19, 2, 0),
 (12, 29, 2, 0),
 (13, 19, 4, 0),
@@ -439,7 +479,76 @@ INSERT INTO `race_entrants` (`id`, `horse_id`, `race_id`, `placing`) VALUES
 (69, 1, 62, 5),
 (70, 1, 63, 5),
 (71, 1, 64, 2),
-(72, 1, 65, 4);
+(72, 1, 65, 4),
+(76, 19, 71, 1),
+(77, 19, 72, 11),
+(79, 3, 73, 0),
+(80, 20, 73, 0),
+(81, 1, 74, 11),
+(82, 1, 75, 7),
+(83, 1, 76, 7),
+(84, 1, 77, 6),
+(85, 1, 78, 6),
+(86, 1, 79, 9),
+(87, 1, 80, 7),
+(88, 1, 81, 8),
+(89, 1, 82, 9),
+(90, 1, 23, 6),
+(91, 1, 83, 6),
+(92, 1, 84, 8),
+(93, 1, 85, 10),
+(94, 1, 86, 14),
+(95, 1, 87, 6),
+(96, 1, 88, 6),
+(97, 1, 89, 8),
+(98, 1, 90, 6),
+(99, 21, 11, 4),
+(100, 25, 11, 2),
+(101, 24, 12, 4),
+(102, 25, 13, 4),
+(103, 3, 13, 7),
+(104, 3, 14, 7),
+(105, 22, 14, 4),
+(106, 29, 15, 3),
+(107, 22, 15, 5),
+(108, 3, 16, 11),
+(109, 29, 30, 7),
+(110, 22, 30, 6),
+(111, 29, 31, 5),
+(112, 3, 32, 11),
+(113, 24, 27, 12),
+(114, 29, 33, 7),
+(115, 29, 35, 3),
+(116, 22, 35, 9),
+(117, 20, 36, 4),
+(118, 3, 36, 6),
+(119, 3, 37, 7),
+(120, 3, 38, 4),
+(121, 3, 39, 8),
+(122, 3, 40, 8),
+(123, 21, 40, 14),
+(124, 3, 41, 6),
+(125, 22, 41, 7),
+(126, 22, 42, 10),
+(127, 3, 42, 8),
+(128, 29, 43, 5),
+(129, 22, 43, 4),
+(130, 3, 44, 6),
+(131, 29, 45, 6),
+(132, 3, 46, 4),
+(133, 4, 91, 1),
+(134, 4, 92, 2),
+(135, 4, 93, 2),
+(136, 4, 94, 2),
+(137, 4, 95, 3),
+(138, 4, 96, 4),
+(139, 4, 97, 4),
+(140, 19, 98, 0),
+(141, 4, 99, 5),
+(142, 4, 100, 5),
+(143, 4, 101, 5),
+(144, 4, 102, 5),
+(145, 4, 103, 5);
 
 -- --------------------------------------------------------
 
@@ -558,12 +667,12 @@ ALTER TABLE `grades`
 -- AUTO_INCREMENT for table `horses`
 --
 ALTER TABLE `horses`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=38;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=42;
 --
 -- AUTO_INCREMENT for table `horses_progeny`
 --
 ALTER TABLE `horses_progeny`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=6;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=9;
 --
 -- AUTO_INCREMENT for table `leg_types`
 --
@@ -573,17 +682,17 @@ ALTER TABLE `leg_types`
 -- AUTO_INCREMENT for table `person`
 --
 ALTER TABLE `person`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=17;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=21;
 --
 -- AUTO_INCREMENT for table `races`
 --
 ALTER TABLE `races`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=70;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=106;
 --
 -- AUTO_INCREMENT for table `race_entrants`
 --
 ALTER TABLE `race_entrants`
-  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=75;
+  MODIFY `id` int(10) unsigned NOT NULL AUTO_INCREMENT,AUTO_INCREMENT=146;
 --
 -- AUTO_INCREMENT for table `sexes`
 --

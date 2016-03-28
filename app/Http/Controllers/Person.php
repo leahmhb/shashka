@@ -11,9 +11,15 @@ use Illuminate\Http\Request;
 
 class Person extends Base{
 
-  public function person_list(){
-    $person = Models\Person::get()->toArray();
-    return view('pages.person_list', ['person' => $person]);
+public function remove_person($person_id){
+    $person = Models\Person::find($person_id);
+    $person->delete();
+    return $this->person_list();
+}//end remove_person
+
+public function person_list(){
+  $person = Models\Person::get();
+  return view('pages.person_list', ['person' => $person]);
 }//end person_list
 
 public function quick_person(){
@@ -21,9 +27,9 @@ public function quick_person(){
 }
 
 public function quick_person_validate(Request $request){
-  $data = Base::trimWhiteSpace($request->except(['_token']));
+  $data = Base::trimWhiteSpace($request->all());
   $person_id = $this->createPerson($data);  
-  echo json_encode("Success!");
+  echo json_encode($data);
 }//end quick_person_validate
 
 public function person_validate(){

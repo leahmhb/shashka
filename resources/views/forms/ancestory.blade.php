@@ -22,8 +22,8 @@
      <div class="panel panel-default">
        <div class="panel-body">
          If horses are not in list, <a href="/quick-horse" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
-      Add Horse 
-    </a>.
+         Add Horse 
+       </a>.
      </div>
    </div><!--end panel-->
  </div><!--end col-->
@@ -102,21 +102,19 @@
         </div><!--end horse-->
       </div>
     </div><!--end panel-->
-  </div><!--end col-->
 
-</div><!--end row-->
+    <div class="row">
+      <div class="col-sm-12">
+        <div class="panel panel-default">
+          @include('includes.form_controls')
+        </div><!--end col-->
+      </div><!--end row-->
 
-<div class="row">
-  <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group panel-body"> 
-      <button type="submit" class="btn-lg btn  btn-block btn-default">Add</button>    
-    </div>
-  </div><!--end col-->
-</div><!--end row-->
+    </div><!--end col-->
+
+  </div><!--end row-->
 
 </form>
-
-
 
 
 @endsection

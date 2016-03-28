@@ -86,12 +86,12 @@
         <div class="form-group">
           <label for="grade" class="col-sm-2 control-label">Grade</label>
           <div class="col-sm-10">
-            <select name="grade" class="form-control">
-              <option></option>
-              @foreach ($domain['grades'] as $grade)          
-              <option @if( $horse['grade'] === $grade['grade']) selected @endif value="{{$grade['grade']}}">{{$grade['grade']}}</option>
-              @endforeach
-            </select>
+         @foreach ($domain['grades'] as $grade)    
+            <label class="radio-inline">
+              <input type="radio" name="grade" value="{{$grade['grade']}}" @if($horse['grade'] == $grade['grade']) checked @endif>
+              {{$grade['grade']}}
+            </label>   
+            @endforeach
           </div>
         </div><!--end grade-->
 
@@ -111,7 +111,7 @@
           <h4 class="panel-title">Notes</h4>
         </div>          
         <div class="panel-body">
-        <textarea name="notes" class="form-control" rows="3">...</textarea>
+          <textarea name="notes" class="form-control" rows="3">...</textarea>
         </div>
       </div><!--end notes panel-->
 
@@ -217,16 +217,16 @@
     <div class="row">
       <div class="col-sm-7">
         <div class="form-group">
-          <label for="distance-min" class="col-sm-3 control-label">Min</label>    
-          <div class="col-sm-9 input-group">
+          <label for="distance-min" class="col-sm-4 control-label">Min</label>    
+          <div class="col-sm-8 input-group">
             <input type="number" name="distance_min" class="form-control" placeholder="0" value="{{ $horse['distance_min'] }}" step="any" min="0">
             <span class="input-group-addon">Furlongs</span>
           </div>
         </div><!--end distance--> 
 
         <div class="form-group">
-          <label for="distance-min" class="col-sm-3 control-label">Max</label>    
-          <div class="col-sm-9 input-group">
+          <label for="distance-min" class="col-sm-4 control-label">Max</label>    
+          <div class="col-sm-8 input-group">
             <input type="number" name="distance_max" class="form-control" placeholder="0" value="{{ $horse['distance_max'] }}" step="any" min="0">
             <span class="input-group-addon">Furlongs</span>
           </div>
@@ -441,20 +441,17 @@
 </div><!--end panel-body-->
 </div><!--end panel-->
 
+<div class="row">
+  <div class="col-sm-12">
+    <div class="panel panel-default">
+      @include('includes.form_controls')
+    </div><!--end col-->
+  </div><!--end row-->
+
 </div><!--end col-->
 
 </div><!--end row-->
 
-
-<div class="row">
-  <div class="col-sm-offset-4 col-sm-4">
-    <div class="text-center form-group panel-body"> 
-      <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
-    </div>
-  </div><!--end col-->
-</div><!--end row-->
-
 </form>
-
 
 @endsection

@@ -7,7 +7,6 @@
 
 <div class="modal-body">
 
-  <input type="hidden" name="_token" value="{{ csrf_token() }}">
   <input type="number" class="form-control hidden" readonly name="id" value="-1">
 
   <div class="form-group">

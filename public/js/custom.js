@@ -1,64 +1,78 @@
 $(document).ready(function () {
-
+  /*******DROP DOWN******/
   $('.dropdown-toggle').click(function() {
     var location = $(this).attr('href');
     window.location.href = location;
     return false;
   });
 
+  $(".dropdown-toggle").dropdown();
+
+  /*******TOOL TIPS******/
+  $('[data-toggle="tooltip"]').tooltip();
+
+  /*******DATE PICKER******/
   $.fn.datepicker.defaults.format = "yyyy-mm-dd";
   $.fn.datepicker.defaults.todayHighlight = true;
   $.fn.datepicker.defaults.todayBtn = true;
+  $.fn.datepicker.defaults.clearBtn = true;
   
   $('#datepicker').datepicker();
 
+  /*******DATA TABLE******/
   $.extend( $.fn.dataTable.defaults, {
-    "pagingType": "simple_numbers",    
+    "pagingType": "simple",  
+    "iDisplayLength": 12,
+    "bLengthChange": false
   });
 
   $('#races, #horses, #entries').DataTable();
 
-
-  $('[data-toggle="tooltip"]').tooltip();
-  $(".dropdown-toggle").dropdown();
-  
+  /******* CHOSEN ******/
   $( "select" ).addClass( "select" );
 
   $(".select").chosen({
     width: "100%",
     placeholder_text_single: "Select...",
     no_results_text: "Oops, nothing found!",
+  });
+
+  /******* MODAL FORMS ******/
+  $("#quick-form").on("show.bs.modal", function(e) {
+    var link = $(e.relatedTarget);
+    $(this).find(".form-part").load(link.attr("href"));
+  });
+
+  /******* AJAX FORMS******/
+  $.ajaxSetup({
+        headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+        }
 });
+  
+  var formData = "";
 
-// Fill modal with content from link href
-$("#quick-form").on("show.bs.modal", function(e) {
-  var link = $(e.relatedTarget);
-  $(this).find(".form-part").load(link.attr("href"));
-});
+  $('#quick').submit(function (ev) { 
 
-var formData = "";
-//ajax
-$('#quick').submit(function (ev) { 
+    formData = $(this).serialize();
 
-  formData = $(this).serialize();
-
-  $.ajax({
-    type: "POST",
-    url: "/quick-person",
-    data: formData,
-    success: function (data, textStatus, jqXHR) {
-      console.log(data);
-      console.log(textStatus);     
-    },
-    error: function(jqXHR, textStatus, errorThrown){
-      console.log(textStatus);
-      console.log(errorThrown);   
-    }
+    $.ajax({
+      type: "POST",
+      url: "/quick-person",
+      data: formData,
+      success: function (data, textStatus, jqXHR) {
+        console.log(data);
+        console.log(textStatus);     
+      },
+      error: function(jqXHR, textStatus, errorThrown){
+        console.log(textStatus);
+        console.log(errorThrown);   
+      }
  });//end ajax
 
-  ev.preventDefault();
+    ev.preventDefault();
 
-  return false;
+    return false;
 
 });//end submit
 

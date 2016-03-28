@@ -16,7 +16,6 @@ $(document).ready(function () {
   "required,name,Please enter race name.",
   "required,surface,Please choose surface.",
   "required,distance,Please enter distance.",
-  "required,ran_dt,Please enter ran date.",
   "required,grade,Please enter grade."
   ];
 
@@ -30,7 +29,6 @@ $(document).ready(function () {
   "required,name,Please enter race name.",
   "required,surface,Please choose surface.",
   "required,distance,Please enter distance.",
-  "required,ran_dt,Please enter ran date.",
   "required,grade,Please enter grade.",
   "required,horse_id,Please select horse's call name.",
   "required,placing,Please enter placing."
@@ -70,9 +68,10 @@ $(document).ready(function () {
 "range>=50,fierce,Please enter a number >= 50 for fierce.",
 "range>=50,tenacity,Please enter a number >= 50 for tenacity.",
 "range>=50,courage,Please enter a number >= 50 for courage.",
-"range>=50,response,Please enter a number >= 50 for response.",*/
+"range>=50,response,Please enter a number >= 50 for response.",
 
 "if:owner!=Haubing,required,stall_path,Stall URL required for horses not owned by Haubing.",
+*/
 "if:owner=Haubing,required,registered_name,Registered name required for horses owned by Haubing."
 ];//end addHorseRules
 

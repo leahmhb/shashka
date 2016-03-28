@@ -7,8 +7,6 @@
 
   <div class="modal-body"> 
   
-  <input type="hidden" name="_token" value="{{ csrf_token() }}">
-
     <div class="form-group">     
       <label for="person_name" class="control-label">
       <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span>

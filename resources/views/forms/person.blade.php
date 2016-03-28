@@ -69,13 +69,13 @@
       </div><!--end col-->
     </div><!--end row-->
 
-    <div class="row">
-      <div class="col-sm-offset-4 col-sm-4">
-        <div class="text-center form-group panel-body"> 
-          <button type="submit" class="btn-lg btn-block btn btn-default">Save</button>    
-        </div>
-      </div><!--end col-->
-    </div><!--end row-->
 
+      <div class="row">
+        <div class="col-sm-12">
+          <div class="panel panel-default">
+            @include('includes.form_controls')
+          </div><!--end col-->
+        </div><!--end row-->
+        
   </form>
   @endsection

@@ -11,6 +11,7 @@ class Race extends Model{
   public $timestamps = false;
 
   protected $fillable = array(
+    'series',
     'name',
     'surface',
     'distance',

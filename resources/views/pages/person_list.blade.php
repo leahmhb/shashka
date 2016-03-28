@@ -14,14 +14,15 @@
       </h3>
     </div>
     <div class="panel-body">
-    <table class="table table-hover">
+      <table class="table table-hover">
         <thead>
           <tr>
             <th class="col-sm-2">Username</th>
             <th class="col-sm-3">Stable Name</th>
             <th class="col-sm-2">Stable Prefix</th>
             <th class="col-sm-3">Racing Colors</th>
-            <th class="col-sm-1">Update</th>
+            <th class="col-sm-1"><span class="glyphicon glyphicon-pencil" aria-hidden="true"></span></th>
+            <th class="col-sm-1"><span class="glyphicon glyphicon-remove" aria-hidden="true"></span></th>
           </tr>
         </thead>
         <tbody>
@@ -31,7 +32,16 @@
             <td>{{$p['stable_name']}}</td>
             <td>{{$p['stable_prefix']}}</td>
             <td>{{$p['racing_colors']}}</td>
-            <td><a class="btn btn-primary btn-sm" href="/person/{{ $p['id'] }}">Update</a></td>
+            <td>
+              <a class="btn btn-primary btn-sm" href="/person/{{ $p['id'] }}">
+                <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              </a>
+            </td>
+            <td>
+              <a class="btn btn-danger btn-sm" href="/remove-person/{{ $p['id'] }}">
+                <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+              </a>
+            </td>
           </tr>
           @endforeach   
         </tbody>

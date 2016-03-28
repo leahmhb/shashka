@@ -62,6 +62,7 @@ Route::get('/stall/{horse_id}', 'Horses@stall_page');
 Route::get('/remove-entry/{entry_id}', 'Races@remove_entry');
 Route::get('/remove-race/{race_id}', 'Races@remove_race');
 Route::get('/remove-horse/{horse_id}', 'Horses@remove_horse');
+Route::get('/remove-person/{person_id}', 'Person@remove_person');
 /*
 |--------------------------------------------------------------------------
 | Application Routes

@@ -17,7 +17,7 @@ class Horses extends Base{
 
 
 public function horse_list(){
-  $horse = Models\Horse::get()->toArray();
+  $horse = Models\Horse::get();
   return view('pages.horse_list', ['horse' => $horse]);
 }//end horse_list
 
@@ -27,9 +27,7 @@ public function quick_horse(){
 
 public function quick_horse_validate(Request $request){
   $data = Base::trimWhiteSpace($request->except(['_token']));
-
-  $horse_id = $this->createHorse($data);
-  
+  $horse_id = $this->createHorse($data);  
   echo json_encode("Success!");
 }//end quick_horse_validate
 
@@ -42,6 +40,7 @@ public function horse($horse_id = false){
   } else {
     $action = "Add";
   }
+
   return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => false]);
 }//end horse
 
@@ -50,8 +49,6 @@ public function horse_validate(){
   $data = Base::trimWhiteSpace($_POST);
   
   $horse = $this->createHorse($data);
-
-
 
   if($data['id'] == 0){
     $action = 'Add';
@@ -68,8 +65,7 @@ public function stall_page($horse_id){
   $abilities = Models\Ability::where('ability', $horse['pos_ability_1'])
   ->orWhere('ability', $horse['pos_ability_2'])
   ->orWhere('ability', $horse['neg_ability_1'])
-  ->orderBy('type', 'desc')
-  ->get();      
+  ->orderBy('type', 'desc')->get();      
 
   $parents = $this->getParents($horse_id);
   $offspring = $this->getOffspring($horse_id, $horse['sex']);
@@ -77,7 +73,6 @@ public function stall_page($horse_id){
 
   $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first();
   $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first();
-
   $leg_type = Models\Leg_Type::select('description')->where('type', $horse['leg_type'])->first();
 
   return view('pages.stall', [
@@ -130,13 +125,11 @@ public function getParents($horse_id){
   $parents = [];
 
   if($record){ //exists
-    $sire = Models\Horse::where('id', $record['sire_id'])
-    ->first();
+    $sire = Models\Horse::where('id', $record['sire_id'])->first();
     $parents['sire_name'] = $sire['call_name'];
     $parents['sire_link'] = $sire['stall_path'];
 
-    $dam = Models\Horse::where('id', $record['dam_id'])
-    ->first();
+    $dam = Models\Horse::where('id', $record['dam_id'])->first();
     $parents['dam_name'] = $dam['call_name'];
     $parents['dam_link'] = $dam['stall_path'];
   }//end if
@@ -149,14 +142,13 @@ public function getRaceRecords($horse_id){
   $records = [];
   $placings = Models\Race_Entrant::select('id', 'race_id', 'horse_id', 'placing')
   ->where('horse_id', $horse_id)
-  ->orderBy('placing')
-  ->get()->toArray();
+  ->orderBy('placing')->get();
 
   foreach($placings as $p){
-    $race = Models\Race::select('id', 'name', 'surface', 'grade', 'distance', 'ran_dt', 'url')
-    ->where('id', $p['race_id'])->first();
+    $race = Models\Race::select('id', 'series', 'name', 'surface', 'grade', 'distance', 'ran_dt', 'url')
+    ->where('id', $p->race_id)->first();
     
-    $placement = Base::ordinal($p['placing']);
+    $placement = Base::ordinal($p->placing);
     if($placement == '0th'){
       $placement = 'TBA';
     }
@@ -212,8 +204,10 @@ public function createHorse($data){
 
   if($horse->owner == "Haubing"){
     $horse->stall_path = "/stall/" . $horse->id;
-    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";
-    $horse->save();
+    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";    
+  } else {
+    $horse->stall_path = (isset($data['stall_path']) ? $data['stall_path'] : '');
+    $horse->img_path = (isset($data['img_path']) ? $data['img_path'] : '');
   }//end if
 
   $horse->save();

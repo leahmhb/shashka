@@ -100,8 +100,8 @@ class CreateRodiniaTables extends Migration {
 
             $table->longText('notes')->default(''); 
 
-            $table->string('stall_path')->default('#');
-            $table->string('img_path')->default('#');
+            $table->string('stall_path')->default('');
+            $table->string('img_path')->default('');
 
             $table->foreign('sex')->references('sex')->on('sexes')->onDelete('cascade');;
             $table->foreign('grade')->references('grade')->on('grades')->onDelete('cascade');
@@ -128,6 +128,7 @@ class CreateRodiniaTables extends Migration {
         Schema::create('races', function (Blueprint $table) {
             $table->engine = 'MyISAM';
             $table->increments('id');
+            $table->string('series')->default('');
             $table->string('name');
             $table->string('surface');
             $table->string('grade');

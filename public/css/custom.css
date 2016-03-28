@@ -2,11 +2,13 @@
 
 
 /************* GENERAL **************/
+
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
   font-family:  'Quattrocento Sans', sans-serif;
   font-size: 14px;
+  overflow-x:hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -40,23 +42,27 @@ ul {
   list-style-position: inside;
   list-style-type: square;
 }
+
+
+strong {
+  color: #5a3947;
+
 }
 
 b, strong {
-  color: rgb(52, 52, 48);
   font-weight: 700;
-  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;  
-
+  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
 
 i, em {
   color: rgb(192, 190, 153);
-  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;  
+  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
 
 .text-primary, .text-info, .text-success, .text-warning, .text-danger {
-  text-shadow:  rgba(52, 52, 48, .3) 1px 1px 1px;
+  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;
 }
+
 
 /************* NAVBAR **************/
 
@@ -75,10 +81,14 @@ ul.dropdown-menu li a{
 }
 
 .navbar-brand,
-li.dropdown a.dropdown-toggle,
-ul.nav.navbar-nav.navbar-right li a {
+#navbar li.dropdown a.dropdown-toggle,
+#navbar ul.nav.navbar-nav.navbar-right li a {
   font-size: 1.5em;
   font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+}
+
+.navbar-brand {
+  font-size: 2em;
 }
 
 .dropdown-header {
@@ -202,6 +212,16 @@ select.form-control,
   box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
+input[type='number'].form-control {
+  padding: 5px;
+  padding-left: 16px;
+}
+
+.input-group-addon {
+  box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
+  
+}
+
 textarea.form-control {
   background: rgba(255, 255, 255, .8);
   border-radius: 4px;
@@ -222,8 +242,8 @@ ul.distance-info li{
 .chosen-container-single .chosen-single span,
 .chosen-container-single .chosen-single div b {
   padding-top: 3px;
-  margin-top: 3px;
-  padding-left: 5px;
+  margin-top: 5px;
+  padding-left: 8px;
 }
 
 .chosen-container-active .chosen-single,
@@ -242,7 +262,7 @@ ul.distance-info li{
 }
 
 .chosen-drop .chosen-results {
-  max-height: 90px;
+  max-height: 100px;
 }
 
 /************* PLACEHOLDERS **************/
@@ -339,3 +359,4 @@ ul.race-records li{
 .modal .modal-content {
   background: #eee;
 }
+
