@@ -23,7 +23,7 @@ public function person_list(){
 }//end person_list
 
 public function quick_person(){
-  return view('forms.quick_person');
+  return view('modals.quick_person');
 }
 
 public function quick_person_validate(Request $request){

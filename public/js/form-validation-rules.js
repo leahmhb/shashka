@@ -79,7 +79,7 @@ $("#horse").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addHorseRules
 });//end rsv
 
@@ -87,7 +87,7 @@ $("#person").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addPersonRules
 });//end rsv
 
@@ -95,7 +95,7 @@ $("#race").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addRaceRules
 });//end rsv
 
@@ -103,7 +103,7 @@ $("#race-entrant").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addRaceEntrantRules
 });//end rsv
 
@@ -111,7 +111,7 @@ $("#race-and-entry").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addRaceandEntryRules
 });//end rsv
 
@@ -119,10 +119,9 @@ $("#ancestory").RSV({
   onCompleteHandler: myOnComplete,
   errorFieldClass: "errorFieldDemo5",
   displayType: "display-html",
-  errorHTMLItemBullet: "&#8212; ",
+  errorHTMLItemBullet: "<i class='text-muted fa fa-square'></i>&nbsp;",
   rules: addAncestoryRules
 });//end rsv
-
 
 
 });//end ready

@@ -3,118 +3,100 @@
 @section('title', 'Add Ancestory')
 
 @section('content')
-<div class="page-header"><h1>Add {{ $relationship }}</h1><h2><small>Extending the bloodlines</small></h2></div>
-<form id="ancestory" class="form-horizontal" method="post">
-
+<div class="container-fluid">
   <div class="row">
-    <div class="col-sm-12">          
-      @if($validate == true)
-      <div id="success "class="alert alert-success" role="alert">
-        Successful addition!
-      </div><!--end alert-->
-      @endif        
-      <div id="rsvErrors" class="alert alert-danger"></div>
-    </div><!--end col-->
-  </div><!--end row-->
+    <div class="col-md-8 col-md-offset-2">
 
-  <div class="row">
-    <div class="col-sm-12">
-     <div class="panel panel-default">
-       <div class="panel-body">
-         If horses are not in list, <a href="/quick-horse" type="button" class="btn btn-primary btn-xs" data-remote="false" data-toggle="modal" data-target="#quick-form" >
-         Add Horse 
-       </a>.
-     </div>
-   </div><!--end panel-->
- </div><!--end col-->
-</div><!--end row-->
+      <form id="ancestory" class="form-horizontal" method="post">
 
-<div class="row">
-  <div class="col-md-6">
-   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Sire</h4>
-    </div>
-    <div class="panel-body">
-
-     <div class="form-group">
-      <label for="sire" class="col-sm-3 control-label">
-        <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
-        Name</label>
-        <div class="col-sm-9">
-          <select name="sire_id" class="form-control">
-            <option></option>
-            @foreach ($domain['sires'] as $s)          
-            <option value="{{$s['id']}}" @if($sire['id'] == $s['id']) selected @endif>{{$s['call_name']}}</option>
-            @endforeach
-          </select>           
-        </div>        
-      </div><!--end sire--> 
-
-    </div>
-  </div><!--end panel-->
-</div><!--end col-->
-
-<div class="col-md-6">
-  <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Dam</h4>
-    </div>
-    <div class="panel-body">
-      <div class="form-group">
-        <label for="dam" class="col-sm-3 control-label">
-          <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
-          Name</label>
-          <div class="col-sm-9">
-            <select name="dam_id" class="form-control">
-              <option></option>
-              @foreach ($domain['dams'] as $d)          
-              <option value="{{$d['id']}}" @if($dam['id'] == $d['id']) selected @endif>{{$d['call_name']}}</option>
-              @endforeach
-            </select>           
-          </div>        
-        </div><!--end dam--> 
-      </div>
-    </div><!--end panel dam-->
-  </div><!--end col dam-->
-</div><!--end row-->
-
-<div class="row">
-  <div class="col-md-6 col-md-offset-3">
-   <div class="panel panel-default">
-    <div class="panel-heading">
-      <h4 class="panel-title">Horse</h4>
-    </div>
-    <div class="panel-body">
-
-      <div class="form-group">
-        <label for="horse" class="col-sm-3 control-label">
-          <small><span class="text-danger glyphicon glyphicon-asterisk tooltip-overflow" data-toggle="tooltip" data-placement="top" title="Required"></span></small>
-          Name</label>
-          <div class="col-sm-9">
-            <select name="horse_id" class="form-control" >
-              <option></option>
-              @foreach ($domain['horses'] as $h)          
-              <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>
-              @endforeach
-            </select>           
-          </div>
-        </div><!--end horse-->
-      </div>
-    </div><!--end panel-->
-
-    <div class="row">
-      <div class="col-sm-12">
         <div class="panel panel-default">
-          @include('includes.form_controls')
-        </div><!--end col-->
-      </div><!--end row-->
+          <div class="panel-heading">
+            <h1 class="panel-title">
+              {{ $relationship }} Information
+              <small class="pull-right">
+              <a href="@if( $horse['id'] != 0)/remove-ancestory/{{ $horse['id'] }}@endif"><i class="fa fa-times text-danger"></i></a>
+              </small>
+            </h1>
 
-    </div><!--end col-->
+          </div>
+          <div class="panel-body">
 
-  </div><!--end row-->
+            <div class="row">
+              <div class="col-sm-12">          
+                @if($validate == true)
+                <div id="success "class="alert alert-success" role="alert">
+                  Successful addition!
+                </div><!--end alert-->
+                @endif        
+                <div id="rsvErrors" class="alert alert-danger"></div>    
+              </div><!--end col-->
+            </div><!--end row-->
 
-</form>
+
+            <div class="form-group">
+              <label for="sire" class="col-sm-3 control-label">
+                <small>
+                  <i class="text-danger fa fa-asterisk" data-toggle="tooltip" data-placement="top" title="Required"></i>
+                </small>
+                Sire</label>
+                <div class="col-sm-9">
+                  <select name="sire_id" class="form-control">
+                    <option></option>
+                    @foreach ($options['sires'] as $s)          
+                    <option value="{{$s['id']}}" @if($sire['id'] == $s['id']) selected @endif>{{$s['call_name']}}</option>
+                    @endforeach        
+                  </select>           
+                </div>        
+              </div><!--end sire--> 
 
 
-@endsection
+              <div class="form-group">
+                <label for="dam" class="col-sm-3 control-label">
+                  <small>
+                    <i class="text-danger fa fa-asterisk" data-toggle="tooltip" data-placement="top" title="Required"></i>
+                  </small>
+                  Dam</label>
+                  <div class="col-sm-9">
+                    <select name="dam_id" class="form-control">
+                      <option></option>
+                      @foreach ($options['dams'] as $d)          
+                      <option value="{{$d['id']}}" @if($dam['id'] == $d['id']) selected @endif>{{$d['call_name']}}</option>
+                      @endforeach
+                    </select>           
+                  </div>        
+                </div><!--end dam--> 
+
+
+
+
+                <div class="form-group">
+                  <label for="horse" class="col-sm-3 control-label">
+                    <small>
+                      <i class="text-danger fa fa-asterisk" data-toggle="tooltip" data-placement="top" title="Required"></i>
+                    </small>
+                    Offpsring</label>
+                    <div class="col-sm-9">
+                      <select name="horse_id" class="form-control" >
+                        <option></option>
+                        @foreach ($options['horses'] as $h)          
+                        <option value="{{$h['id']}}" @if($horse['id'] == $h['id']) selected @elseif($horse['id'] != $h['id'] and $horse['id']) disabled @endif>{{$h['call_name']}}</option>
+                        @endforeach
+                      </select>           
+                    </div>
+                  </div><!--end horse-->
+
+                </div><!--end panel body-->
+
+
+                @include('includes.form_controls')
+
+
+              </div><!--end panel-->
+            </form>
+
+          </div><!--end col-->
+        </div><!--end row-->
+      </div><!--end container-->
+
+
+      @endsection

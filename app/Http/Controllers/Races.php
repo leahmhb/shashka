@@ -11,7 +11,9 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Races extends Base{
-public function remove_race($race_id){
+
+
+  public function remove_race($race_id){
     $race = Models\Race::find($race_id);    
     $race->delete();
 
@@ -29,9 +31,23 @@ public function remove_entry($entry_id){
 
 public function race_list($active_id = false){
   $races_query = Models\Race::select('id', 'series',  'name', 'grade', 'surface', 'distance', 'ran_dt', 'url')
-  ->orderBy('ran_dt', 'desc')->get();    
+  ->orderBy('ran_dt', 'desc')->get(); 
+
+  $series_query = Models\Domain_Value::where('DOMAIN', 'RACE_SERIES')->get();
+
+  $races = [];
+
+  foreach($races_query as $r){
+    foreach($series_query as $series){
+      if ($series['value'] == $r['series']){
+        $r['series'] = $series['description'];
+        break;
+      }      
+    }//end foreach 
+    array_push($races, $r);
+  }//end foreach   
   
-  return view('pages.race_list', ['races' => $races_query, 'active_id' => $active_id]);
+  return view('pages.race_list', ['races' => $races, 'active_id' => $active_id]);
 }//end race_list
 
 public function entry_list($active_id = false){
@@ -49,24 +65,27 @@ public function entry_list($active_id = false){
     $race = Models\Race::select('series', 'name', 'grade', 'surface', 'distance', 'url', 'ran_dt')
     ->where('id', $e['race_id'])->first();
 
-      $e['race_series'] = $race->series;
-      $e['race_name'] = $race->name;
-      $e['race_grade'] = $race->grade;
-      $e['race_surface'] = $race->surface;
-      $e['race_distance'] = $race->distance;
-      $e['race_randt'] = $race->ran_dt;
-      $e['url'] = $race->url;      
+    $e['race_series'] = $race->series;
+    $e['race_name'] = $race->name;
+    $e['race_grade'] = $race->grade;
+    $e['race_surface'] = $race->surface;
+    $e['race_distance'] = $race->distance;
+    $e['race_randt'] = $race->ran_dt;
+    $e['url'] = $race->url;      
 
     array_push($entries, $e);
 
     
-
   }//end foreach
 
   return view('pages.entry_list', ['entries' => $entries, 'active_id' => $active_id]);
   }//end entry_list
 
   public function race($race_id = false){
+    if($race_id){
+      $race = Models\Race::where('id', $race_id)->first();
+    }//end if 
+
     $race = [
     'id' => '',
     'series' => '',
@@ -74,32 +93,60 @@ public function entry_list($active_id = false){
     'surface' => '',    
     'distance' => '',
     'grade' => '',
-    'ran_dt' => '1000-01-01',
+    'ran_dt' => '',
     'url' => ''
     ];
 
     if($race_id){
-      $race = Models\Race::where('id', $race_id)->first();
-  }//end if
-
-  if($race_id){
-    $action = "Update";      
-  } else {
-    $action = "Add";      
+      $action = "Update";      
+    } else {
+      $action = "Add";      
   }//end if-else
 
-  return view('forms.race', ['race' => $race, 'action' => $action, 'validate' => false]);
+  return view('forms.race', [
+    'race' => $race, 
+    'action' => $action, 
+    'options' => Base::getRaceDomain(), 
+    'validate' => false
+    ]);
 }//end race
 
-public function race_validate($race_id = false){
-  $data = Base::trimWhiteSpace($_POST);
+public function race_validate(){
 
-  $race = $this->createRace($data);
-  return $this->race_list($race->id);
+ $data = Base::trimWhiteSpace($_POST);
+
+ $race = $this->createRace($data);
+
+ if($data['id'] == 0){
+  $action = 'Add';
+  $race = [
+  'id' => '',
+  'series' => '',
+  'name' => '',
+  'surface' => '',    
+  'distance' => '',
+  'grade' => '',
+  'ran_dt' => '',
+  'url' => ''
+  ];
+} else {
+  $action = 'Update';
+  }//end if-else
+
+  return view('forms.race', [
+    'race' => $race, 
+    'action' => $action, 
+    'options' =>  Base::getRaceDomain(),
+    'validate' => true
+    ]);
 }//end update_race_validation
 
 public function race_and_entry(){
-  return view('forms.race_and_entry', ['validate' => false]);
+
+  return view('forms.race_and_entry', [
+    'options' => Base::getRaceDomain(), 
+    'validate' => false
+    ]);
 }//end race_and_entrant
 
 public function race_and_entry_validate(){
@@ -114,7 +161,7 @@ public function race_and_entry_validate(){
 
 
 public function quick_race(){
-  return view('forms.quick_race');
+  return view('modals.quick_race');
 }//end quick_race
 
 public function quick_race_validate(Request $request){
@@ -143,7 +190,12 @@ public function race_entry($horse_id = false, $entry_id = false){
     $action = "Add";
   }//end if-else
 
-  return view('forms.race_entry', ['entry' => $entry, 'action' => $action, 'validate' => false]);
+  return view('forms.race_entry', [
+    'options' => base::getRaceDomain(),
+    'entry' => $entry, 
+    'action' => $action, 
+    'validate' => false
+    ]);
 }//end race_entrant
 
 public function race_entry_validate(){
@@ -158,7 +210,12 @@ public function race_entry_validate(){
     $action = 'Update';
   }//end if-else
 
-  return view('forms.race_entry', ['entry' => $entry, 'action' => $action, 'validate' => true]);
+  return view('forms.race_entry', [
+   'options' => base::getRaceDomain(),
+   'entry' => $entry, 
+   'action' => $action, 
+   'validate' => true
+   ]);
 }//end race_entrant_validate
 
 public function createEntry($data){

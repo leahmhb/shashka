@@ -15,22 +15,22 @@ class Horses extends Base{
     return $this->horse_list();
 }//end remove_race
 
-
 public function horse_list(){
-  $horse = Models\Horse::get();
-  return view('pages.horse_list', ['horse' => $horse]);
+  $horses = Models\Horse::select('call_name', 'registered_name', 'grade', 'owner', 'sex', 'id', 'stall_path')
+  ->orderBy('call_name')
+  ->get()->toArray();
+  return view('pages.horse_list', ['horses' => $horses]);
 }//end horse_list
 
 public function quick_horse(){
-  return view('forms.quick_horse');
-}
+  return view('modals.quick_horse');
+}//end quick_horse
 
 public function quick_horse_validate(Request $request){
   $data = Base::trimWhiteSpace($request->except(['_token']));
   $horse_id = $this->createHorse($data);  
   echo json_encode("Success!");
 }//end quick_horse_validate
-
 
 public function horse($horse_id = false){
   $horse = Models\Horse::where('id', $horse_id)->first();
@@ -39,7 +39,7 @@ public function horse($horse_id = false){
     $action = "Update";
   } else {
     $action = "Add";
-  }
+  }//end if-else
 
   return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => false]);
 }//end horse
@@ -53,8 +53,9 @@ public function horse_validate(){
   if($data['id'] == 0){
     $action = 'Add';
   } else {
-    $action = 'Create';
-  }
+    $action = 'Update';
+    
+  }//end if-else
   
   return view('forms.horse', ['horse' => $horse, 'action' => $action, 'validate' => true]);
 }//end horse_validate
@@ -70,10 +71,14 @@ public function stall_page($horse_id){
   $parents = $this->getParents($horse_id);
   $offspring = $this->getOffspring($horse_id, $horse['sex']);
   $race_records = $this->getRaceRecords($horse_id);
-
+  
   $entry = Models\Person::select('stable_name', 'racing_colors')->where('username', $horse['owner'])->first();
   $prefix = Models\Person::select('stable_prefix')->where('username', $horse['hexer'])->first();
-  $leg_type = Models\Leg_Type::select('description')->where('type', $horse['leg_type'])->first();
+  $leg_type = Models\Domain_Value::select('description')
+  ->where('domain', 'LEG_TYPE')
+  ->where('value', $horse['leg_type'])
+  ->first();
+
 
   return view('pages.stall', [
     'horse' => $horse,               
@@ -95,6 +100,7 @@ public function getOffspring($horse_id, $sex){
 
     foreach($offspring as $i=>$o){
       $foal = Models\Horse::where('id', $o['horse_id'])->first();
+      $offspring[$i]['horse_id'] = $foal['id'];
       $offspring[$i]['horse_name'] = $foal['call_name'];
       $offspring[$i]['horse_link']= $foal['stall_path'];
 
@@ -108,6 +114,7 @@ public function getOffspring($horse_id, $sex){
 
     foreach($offspring as $i=>$o){
       $foal = Models\Horse::where('id', $o['horse_id'])->first();
+      $offspring[$i]['horse_id'] = $foal['id'];
       $offspring[$i]['horse_name'] = $foal['call_name'];
       $offspring[$i]['horse_link']= $foal['stall_path'];
 
@@ -135,7 +142,6 @@ public function getParents($horse_id){
   }//end if
 
   return $parents;
-
 }//end getParents
 
 public function getRaceRecords($horse_id){
@@ -151,10 +157,9 @@ public function getRaceRecords($horse_id){
     $placement = Base::ordinal($p->placing);
     if($placement == '0th'){
       $placement = 'TBA';
-    }
-
-    array_push($records, ['race' => $race, 'placing' => $placement]);     
-  }//end foreach
+    }//end if
+    array_push($records, ['race' => $race, 'placing' => $placement, 'entry_id' => $p->id]);     
+  }//end 
 
   return $records;
 }//end getRaceRecords
@@ -202,12 +207,13 @@ public function createHorse($data){
   $horse->shadow_roll = (isset($data['shadow_roll']) ? $data['shadow_roll'] : '');
   $horse->notes = (isset($data['notes']) ? $data['notes'] : '');
 
+  $horse->stall_img = (isset($data['stall_img']) ? $data['stall_img'] : '');
+  $horse->racing_img = (isset($data['racing_img']) ? $data['racing_img'] : '');
+
   if($horse->owner == "Haubing"){
-    $horse->stall_path = "/stall/" . $horse->id;
-    $horse->img_path = "http://leahmhb.info/stall_img/" .$horse->call_name . ".png";    
+    $horse->stall_path = "/stall/" . $horse->id;   
   } else {
-    $horse->stall_path = (isset($data['stall_path']) ? $data['stall_path'] : '');
-    $horse->img_path = (isset($data['img_path']) ? $data['img_path'] : '');
+    $horse->stall_path = (isset($data['stall_path']) ? $data['stall_path'] : '');   
   }//end if
 
   $horse->save();

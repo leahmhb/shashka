@@ -8,6 +8,10 @@ use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Horses_Progeny extends Base{
+  public function remove_ancestory($horse_id){
+    $relationship = Models\Horse_Progeny::where('horse_id', $horse_id);    
+    $relationship->delete();
+ }//end remove_ancestory
 
 
   public function ancestory($sex = false, $horse_id = false){ //add sire and dam
@@ -37,6 +41,7 @@ class Horses_Progeny extends Base{
     }//end if
 
     return view('forms.ancestory', [
+      'options' => Base::getProgenyDomain(),
       'horse' => $horse, 
       'sire' => $sire, 
       'dam' => $dam, 
@@ -72,7 +77,8 @@ class Horses_Progeny extends Base{
     $sire = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
     $dam = Models\Horse::select('id', 'call_name')->where('id', $horse_id)->first();
 
-    return view('forms.ancestory', [      
+    return view('forms.ancestory', [    
+      'domain' => Base::getProgenyDomain(),  
       'relationship' => $relationship,
       'horse' => $horse, 
       'sire' => $sire, 

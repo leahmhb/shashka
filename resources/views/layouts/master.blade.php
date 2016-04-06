@@ -7,7 +7,6 @@
    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
    <meta name="description" content="">
    <meta name="author" content="">   
-   <meta name="csrf-token" content="{{ csrf_token() }}">
    <link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
 
    <title>Shashka Stables - @yield('title')</title>
@@ -19,13 +18,13 @@
     <div id="bg"><img src="{{ asset('img/background.png') }}"></div>
     <div id="main" class="container">
     <div class="row">
-    <div class="col-md-12 col-lg-offset-1 col-lg-10">
+    <div class="col-md-12">
         @yield('content')
 
         </div>
         </div>
     </div><!--end container-->
-    @include('includes.quick-form')
+    @include('modals.quick_form')
     @include('includes.js')
 </body>
 </html>

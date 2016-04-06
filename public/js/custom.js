@@ -22,11 +22,9 @@ $(document).ready(function () {
   /*******DATA TABLE******/
   $.extend( $.fn.dataTable.defaults, {
     "pagingType": "simple",  
-    "iDisplayLength": 12,
-    "bLengthChange": false
   });
 
-  $('#races, #horses, #entries').DataTable();
+  $('#t_races, #t_horses, #t_entries, #t_person').DataTable();
 
   /******* CHOSEN ******/
   $( "select" ).addClass( "select" );

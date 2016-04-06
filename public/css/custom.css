@@ -1,18 +1,26 @@
-@import url("http://fonts.googleapis.com/css?family=Marcellus|Marcellus+SC|Cinzel:700,900|Quattrocento+Sans:400,400italic,700,700italic");
-
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Josefin+Sans:400,700|Julius+Sans+One');
 
 /************* GENERAL **************/
 
 body {   
   background-color: rgb(81, 97, 61);
   background-image: url(../img/white-diamond-dark.png);
-  font-family:  'Quattrocento Sans', sans-serif;
+  font-family: 'Open Sans', sans-serif;
   font-size: 14px;
   overflow-x:hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;
+}
+
+h1:first-child, 
+h2:first-child, 
+h3:first-child, 
+h4:first-child, 
+h5:first-child, 
+h6:first-child {
+  margin-top:5px;
 }
 
 .tooltip-overflow { /* tool tip */
@@ -32,29 +40,27 @@ label {
 
 pre, code {
  white-space: initial;
-
 }
 
 ul {
   margin: 0;
   padding:0;
   padding-left: .75em;
-  list-style-position: inside;
   list-style-type: square;
 }
 
-
 strong {
   color: #5a3947;
-
 }
 
 b, strong {
+  font-family: 'Open Sans', sans-serif;
   font-weight: 700;
   text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
 
 i, em {
+  font-family: 'Open Sans', sans-serif;
   color: rgb(192, 190, 153);
   text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
@@ -63,28 +69,39 @@ i, em {
   text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;
 }
 
+.fa-color {
+  color: rgba(0, 0, 0, .5);
+}
+
+thead tr th {
+  font-family: 'Josefin Sans', sans-serif;
+  font-size: 1.2em;
+  font-weight:700;
+}
 
 /************* NAVBAR **************/
 
 .navbar {
   border-radius: 0;
 }
+
 li.dropdown-header {
   font-weight: bold;
 }
 
-ul.dropdown-menu li a{
-  font-size: 14px;
-  font-family:  'Quattrocento Sans', sans-serif;
-  text-transform:none;
-  color: rgb(52, 52, 48);
+.navbar-brand,
+
+#navbar ul.nav.navbar-nav li a{
+  font-size: 1.5em;
+  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;
 }
 
-.navbar-brand,
-#navbar li.dropdown a.dropdown-toggle,
-#navbar ul.nav.navbar-nav.navbar-right li a {
-  font-size: 1.5em;
-  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
+#navbar ul.nav.navbar-nav li.dropdown ul.dropdown-menu li a,
+#navbar ul.nav.navbar-nav.navbar-right li.dropdown ul.dropdown-menu li a{
+  font-size: 16px;
+  font-family:  'Josefin Sans', sans-serif;
+  text-transform:none;
+  color: rgb(52, 52, 48);
 }
 
 .navbar-brand {
@@ -105,70 +122,26 @@ ul.dropdown-menu li a{
 
 /************* PANELS **************/
 
-ul.nav.nav-pills li a { /* nav pills */
-  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
-}
-
 .panel-default .panel-heading .panel-title, .panel-default .panel-footer, .navbar, li.dropdown-header {
   color: rgb(62, 63, 58);
 }
 
-.panel, .page-header, .well {
+.panel, .well {
   background: url(../img/groovepaper.png),rgba(255, 255, 255, .9);
 }
 
-.page-header {
-  margin-top: 0;
-  padding:0;
-}
-
-.panel-header h1 {
-  font-size: 5em;
-  margin:0;
-  padding:0;
-  font-family: "Marcellus SC", Georgia,Times,'Times New Roman',serif;
-}
-
-.panel-heading .panel-title, .panel .panel-footer {
-  font-family: "Marcellus", Georgia,Times,'Times New Roman',serif;  
-  text-transform: none;
-}
-
-.panel-heading .panel-title {
-  font-size: 1.5em;
-}
-
-.panel .panel-footer, .stall-pills ul.nav {
-  font-size: .95em;
+.panel .panel-heading .panel-title {
+  font-size: 2em;
+  padding: 5px;
 }
 
 .panel .panel-footer {
-  min-height: 45px;
+  font-size: 1.25em;
 }
 
-div.panel-body h2 {
-  margin-top: 0;
-}
-
-/************* PAGE HEADER **************/
-
-.page-header {
-  padding: 1em;
-  border-radius: 4px;
-}
-
-.page-header h1, .page-header h2{
-  font-family: "Cinzel", Georgia,Times,'Times New Roman',serif;
-  font-weight: 700;
-  font-variant:small-caps;
-  margin:0;
-  padding:0;
-}
-
-.page-header h1 {
-  font-size: 5rem;
-  color: rgb(52, 52, 48);
-  text-shadow:  rgb(248, 245, 240) 1px 1px 1px;  
+.panel-heading .panel-title, .panel .panel-footer {
+  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;  
+  text-transform: none;
 }
 
 /************* BACKGROUND **************/
@@ -218,8 +191,7 @@ input[type='number'].form-control {
 }
 
 .input-group-addon {
-  box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
-  
+  box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);  
 }
 
 textarea.form-control {
@@ -229,13 +201,17 @@ textarea.form-control {
   box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
-.btn-block  {
-  padding: 1em;
+form.form-horizontal .panel .panel-body h2 small {
+  color: #3b252e;
+  border-bottom: 1px solid #CCCCCC;
+
 }
 
-ul.distance-info li{
-  font-size: .5em;
+form.form-horizontal .panel .panel-body h2 {
+  margin-top: 0px;
+  padding-top:0px;
 }
+
 
 /************* CHOSEN **************/
 
@@ -321,18 +297,11 @@ img.stall-pic {
 
 ul.race-records {
   list-style-position: outside;
+  list-style-type: none;
 }
 
 ul.race-records li{
   font-size: 14px;
-}
-
-.tab-pane h3 {
-  margin-top: 10px;
-}
-
-.eq-height .panel-body, .eq-height .tab-pane {
-  min-height: 500px;
 }
 
 /************* Tooltips **************/

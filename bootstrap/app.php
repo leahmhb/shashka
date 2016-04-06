@@ -12,13 +12,8 @@
 */
 
 $app = new Illuminate\Foundation\Application(
-    realpath(__DIR__.'/../')
+	realpath(__DIR__.'/../')
 );
-
-$app->bind('path.public', function ()
-{
-    return base_path() . '/public';
-});
 
 /*
 |--------------------------------------------------------------------------
@@ -32,18 +27,18 @@ $app->bind('path.public', function ()
 */
 
 $app->singleton(
-    Illuminate\Contracts\Http\Kernel::class,
-    App\Http\Kernel::class
+	'Illuminate\Contracts\Http\Kernel',
+	'App\Http\Kernel'
 );
 
 $app->singleton(
-    Illuminate\Contracts\Console\Kernel::class,
-    App\Console\Kernel::class
+	'Illuminate\Contracts\Console\Kernel',
+	'App\Console\Kernel'
 );
 
 $app->singleton(
-    Illuminate\Contracts\Debug\ExceptionHandler::class,
-    App\Exceptions\Handler::class
+	'Illuminate\Contracts\Debug\ExceptionHandler',
+	'App\Exceptions\Handler'
 );
 
 /*

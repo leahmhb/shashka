@@ -10,65 +10,47 @@ class HomeComposer{
     ->with('my_stallions', $this->getStallions())
     ->with('my_mares', $this->getMares())
     ->with('domain', $this->getDomain())
-    ->with('my_horses', $this->getMyHorses())
-    ->with('others_horses', $this->getOthersHorses());
+    ->with('my_horses', $this->getMyHorses());
 	}//end compose
 
   public function getDomain(){
     $domain = [];
 
-    $domain['horses'] = Models\Horse::select('call_name', 'grade', 'owner', 'sex', 'id', 'stall_path')
-    ->orderBy('call_name')
-    ->get()->toArray();
-
-    $domain['grades'] = Models\Grade::get()->toArray();
-
-    $domain['leg_types'] = Models\Leg_Type::get()->toArray();
-
-    $domain['sexes'] = Models\Sex::get()->toArray();
+    //add horse forms
+    $domain['grades'] = Models\Domain_Value::where('domain', 'GRADE')->get();
+    $domain['leg_types'] = Models\Domain_Value::where('domain', 'LEG_TYPE')->get();
+    $domain['sexes'] = Models\Domain_Value::where('domain', 'SEX')->get();    
+    $domain['surface_pref'] = Models\Domain_Value::where('domain', 'SURFACE_PREF')->get();    
+    $domain['bandages'] = Models\Domain_Value::where('domain', 'BANDAGES')->get();    
+    $domain['shadow_roll'] = Models\Domain_Value::where('domain', 'SHADOW_ROLL')->get(); 
+    $domain['neck_height'] = Models\Domain_Value::where('domain', 'NECK_HEIGHT')->get();
+    $domain['run_style'] = Models\Domain_Value::where('domain', 'RUN_STYLE')->get();
+    $domain['hood'] = Models\Domain_Value::where('domain', 'HOOD')->get();    
+    $domain['person'] = Models\Person::orderBy('username')->get();
 
     $domain['pos_abilities'] = Models\Ability::where('type', 'positive')
     ->orderBy('ability')
-    ->get()->toArray();
+    ->get();
 
     $domain['neg_abilities'] = Models\Ability::where('type', 'negative')
     ->orderBy('ability')
-    ->get()->toArray();
+    ->get();
 
-    $domain['person'] = Models\Person::orderBy('username')
-    ->get()->toArray();
 
-    $domain['sires'] = Models\Horse::select('id', 'call_name')
-    ->where('sex', 'Stallion')
-    ->orderBy('call_name')
-    ->get()->toArray();
+    //race forms
+   
 
-    $domain['dams'] = Models\Horse::select('id', 'call_name')
-    ->where('sex', 'Mare')
-    ->orderBy('call_name')
-    ->get()->toArray();
-
-    $domain['races'] = Models\Race::orderBy('name')
-    ->get()->toArray();
 
     return $domain;
-    }//end getDomain
+  }//end getDomain
 
-    public function getMyHorses(){
-      return Models\Horse::select('call_name', 'grade', 'id', 'sex', 'grade', 'registered_name', 'stall_path')
-      ->where('owner', 'Haubing')  
-      ->orderBy('call_name')
-      ->get()
-      ->toArray();
+  public function getMyHorses(){
+    return Models\Horse::select('call_name', 'grade', 'id', 'sex', 'grade', 'registered_name', 'stall_path')
+    ->where('owner', 'Haubing')  
+    ->orderBy('call_name')
+    ->get()
+    ;
     }//end getMyHorses
-
-    public function getOthersHorses(){
-      return Models\Horse::select('call_name', 'grade', 'id', 'sex', 'grade', 'registered_name', 'stall_path')
-      ->whereNotIn('owner', ['Haubing'])  
-      ->orderBy('call_name')
-      ->get()
-      ->toArray();
-    }//end getOthersHorses
 
     public function getStallions(){
       $stallions = Models\Horse::select('call_name', 'grade', 'id')
@@ -77,7 +59,7 @@ class HomeComposer{
       ->orderBy('grade')
       ->orderBy('call_name')
       ->get()
-      ->toArray();    
+      ;    
       return $stallions;
     }//end getStallions
 
@@ -88,7 +70,7 @@ class HomeComposer{
       ->orderBy('grade')
       ->orderBy('call_name')
       ->get()
-      ->toArray();    
+      ;    
       return $mares;
     }//end getMares
   }
