@@ -1,0 +1,52 @@
++--------+--------------------------------+-------------------------------------------------------+-------------------------+------------------------------------------------------------+------------+
+|[32m Domain [39m|[32m Method                         [39m|[32m URI                                                   [39m|[32m Name                    [39m|[32m Action                                                     [39m|[32m Middleware [39m|
++--------+--------------------------------+-------------------------------------------------------+-------------------------+------------------------------------------------------------+------------+
+|        | GET|HEAD                       | /                                                     | index                   | App\Http\Controllers\Base@index                            |            |
+|        | GET|HEAD                       | credits                                               | credits                 | App\Http\Controllers\Base@credits                          |            |
+|        | GET|HEAD                       | contact                                               | contact                 | App\Http\Controllers\Base@contact                          |            |
+|        | GET|HEAD                       | user-list                                             | user_list               | App\Http\Controllers\Users@user_list                       |            |
+|        | GET|HEAD                       | person-list                                           | person_list             | App\Http\Controllers\Person@person_list                    |            |
+|        | GET|HEAD                       | person/{person_id?}                                   | person                  | App\Http\Controllers\Person@person                         | user       |
+|        | POST                           | person/{person_id?}                                   | person_validate         | App\Http\Controllers\Person@person_validate                | owner      |
+|        | GET|HEAD                       | quick-person/{person_id?}                             | quick_person            | App\Http\Controllers\Person@quick_person                   | admin      |
+|        | POST                           | quick-person                                          | quick_person_validate   | App\Http\Controllers\Person@quick_person_validate          | admin      |
+|        | GET|HEAD                       | remove-person/{person_id}                             | remove_person           | App\Http\Controllers\Person@remove_person                  | admin      |
+|        | GET|HEAD                       | horse-list                                            | horse_list              | App\Http\Controllers\Horses@horse_list                     |            |
+|        | GET|HEAD                       | stall/{horse_id}                                      | stall                   | App\Http\Controllers\Horses@stall                          |            |
+|        | GET|HEAD                       | horse/{horse_id?}                                     | horse                   | App\Http\Controllers\Horses@horse                          | user       |
+|        | POST                           | horse/{horse_id?}                                     | horse_validate          | App\Http\Controllers\Horses@horse_validate                 | owner      |
+|        | GET|HEAD                       | quick-horse/{horse_id?}                               | quick_horse             | App\Http\Controllers\Horses@quick_horse                    | admin      |
+|        | POST                           | quick-horse                                           | quick_horse_validate    | App\Http\Controllers\Horses@quick_horse_validate           | admin      |
+|        | GET|HEAD                       | remove-horse/{horse_id}                               | remove_horse            | App\Http\Controllers\Horses@remove_horse                   | admin      |
+|        | GET|HEAD                       | race-list                                             | race_list               | App\Http\Controllers\Races@race_list                       |            |
+|        | GET|HEAD                       | entry-list                                            | entry_list              | App\Http\Controllers\Races@entry_list                      |            |
+|        | GET|HEAD                       | race/{race_id?}                                       | race                    | App\Http\Controllers\Races@race                            | user       |
+|        | GET|HEAD                       | entry/{horse_id?}/{entry_id?}                         | entry                   | App\Http\Controllers\Races@entry                           | user       |
+|        | POST                           | race/{race_id?}                                       | race_validate           | App\Http\Controllers\Races@race_validate                   | owner      |
+|        | POST                           | entry/{horse_id?}/{entry_id?}                         | entry_validate          | App\Http\Controllers\Races@entry_validate                  | owner      |
+|        | GET|HEAD                       | race-and-entry                                        | race_and_entry          | App\Http\Controllers\Races@race_and_entry                  | admin      |
+|        | GET|HEAD                       | quick-race/{race_id?}                                 | quick_race              | App\Http\Controllers\Races@quick_race                      | admin      |
+|        | POST                           | quick-race                                            | quick_race_validate     | App\Http\Controllers\Races@quick_race_validate             | admin      |
+|        | GET|HEAD                       | remove-race/{race_id}                                 | remove_race             | App\Http\Controllers\Races@remove_race                     | admin      |
+|        | GET|HEAD                       | quick-entry/{horse_id?}/{entry_id?}                   | quick_entry             | App\Http\Controllers\Races@quick_entry                     | admin      |
+|        | POST                           | quick-entry                                           | quick_entry_validate    | App\Http\Controllers\Races@quick_entry_validate            | admin      |
+|        | GET|HEAD                       | remove-entry/{entry_id}                               | remove_entry            | App\Http\Controllers\Races@remove_entry                    | admin      |
+|        | POST                           | race-and-entry                                        | race_and_entry_validate | App\Http\Controllers\Races@race_and_entry_validate         | admin      |
+|        | GET|HEAD                       | lineage-list                                          | lineage_list            | App\Http\Controllers\Horses_Lineage@lineage_list           |            |
+|        | GET|HEAD                       | lineage/{relationship?}/{horse_id?}                   | lineage                 | App\Http\Controllers\Horses_Lineage@lineage                | user       |
+|        | POST                           | lineage/{relationship?}/{horse_id?}                   | lineage_validate        | App\Http\Controllers\Horses_Lineage@lineage_validate       | owner      |
+|        | GET|HEAD                       | quick-lineage/{relationship?}/{horse_id?}             | quick_lineage           | App\Http\Controllers\Horses_Lineage@quick_lineage          | admin      |
+|        | POST                           | quick-lineage                                         | quick_lineage_validate  | App\Http\Controllers\Horses_Lineage@quick_lineage_validate | admin      |
+|        | GET|HEAD                       | remove-lineage/{horse_id}                             | remove_lineage          | App\Http\Controllers\Horses_Lineage@remove_lineage         | admin      |
+|        | GET|HEAD                       | auth/register/{one?}/{two?}/{three?}/{four?}/{five?}  |                         | App\Http\Controllers\Auth\AuthController@getRegister       | guest      |
+|        | POST                           | auth/register/{one?}/{two?}/{three?}/{four?}/{five?}  |                         | App\Http\Controllers\Auth\AuthController@postRegister      | guest      |
+|        | GET|HEAD                       | auth/login/{one?}/{two?}/{three?}/{four?}/{five?}     |                         | App\Http\Controllers\Auth\AuthController@getLogin          | guest      |
+|        | POST                           | auth/login/{one?}/{two?}/{three?}/{four?}/{five?}     |                         | App\Http\Controllers\Auth\AuthController@postLogin         | guest      |
+|        | GET|HEAD                       | auth/logout/{one?}/{two?}/{three?}/{four?}/{five?}    |                         | App\Http\Controllers\Auth\AuthController@getLogout         |            |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE | auth/{_missing}                                       |                         | App\Http\Controllers\Auth\AuthController@missingMethod     | guest      |
+|        | GET|HEAD                       | password/email/{one?}/{two?}/{three?}/{four?}/{five?} |                         | App\Http\Controllers\Auth\PasswordController@getEmail      | guest      |
+|        | POST                           | password/email/{one?}/{two?}/{three?}/{four?}/{five?} |                         | App\Http\Controllers\Auth\PasswordController@postEmail     | guest      |
+|        | GET|HEAD                       | password/reset/{one?}/{two?}/{three?}/{four?}/{five?} |                         | App\Http\Controllers\Auth\PasswordController@getReset      | guest      |
+|        | POST                           | password/reset/{one?}/{two?}/{three?}/{four?}/{five?} |                         | App\Http\Controllers\Auth\PasswordController@postReset     | guest      |
+|        | GET|HEAD|POST|PUT|PATCH|DELETE | password/{_missing}                                   |                         | App\Http\Controllers\Auth\PasswordController@missingMethod | guest      |
++--------+--------------------------------+-------------------------------------------------------+-------------------------+------------------------------------------------------------+------------+

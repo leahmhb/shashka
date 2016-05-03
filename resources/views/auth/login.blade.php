@@ -1,23 +1,23 @@
-@extends('layouts.master')
+@extends('layouts.master', ['title' => 'Login'])
 
 @section('content')
 <div class="container-fluid">
 	<div class="row">
 		<div class="col-md-8 col-md-offset-2">
 			<div class="panel panel-default">
-	       <div class="panel-heading">
-        <h4 class="panel-title">Login</h4>
-      </div>
+				<div class="panel-heading">
+					<h4 class="panel-title">Login</h4>
+				</div><!--end heading-->
 				<div class="panel-body">
 					@if (count($errors) > 0)
-						<div class="alert alert-danger">
-							<strong>Whoops!</strong> There were some problems with your input.<br><br>
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
+					<div class="alert alert-danger">
+						<strong>Whoops!</strong> There were some problems with your input.<br><br>
+						<ul>
+							@foreach ($errors->all() as $error)
+							<li>{{ $error }}</li>
+							@endforeach
+						</ul>
+					</div>
 					@endif
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/login') }}">

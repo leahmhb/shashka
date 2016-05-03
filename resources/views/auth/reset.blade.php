@@ -1,4 +1,4 @@
-@extends('layouts.master')
+@extends('layouts.master', ['title' => 'Reset Password'])
 
 @section('content')
 <div class="container-fluid">

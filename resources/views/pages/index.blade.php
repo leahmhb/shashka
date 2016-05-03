@@ -1,41 +1,46 @@
-@extends('layouts.master')
-
-@section('title', 'Welcome')
-
+@extends('layouts.master', ['title' => 'Welcome'])
 @section('content')
 
 <div class="container-fluid">
   <div class="row">
-    <div class="col-md-8 col-md-offset-2">
+    <div class="col-md-10 col-md-offset-1">
       <div class="panel panel-default">
        <div class="panel-heading">
-        <h1 class="panel-title">Welcome</h1>
+        <h1 class="panel-title">
+          Seeing Stars Thoroughbred Racers
+        </h1>
       </div>
-      <div class="panel-body">
+      <div class="panel-body">      
+        <h2>Welcome @if (!Auth::guest()): {{ Auth::user()->name }} @endif</h2>
+        <div class="well">
+          <h2 class="updates"><small>Updates</small></h2>
+          <ul>
+           <li>
+             <b>30Apr16:</b> Banner background image by Fearow. 
+             <i class="fa fa-heart" aria-hidden="true"></i>
+             Added delete option on forms. 
+           </li>
+           <li><b>21Apr16:</b> Table filters are work in progress. </li>
+           <li><b>19Apr16:</b> Back up and running :] 
+           </li>
+           <li><b>16Apr16:</b> DOWN FOR MAINTANCE. Reworking database.
+           </li>
+           <li><b>13Apr16:</b> Added Neco's racing guides with her permission.          
+           </li>
+           <li><b>13Apr16:</b> Added users and lineages lists.
+            User permissions changed. 
+          </li>
+          <li><b>12Apr16:</b> Begining implmentation of users. Beware development bugs! On-going website construction. 
+          </li>
+        </ul>				
+      </div><!--end well-->	
 
-        <h2>Updates</h2>
-        <ul>
-         <li><b>28Feb16:</b> </br>
-          Neco is handling American Pharoah and Antebellum as of 28Dec15.
-        </li>
-      </ul>					
-      {{-- 
-      <h2>Testing</h2>
-      <a href="/quick-person" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form">
-        Add Person 
-      </a>
-      <a href="/quick-horse" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form">
-        Add Horse 
-      </a>
-      <a href="/quick-race" type="button" class="btn btn-default btn-block" data-remote="false" data-toggle="modal" data-target="#quick-form">
-        Add Race 
-      </a> 
-      --}}
       <h2>Featured Horse</h2>
-
-      <img class="stall-pic img-responsive" src="{{ asset('img/welcome-horse.png') }}">  
-
-
+      <img class="stall-pic img-responsive" src="{{ asset('img/welcome-horse.png') }}"> 
+      <div class="well">
+        Did your horse win a celebrated race? Want to show off your horse? Submit your horse to be featured on the front page. 
+        Submissions must include both an edited photo of your horse and a short bio/description of achievement.
+      </div><!--end well--> 
     </div>
   </div>
 </div>

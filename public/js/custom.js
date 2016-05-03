@@ -22,9 +22,22 @@ $(document).ready(function () {
   /*******DATA TABLE******/
   $.extend( $.fn.dataTable.defaults, {
     "pagingType": "simple",  
+    "pageLength": 25,
+    "lengthMenu": [ [10, 25, 50, -1], [10, 25, 50, "All"] ],
+
   });
 
-  $('#t_races, #t_horses, #t_entries, #t_person').DataTable();
+   $('#t_entries').DataTable( {
+        "order": [[ 4, "desc" ]]
+    } );
+
+  $('#t_races, #t_horses, #t_entries, #t_lineages').DataTable();
+
+  $('#t_users, #t_person').DataTable({
+    "paging": false,
+    "searching": false
+  });
+
 
   /******* CHOSEN ******/
   $( "select" ).addClass( "select" );
@@ -33,47 +46,9 @@ $(document).ready(function () {
     width: "100%",
     placeholder_text_single: "Select...",
     no_results_text: "Oops, nothing found!",
+    disable_search_threshold: 5,
+    search_contains: true
   });
-
-  /******* MODAL FORMS ******/
-  $("#quick-form").on("show.bs.modal", function(e) {
-    var link = $(e.relatedTarget);
-    $(this).find(".form-part").load(link.attr("href"));
-  });
-
-  /******* AJAX FORMS******/
-  $.ajaxSetup({
-        headers: {
-            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-        }
-});
-  
-  var formData = "";
-
-  $('#quick').submit(function (ev) { 
-
-    formData = $(this).serialize();
-
-    $.ajax({
-      type: "POST",
-      url: "/quick-person",
-      data: formData,
-      success: function (data, textStatus, jqXHR) {
-        console.log(data);
-        console.log(textStatus);     
-      },
-      error: function(jqXHR, textStatus, errorThrown){
-        console.log(textStatus);
-        console.log(errorThrown);   
-      }
- });//end ajax
-
-    ev.preventDefault();
-
-    return false;
-
-});//end submit
-
 
 });//end ready
 

@@ -1,7 +1,4 @@
-   <!--Themed bootstrap css cdn-->
-
-   <!--journal, paper, cosmo, sandstone -->
-   <!--    <link href="https://maxcdn.bootstrapcdn.com/bootswatch/3.3.6/sandstone/bootstrap.min.css" rel="stylesheet"> -->
+   <!--theming -->
    <link href="{{ asset('css/theme/theme.css') }}" rel="stylesheet">
    <!--Plugin styling-->
    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/css/bootstrap-datepicker3.css" rel="stylesheet"/>
@@ -12,8 +9,6 @@
 
    <!--CUSTOM STYLES-->
    <link href="{{ asset('css/custom.css') }}" rel="stylesheet">
-
-
 
    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>

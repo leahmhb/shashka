@@ -10,6 +10,7 @@ class Person extends Model{
   public $timestamps = false;
   protected $fillable = array(
     'username',
+    'user_id',
     'stable_name',
     'stable_prefix',
     'racing_colors'

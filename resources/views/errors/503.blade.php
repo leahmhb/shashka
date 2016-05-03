@@ -1,41 +1,27 @@
-<html>
-	<head>
-		<link href='//fonts.googleapis.com/css?family=Lato:100' rel='stylesheet' type='text/css'>
+@extends('layouts.no_nav', ['title' => '503'])
 
-		<style>
-			body {
-				margin: 0;
-				padding: 0;
-				width: 100%;
-				height: 100%;
-				color: #B0BEC5;
-				display: table;
-				font-weight: 100;
-				font-family: 'Lato';
-			}
-
-			.container {
-				text-align: center;
-				display: table-cell;
-				vertical-align: middle;
-			}
-
-			.content {
-				text-align: center;
-				display: inline-block;
-			}
-
-			.title {
-				font-size: 72px;
-				margin-bottom: 40px;
-			}
-		</style>
-	</head>
-	<body>
-		<div class="container">
-			<div class="content">
-				<div class="title">Be right back.</div>
+@section('content')
+<div class="container-fluid">
+	<div class="row">
+		<div class="col-md-8 col-md-offset-2">
+			<div class="panel panel-default">
+				<div class="panel-heading">
+					<h4 class="panel-title">503 Error</h4>
+				</div><!--end heading-->
+				<div class="panel-body">
+					<div class="alert alert-danger">
+					<p class="text-center">Be right back...</p>      
+					</div>
+				</div><!--end panel body-->
+				<div class="panel-footer">
+					<div class="row">
+						<div class="col-sm-4 col-sm-offset-4">           
+							<a href="{{ URL::route('index') }}" class="btn btn-default btn-block" role="button">Return to Index</a>
+						</div>
+					</div>
+				</div><!--end footer-->
 			</div>
 		</div>
-	</body>
-</html>
+	</div>
+</div>
+@endsection

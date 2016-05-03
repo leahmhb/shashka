@@ -2,67 +2,269 @@
 
 /*
 |--------------------------------------------------------------------------
-| Application Routes
+| Basic Routes
 |--------------------------------------------------------------------------
 */
 
-//basics
-Route::get('/', 'Base@index');
-Route::get('/theme', 'Base@theme');
-Route::get('/credits', 'Base@credits');
-Route::get('/contact', 'Base@contact');
+Route::get('/', [
+  'as' => 'index', 
+  'uses' => 'Base@index']);
 
-//lists
-Route::get('/horse-list', 'Horses@horse_list');
-Route::get('/person-list', 'Person@person_list');
-Route::get('/race-list', 'Races@race_list');
-Route::get('/entry-list', 'Races@entry_list');
+Route::get('/credits', [
+  'as' => 'credits', 
+  'uses' => 'Base@credits']);
 
-//quick forms
-Route::get('/quick-horse',  ['middleware' => 'auth','Horses@quick_horse']);
-Route::get('/quick-person',  ['middleware' => 'auth','Person@quick_person']);
-Route::get('/quick-race',  ['middleware' => 'auth','Races@quick_race']);
+Route::get('/contact', [
+  'as' => 'contact', 
+  'uses' => 'Base@contact']);
 
-Route::post('/quick-horse', ['middleware' => 'auth', 'uses' => 'Horses@quick_horse_validate']);
-Route::post('/quick-person', ['middleware' => 'auth', 'uses' => 'Person@quick_person_validate']);
-Route::post('/quick-race', ['middleware' => 'auth', 'uses' => 'Races@quick_race_validate']);
+Route::get('/people-tables', [
+  'as' => 'people_tables',
+  'uses' => 'Base@people_tables']);
 
-//horse 
-Route::get('/horse/{horse_id?}', ['middleware' => 'auth', 'uses' => 'Horses@horse']);
-Route::post('/horse/{horse_id?}', ['middleware' => 'auth', 'uses' => 'Horses@horse_validate']);
+/*
+|--------------------------------------------------------------------------
+| Guide Routes
+|--------------------------------------------------------------------------
+*/
 
-//person
-Route::get('/person/{person_id?}', ['middleware' => 'auth', 'uses' => 'Person@person']);
-Route::post('/person/{person_id?}', ['middleware' => 'auth', 'uses' => 'Person@person_validate']);
+Route::get('/guide_getting_started', [
+  'as' => 'guide_getting_started', 
+  'uses' => 'Base@guide_getting_started']);
 
-//race
-Route::get('/race/{race_id?}', ['middleware' => 'auth', 'uses' => 'Races@race']);
-Route::post('/race/{race_id?}', ['middleware' => 'auth', 'uses' => 'Races@race_validate']);
+Route::get('/guide_breeding', [
+  'as' => 'guide_breeding', 
+  'uses' => 'Base@guide_breeding']);
 
-//race entry
-Route::get('/race-entry/{horse_id?}/{entry_id?}', ['middleware' => 'auth', 'uses' => 'Races@race_entry']);
-Route::post('/race-entry/{horse_id?}/{entry_id?}', ['middleware' => 'auth', 'uses' => 'Races@race_entry_validate']);
+Route::get('/guide_colors', [
+  'as' => 'guide_colors', 
+  'uses' => 'Base@guide_colors']);
 
-//race and entry
-Route::get('/race-and-entry', ['middleware' => 'auth', 'uses' => 'Races@race_and_entry']);
-Route::post('/race-and-entry', ['middleware' => 'auth', 'uses' => 'Races@race_and_entry_validate']);
+Route::get('/guide_stats', [
+  'as' => 'guide_stats', 
+  'uses' => 'Base@guide_stats']);
 
-//ancestory
-Route::get('/ancestory/{relationship?}/{horse_id?}', ['middleware' => 'auth', 'uses' => 'Horses_Progeny@ancestory']);
-Route::post('/ancestory/{relationship?}/{horse_id?}', ['middleware' => 'auth', 'uses' => 'Horses_Progeny@ancestory_validate']);
+Route::get('/guide_abilities', [
+  'as' => 'guide_abilities', 
+  'uses' => 'Base@guide_abilities']);
 
-//stall
-Route::get('/stall/{horse_id}', 'Horses@stall_page');
+Route::get('/guide_form', [
+  'as' => 'guide_form', 
+  'uses' => 'Base@guide_form']);
 
-//delete
-Route::get('/remove-entry/{entry_id}', ['middleware' => 'auth', 'uses' => 'Races@remove_entry']);
-Route::get('/remove-race/{race_id}', ['middleware' => 'auth', 'uses' => 'Races@remove_race']);
-Route::get('/remove-horse/{horse_id}', ['middleware' => 'auth', 'uses' => 'Horses@remove_horse']);
-Route::get('/remove-person/{person_id}', ['middleware' => 'auth', 'uses' => 'Person@remove_person']);
+Route::post('/guide_form', [
+  'as' => 'guide_form_result', 
+  'uses' => 'Base@guide_form_result']);
 
-Route::get('/remove-ancestory/{horse_id}', ['middleware' => 'auth', 'uses' => 'Horse_Progeny@remove_ancestory']);
+/*
+|--------------------------------------------------------------------------
+| User Routes
+|--------------------------------------------------------------------------
+*/
 
+/*
+|--------------------------------------------------------------------------
+| Person Routes
+|--------------------------------------------------------------------------
+*/
+
+/*------------------------------------------------------------------------
+| User Person Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'user'], function () {
+  Route::get('/person/{person_id?}', [
+    'as' => 'person',  
+    'uses' => 'Person@person']);
+});
+/*------------------------------------------------------------------------
+| Owner Horse Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'owner'], function () {
+  Route::post('/person/{person_id?}', [
+    'as' => 'person_validate',  
+    'uses' => 'Person@person_validate']);
+});
+/*------------------------------------------------------------------------
+| Admin Person Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'admin'], function () {
+  Route::get('/remove-person/{person_id}', [
+    'as' => 'remove_person',  
+    'uses' => 'Person@remove_person']);
+
+  Route::post('/remove-person/{person_id}', [
+    'as' => 'remove_person',  
+    'uses' => 'Person@remove_person']);
+});
+/*
+|--------------------------------------------------------------------------
+| Horse Routes
+|--------------------------------------------------------------------------
+*/
+/*------------------------------------------------------------------------
+| Guest Horse Routes
+--------------------------------------------------------------------------*/
+Route::get('/horse-table/{owner?}/{breeding_status?}/{sex?}/{grade?}', [
+  'as' => 'horse_table', 
+  'uses' => 'Horses@horse_table']);
+
+Route::post('/horse-table', [
+  'as' => 'horse_table_validate', 
+  'uses' => 'Horses@horse_table_validate']);
+
+Route::get('/stall/{horse_id}', [
+  'as' => 'stall', 
+  'uses' => 'Horses@stall']);
+/*------------------------------------------------------------------------
+| Owner Horse Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'user'], function () {
+  Route::get('/horse/{horse_id?}', [
+    'as' => 'horse',  
+    'uses' => 'Horses@horse']);
+});
+/*------------------------------------------------------------------------
+| Owner Horse Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'owner'], function () {
+  Route::post('/horse/{horse_id?}', [
+    'as' => 'horse_validate',  
+    'uses' => 'Horses@horse_validate']);
+
+  Route::get('/remove-horse/{horse_id}', [
+    'as' => 'remove_horse',  
+    'uses' => 'Horses@remove_horse']);
+
+  Route::post('/remove-horse/{horse_id}', [
+    'as' => 'remove_horse',  
+    'uses' => 'Horses@remove_horse']);
+});
+/*------------------------------------------------------------------------
+| Admin Horse Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'admin'], function () {
+
+
+});
+
+/*
+|--------------------------------------------------------------------------
+| Race Routes
+|--------------------------------------------------------------------------
+*/
+/*------------------------------------------------------------------------
+| Guest Race Routes
+--------------------------------------------------------------------------*/
+Route::get('/race-table', [
+  'as' => 'race_table', 
+  'uses' => 'Races@race_table']);
+
+Route::post('/race-table', [
+  'as' => 'race_table_validate', 
+  'uses' => 'Races@race_table_validate']);
+
+Route::get('/entry-table/{race?}/{placing?}/{horse?}/{owner?}', [
+  'as' => 'entry_table', 
+  'uses' => 'Races@entry_table']);
+
+Route::post('/entry-table', [
+  'as' => 'entry_table_validate', 
+  'uses' => 'Races@entry_table_validate']);
+/*------------------------------------------------------------------------
+| User Race Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'user'], function () {
+  Route::get('/race/{race_id?}', [
+    'as' => 'race',  
+    'uses' => 'Races@race']);
+
+  Route::get('/entry/{horse_id?}/{entry_id?}', [
+    'as' => 'entry',  
+    'uses' => 'Races@entry']);
+});
+/*------------------------------------------------------------------------
+| Owner Race Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'owner'], function () {
+
+  Route::post('/entry/{horse_id?}/{entry_id?}', [
+    'as' => 'entry_validate',  
+    'uses' => 'Races@entry_validate']);
+
+  Route::get('/remove-entry/{entry_id}', [
+    'as' => 'remove_entry',  
+    'uses' => 'Races@remove_entry']);
+
+  Route::post('/remove-entry/{entry_id}', [
+    'as' => 'remove_entry',  
+    'uses' => 'Races@remove_entry']);
+});
+/*------------------------------------------------------------------------
+| Admin Race Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'admin'], function () {
+  Route::post('/race/{race_id?}', [
+    'as' => 'race_validate',  
+    'uses' => 'Races@race_validate']);
+
+  Route::get('/remove-race/{race_id}', [
+    'as' => 'remove_race',  
+    'uses' => 'Races@remove_race']);
+
+  Route::post('/remove-race/{race_id}', [
+    'as' => 'remove_race',  
+    'uses' => 'Races@remove_race']);
+});
+
+/*
+|--------------------------------------------------------------------------
+| Lineage Routes
+|--------------------------------------------------------------------------
+*/
+/*------------------------------------------------------------------------
+| Guest Lineage Routes
+--------------------------------------------------------------------------*/
+Route::get('/lineage-table', [
+  'as' => 'lineage_table', 
+  'uses' => 'Lineages@lineage_table']);
+
+Route::post('/lineage-table', [
+  'as' => 'lineage_table_validate', 
+  'uses' => 'Lineages@lineage_table_validate']);
+/*------------------------------------------------------------------------
+| User Lineage Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'user'], function () {
+  Route::get('/lineage/{relationship?}/{horse_id?}', [
+    'as' => 'lineage',  
+    'uses' => 'Lineages@lineage']);
+});
+/*------------------------------------------------------------------------
+| Owner Lineage Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'owner'], function () {
+  Route::post('/lineage/{relationship?}/{horse_id?}', [
+    'as' => 'lineage_validate',  
+    'uses' => 'Lineages@lineage_validate']);
+
+  Route::get('/remove-lineage/{horse_id}', [
+    'as' => 'remove_lineage',  
+    'uses' => 'Lineages@remove_lineage']);
+
+  Route::post('/remove-lineage/{horse_id}', [
+    'as' => 'remove_lineage',  
+    'uses' => 'Lineages@remove_lineage']);
+});
+/*------------------------------------------------------------------------
+| Admin Lineage Routes
+--------------------------------------------------------------------------*/
+Route::group(['middleware' => 'admin'], function () {  
+
+
+});
+
+//adminentication stuff
 Route::controllers([
 	'auth' => 'Auth\AuthController',
-	'password' => 'Auth\PasswordController',
+	'password' => 'Auth\PasswordController',  
   ]);

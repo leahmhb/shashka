@@ -13,6 +13,7 @@ class Horse extends Model{
     'sex',
     'color',
     'phenotype',
+    'breeding_status',
     'grade',
     'owner',
     'breeder',

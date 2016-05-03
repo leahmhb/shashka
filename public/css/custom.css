@@ -1,17 +1,54 @@
-@import url('https://fonts.googleapis.com/css?family=Open+Sans:400,300,700|Josefin+Sans:400,700|Julius+Sans+One');
+@import url('https://fonts.googleapis.com/css?family=Gudea|Josefin+Sans:400,700|Julius+Sans+One');
+
 
 /************* GENERAL **************/
 
 body {   
-  background-color: rgb(81, 97, 61);
+  background-color: rgb(88,88,88); 
   background-image: url(../img/white-diamond-dark.png);
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'Gudea', sans-serif;
   font-size: 14px;
   overflow-x:hidden;
+  -webkit-animation: colors 1000s infinite;
+  animation: colors 1000s infinite;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;
+@keyframes  colors {
+  0% { background-color: rgba(0,0,0, .7); }
+  15% { background-color: rgb(81, 97, 61); } /* green */
+  30% { background-color: rgb(97,77,61); } /* brown */
+  45% { background-color: rgb(61,81,97); } /* blue */
+  60% { background-color: rgb(77,61,97); } /* purple */
+  100% { background-color: rgb(118,96,73); }
+}
+
+ul .list-unstyled {
+  margin: 0 0 10px;
+}
+
+ul + p {
+  margin-top: 10px;
+}
+
+#no_nav_container {
+  margin-top: 50px;
+}
+
+h1, h2, h3, h4, h5, h6, 
+label, 
+#navbar ul.nav.navbar-nav li.dropdown ul.dropdown-menu li a,
+#navbar ul.nav.navbar-nav.navbar-right li.dropdown ul.dropdown-menu li a {
+  font-family: 'Josefin Sans', sans-serif; 
+}
+
+label + input[type=radio], label.radio-inline, thead tr th {
+  font-family:'Gudea', sans-serif;
+}
+
+#navbar ul.nav.navbar-nav li a, .navbar-brand,
+.panel-heading .panel-title, .panel .panel-footer,
+.panel-footer ul.stall-info.list-inline li b   {
+  font-family:'Julius Sans One', sans-serif;
 }
 
 h1:first-child, 
@@ -23,8 +60,7 @@ h6:first-child {
   margin-top:5px;
 }
 
-.tooltip-overflow { /* tool tip */
- /* white-space: nowrap;*/
+.tooltip-overflow {
  max-width: 100px;
 }
 
@@ -34,8 +70,11 @@ form .text-danger, form .text-info {
 }
 
 label {
-  font-weight:bold;
-  font-size: .85em;
+  font-size: .95em;  
+}
+
+label + input[type=radio], label.radio-inline{
+  font-weight:normal;
 }
 
 pre, code {
@@ -49,37 +88,98 @@ ul {
   list-style-type: square;
 }
 
-strong {
-  color: #5a3947;
-}
-
-b, strong {
-  font-family: 'Open Sans', sans-serif;
+b, strong {  
   font-weight: 700;
-  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
 
 i, em {
-  font-family: 'Open Sans', sans-serif;
   color: rgb(192, 190, 153);
-  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;  
 }
 
-.text-primary, .text-info, .text-success, .text-warning, .text-danger {
-  text-shadow:  rgba(52, 52, 48, .2) 1px 1px 1px;
+.text-primary, 
+.text-info, 
+.text-success, 
+.text-warning, 
+.text-danger, 
+.text-default, 
+b, strong, i, 
+h1, h2, h3, h4, h5, h6,
+.panel .panel-heading .panel-title
+{
+ text-shadow: -1px 0 rgba(255, 255, 255, .6), 
+ 0 1px rgba(255, 255, 255, .6), 
+ 1px 0 rgba(255, 255, 255, .6), 
+ 0 -1px rgba(255, 255, 255, .6);
 }
 
-.fa-color {
+.text-default {
+  color: #3e3f3a;
+}
+
+.text-danger {
+  color: rgb(181,43,39);
+}
+
+.alert-danger {
+  background: rgb(181,43,39);
+}
+
+.fa-gray {
   color: rgba(0, 0, 0, .5);
 }
 
+.fa-white {
+  color: #ffffff;
+}
+
+.fa-pink {
+  color:rgb(255,77,166);
+}
+
+.fa-blue {
+  color:rgb(77,166,255);
+}
+
+.fa-green {
+  color:#6b8051;
+}
+
+.fa-brown {
+ color: #614d3d;
+}
+
+a.icon-link {
+  text-decoration: none;
+}
+
+.alert { 
+  border: 1px solid #fff;
+}
+
 thead tr th {
-  font-family: 'Josefin Sans', sans-serif;
-  font-size: 1.2em;
+  font-variant: small-caps;
+  font-size: .90em;
   font-weight:700;
 }
 
+th, td { 
+  white-space: nowrap; 
+}
+
+blockquote {
+  font-size: 1.1em;
+}
+
+div.dataTables_wrapper {
+  width: 100%;
+  margin: 0 auto;
+}
+
 /************* NAVBAR **************/
+
+.navbar-default {
+  background-color: rgb(42,43,39);
+}
 
 .navbar {
   border-radius: 0;
@@ -90,16 +190,13 @@ li.dropdown-header {
 }
 
 .navbar-brand,
-
 #navbar ul.nav.navbar-nav li a{
-  font-size: 1.5em;
-  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;
+  font-size: 1.3em;
 }
 
 #navbar ul.nav.navbar-nav li.dropdown ul.dropdown-menu li a,
 #navbar ul.nav.navbar-nav.navbar-right li.dropdown ul.dropdown-menu li a{
-  font-size: 16px;
-  font-family:  'Josefin Sans', sans-serif;
+  font-size: 1.1em;
   text-transform:none;
   color: rgb(52, 52, 48);
 }
@@ -112,6 +209,10 @@ li.dropdown-header {
   color: rgb(120, 62, 86, 1);
   font-size: .95em;
 }
+.navbar-default .navbar-nav > li > a:hover, 
+.navbar-default .navbar-nav > li > a:focus {
+  background: rgba(0, 0, 0, .1)
+}
 
 @media only screen and (min-width : 768px) {
   /* Make Navigation Toggle on Desktop Hover */
@@ -120,7 +221,37 @@ li.dropdown-header {
   }
 }
 
+
+@media (max-width: 767px) {
+  .navbar-nav .open .dropdown-menu {
+    position: static;
+    float: none;
+    width: auto;
+    margin-top: 0;
+    background-color: #ffffff;
+    border: 0;
+    box-shadow: none;
+  }
+  .navbar-nav .open .dropdown-menu > li > a,
+  .navbar-nav .open .dropdown-menu .dropdown-header {
+    padding: 5px 15px 5px 25px;
+  }
+  .navbar-nav .open .dropdown-menu > li > a {
+    line-height: 20px;
+  }
+  .navbar-nav > li > .dropdown-menu {
+    border-radius: 0;
+  }
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:hover, 
+  .navbar-default .navbar-nav .open .dropdown-menu > li > a:focus {
+    background-image: none;
+    background-color: #f8f5f0;
+  }
+}
+
 /************* PANELS **************/
+
+
 
 .panel-default .panel-heading .panel-title, .panel-default .panel-footer, .navbar, li.dropdown-header {
   color: rgb(62, 63, 58);
@@ -131,7 +262,7 @@ li.dropdown-header {
 }
 
 .panel .panel-heading .panel-title {
-  font-size: 2em;
+  font-size: 1.85em;
   padding: 5px;
 }
 
@@ -139,26 +270,20 @@ li.dropdown-header {
   font-size: 1.25em;
 }
 
-.panel-heading .panel-title, .panel .panel-footer {
-  font-family: "Julius Sans One", Georgia,Times,'Times New Roman',serif;  
-  text-transform: none;
-}
-
 /************* BACKGROUND **************/
 
 #bg { /* for bg image */
   position: fixed;
   bottom: -8px;
-  left: 0;
-  width: 50%;
+  right: 0;
   height: auto;
   z-index: -5;
 }
 
 #bg img { /* for bg image */
-  width: 100
+  width: 100;
   height: auto;
-  max-width: 450px;
+  max-width: 400px;
   box-sizing: border-box;
 }
 
@@ -167,27 +292,24 @@ li.dropdown-header {
   display: none;  
 }
 
-.alert { 
-  border: 1px solid #fff;
-}
-
 input.form-control, 
 select.form-control,
 .form-control[disabled],
-.chosen-container-single .chosen-single
-{ 
+.chosen-container-single .chosen-single { 
   background: rgba(255, 255, 255, .8);
-  font-size: 12px;
+  font-size: .90em;
   height: 40px;
-  line-height: 24px;
+  line-height: 34px;
   border-radius: 4px;
   border: 1px solid #CCCCCC;
   box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
+input.form-control, 
+select.form-control,
+.form-control[disabled],
 input[type='number'].form-control {
-  padding: 5px;
-  padding-left: 16px;
+ padding: 5px 12px;
 }
 
 .input-group-addon {
@@ -201,24 +323,32 @@ textarea.form-control {
   box-shadow: 0 0 3px #fff inset,0 1px 1px rgba(0,0,0,.1);
 }
 
-form.form-horizontal .panel .panel-body h2 small {
-  color: #3b252e;
-  border-bottom: 1px solid #CCCCCC;
-
-}
-
-form.form-horizontal .panel .panel-body h2 {
+form.form-horizontal h2, 
+h2.updates {
   margin-top: 0px;
   padding-top:0px;
+  border-bottom: 1px solid #CCCCCC;
+  font-size: 2.3em;
 }
 
+form.form-horizontal h2 small {
+  color: rgb(90,90,90)
+}
+
+.form_notes {
+  display:inline-block;
+  text-align: right;
+  margin-right: 15px;
+  margin-top: 5px;
+  float:right;
+}
 
 /************* CHOSEN **************/
 
 .chosen-container-single .chosen-single span,
 .chosen-container-single .chosen-single div b {
-  padding-top: 3px;
-  margin-top: 5px;
+  padding-top: 0px;
+  margin-top: 3px;
   padding-left: 8px;
 }
 
@@ -239,6 +369,10 @@ form.form-horizontal .panel .panel-body h2 {
 
 .chosen-drop .chosen-results {
   max-height: 100px;
+}
+
+.chosen-container {
+  font-size: .90em;
 }
 
 /************* PLACEHOLDERS **************/
@@ -266,15 +400,6 @@ form.form-horizontal .panel .panel-body h2 {
 }
 
 /************* STALL **************/
-#stall-edit {
-  margin-top:10px;  
-}
-
-#stall-edit a.btn {
-  font-weight:bold;
-  text-transform: small-caps;
-}
-
 img.stall-pic {
  display: block;  
  margin: 0 auto;  
@@ -282,27 +407,26 @@ img.stall-pic {
 }
 
 .stall-info li{
-  margin:0.5rem;
+  margin:.25rem;
   padding:0;
 }
 
 .stall-info li ul {
-  margin-left: 2rem;
+  margin-left: .5rem;
 }
 
-.stall-pills ul.nav.nav-pills li a {
-  font-size: .95em;
-  padding: 5px;
+.stall-info li ul.stall-info li {
+  margin-left: .25rem;
+  padding:0;
 }
+
+
 
 ul.race-records {
   list-style-position: outside;
   list-style-type: none;
 }
 
-ul.race-records li{
-  font-size: 14px;
-}
 
 /************* Tooltips **************/
 
@@ -329,3 +453,9 @@ ul.race-records li{
   background: #eee;
 }
 
+/************* LISTS **************/
+.list_controls a, .list_controls i {
+  display:inline;
+  text-decoration: none;
+  margin: 1px;
+}
