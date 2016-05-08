@@ -25,13 +25,13 @@
         <tr>
           <th><small>Call</small><br>Name</th>      
           <th>Sex</th>
-          <th>Grade</th>
+
           <th><small>Breeding</small><br>Status</th>
-          <th><i class="fa fa-plus text-success"></i></th>
-          <th><i class="fa fa-plus text-success"></i></th>
-          <th><i class="fa fa-minus text-danger"></i></th>
+          <th>Grade</th>
+          <th>Abilities</th>
           <th><span class="fa-brown">Dirt</span>/<span class="fa-green">Turf</span></th>
           <th>Distance</th>
+          <th>Max Stat</th>
           <th>Owner</th>              
           <th></th>
         </tr>
@@ -61,7 +61,7 @@
           @endif
 
         </td>
-        <td>{{$h['grade'] }} </td> 
+
         <td>
          @if($h['breeding_status'] == 'Unavailable')
          <i class="fa fa-heart-o fa-lg text-danger fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Unavailable"></i>
@@ -69,9 +69,12 @@
          <i class="fa fa-heart fa-lg text-danger fa-lg" aria-hidden="true" data-toggle="tooltip" data-placement="top" title="Available"></i>
          @endif
        </td>
-       <td><small>{{$h['pos_ability_1']}}</small></td>
-       <td><small>{{$h['pos_ability_2']}}</small></td>
-       <td><small>{{$h['neg_ability_1']}}</small></td>
+       <td>{{$h['grade'] }} </td> 
+       <td>
+         <small><i class="fa fa-plus text-success"></i> {{$h['pos_ability_1']}}</small><br>
+         <small><i class="fa fa-plus text-success"></i> {{$h['pos_ability_2']}}</small><br>
+         <small><i class="fa fa-minus text-danger"></i> {{$h['neg_ability_1']}}</small>
+       </td>
 
        <td>
          @if($h['surface_dirt'] == 'Great')
@@ -93,6 +96,10 @@
 
        <td> 
          {{ $h['distance_min'] }} - {{ $h['distance_max'] }}F
+       </td>
+
+       <td>
+       <span class="text-capitalize">{{ $h['max_stat'] }}</span>
        </td>
 
        <td>{{$h['owner']}}</td>

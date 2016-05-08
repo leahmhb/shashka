@@ -69,14 +69,25 @@ public function getHorseDomain(){
 public function getRaceDomain($person_id = false){
   $domain = [];
 
-  $races = Models\Race::select('id', 'name', 'grade', 'surface', 'series', 'distance')
+  $races = Models\Race::select('id', 'name', 'grade', 'surface', 'series', 'distance', 'ran_dt')
   ->orderBy('name')
   ->get()->toArray();
 
   foreach($races as $i=>$r){
-    $races[$i]['grade'] = Models\Domain_Value::where('domain', 'GRADE')->where('id', $r['grade'])->first();
-    $races[$i]['surface'] = Models\Domain_Value::where('domain', 'SURFACE')->where('id', $r['surface'])->first();
-    $races[$i]['series'] = Models\Domain_Value::where('domain', 'RACE_SERIES')->where('id', $r['series'])->first();      
+    $races[$i]['grade'] = Models\Domain_Value::where('domain', 'GRADE')->where('id', $r['grade'])->first()['grade'];
+    $races[$i]['surface'] = Models\Domain_Value::where('domain', 'SURFACE')->where('id', $r['surface'])->first()['surface'];
+    $races[$i]['series'] = Models\Domain_Value::where('domain', 'RACE_SERIES')->where('id', $r['series'])->first()['series'];   
+
+    $ran_dt = $races[$i]['ran_dt'];
+
+    if(date('Y-m-d', strtotime($r['ran_dt'])) == '1000-01-01') {
+      $races[$i]['ran_dt'] = 'TBA';
+    }elseif(date('Y-m-d', strtotime($r['ran_dt'])) == '1111-11-11'){
+      $races[$i]['ran_dt'] = 'Unknown';
+    }else {
+      $races[$i]['ran_dt'] = date('Y-m-d', strtotime($r['ran_dt']));
+    }
+
   }
 
   $horses = Models\Horse::select('id', 'call_name')->orderBy('call_name');

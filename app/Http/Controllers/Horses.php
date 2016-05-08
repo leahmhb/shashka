@@ -53,6 +53,8 @@ if($horses){
     $horses[$i]['sex'] = Models\Domain_Value::where('id', $h['sex'])->first()['value'];
     $horses[$i]['owner'] = Models\Person::where('id', $h['owner'])->first()['username'];
 
+    $horses[$i]['max_stat'] = $this->getMaxStat($h['id']);
+
     foreach($horses[$i] as $j=>$v){     
       if($v == 'Unknown'){
         $horses[$i][$j] = '';
@@ -73,6 +75,40 @@ if($horses){
     'domain' => Base::getHorseDomain()
     ]);
 }//end horse_table
+
+
+public function getMaxStat($horse_id){
+
+
+  $stats = Models\Horse::select(
+    'speed',
+    'staying',
+    'stamina',
+    'breaking',
+    'power',
+    'feel', 
+    'tenacity',
+    'courage',
+    'response')
+  ->where('id',$horse_id)
+  ->first()->toArray();
+
+  $max_stat = '';
+  $max = 0;
+
+  foreach($stats as $i=>$s){
+    if($s > $max){
+      $max = $s;
+      $max_stat = $i;
+    }
+  }
+
+  if($max == 0){
+    return '';
+  }
+
+  return $max_stat . ': ' . $max;
+}//end getMaxStat
 
 public function horse_table_validate(){
   $data = Base::trimWhiteSpace($_POST);
@@ -191,6 +227,8 @@ public function generateStall($horse){
 public function getOffspring($horse_id, $sex){ 
   $offspring = [];
 
+
+
   if($sex == 10){ //stallion
     $offspring = Models\Lineage::where('sire_id', $horse_id)->get();
 
@@ -205,7 +243,7 @@ public function getOffspring($horse_id, $sex){
       $offspring[$i]['dam_link'] = $dam['stall_path'];
     }//end foreach
 
-  } else if($sex == 9){ //mare
+  } else if($sex == 11){ //mare
     $offspring = Models\Lineage::where('dam_id', $horse_id)->get();
 
     foreach($offspring as $i=>$o){

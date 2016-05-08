@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post" action="/horse-table">
+<form id="horse-filter" class="form-horizontal" method="post" action="/horse-table">
  <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
@@ -74,7 +74,7 @@
 <div class="panel-footer">
   <div class="text-right"> 
 
-    <button type="reset" class="btn btn-default btn-sm">Reset</button> 
+    <button id="t_horse_filter_reset" type="reset" class="btn btn-default btn-sm">Reset</button> 
     <button type="submit" class="btn btn-primary btn-sm">Save</button>     
 
   </div>

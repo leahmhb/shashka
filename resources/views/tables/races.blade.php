@@ -2,6 +2,7 @@
 
 @section('content')
 <div class="container-fluid">
+ @include('forms.t_race_filter')
   <div class="row">
    <div class="col-sm-12">   
     <div class="panel panel-default">
@@ -49,12 +50,12 @@
             {{ $r['grade'] }}               
           </td>     
           <td>
-            @if(date('Y-m-d', strtotime($r['ran_dt'])) == '1000-01-01') 
+            @if(date('M-d-Y', strtotime($r['ran_dt'])) == '1000-01-01') 
             TBA
-            @elseif(date('Y-m-d', strtotime($r['ran_dt'])) == '1111-11-11')
+            @elseif(date('M-d-Y', strtotime($r['ran_dt'])) == '1111-11-11')
             Unknown
             @else 
-            {{ date('Y-m-d', strtotime($r['ran_dt']))}} 
+            {{ date('M-d-Y', strtotime($r['ran_dt']))}} 
             @endif
           </td>
           <td align="right">

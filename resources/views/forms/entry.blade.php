@@ -15,11 +15,12 @@
       <option></option>
       @foreach ($options['races'] as $race)          
       <option @if($race['id'] == $entry['race_id']) selected @endif value="{{$race['id']}}"> 
-        {{ $race['series']['description'] }}  
+        {{ $race['series'] }}  
         {{ $race['name'] }}
-        {{ $race['surface']['value'] }} 
+        {{ $race['surface'] }} 
         {{ $race['distance'] }}F 
-        {{ $race['grade']['value'] }} 
+        {{ $race['grade'] }} 
+        {{ date('M-d-Y', strtotime($race['ran_dt']))}} 
       </option>
       @endforeach
     </select>             

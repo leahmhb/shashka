@@ -1,4 +1,4 @@
-<form class="form-horizontal" method="post" action="/lineage-table">
+<form id="lineage-filter" class="form-horizontal" method="post" action="/lineage-table">
  <div class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
@@ -36,7 +36,7 @@
   </div><!--end panel content-->    
   <div class="panel-footer">
     <div class="text-right"> 
-      <button type="reset" class="btn btn-default btn-sm">Reset</button> 
+      <button id="t_lineage_filter_reset" type="reset" class="btn btn-default btn-sm">Reset</button> 
       <button type="submit" class="btn btn-primary btn-sm">Save</button> 
     </div>
   </div><!--end footer-->

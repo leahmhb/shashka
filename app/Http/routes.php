@@ -155,7 +155,7 @@ Route::group(['middleware' => 'admin'], function () {
 /*------------------------------------------------------------------------
 | Guest Race Routes
 --------------------------------------------------------------------------*/
-Route::get('/race-table', [
+Route::get('/race-table/{grade?}/{surface?}/{series?}/{distance?}', [
   'as' => 'race_table', 
   'uses' => 'Races@race_table']);
 

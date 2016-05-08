@@ -18,30 +18,69 @@ class Races extends Base{
 |--------------------------------------------------------------------------
 */
 
-public function race_table(){
+public function race_table($grade = false, $surface = false, $series = false, $distance = false){
   $races = Models\Race::select('id', 'series',  'name', 'grade', 'surface', 'distance', 'ran_dt', 'url')
-  ->orderBy('name', 'desc')->get(); 
+  ->orderBy('name', 'desc');
 
-  foreach($races as $i=>$r){
-    $races[$i]['grade'] = Models\Domain_Value::where('id', $r['grade'])->first()['value'];
-    $races[$i]['surface'] = Models\Domain_Value::where('id', $r['surface'])->first()['value'];    
+  if($grade && $grade != 0){
+    $races->where('grade', $grade);
+  }
 
-    if($r['series'] != 44){
-      $races[$i]['series'] = Models\Domain_Value::where('id', $r['series'])->first()['description'];
-    } else {
-     $races[$i]['series'] = '';
+  if($surface && $surface != 0){
+    $races->where('surface', $surface);
+  }
+
+  if($series && $series != 0){
+    $races->where('series', $series);
+  }
+
+  if($distance && $distance != 5){
+    $races->where('distance', $distance);
+  }
+
+  if($races){
+
+    $races = $races->get(); 
+
+    foreach($races as $i=>$r){
+      $races[$i]['grade'] = Models\Domain_Value::where('id', $r['grade'])->first()['value'];
+      $races[$i]['surface'] = Models\Domain_Value::where('id', $r['surface'])->first()['value'];    
+
+      if($r['series'] != 44){
+        $races[$i]['series'] = Models\Domain_Value::where('id', $r['series'])->first()['description'];
+      } else {
+       $races[$i]['series'] = '';
     }//end if
 
   }//end foreach
 
-  return view('tables.races', ['races' => $races]);
+}//end if
+
+return view('tables.races', [
+  'races' => $races,
+  'grade' => $grade,
+  'surface' => $surface,
+  'series' => $series,
+  'distance' => $distance,
+  'domain' => $this->racesTableDomain()
+  ]);
 }//end race_table
 
 
 public function race_table_validate(){
   $data = Base::trimWhiteSpace($_POST);
 
-  return redirect()->route('race_table');
+
+  return redirect()->route('race_table', 
+    [
+    'grade' => $data['grade'],
+    'surface' => $data['surface'],
+    'series' => $data['series'],
+    'distance' => $data['distance']
+    ]
+    );
+
+
   }//end race_table_validate
 
 
@@ -145,12 +184,6 @@ public function race_table_validate(){
 
     $domain['person'] = Models\Person::select('id', 'username')->orderBy('username', 'asc')->get();
 
-    $domain['placing'] = [];
-
-    for($i = 0; $i < 14; $i++){
-      $domain['placing'][$i] =  Base::ordinal($i);
-    }
-
     $races = Models\Race::orderBy('name')->get()->toArray();
 
     foreach($races as $i=>$r){   
@@ -165,6 +198,19 @@ public function race_table_validate(){
 
     return $domain;
   }//end entriesTableDomain
+
+
+  public function racesTableDomain(){
+    $domain = [];
+
+    $domain['series'] = Models\Domain_Value::where('domain', 'RACE_SERIES')->get()->toArray();   
+    $domain['surface'] = Models\Domain_Value::where('domain', 'SURFACE')->get()->toArray();
+    $domain['grade'] = Models\Domain_Value::where('domain', 'GRADE')->get()->toArray();   
+
+
+
+    return $domain;
+  }//end racesTableDomain
 
 /*
 |--------------------------------------------------------------------------

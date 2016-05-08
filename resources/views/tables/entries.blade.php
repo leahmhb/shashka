@@ -59,12 +59,12 @@
           {{ $e['race_grade'] }}               
         </td>           
         <td>
-         @if(date('Y-m-d', strtotime($e['race_randt'])) == '1000-01-01') 
+         @if(date('M-d-Y', strtotime($e['race_randt'])) == '1000-01-01') 
          TBA
-         @elseif(date('Y-m-d', strtotime($e['race_randt'])) == '1111-11-11')
+         @elseif(date('M-d-Y', strtotime($e['race_randt'])) == '1111-11-11')
          Unknown
          @else 
-         {{ date('Y-m-d', strtotime($e['race_randt']))}} 
+         {{ date('M-d-Y', strtotime($e['race_randt']))}} 
          @endif
        </td> 
        <td align="right">         
