@@ -17,13 +17,16 @@ class Race extends Model{
     'distance',
     'ran_dt',
     'grade',
-    'url'
+    'url',
+    'weather',
+    'course',
+    'final_time'
     );
 
   public function getRanDtAttribute($date){ 
-   return Carbon::parse($date);
- }
-
+    $dt = Carbon::parse($date);
+    return $dt->year . '-' . $dt->month . '-' . $dt->day;
+  }
 
 
 }

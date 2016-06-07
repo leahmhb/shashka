@@ -6,9 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
        <div class="panel-heading">
-        <h1 class="panel-title">
-          Horse Removal Confirmation
-        </h1>
+        <h1 class="panel-title">Horse Removal Confirmation</h1>
       </div>
       <div class="panel-body">      
         <h2>Are you sure you want to delete {{ $horse['call_name'] }}?</h2>
@@ -34,8 +32,8 @@
          <button type="submit" class="btn btn-danger" name="yes">Yes</button>
          @endif
        </form>
-
      </div>
    </div>
  </div>
- @endsection
+</div>
+@endsection

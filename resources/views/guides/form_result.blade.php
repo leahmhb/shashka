@@ -11,7 +11,7 @@
             <h3 class="panel-title">
               Racing Entry Form 
             </h3>
-          </div><!--end heading-->
+          </div>
           <div class="panel-body">
 
  <textarea class="form-control" rows="32" readonly>
@@ -48,11 +48,11 @@
     [img]{{ $data['racing_img'] }}[/img]
   </textarea> 
 
-   </div><!--end panel body--> 
+   </div> 
          
-     </div><!--end panel-->   
+     </div>   
    </form>
- </div><!--end col-->
-</div><!--end row-->
-</div><!--end container-->
+ </div>
+</div>
+</div>
 @endsection

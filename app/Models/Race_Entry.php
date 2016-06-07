@@ -10,6 +10,9 @@ class Race_Entry extends Model{
   protected $fillable = array(
     'race_id',
     'horse_id',
-    'placing'
+    'placing',
+    'isTrackRecord',
+    'isNotableWin',
+    'time'
     );
 }

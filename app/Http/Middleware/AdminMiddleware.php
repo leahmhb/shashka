@@ -19,7 +19,7 @@ class AdminMiddleware extends Authenticate{
      return abort(401);
    }
 
-   if ($request->user()->admin == 1) {
+   if ($request->user()->isAdmin == 1) {
     return $next($request);
   }
 

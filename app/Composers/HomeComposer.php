@@ -5,7 +5,7 @@ use App\Models as Models;
 class HomeComposer{
 
 	public function compose($view){        
-		$view->with('nav_list', $this->getNav());
+		//$view->with('nav_list', $this->getNav());
 	}//end compose
 
   public function getNav(){

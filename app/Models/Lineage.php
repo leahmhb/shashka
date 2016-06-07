@@ -10,7 +10,8 @@ class Lineage extends Model{
   protected $fillable = array(
     'horse_id',
     'sire_id',
-    'dam_id'
+    'dam_id',
+    'generation'
     );
   
 }

@@ -12,7 +12,6 @@
       </div>
       <div class="panel-body">      
         <h2>Are you sure you want to delete {{ $person['username'] }} ?</h2>
-
         @if($horses)
         This person owns the following horses:
         <ul>
@@ -22,12 +21,9 @@
         </ul>
         This person cannot be deleted.
         @endif      
-
       </div>
-
-
       <div class="panel-footer">
-      <form class="text-right" method="post" action="/remove-person/{{ $person['id'] }}">
+        <form class="text-right" method="post" action="/remove-person/{{ $person['id'] }}">
           @if($horses)
           <a role="button" class="btn btn-default" href="{{ URL::route('people_tables') }}">OK, take me back to People Tables</a>
           @else
@@ -36,9 +32,7 @@
           @endif          
         </form>
       </div>
-
-
-
     </div>
   </div>
-  @endsection
+</div>
+@endsection

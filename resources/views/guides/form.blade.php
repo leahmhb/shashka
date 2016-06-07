@@ -11,25 +11,30 @@
             <h3 class="panel-title">
               Racing Entry Form 
             </h3>
-          </div><!--end heading-->
+          </div>
           <div class="panel-body">
             <div class="row">
               <div class="col-sm-12">          
                 <div id="rsvErrors" class="alert alert-danger"></div>
-              </div><!--end col-->
-            </div><!--end row-->
+              </div>
+            </div>
             @include('forms.demo_entry')
-          </div><!--end panel body--> 
+          </div> 
           <div class="panel-footer">
             <div class="text-center"> 
              <button class="btn btn-default" type="reset">Clear</button>
              <button class="btn btn-primary" type="submit">Create</button>
            </div>
          </div>   
-       </div><!--end panel-->   
+       </div>   
      </form>
-   </div><!--end col-->
- </div><!--end row-->
-</div><!--end container-->
+   </div>
+ </div>
+</div>
 @endsection
 
+@section('page-script')
+<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.6.0/js/bootstrap-datepicker.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/chosen/1.4.2/chosen.jquery.min.js"></script>
+<script src="{{ asset('js/forms.js') }}"></script>
+@endsection

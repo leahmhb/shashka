@@ -10,7 +10,7 @@
           <h3 class="panel-title">
             Colors <small>by Neco</small>
         </h3>
-    </div><!--end heading-->
+    </div>
     <div class="panel-body">
      <h1>Thoroughbred Horse Colors</h1>
      <blockquote>
@@ -66,12 +66,12 @@
      <p><b>Tetrarch Spots –</b> Similar to Birdcatcher spots, only much larger.</p>
 
      <p><b>Bend Or Spots –</b> These almost exclusively appear on chestnut horses. They are small, darker colored chestnut spots on the horse’s coat, most often appear on the flanks, belly and shoulder of the animal.</p> 
- </div><!--end panel body-->    
-</div><!--end panel-->   
-</div><!--end col-->
-</div><!--end row-->
+ </div>    
+</div>   
+</div>
+</div>
 
 
-</div><!--end container-->
+</div>
 
 @endsection

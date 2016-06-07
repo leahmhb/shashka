@@ -18,7 +18,7 @@
 					</div>
 					@endif
 
-					Users not fully implmented yet. 
+					Users not fully implmented yet. You MUST PM Haubing after you register in order to add horses/etc.
 
 					<form class="form-horizontal" role="form" method="POST" action="{{ url('/auth/register') }}">
 						<input type="hidden" name="_token" value="{{ csrf_token() }}">

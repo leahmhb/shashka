@@ -6,9 +6,7 @@
     <div class="col-md-8 col-md-offset-2">
       <div class="panel panel-default">
        <div class="panel-heading">
-        <h1 class="panel-title">
-          Race Removal Confirmation
-        </h1>
+        <h1 class="panel-title">Race Removal Confirmation</h1>
       </div>
       <div class="panel-body">      
         <h2>Are you sure you want to delete {{ $race['name'] }} ?</h2>
@@ -32,4 +30,5 @@
       </div>
     </div>
   </div>
-  @endsection
+</div>
+@endsection

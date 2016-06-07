@@ -11,7 +11,7 @@
           <h3 class="panel-title">
             Racing Abilities <small>by Neco</small>
           </h3>
-        </div><!--end heading-->
+        </div>
         <div class="panel-body">
 
           <blockquote>All Thoroughbred racehorses should have TWO positive abilities and ONE negative ability.</blockquote>
@@ -60,12 +60,12 @@
             <li><b>Rough Track Not OK:</b>  Races poorly in rough track conditions.</li>
             <li><b>Stubborn:</b>  Sprints uncontrollably when spooked.</li>
           </ul>
-        </div><!--end panel body-->    
-      </div><!--end panel-->   
-    </div><!--end col-->
-  </div><!--end row-->
+        </div>  
+      </div>  
+    </div>
+  </div>
 
 
-</div><!--end container-->
+</div>
 
 @endsection

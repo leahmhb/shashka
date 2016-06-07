@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Models as Models;
-use Input;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
@@ -17,68 +16,22 @@ class Horses extends Base{
 */
 
 public function horse_table($owner = false, $breeding_status = false, $sex = false, $grade = false){
-  $horses = Models\Horse::orderBy('id', 'desc');
 
-  if($owner != "false" && $owner && $owner != '0'){
-    $horses->where('owner', $owner);
-  }//end if
+  $horses = Horses::tableData($owner, $breeding_status, $sex, $grade);
 
-  if($breeding_status != "false" && $breeding_status && $breeding_status != '0'){
-    $horses->where('breeding_status', $breeding_status);
-}//end if
-
-if($sex != "false" && $sex && $sex != '0'){
-  $horses->where('sex', $sex);    
-}//end if
-
-if($grade != "false" && $grade && $grade != '0'){
-  $horses->where('grade', $grade);  
-}//end if
-
-
-if($horses){
-  $horses = $horses->get()->toArray();
-
-  foreach($horses as $i=>$h){
-    $horses[$i]['breeding_status'] = Models\Domain_Value::where('id', $h['breeding_status'])->first()['value'];
-
-    $horses[$i]['pos_ability_1'] = Models\Ability::where('id', $h['pos_ability_1'])->first()['ability'];
-    $horses[$i]['pos_ability_2'] = Models\Ability::where('id', $h['pos_ability_2'])->first()['ability'];
-    $horses[$i]['neg_ability_1'] = Models\Ability::where('id', $h['neg_ability_1'])->first()['ability'];
-
-    $horses[$i]['surface_dirt'] = Models\Domain_Value::where('id', $h['surface_dirt'])->first()['value'];
-    $horses[$i]['surface_turf'] = Models\Domain_Value::where('id', $h['surface_turf'])->first()['value'];
-
-    $horses[$i]['grade'] = Models\Domain_Value::where('id', $h['grade'])->first()['value'];
-    $horses[$i]['sex'] = Models\Domain_Value::where('id', $h['sex'])->first()['value'];
-    $horses[$i]['owner'] = Models\Person::where('id', $h['owner'])->first()['username'];
-
-    $horses[$i]['max_stat'] = $this->getMaxStat($h['id']);
-
-    foreach($horses[$i] as $j=>$v){     
-      if($v == 'Unknown'){
-        $horses[$i][$j] = '';
-      }
-    }//end foreach
-
-
-  }//end foreach
-  
-  }//end if
-
-  return view('tables.horses', [
+  return view('tables.horses_display', [
     'horses' => $horses, 
     'owner' => $owner, 
     'breeding_status' => $breeding_status, 
     'sex' => $sex, 
     'grade' => $grade, 
+    'type' => false,
     'domain' => Base::getHorseDomain()
     ]);
-}//end horse_table
+}
 
 
-public function getMaxStat($horse_id){
-
+public static function getMaxStat($horse_id){
 
   $stats = Models\Horse::select(
     'speed',
@@ -107,8 +60,8 @@ public function getMaxStat($horse_id){
     return '';
   }
 
-  return $max_stat . ': ' . $max;
-}//end getMaxStat
+  return $max . ' ' . $max_stat;
+}
 
 public function horse_table_validate(){
   $data = Base::trimWhiteSpace($_POST);
@@ -122,7 +75,7 @@ public function horse_table_validate(){
     ]
     );
   
-}//end horses_table_validate
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -130,39 +83,46 @@ public function horse_table_validate(){
 |--------------------------------------------------------------------------
 */
 
-public function horse($horse_id = false){
+public function horse($horse_id = false, $form_type = false){
   $horse = Models\Horse::where('id', $horse_id)->first();
   $owner = '';
   $title = 'Create Horse';
+  $validate = false;
 
   if($horse){
     $horse = $horse->toArray();
-    Users::verifyOwner($horse);
+    if(!Users::verifyOwner($horse)){
+      abort(401, 'You do not own this horse.');
+    }   
+
     $title = 'Edit '. $horse['call_name'];
   } else {  
     $owner = Users::getPerson();
     if($owner['id'] == '%'){
       $owner = false;
-    }//end if
-  }//end if-else
+    }
+  }
 
-  return view('pages.horse', [
+  return view('forms.horse_page', [
    'domain' => Base::getHorseDomain(), 
    'horse' => $horse, 
    'owner' => $owner,
    'title' => $title,
-   'validate' => false
+   'validate' => $validate,
+   'form_type' => $form_type
    ]);
-}//end horse
+}
 
 public function horse_validate(){
   $data = Base::trimWhiteSpace($_POST);
 
-
-  Users::verifyOwner($data);
-  $horse = $this->createHorse($data);
+  if(!Users::verifyOwner($data)){
+    abort(401, 'You do not own this horse.');
+  }   
+  $horse = Horses::createHorse($data);
   return redirect()->route('stall', ['horse_id' => $horse->id]);
-}//end horse_validate
+}
+
 
 /*
 |--------------------------------------------------------------------------
@@ -173,26 +133,30 @@ public function horse_validate(){
 public function stall($horse_id){
   $horse = Models\Horse::where('id', $horse_id)->first();
 
+  $data = Horses::generateStall($horse);
+
   $abilities = Models\Ability::where('id', $horse['pos_ability_1'])
   ->orWhere('id', $horse['pos_ability_2'])
   ->orWhere('id', $horse['neg_ability_1'])
-  ->orderBy('type', 'desc')->get();     
+  ->orderBy('type', 'desc')->get();       
 
-  $data = $this->generateStall($horse);
-
-  $parents = $this->getParents($horse_id);
-  $offspring = $this->getOffspring($horse_id, $horse['sex']);
-  $race_records = $this->getRaceRecords($horse_id); 
+  $parents = Lineages::getParents($horse_id);
+  //$offspring = Horses::getOffspring($horse_id, $horse['sex']);
+  $ancestors = Lineages::return_ancestors($horse_id);
+  $descendents = Lineages::return_descendents($horse_id);
+  $race_records = Horses::getRaceRecords($horse_id); 
 
   return view('pages.stall', [
     'horse' => $horse,               
     'abilities' => $abilities,
-    'offspring' => $offspring, 
+
     'parents' => $parents, 
+    'ancestors' => $ancestors,
+    'descendents' => $descendents,
     'race_records' => $race_records,
     'data' => $data
     ]);
-}//end stall
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -201,6 +165,10 @@ public function stall($horse_id){
 */
 
 public function generateStall($horse){
+  if(!$horse){
+    return false;
+  }
+
   $data = [];
   $data['sex'] = Models\Domain_Value::where('id', $horse->sex)->first()['value'];
 
@@ -222,14 +190,12 @@ public function generateStall($horse){
   $data['shadow_roll']  = Models\Domain_Value::where('id', $horse->shadow_roll)->first()['value'];
 
   return $data;
-}//end generateStall
+}
 
 public function getOffspring($horse_id, $sex){ 
   $offspring = [];
 
-
-
-  if($sex == 10){ //stallion
+  if($sex == 10){ 
     $offspring = Models\Lineage::where('sire_id', $horse_id)->get();
 
     foreach($offspring as $i=>$o){
@@ -241,9 +207,8 @@ public function getOffspring($horse_id, $sex){
       $dam = Models\Horse::where('id', $o['dam_id'])->first();
       $offspring[$i]['dam_name'] = $dam['call_name'];
       $offspring[$i]['dam_link'] = $dam['stall_path'];
-    }//end foreach
-
-  } else if($sex == 11){ //mare
+    }
+  } else if($sex == 11){ 
     $offspring = Models\Lineage::where('dam_id', $horse_id)->get();
 
     foreach($offspring as $i=>$o){
@@ -255,89 +220,53 @@ public function getOffspring($horse_id, $sex){
       $sire = Models\Horse::where('id', $o['sire_id'])->first();
       $offspring[$i]['sire_name'] = $sire['call_name'];
       $offspring[$i]['sire_link'] = $sire['stall_path'];
-      }//end foreach
-  }//end if-else  
+    } 
+  }  
 
   return $offspring;
-}//end getOffspring
+}
 
-public function getParents($horse_id){
-  $record = Models\Lineage::where('horse_id', $horse_id)->first();
-  $parents = [];
 
-  if($record){ //exists
-    $sire = Models\Horse::where('id', $record['sire_id'])->first();
-    $parents['sire_name'] = $sire['call_name'];
-    $parents['sire_link'] = (($sire['stall_path'] != '') ? $sire['stall_path'] : '/stall/' . $record['sire_id']);
 
-    $dam = Models\Horse::where('id', $record['dam_id'])->first();
-    $parents['dam_name'] = $dam['call_name'];
-    $parents['dam_link'] = (($dam['stall_path'] != '') ? $dam['stall_path'] : '/stall/' . $record['dam_id']);
-  }//end if
-
-  return $parents;
-}//end getParents
-
-public function getRaceRecords($horse_id){
+public static function getRaceRecords($horse_id){
+  $horse = Models\Horse::find($horse_id);
+  $permissions = 'false';
+  if(Users::verifyOwner($horse)){
+    $permissions = 'true';
+  }   
   $records = [];
 
-  $placements = Models\Race_Entry::select('placing')
-  ->distinct()
-  ->where('horse_id', $horse_id)
+  $entries = Models\Race_Entry::where('horse_id', $horse_id)
   ->orderBy('placing')
   ->get();
 
-  if($placements){
-    $placements = $placements->toArray();
+  $races =  Models\Race::get()->toArray();
+  $series =  Models\Domain_Value::where('domain', 'RACE_SERIES')->orderBy('value')->get();
+  $grades =  Models\Domain_Value::where('domain', 'GRADE')->orderBy('value')->get();
 
-    foreach($placements as $i=>$p){
-      $num_place = $p['placing'];
-      $ordinal_place =  Base::ordinal($p['placing']);
+  if($entries){
+    $entries = $entries->toArray();
 
-      if($ordinal_place == '0th'){
-        $ordinal_place = 'TBA';
-      }//end if
+    foreach($entries as $i=>$p){
+      $race = Base::getRace($races, $p['race_id']);  
 
-      $records[$ordinal_place] = [];   
+      $race['series'] = Base::getSeries($series, $race['series']);  
+      $race['surface'] = ($race['surface'] == 41 ? 'Dirt' : 'Turf'); 
+      $race['grade'] = Base::getGrade($grades, $race['grade']);  
 
-      $entries = Models\Race_Entry::select('id', 'race_id', 'horse_id', 'placing')
-      ->where('horse_id', $horse_id)
-      ->where('placing', $num_place)
-      ->get();
+      $race['placing'] =  $p['placing'];
+      $race['isNotableWin'] = $p['isNotableWin'];
+      $race['isTrackRecord'] = $p['isTrackRecord'];
+      $race['time'] = $p['time'];
+      $race['entry_id'] = $p['id'];
+      $race['user_pl'] = $permissions;
 
-      if($entries){
-        $entries = $entries->toArray();
-
-        foreach($entries as $p){
-          $race = Models\Race::select('id', 'series', 'name', 'surface', 'grade', 'distance', 'url', 'ran_dt')
-          ->orderBy('ran_dt')
-          ->where('id', $p['race_id'])->first();
-
-          if($race){
-            $race = $race->toArray();
-
-            if($race['series'] != 44){
-             $race['series'] = Models\Domain_Value::select('description')
-             ->where('id', $race['series'])
-             ->first()
-             ->toArray()['description'];
-             
-           } else {
-             $race['series'] = '';
-            }//end if - series
-
-            $race['surface'] = Models\Domain_Value::select('value')->where('id', $race['surface'])->first()->toArray()['value']; 
-            $race['grade'] = Models\Domain_Value::select('value')->where('id', $race['grade'])->first()->toArray()['value']; 
-
-            array_push($records[$ordinal_place], ['race' => $race, 'entry_id' => $p['id']]);     
-          }//end if - race
-        }//end foreach - entry
-      }//end if - entry   
-    }//end foreach - placing
-  }//end if - placements
+      $records[$i] = $race;   
+    }
+  }   
 
   return $records;
-}//end getRaceRecords
+}
 
 public function createHorse($data){
   $horse = Models\Horse::firstOrNew(['id' => $data['id']]);
@@ -394,11 +323,10 @@ public function createHorse($data){
    $horse->stall_path = $data['stall_path'];
  }
 
-
  $horse->save();
 
  return $horse;
-}//end createHorse
+}
 
 /*
 |--------------------------------------------------------------------------
@@ -407,22 +335,80 @@ public function createHorse($data){
 */
 
 public function remove_horse($horse_id){
- $horse = Models\Horse::find($horse_id);
- Users::verifyOwner($horse);
- $horse = Models\Horse::find($horse_id);
- $lineages = Models\Lineage::where('horse_id', $horse_id)->orWhere('sire_id', $horse_id)->orWhere('dam_id', $horse_id)->first();
- $entries = Models\Race_Entry::where('horse_id', $horse_id)->first();
+  $horse = Models\Horse::find($horse_id);
+  if(!Users::verifyOwner($horse)){
+    abort(401, 'You do not own this horse.');
+  }   
+  $horse = Models\Horse::find($horse_id);
+  $lineages = Models\Lineage::where('horse_id', $horse_id)->orWhere('sire_id', $horse_id)->orWhere('dam_id', $horse_id)->first();
+  $entries = Models\Race_Entry::where('horse_id', $horse_id)->first();
 
- if(empty($_POST)){
-  return view('pages.remove_horse', [
-    'horse' => $horse,
-    'lineages' => $lineages,
-    'entries' => $entries   
-    ]);
-} else {
-  $horse->delete();
-  return redirect()->route('horse_table');
+  if(empty($_POST)){
+    return view('pages.remove_horse', [
+      'horse' => $horse,
+      'lineages' => $lineages,
+      'entries' => $entries   
+      ]);
+  } else {
+    $horse->delete();
+    return redirect()->route('horse_table');
+  }
 }
-}//end remove_race
 
-}//end class
+
+public static function tableData($owner = false, $breeding_status = false, $sex = false, $grade = false){
+  $horses = Models\Horse::orderBy('id', 'desc');
+
+  if($owner != "false" && $owner && $owner != '0'){
+    $horses->where('owner', $owner);
+  }
+
+  if($breeding_status != "false" && $breeding_status && $breeding_status != '0'){
+    $horses->where('breeding_status', $breeding_status);
+  }
+
+  if($sex != "false" && $sex && $sex != '0'){
+    $horses->where('sex', $sex);    
+  }
+
+  if($grade != "false" && $grade && $grade != '0'){
+    $horses->where('grade', $grade);  
+  }
+
+
+  if($horses){
+    $horses = $horses->get()->toArray();
+
+    foreach($horses as $i=>$h){
+      $horses[$i]['breeding_status'] = Models\Domain_Value::where('id', $h['breeding_status'])->first()['value'];
+
+      $horses[$i]['pos_ability_1'] = Models\Ability::where('id', $h['pos_ability_1'])->first()['ability'];
+      $horses[$i]['pos_ability_2'] = Models\Ability::where('id', $h['pos_ability_2'])->first()['ability'];
+      $horses[$i]['neg_ability_1'] = Models\Ability::where('id', $h['neg_ability_1'])->first()['ability'];
+
+      $horses[$i]['surface_dirt'] = Models\Domain_Value::where('id', $h['surface_dirt'])->first()['value'];
+      $horses[$i]['surface_turf'] = Models\Domain_Value::where('id', $h['surface_turf'])->first()['value'];
+
+      $horses[$i]['grade'] = Models\Domain_Value::where('id', $h['grade'])->first()['value'];
+      $horses[$i]['sex'] = Models\Domain_Value::where('id', $h['sex'])->first()['value'];
+      $horses[$i]['owner'] = Models\Person::where('id', $h['owner'])->first()['username'];
+
+      $horses[$i]['max_stat'] = Horses::getMaxStat($h['id']);
+      $horses[$i]['user_pl'] = 'false';
+
+      if(Users::verifyOwner($h)){
+        $horses[$i]['user_pl'] = 'true';
+      }      
+
+      foreach($horses[$i] as $j=>$v){     
+        if($v == 'Unknown'){
+          $horses[$i][$j] = '';
+        }
+      }
+    }  
+  }
+
+  return $horses;
+}
+
+}

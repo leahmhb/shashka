@@ -11,7 +11,7 @@
         <h3 class="panel-title">
           Breeding <small>by Neco</small>
         </h3>
-      </div><!--end heading-->
+      </div>
       <div class="panel-body">
         <blockquote>
          <p>So, you have this awesome pair of racehorses and want to breed them to create more awesome racehorses. But what do you do? Unlike Halter or Jumping champions, racehorses not only earn points but those points are put toward their racing stats, those points can be inherited by their foals.</p>
@@ -121,12 +121,12 @@
         <p>We are implementing a stat limit - the highest stat your foal can have is a <b>70</b>. Anything higher and we feel that the foal has an unfair advantage against other Open Level horses. Competition on all levels is important, and I'd personally rather horses work their way from the lower ranks to the highest rather than have a foal born with GI stats. After all, that doesn't happen on the track - just because your daddy is a GI winner doesn't mean you will be too!</p>
 
         <p>For any other questions, or just general help calculating stats, please PM me! I'm always up to help anyone with a problem :]</p>
-      </div><!--end panel body-->    
-    </div><!--end panel-->   
-  </div><!--end col-->
-</div><!--end row-->
+      </div>    
+    </div>   
+  </div>
+</div>
 
 
-</div><!--end container-->
+</div>
 
 @endsection

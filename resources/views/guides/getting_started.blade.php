@@ -9,7 +9,7 @@
           <h3 class="panel-title">
             Getting Started with Flat Racing <small>by Neco</small>
           </h3>
-        </div><!--end heading-->
+        </div>
         <div class="panel-body">
           <blockquote>
            <p>Are you interested in starting up a racing string here at Seeing Stars? That’s great! Thoroughbred racing here is a great way to get involved with the community and pit your horses against some of the best runners we have racing at the moment. It’s also a fun and different way to interact with your horse and the other members of the community!</p>
@@ -98,22 +98,11 @@
         <p>As time goes by, we’ll be refining and adding more information to this page, but until them, please PM either me or Wildfire any questions if you have some regarding racing. We’ll be more than happy to help you out and point you in the right direction.</p>
 
         <p>Happy Racing!</p>
-      </div><!--end panel body-->    
-    </div><!--end panel-->   
-  </div><!--end col-->
-</div><!--end row-->
+      </div>    
+    </div>   
+  </div>
+</div>
 
-
-
-
-
-
-
-
-
- 
-
-
-</div><!--end container-->
+</div>
 @endsection
 

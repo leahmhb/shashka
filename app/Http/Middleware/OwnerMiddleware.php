@@ -20,7 +20,7 @@ class OwnerMiddleware extends Authenticate{
      return abort(401);
    }
    
-   if($request->user()->owner == 1 ){
+   if($request->user()->isOwner == 1 ){
      return $next($request);
    }
 

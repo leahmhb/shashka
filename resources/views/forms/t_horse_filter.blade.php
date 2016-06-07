@@ -1,8 +1,8 @@
 <form id="horse-filter" class="form-horizontal" method="post" action="/horse-table">
- <div class="row">
+ <aside class="row">
   <div class="col-sm-12">
     <div class="panel panel-default">
-      <div class="panel-heading"><h3 class="panel-title">Filter</h3></div><!--end heading-->
+      <div class="panel-heading"><h3 class="panel-title">Filter</h3></div>
       <div class="panel-body">
 
       <div class="col-sm-6">
@@ -15,9 +15,9 @@
               <option @if($owner == $p['id']) selected @endif value="{{$p['id']}}">{{$p['username']}}</option>
               @endforeach         
             </select>
-          </div><!--end col-->                
-        </div><!--end owner-->
-      </div><!--end col-->
+          </div>                
+        </div>
+      </div>
 
       <div class="col-sm-6">
        <div class="form-group">
@@ -31,9 +31,9 @@
            </option>         
            @endforeach
          </select>
-       </div><!--end col-->
-     </div><!--end breeding_status-->
-   </div><!--end col-->
+       </div>
+     </div>
+   </div>
 
    <div class="col-sm-6">
      <div class="form-group">
@@ -45,10 +45,10 @@
           <option @if( $sex == $s['id']) selected @endif value="{{$s['id']}}">{{$s['value']}}</option>
           @endforeach
         </select>           
-      </div><!--end col-->        
-    </div><!--end sex-->
+      </div>        
+    </div>
 
-  </div><!--end col-->
+  </div>
 
   <div class="col-sm-6">
 
@@ -63,14 +63,14 @@
         </option>           
         @endforeach
       </select>
-    </div><!--end col-->
-  </div><!--end grade-->
+    </div>
+  </div>
 
-</div><!--end col-->
+</div>
 
 
 
-</div><!--end panel content-->    
+</div>    
 <div class="panel-footer">
   <div class="text-right"> 
 
@@ -78,9 +78,9 @@
     <button type="submit" class="btn btn-primary btn-sm">Save</button>     
 
   </div>
-</div><!--end footer-->
+</div>
 
-</div><!--end panel--> 
-</div><!--end col-->
-</div><!--end row-->
+</div> 
+</div>
+</aside>
 </form>

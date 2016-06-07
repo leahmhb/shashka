@@ -11,11 +11,11 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $middleware = [
-		'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
-		'Illuminate\Cookie\Middleware\EncryptCookies',
-		'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
-		'Illuminate\Session\Middleware\StartSession',
-		'Illuminate\View\Middleware\ShareErrorsFromSession',
+	'Illuminate\Foundation\Http\Middleware\CheckForMaintenanceMode',
+	'Illuminate\Cookie\Middleware\EncryptCookies',
+	'Illuminate\Cookie\Middleware\AddQueuedCookiesToResponse',
+	'Illuminate\Session\Middleware\StartSession',
+	'Illuminate\View\Middleware\ShareErrorsFromSession',
 		//'App\Http\Middleware\VerifyCsrfToken',
 	];
 
@@ -25,12 +25,14 @@ class Kernel extends HttpKernel {
 	 * @var array
 	 */
 	protected $routeMiddleware = [
-		'user' => 'App\Http\Middleware\Authenticate',
-		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
-		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-		'csrf'  => 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken',
-		'admin' => 'App\Http\Middleware\AdminMiddleware',
-		'owner' => 'App\Http\Middleware\OwnerMiddleware',
+	'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
+	'csrf'  => 'Illuminate\Foundation\Http\Middleware\VerifyCsrfToken',
+
+	'admin' => 'App\Http\Middleware\AdminMiddleware',
+	'jockey_club' => 'App\Http\Middleware\JockeyClubMiddleware',
+	'owner' => 'App\Http\Middleware\OwnerMiddleware',
+	'user' => 'App\Http\Middleware\Authenticate',
+	'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
 	];
 
 }

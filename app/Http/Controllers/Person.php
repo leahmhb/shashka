@@ -1,64 +1,148 @@
 <?php  
 namespace App\Http\Controllers;
 use App\Models as Models;
+use DB;
 
 use Illuminate\Foundation\Bus\DispatchesJobs;
 use Illuminate\Routing\Controller as BaseController;
 use Illuminate\Foundation\Validation\ValidatesRequests;
 use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
-use Illuminate\Http\Request;
-
 class Person extends Base{
-
 
 /*
 |--------------------------------------------------------------------------
-| Table Controls
+| ------------------------------Table Controls
 |--------------------------------------------------------------------------
 */
 
 public static function person_table_data(){
   $person = Models\Person::orderBy('username')->get()->toArray();
   return $person;
-}//end person_table
+}
 
 /*
 |--------------------------------------------------------------------------
-| Form Controls
+| ------------------------------Form Controls
 |--------------------------------------------------------------------------
 */
-
-public function person_validate(){
-  $data = Base::trimWhiteSpace($_POST);
-  $person_id = $this->createPerson($data);
-  return redirect()->route('people_tables');
-}//end update_person_validate
 
 public function person($person_id = false){   
   $users = [];
   $title = 'Create Person';
 
   $person = Models\Person::where('id', $person_id)->first();  
+
   if($person){
     $title = 'Edit '. $person->username;
   }
-  
-  if(Users::checkAdmin(Users::getCurrentUser())){
-    $users = Users::getUsers();
-  }//end if
 
-  return view('pages.person', [
+  return view('forms.person_page', [
     'person' => $person, 
-    'users' => $users,
     'title' => $title,
     'validate' => false
     ]);
-}//end person
+}
+
+public function person_validate(){
+  $data = Base::trimWhiteSpace($_POST);
+  $person_id = Person::createPerson($data);
+  return redirect()->route('people_tables');
+}
 
 /*
 |--------------------------------------------------------------------------
-| Utility Controls
+| Stable Controls
+|--------------------------------------------------------------------------
+*/
+
+public function stable($person_id){
+  $person = Models\Person::where('id', $person_id)->first();
+  $horses = Horses::tableData($person_id, false, false, false);   
+  $placingsData = Person::getPlacingsData(Person::getEntryRecords($horses));
+  $gradesData = Person::getGradesData($horses);
+
+  return view('pages.stable', [
+    'person' => $person, 
+    'horses' => $horses,
+    'type' => 'stable',
+    'placingsData' => $placingsData,
+    'gradesData' => $gradesData,
+    'domain' => Base::getHorseDomain()
+    ]);
+}
+
+/*
+|--------------------------------------------------------------------------
+| Stable Helpers
+|--------------------------------------------------------------------------
+*/
+
+public function getGradesData($horses){
+  $grades = Models\Domain_Value::where('domain', 'GRADE')->whereNotIn('value', ['All'])->get()->toArray();
+
+  $results = [];
+
+  foreach($grades as $g){
+    $results[$g['value']] = [$g['description'], 0];
+  }
+
+  foreach($horses as $h){
+    foreach($results as $i=>$r){     
+
+      if($h['grade'] == $i){
+        $results[$i][1] += 1;
+      }
+    }
+  }
+
+  return json_encode(array_values($results));
+}
+
+public function getPlacingsData($placings){
+  $results = [];
+
+  for($i = 1; $i < 15; $i++){
+    $results[$i] = [$i, 0];
+  }
+
+  $results[0] = ['TBA', 0];
+
+  foreach($placings as $p){
+    $place = $p['placing'];
+    foreach($results as $i=>$r){
+      $curr_place = $r[0];
+      if($place == $curr_place){
+        $results[$i][1] += 1;
+      }
+    }    
+  }
+
+  foreach($results as $i=>$r){
+    if($results[$i][0] != 'TBA'){
+      $results[$i][0] = Base::ordinal($results[$i][0]);
+    }
+  }
+
+  return json_encode(array_values($results));
+}
+
+public function getEntryRecords($horses){
+  $results = [];
+  $records = [];
+  foreach($horses as $h){
+    $records = array_values(Horses::getRaceRecords($h['id']));
+    foreach($records as $r){
+      array_push($results, $r);
+    }
+    $records = [];
+  }
+  return $results;
+}
+
+/*
+|--------------------------------------------------------------------------
+| ------------------------------Utility Controls
 |--------------------------------------------------------------------------
 */
 
@@ -70,7 +154,7 @@ public function createPerson($data){
  $person->racing_colors = (!empty($data['racing_colors']) ? $data['racing_colors'] : '');
  $person->save();
  return $person;
-}//end createPerson
+}
 
 public function remove_person($person_id){
   $person = Models\Person::find($person_id);
@@ -85,10 +169,10 @@ public function remove_person($person_id){
   } else {
 
     $person->delete();
-  
+
     return redirect()->route('people_tables');
-  }//end if
+  }
 
-}//end remove_person
+}
 
-}//end class
+}
