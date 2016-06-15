@@ -20,7 +20,7 @@
             @foreach($horses as $h)
             <tr>
               <td>
-                <a class="icon-link" href="{{ URL::route('stall', $h['id']) }}" target="_blank">
+                <a class="icon-link" href="{{ URL::route('stall', $h['id']) }}">
                   {{$h['call_name']}}
                 </a> 
                 @if($h['stall_path'])

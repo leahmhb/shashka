@@ -17,12 +17,13 @@
             <tr>
              <th>Placing</th>
              <th>Horse</th>
-             <th>Series Race Distance Surface Grade</th>  
-             <th>Not. Win</th>    
-             <th>Tra. Rec.</th> 
+             <th>Series</th>
+             <th>Race Distance Surface</th>  
+             <th>Grade</th>
+             <th>Note.<br>Win</th>    
+             <th>Tra.<br>Rec.</th> 
              <th>Time</th>  
-             <th>Ran Date</th>  
-
+             <th>Ran<br>Date</th>  
              <th></th>
            </tr>
          </thead>
@@ -44,18 +45,31 @@
              </a>
              @endif
            </td> 
+           <td>{{ $e['race_series'] }}</td>
            <td>
              <a href="{{ $e['url'] }}" target="_blank"> 
-               {{ $e['race_series'] }}   
                {{ $e['race_name'] }} 
                {{ $e['race_distance'] }}F
-                <i class="fa fa-circle @if( $e['race_surface']  == 'Turf')fa-green @else fa-brown @endif fa-lg" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ $e['race_surface'] }}"></i>
-               {{ $e['race_grade'] }} 
+               <i class="fa fa-circle @if( $e['race_surface']  == 'Turf')fa-green @else fa-brown @endif fa-lg" aria-hidden="true"  data-toggle="tooltip" data-placement="top" title="{{ $e['race_surface'] }}"></i>               
              </a>              
            </td>
-
-           <td> {{ $e['isNotableWin'] }}</td>
-           <td> {{ $e['isTrackRecord'] }} </td>
+<td>{{ $e['race_grade'] }} </td>
+          <td>
+       <i class="fa  
+       @if($e['isNotableWin'] == 'YES')
+       fa-check-square-o fa-green 
+       @else 
+       fa-square-o fa-color 
+       @endif" aria-hidden="true"></i>     
+     </td>
+     <td>       
+       <i class="fa 
+       @if($e['isTrackRecord'] == 'YES')
+       fa-check-square-o fa-green 
+       @else 
+       fa-square-o fa-color 
+       @endif" aria-hidden="true"></i>       
+     </td>
            <td> {{ $e['time'] }} </td>
            <td class="nowrap_cell">
              @if(date('Y-m-d', strtotime($e['race_randt'])) == '1000-01-01') 

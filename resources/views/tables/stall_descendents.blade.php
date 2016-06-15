@@ -12,10 +12,10 @@
       </tr>
     </thead>
     <tbody>
-      @foreach($descendents as $h)
+      @foreach($tableData['descendents'] as $h)
       <tr>
         <td>
-          <a class="icon-link" href="{{ URL::route('stall', $h['id']) }}" target="_blank">
+          <a class="icon-link" href="{{ URL::route('stall', $h['id']) }}">
             {{$h['call_name']}}
           </a> 
           @if($h['stall_path'])
@@ -54,7 +54,7 @@
         </td>
 
         <td>
-          <a class="icon-link" href="{{ URL::route('stall', $h['parents']['sire_id']) }}" target="_blank">
+          <a class="icon-link" href="{{ URL::route('stall', $h['parents']['sire_id']) }}">
             {{$h['parents']['sire_name'] }}
           </a>
           @if($h['parents']['sire_link'])
@@ -64,7 +64,7 @@
           @endif
         </td>
         <td>
-          <a class="icon-link" href="{{ URL::route('stall', $h['parents']['dam_id']) }}" target="_blank">
+          <a class="icon-link" href="{{ URL::route('stall', $h['parents']['dam_id']) }}">
             {{$h['parents']['dam_name'] }}
           </a>
           @if($h['parents']['dam_link'])

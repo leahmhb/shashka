@@ -50,14 +50,13 @@ public function entriesTableDomain(){
   $grades = Models\Domain_Value::where('domain', 'GRADE')->get();  
 
   foreach($races as $i=>$r){   
-    $races[$i]['series'] = Base::getSeries($series, $r['series']);  
+    $races[$i]['series'] = Base::getSeriesValue($series, $r['series']);      
     $races[$i]['surface'] = ($r['surface'] == 41 ? 'Dirt' : 'Turf'); 
     $races[$i]['grade'] = Base::getGrade($grades, $r['grade']);  
   }
 
   $domain['horses']  = Models\Horse::select('id', 'call_name')->orderBy('call_name')->get()->toArray();
   $domain['races'] = $races;
-
   return $domain;
 }
 
@@ -211,5 +210,58 @@ public function tableData($race = false, $placing = false, $horse = false, $owne
 
   return $entries;
 }
+
+public static function getPlacingsData($placings){
+  $results = [];
+
+  for($i = 1; $i < 15; $i++){
+    $results[$i] = [$i, 0];
+  }
+
+  $results[0] = ['TBA', 0];
+
+  foreach($placings as $p){
+    $place = $p['placing'];
+    foreach($results as $i=>$r){
+      $curr_place = $r[0];
+      if($place == $curr_place){
+        $results[$i][1] += 1;
+      }
+    }    
+  }
+
+  foreach($results as $i=>$r){
+    if($results[$i][0] != 'TBA'){
+      $results[$i][0] = Base::ordinal($results[$i][0]);
+    }
+
+    if($results[$i][0] == 0){
+      unset($results[$i]);
+    }
+  }
+
+  return json_encode(array_values($results));
+}
+
+public static function getEntryRecords($horses){
+  $results = [];
+  $records = [];
+  foreach($horses as $h){
+    $records = $entries = Models\Race_Entry::where('horse_id', $h['id'])
+    ->orderBy('placing')
+    ->get();
+
+    if($records){
+      $records = $records->toArray();
+      foreach($records as $r){
+        array_push($results, $r);
+      }
+    }
+    $records = [];
+  }
+
+  return $results;
+}
+
 
 }

@@ -80,7 +80,7 @@ public function getRaceDomain($person_id = false){
   ->get()->toArray();
 
   foreach($races as $i=>$r){
-   $races[$i]['series'] = Base::getSeries($domain['series'], $r['series']);  
+   $races[$i]['series'] = Base::getSeriesValue($domain['series'], $r['series']);  
    $races[$i]['surface'] = ($r['surface'] == 41 ? 'Dirt' : 'Turf'); 
    $races[$i]['grade'] = Base::getGrade($domain['grades'], $r['grade']);  
  }
@@ -100,14 +100,26 @@ public static function getRace($d_race, $race){
 }
 
 
-public static function getSeries($d_series, $series){
+public static function getSeriesValue($d_series, $series){
   foreach($d_series as $s){
     if($s['id'] == $series && $series != 44){
-      return $s['description'];          
+      //return ['value' => $s['value'], 'description' => $s['description']];      
+      return '[' . $s['value'] . ']';         
     }
   }
   return '';
 }
+
+public static function getSeriesDescription($d_series, $series){
+  foreach($d_series as $s){
+    if($s['id'] == $series && $series != 44){
+      //return ['value' => $s['value'], 'description' => $s['description']];      
+      return $s['description'];         
+    }
+  }
+  return '';
+}
+
 
 public static function getGrade($d_grade, $grade){
   foreach($d_grade as $s){

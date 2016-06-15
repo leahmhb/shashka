@@ -131,30 +131,41 @@ public function horse_validate(){
 */
 
 public function stall($horse_id){
-  $horse = Models\Horse::where('id', $horse_id)->first();
+  $chartData = [];
+  $tableData = [];
+  $horse = [];
 
-  $data = Horses::generateStall($horse);
+  $horse = Horses::generateStall(Models\Horse::where('id', $horse_id)->first());
 
   $abilities = Models\Ability::where('id', $horse['pos_ability_1'])
   ->orWhere('id', $horse['pos_ability_2'])
   ->orWhere('id', $horse['neg_ability_1'])
   ->orderBy('type', 'desc')->get();       
 
+  if($abilities){
+    $horse['abilities'] = $abilities->toArray();   
+  } else {
+    $horse['abilities'] = false;
+  }
+
   $parents = Lineages::getParents($horse_id);
-  //$offspring = Horses::getOffspring($horse_id, $horse['sex']);
-  $ancestors = Lineages::return_ancestors($horse_id);
-  $descendents = Lineages::return_descendents($horse_id);
-  $race_records = Horses::getRaceRecords($horse_id); 
 
-  return view('pages.stall', [
-    'horse' => $horse,               
-    'abilities' => $abilities,
+  if(array_filter($parents)){
+    $horse['parents'] = $parents;
+  } else {
+    $horse['parents'] = false;
+  }
 
-    'parents' => $parents, 
-    'ancestors' => $ancestors,
-    'descendents' => $descendents,
-    'race_records' => $race_records,
-    'data' => $data
+  $tableData['ancestors'] = Lineages::return_ancestors($horse_id);
+  $tableData['descendents'] = Lineages::return_descendents($horse_id);
+  $tableData['race_records'] = Horses::getRaceRecords($horse_id); 
+
+  $chartData['placings'] = $placingsData = Race_Entries::getPlacingsData(Race_Entries::getEntryRecords([$horse]));
+
+  return view('pages.stall', [   
+    'chartData' => $chartData,
+    'tableData' => $tableData,
+    'horse' => $horse
     ]);
 }
 
@@ -170,24 +181,40 @@ public function generateStall($horse){
   }
 
   $data = [];
-  $data['sex'] = Models\Domain_Value::where('id', $horse->sex)->first()['value'];
 
-  $data['breeding_status'] = Models\Domain_Value::where('id', $horse->breeding_status)->first()['value'];
-  $data['grade'] = Models\Domain_Value::where('id', $horse->grade)->first()['description'];
 
-  $data['owner'] = Models\Person::where('id', $horse->owner)->first();
-  $data['breeder'] = Models\Person::select('username')->where('id', $horse->breeder)->first()['username'];
-  $data['hexer'] = Models\Person::where('id', $horse->hexer)->first();
+  $horse = $horse->toArray();
 
-  $data['surface_dirt'] = Models\Domain_Value::where('id', $horse->surface_dirt)->first()['value']; 
-  $data['surface_turf'] = Models\Domain_Value::where('id', $horse->surface_turf)->first()['value']; 
+  foreach($horse as $i=>$h){
+    $data[$i] = $h;
+  }
 
-  $data['leg_type'] = Models\Domain_Value::where('id', $horse->leg_type)->first();
-  $data['neck_height'] = Models\Domain_Value::where('id', $horse->neck_height)->first()['value']; 
-  $data['run_style'] = Models\Domain_Value::where('id', $horse->run_style)->first()['value'];
-  $data['bandages'] = Models\Domain_Value::where('id', $horse->bandages)->first()['value'];
-  $data['hood'] = Models\Domain_Value::where('id', $horse->hood)->first()['value'];
-  $data['shadow_roll']  = Models\Domain_Value::where('id', $horse->shadow_roll)->first()['value'];
+  $data['sex'] = Models\Domain_Value::where('id', $horse['sex'])->first()['value'];
+
+  $data['breeding_status'] = Models\Domain_Value::where('id', $horse['breeding_status'])->first()['value'];
+  $data['grade'] = Models\Domain_Value::where('id', $horse['grade'])->first()['description'];
+
+  $data['owner'] = Models\Person::where('id', $horse['owner'])->first()->toArray();
+  $data['breeder'] = Models\Person::select('username')->where('id', $horse['breeder'])->first()['username'];
+
+  $hexer = Models\Person::where('id', $horse['hexer'])->first();
+
+  if($hexer){
+    $data['hexer'] = $hexer->toArray();
+  } else {
+    $data['hexer'] = '';
+  }
+  
+  $data['surface_dirt'] = Models\Domain_Value::where('id', $horse['surface_dirt'])->first()['value']; 
+  $data['surface_turf'] = Models\Domain_Value::where('id', $horse['surface_turf'])->first()['value']; 
+
+  $data['leg_type'] = Models\Domain_Value::where('id', $horse['leg_type'])->first()->toArray();
+  $data['neck_height'] = Models\Domain_Value::where('id', $horse['neck_height'])->first()['value']; 
+  $data['run_style'] = Models\Domain_Value::where('id', $horse['run_style'])->first()['value'];
+  $data['bandages'] = Models\Domain_Value::where('id', $horse['bandages'])->first()['value'];
+  $data['hood'] = Models\Domain_Value::where('id', $horse['hood'])->first()['value'];
+  $data['shadow_roll']  = Models\Domain_Value::where('id', $horse['shadow_roll'])->first()['value'];
+
 
   return $data;
 }
@@ -227,7 +254,6 @@ public function getOffspring($horse_id, $sex){
 }
 
 
-
 public static function getRaceRecords($horse_id){
   $horse = Models\Horse::find($horse_id);
   $permissions = 'false';
@@ -250,7 +276,8 @@ public static function getRaceRecords($horse_id){
     foreach($entries as $i=>$p){
       $race = Base::getRace($races, $p['race_id']);  
 
-      $race['series'] = Base::getSeries($series, $race['series']);  
+      $race['series'] = Base::getSeriesValue($series, $race['series']); 
+
       $race['surface'] = ($race['surface'] == 41 ? 'Dirt' : 'Turf'); 
       $race['grade'] = Base::getGrade($grades, $race['grade']);  
 
@@ -267,6 +294,7 @@ public static function getRaceRecords($horse_id){
 
   return $records;
 }
+
 
 public function createHorse($data){
   $horse = Models\Horse::firstOrNew(['id' => $data['id']]);

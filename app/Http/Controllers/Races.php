@@ -173,7 +173,7 @@ public function tableData($grade = false, $surface = false, $series = false, $di
       $races[$i]['surface'] = ($r['surface'] == 41 ? 'Dirt' : 'Turf');    
 
       if($r['series'] != 44){
-        $races[$i]['series'] = Base::getSeries($domain['series'], $r['series']);
+        $races[$i]['series'] = Base::getSeriesValue($domain['series'], $r['series']);
       } else {
         $races[$i]['series'] = '';
       }
@@ -188,6 +188,8 @@ public function tableData($grade = false, $surface = false, $series = false, $di
 
   return $races;
 }
+
+
 
 
 

@@ -3,7 +3,7 @@
   <thead>
     <tr>
      <th>Placing</th> 
-     <th>Not. Win</th>    
+     <th>Note. Win</th>    
      <th>Tra. Rec.</th> 
      <th>Time</th>       
      <th>Series</th>
@@ -16,13 +16,30 @@
    </tr>
  </thead>
  <tbody>  
-   @foreach($race_records as $r)
+   @foreach($tableData['race_records'] as $r)
    <tr>
      <td>{{ $r['placing'] }}</td>  
-     <td>{{ $r['isNotableWin'] }} </td>
-     <td>{{ $r['isTrackRecord'] }} </td>
+     <td>
+       <i class="fa  
+       @if($r['isNotableWin'] == 'YES')
+       fa-check-square-o fa-green 
+       @else 
+       fa-square-o fa-color 
+       @endif" aria-hidden="true"></i>     
+     </td>
+     <td>       
+       <i class="fa 
+       @if($r['isTrackRecord'] == 'YES')
+       fa-check-square-o fa-green 
+       @else 
+       fa-square-o fa-color 
+       @endif" aria-hidden="true"></i>       
+     </td>
      <td>{{ $r['time'] }}</td>
-     <td>{{ $r['series'] }}</td>
+
+     <td>
+    {{ $r['series'] }}
+     </td>
      <td>
        <a class="icon-link" href="{{ $r['url'] }}" target="_blank">
          {{ $r['name'] }}
@@ -44,14 +61,14 @@
       @endif       
     </td>         
     <td> 
-    @if($r['user_pl'] == 'true')     
-     <a class="icon-link" href="{{ URL::route('entry', [$horse['id'], $r['entry_id']]) }}">
-      <i class='fa-gray fa fa-pencil'  data-toggle="tooltip" data-placement="top" title="Edit"></i>
-    </a>  
-    @endif
-  </td>
-</tr>         
-@endforeach
+      @if($r['user_pl'] == 'true')     
+      <a class="icon-link" href="{{ URL::route('entry', [$horse['id'], $r['entry_id']]) }}">
+        <i class='fa-gray fa fa-pencil'  data-toggle="tooltip" data-placement="top" title="Edit"></i>
+      </a>  
+      @endif
+    </td>
+  </tr>         
+  @endforeach
 
 </tbody>
 </table>

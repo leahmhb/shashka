@@ -59,7 +59,7 @@ public function person_validate(){
 public function stable($person_id){
   $person = Models\Person::where('id', $person_id)->first();
   $horses = Horses::tableData($person_id, false, false, false);   
-  $placingsData = Person::getPlacingsData(Person::getEntryRecords($horses));
+  $placingsData = Race_Entries::getPlacingsData(Race_Entries::getEntryRecords($horses));
   $gradesData = Person::getGradesData($horses);
 
   return view('pages.stable', [
@@ -99,46 +99,6 @@ public function getGradesData($horses){
   return json_encode(array_values($results));
 }
 
-public function getPlacingsData($placings){
-  $results = [];
-
-  for($i = 1; $i < 15; $i++){
-    $results[$i] = [$i, 0];
-  }
-
-  $results[0] = ['TBA', 0];
-
-  foreach($placings as $p){
-    $place = $p['placing'];
-    foreach($results as $i=>$r){
-      $curr_place = $r[0];
-      if($place == $curr_place){
-        $results[$i][1] += 1;
-      }
-    }    
-  }
-
-  foreach($results as $i=>$r){
-    if($results[$i][0] != 'TBA'){
-      $results[$i][0] = Base::ordinal($results[$i][0]);
-    }
-  }
-
-  return json_encode(array_values($results));
-}
-
-public function getEntryRecords($horses){
-  $results = [];
-  $records = [];
-  foreach($horses as $h){
-    $records = array_values(Horses::getRaceRecords($h['id']));
-    foreach($records as $r){
-      array_push($results, $r);
-    }
-    $records = [];
-  }
-  return $results;
-}
 
 /*
 |--------------------------------------------------------------------------

@@ -80,17 +80,22 @@ public static function getParents($horse_id){
   $record = Models\Lineage::where('horse_id', $horse_id)->first();
   $parents = [];
 
+
   $sire = Models\Horse::where('id', $record['sire_id'])->first();
-  $parents['sire_id'] = $record['sire_id'];
-  $parents['sire_name'] = (!empty($sire['call_name']) ? $sire['call_name'] : 'Foundation');
-  $parents['sire_link'] = $sire['stall_path'];
-
   $dam = Models\Horse::where('id', $record['dam_id'])->first();
+
+
+  $parents['sire_id'] = $record['sire_id'];
+  $parents['sire_name'] = $sire['call_name'];
+  $parents['sire_link'] = $sire['stall_path'];
+  
   $parents['dam_id'] = $record['dam_id'];
-  $parents['dam_name'] = (!empty($dam['call_name']) ? $dam['call_name'] : 'Foundation');
+  $parents['dam_name'] = $dam['call_name'];
   $parents['dam_link'] = $dam['stall_path'];
+  
 
-
+  $parents['generation'] = ($record ? Base::ordinal($record['generation'])  :  '' );
+  
   return $parents;
 }
 
